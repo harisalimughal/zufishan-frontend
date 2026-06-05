@@ -1,0 +1,20 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "plugins": [{ "name": "next" }],
+    "paths": {
+      "@/*": ["./*"],
+      "@/components/*": ["./components/*"],
+      "@/features/*": ["./features/*"],
+      "@/lib/*": ["./lib/*"],
+      "@/mock-data/*": ["./mock-data/*"],
+      "@/types/*": ["./types/*"],
+      "@nexora/ui/*": ["../../packages/ui/*"],
+      "@nexora/hooks/*": ["../../packages/hooks/*"],
+      "@nexora/types/*": ["../../packages/types/*"],
+      "@nexora/utils/*": ["../../packages/utils/*"]
+    }
+  },
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
+  "exclude": ["node_modules"]
+}
