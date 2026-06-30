@@ -1,17 +1,17 @@
-// sections/Solution/Solution.tsx
+// apps/landing/sections/Solution/Solution.tsx
 import Image from 'next/image';
 
-// Import images from the local solutions folder
-import robotLogo from '/solutions/logo/robot-face-svgrepo-com.svg';
-import handLogo from './solutions/logo/hand-svgrepo-com.svg';
-import chartLogo from './solutions/logo/bar-chart-1-svgrepo-com.svg';
-import capLogo from './solutions/logo/cap-education-graduation-svgrepo-com.svg';
+// Import images from the apps/public folder
+// Using relative path from Solution.tsx to apps/public
+import robotLogo from '../../../public/robot-face-svgrepo-com.svg';
+import handLogo from '../../../public/hand-svgrepo-com.svg';
+import chartLogo from '../../../public/bar-chart-1-svgrepo-com.svg';
+import capLogo from '../../../public/cap-education-graduation-svgrepo-com.svg';
 
-import professorImage from './solutions/images/Gemini_Generated_Image_foc11efoc11efoc1.png';
-import interactionImage from './solutions/images/omar-lopez-rincon-WqSWLtKrDEY-unsplash.jpg';
-import accountabilityImage from './solutions/images/prashant-hiremath-phS1wAgXOQI-unsplash.jpg';
-import tutorImage from './solutions/images/zulfugar-karimov-g9jkFm899i0-unsplash.jpg';
-
+import professorImage from '../../../public/Gemini_Generated_Image_foc11efoc11efoc1.png';
+import interactionImage from '../../../public/omar-lopez-rincon-WqSWLtKrDEY-unsplash.jpg';
+import accountabilityImage from '../../../public/prashant-hiremath-phS1wAgXOQI-unsplash.jpg';
+import tutorImage from '../../../public/zulfugar-karimov-g9jkFm899i0-unsplash.jpg';
 export function Solution() {
   return (
     <section className="py-20 px-4 font-inter" style={{ backgroundColor: '#09090B' }}>
@@ -36,8 +36,7 @@ export function Solution() {
             className="group p-6 rounded-xl border transition-all duration-300 hover:shadow-xl hover:shadow-blue-500/10"
             style={{ 
               backgroundColor: '#111827',
-              borderColor: '#27272A',
-              hover: { borderColor: '#3B82F6' }
+              borderColor: '#27272A'
             }}
           >
             <div 
