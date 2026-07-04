@@ -17,7 +17,8 @@ export default [
       "node_modules/**",
       "dist/**",
       "build/**",
-      "coverage/**"
+      "coverage/**",
+      "**/next-env.d.ts"
     ]
   }
 ];
