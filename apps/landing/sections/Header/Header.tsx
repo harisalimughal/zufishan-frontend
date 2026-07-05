@@ -8,9 +8,9 @@ export default function Header() {
         {/* Logo */}
         <a href="/" className="flex items-center">
         <img
-            src="/fav-logo.png"
+            src="/Nexora-logo-white-transparent.png"
             alt="AI University Logo"
-            className="h-[100px] w-[100px] object-contain"
+            className="h-[170px] w-[190px] object-contain"
          />
 
     <span className="text-white text-2xl font-bold tracking-tight">
@@ -52,6 +52,7 @@ export default function Header() {
             Join Waitlist
           </Link>
         </div>
+        
       </nav>
     </header>
   );
