@@ -1,8 +1,6 @@
 // apps/landing/sections/Solution/Solution.tsx
 import Image from 'next/image';
 
-// Import images from the apps/public folder
-// Using relative path from Solution.tsx to apps/public
 import robotLogo from '../../../public/robot-face-svgrepo-com.svg';
 import handLogo from '../../../public/hand-svgrepo-com.svg';
 import chartLogo from '../../../public/bar-chart-1-svgrepo-com.svg';
@@ -41,7 +39,7 @@ export function Solution() {
           >
             <div 
               className="w-14 h-14 rounded-xl mb-4 flex items-center justify-center transition-transform duration-300 group-hover:scale-105"
-              style={{ backgroundColor: '#3B82F6' }}
+              style={{ backgroundColor: '#220055' }}
             >
               <Image
                 src={robotLogo}
@@ -77,7 +75,7 @@ export function Solution() {
           >
             <div 
               className="w-14 h-14 rounded-xl mb-4 flex items-center justify-center transition-transform duration-300 group-hover:scale-105"
-              style={{ backgroundColor: '#3B82F6' }}
+              style={{ backgroundColor: '#220055' }}
             >
               <Image
                 src={handLogo}
@@ -113,7 +111,7 @@ export function Solution() {
           >
             <div 
               className="w-14 h-14 rounded-xl mb-4 flex items-center justify-center transition-transform duration-300 group-hover:scale-105"
-              style={{ backgroundColor: '#3B82F6' }}
+              style={{ backgroundColor: '#220055' }}
             >
               <Image
                 src={chartLogo}
@@ -149,7 +147,7 @@ export function Solution() {
           >
             <div 
               className="w-14 h-14 rounded-xl mb-4 flex items-center justify-center transition-transform duration-300 group-hover:scale-105"
-              style={{ backgroundColor: '#3B82F6' }}
+              style={{ backgroundColor: '#220055' }}
             >
               <Image
                 src={capLogo}
