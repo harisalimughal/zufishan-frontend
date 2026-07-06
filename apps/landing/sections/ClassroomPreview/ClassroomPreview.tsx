@@ -2,12 +2,13 @@
 
 import { useState, useEffect, useRef } from "react";
 import {
-  Mic,
-  MicOff,
+  Bot,
   Hand,
-  MessageCircle,
+  HelpCircle,
   FileText,
   Users,
+  Mic,
+  MicOff,
   Video,
   VideoOff,
   MonitorUp,
@@ -16,6 +17,8 @@ import {
   LogOut,
   File,
   X,
+  UserPlus,
+  UserMinus,
 } from "lucide-react";
 
 // ─── Types ───────────────────────────────────────────────────────────────────
@@ -52,7 +55,7 @@ type TabType = "Chat" | "People" | "Notes";
 
 const FEATURE_PILLS: FeaturePill[] = [
   {
-    icon: Mic,
+    icon: Bot,
     label: "AI Professors",
     modalTitle: "Meet Your AI Professor",
     modalDesc: "Nexora's AI Professors are powered by advanced language models trained on academic content. They teach, respond, and adapt — just like a real professor.",
@@ -75,10 +78,10 @@ const FEATURE_PILLS: FeaturePill[] = [
       "🔔 Receive a notification when called on",
       "🎤 Unmute automatically when acknowledged",
     ],
-    accentColor: "#6D5DFC",
+    accentColor: "#F59E0B",
   },
   {
-    icon: MessageCircle,
+    icon: HelpCircle,
     label: "Live Q&A",
     modalTitle: "Live Q&A Sessions",
     modalDesc: "Ask questions in real time and get instant responses from the AI Professor. Other students can upvote questions they also want answered.",
@@ -88,7 +91,7 @@ const FEATURE_PILLS: FeaturePill[] = [
       "📌 Pin important Q&A for later review",
       "📁 Full Q&A saved after every class",
     ],
-    accentColor: "#6D5DFC",
+    accentColor: "#22C55E",
   },
   {
     icon: FileText,
@@ -101,7 +104,7 @@ const FEATURE_PILLS: FeaturePill[] = [
       "📤 Export as PDF anytime",
       "🔍 Searchable across all your classes",
     ],
-    accentColor: "#6D5DFC",
+    accentColor: "#3B82F6",
   },
   {
     icon: Users,
@@ -114,7 +117,7 @@ const FEATURE_PILLS: FeaturePill[] = [
       "🤝 Peer review and group projects",
       "🏆 Leaderboards and team challenges",
     ],
-    accentColor: "#6D5DFC",
+    accentColor: "#EC4899",
   },
 ];
 
@@ -254,12 +257,14 @@ export function ClassroomPreview() {
   const [isLeft, setIsLeft] = useState(false);
   const [activePill, setActivePill] = useState<FeaturePill | null>(null);
 
-  // ── Real student tracking (notification banner removed, count still live) ──
+  // ── Real student tracking ──
   const [presentStudents, setPresentStudents] = useState<string[]>(["You"]);
+  const [joinNotification, setJoinNotification] = useState<{ name: string; type: "join" | "leave" } | null>(null);
 
   const chatEndRef = useRef<HTMLDivElement>(null);
   const nextIdRef = useRef(4);
   const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const notifTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   // Pulse animation
   useEffect(() => {
@@ -272,7 +277,7 @@ export function ClassroomPreview() {
     chatEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages, isTyping]);
 
-  // ── Real student join/leave simulation (silent, no banner) ──
+  // ── Real student join/leave simulation ──
   useEffect(() => {
     const scheduleNext = () => {
       const delay = 2500 + Math.random() * 4000; // 2.5s to 6.5s between events
@@ -283,11 +288,18 @@ export function ClassroomPreview() {
 
           if (shouldLeave) {
             const name = canLeave[Math.floor(Math.random() * canLeave.length)];
+            // Clear old notif timer
+            if (notifTimerRef.current) clearTimeout(notifTimerRef.current);
+            setJoinNotification({ name, type: "leave" });
+            notifTimerRef.current = setTimeout(() => setJoinNotification(null), 2500);
             return current.filter((n) => n !== name);
           } else {
             const remaining = JOINING_NAMES.filter((n) => !current.includes(n));
             if (remaining.length === 0) return current;
             const name = remaining[Math.floor(Math.random() * remaining.length)];
+            if (notifTimerRef.current) clearTimeout(notifTimerRef.current);
+            setJoinNotification({ name, type: "join" });
+            notifTimerRef.current = setTimeout(() => setJoinNotification(null), 2500);
             return [...current, name];
           }
         });
@@ -298,6 +310,7 @@ export function ClassroomPreview() {
     scheduleNext();
     return () => {
       if (timerRef.current) clearTimeout(timerRef.current);
+      if (notifTimerRef.current) clearTimeout(notifTimerRef.current);
     };
   }, []);
 
@@ -361,23 +374,16 @@ export function ClassroomPreview() {
         </div>
 
         {/* Feature Pills */}
-        <div style={{ display: "flex", flexWrap: "wrap" as const, justifyContent: "center", gap: 28, marginBottom: 52 }}>
+        <div style={{ display: "flex", flexWrap: "wrap" as const, justifyContent: "center", gap: 12, marginBottom: 52 }}>
           {FEATURE_PILLS.map((pill) => {
             const Icon = pill.icon;
             return (
               <button key={pill.label} onClick={() => setActivePill(pill)}
-                style={{
-                  display: "inline-flex", alignItems: "center", gap: 6,
-                  background: "transparent",
-                  border: "none",
-                  padding: "4px 0",
-                  color: "#A1A1AA", fontSize: 13, fontWeight: 400,
-                  cursor: "pointer", fontFamily: "inherit", transition: "color 0.2s",
-                }}
-                onMouseEnter={(e) => { (e.currentTarget as HTMLButtonElement).style.color = "#E4E4E7"; }}
-                onMouseLeave={(e) => { (e.currentTarget as HTMLButtonElement).style.color = "#A1A1AA"; }}
+                style={{ display: "inline-flex", alignItems: "center", gap: 7, background: "rgba(255,255,255,0.04)", border: "1px solid #27272A", borderRadius: 999, padding: "7px 16px", color: "#A1A1AA", fontSize: 13, fontWeight: 500, cursor: "pointer", fontFamily: "inherit", transition: "all 0.2s" }}
+                onMouseEnter={(e) => { const b = e.currentTarget as HTMLButtonElement; b.style.background = `${pill.accentColor}18`; b.style.borderColor = `${pill.accentColor}55`; b.style.color = "#fff"; }}
+                onMouseLeave={(e) => { const b = e.currentTarget as HTMLButtonElement; b.style.background = "rgba(255,255,255,0.04)"; b.style.borderColor = "#27272A"; b.style.color = "#A1A1AA"; }}
               >
-                <Icon size={14} color={pill.accentColor} strokeWidth={2} />
+                <Icon size={15} color={pill.accentColor} />
                 {pill.label}
               </button>
             );
@@ -386,6 +392,30 @@ export function ClassroomPreview() {
 
         {/* Classroom Card */}
         <div style={{ maxWidth: 900, margin: "0 auto" }}>
+
+          {/* Join/Leave Notification */}
+          <div style={{ height: 36, marginBottom: 8, display: "flex", alignItems: "center", justifyContent: "center" }}>
+            {joinNotification && (
+              <div style={{
+                display: "inline-flex", alignItems: "center", gap: 8,
+                background: joinNotification.type === "join" ? "rgba(34,197,94,0.1)" : "rgba(239,68,68,0.1)",
+                border: `1px solid ${joinNotification.type === "join" ? "rgba(34,197,94,0.3)" : "rgba(239,68,68,0.3)"}`,
+                borderRadius: 999, padding: "6px 14px",
+                color: joinNotification.type === "join" ? "#22C55E" : "#EF4444",
+                fontSize: 12, fontWeight: 500,
+                animation: "fadeIn 0.3s ease",
+              }}>
+                {joinNotification.type === "join"
+                  ? <UserPlus size={13} />
+                  : <UserMinus size={13} />
+                }
+                {joinNotification.type === "join"
+                  ? `${joinNotification.name} joined the class`
+                  : `${joinNotification.name} left the class`
+                }
+              </div>
+            )}
+          </div>
 
           <div style={{ background: "#111827", border: "1px solid #27272A", borderRadius: 16, overflow: "hidden", boxShadow: "0 32px 80px rgba(0,0,0,0.6), 0 0 0 1px rgba(109,93,252,0.08)" }}>
 
@@ -442,6 +472,7 @@ export function ClassroomPreview() {
                     <span style={{ color: "#fff", fontSize: 10, fontWeight: 600 }}>Muted</span>
                   </div>
                 )}
+                
               </div>
 
               {/* Chat Panel */}
@@ -498,6 +529,7 @@ export function ClassroomPreview() {
                   {/* PEOPLE TAB */}
                   {activeTab === "People" && (
                     <>
+                      {/* Professor always first */}
                       <div style={{ display: "flex", gap: 8, alignItems: "center" }}>
                         <AvatarCircle initials="L" color="#A78BFA" size={28} />
                         <div style={{ flex: 1, minWidth: 0 }}>
@@ -506,6 +538,7 @@ export function ClassroomPreview() {
                         </div>
                         <span style={{ background: "rgba(109,93,252,0.2)", color: "#A78BFA", fontSize: 9, fontWeight: 700, padding: "2px 6px", borderRadius: 4 }}>AI</span>
                       </div>
+                      {/* All present students dynamically */}
                       {presentStudents.map((name) => (
                         <div key={name} style={{ display: "flex", gap: 8, alignItems: "center" }}>
                           <AvatarCircle initials={getInitials(name)} color={getColor(name)} size={28} />
@@ -599,6 +632,7 @@ export function ClassroomPreview() {
 
         <style>{`
           @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-4px); } }
+          @keyframes fadeIn { from { opacity: 0; transform: translateY(-4px); } to { opacity: 1; transform: translateY(0); } }
         `}</style>
       </section>
     </>

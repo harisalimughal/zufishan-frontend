@@ -1,20 +1,19 @@
 export type SidebarItem = {
-  label: string;
+  title: string;
   href: string;
   icon: string;
 };
 
 export const sidebarItems: SidebarItem[] = [
-  { label: "Dashboard", href: "/dashboard", icon: "LayoutDashboard" },
-  { label: "My Courses", href: "/dashboard", icon: "BookOpen" },
-  { label: "Live Classes", href: "/classroom", icon: "Video" },
-  { label: "Course Catalog", href: "/catalog", icon: "Library" },
-  { label: "Calendar", href: "/calendar", icon: "CalendarDays" },
-  { label: "Attendance", href: "/attendance", icon: "ClipboardCheck" },
-  { label: "Assignments", href: "/assignments", icon: "ClipboardList" },
-  { label: "AI Tutor", href: "/tutor", icon: "Bot" },
-  { label: "Progress", href: "/progress", icon: "TrendingUp" },
-  { label: "Achievements", href: "/achievements", icon: "Trophy" },
-  { label: "Messages", href: "/messages", icon: "MessagesSquare" },
-  { label: "Settings", href: "/settings", icon: "Settings" }
+  { title: "Dashboard", href: "/dashboard", icon: "LayoutDashboard" },
+  { title: "My Courses", href: "/my-courses", icon: "BookOpen" },
+  { title: "Live Classes", href: "/live-classes", icon: "Video" },
+  { title: "Calendar", href: "/calendar", icon: "CalendarDays" },
+  { title: "Attendance", href: "/attendance", icon: "ClipboardCheck" },
+  { title: "Assignments", href: "/assignments", icon: "ClipboardList" },
+  { title: "AI Tutor", href: "/ai-tutor", icon: "Bot" },
+  { title: "Progress", href: "/progress", icon: "TrendingUp" },
+  { title: "Achievements", href: "/achievements", icon: "Trophy" },
+  { title: "Messages", href: "/messages", icon: "MessagesSquare" },
+  { title: "Settings", href: "/settings", icon: "Settings" }
 ];
