@@ -1,3 +1,3 @@
 export default function AttendancePage() {
-  return <main />;
+  return <h1>Attendance</h1>;
 }

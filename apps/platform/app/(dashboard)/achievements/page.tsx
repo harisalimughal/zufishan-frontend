@@ -1,3 +1,3 @@
 export default function AchievementsPage() {
-  return <main />;
+  return <h1>Achievements</h1>;
 }

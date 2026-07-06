@@ -7,5 +7,5 @@ type CoursePageProps = {
 export default async function CoursePage({ params }: CoursePageProps) {
   await params;
 
-  return <main />;
+  return <h1>Course</h1>;
 }

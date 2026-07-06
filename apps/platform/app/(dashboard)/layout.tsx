@@ -1,5 +1,4 @@
-import { NavbarPlaceholder } from "@/components/layout/navbar-placeholder";
-import { SidebarPlaceholder } from "@/components/layout/sidebar-placeholder";
+import { PlatformLayout } from "../../components/PlatformLayout";
 import type { ReactNode } from "react";
 
 export default function DashboardLayout({
@@ -7,13 +6,5 @@ export default function DashboardLayout({
 }: Readonly<{
   children: ReactNode;
 }>) {
-  return (
-    <div>
-      <SidebarPlaceholder />
-      <div>
-        <NavbarPlaceholder />
-        <main>{children}</main>
-      </div>
-    </div>
-  );
+  return <PlatformLayout>{children}</PlatformLayout>;
 }
