@@ -1,5 +1,5 @@
-import { NavbarPlaceholder } from "@/components/layout/navbar-placeholder";
-import { SidebarPlaceholder } from "@/components/layout/sidebar-placeholder";
+﻿import { NavbarPlaceholder } from "../../components/layout/navbar-placeholder";
+import { SidebarPlaceholder } from "../../components/layout/sidebar-placeholder";
 import type { ReactNode } from "react";
 
 export default function DashboardLayout({
@@ -8,11 +8,13 @@ export default function DashboardLayout({
   children: ReactNode;
 }>) {
   return (
-    <div>
+    <div className="flex min-h-screen bg-black">
       <SidebarPlaceholder />
-      <div>
+      <div className="flex flex-1 flex-col min-w-0">
         <NavbarPlaceholder />
-        <main>{children}</main>
+        <main className="flex-1">
+          {children}
+        </main>
       </div>
     </div>
   );
