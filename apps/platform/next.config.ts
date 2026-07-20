@@ -7,6 +7,7 @@ const nextConfig: NextConfig = {
     "@nexora/types",
     "@nexora/utils"
   ]
+
 };
 
 export default nextConfig;

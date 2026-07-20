@@ -1,3 +1,5 @@
+import { CourseCatalog } from "@/features/my-courses";
+
 export default function MyCoursesPage() {
-  return <h1>My Courses</h1>;
+  return <CourseCatalog />;
 }
