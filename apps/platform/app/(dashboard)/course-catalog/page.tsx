@@ -1,3 +1,3 @@
 export default function CatalogPage() {
-  return <main />;
+  return <h1>Course Catalog</h1>;
 }

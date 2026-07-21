@@ -1,3 +1,3 @@
 export default function ClassroomPage() {
-  return <main />;
+  return <h1>Live Classes</h1>;
 }
