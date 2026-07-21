@@ -1,6 +1,5 @@
 ﻿'use client'
 
-import { Coins, Bot, History, Database, ChevronDown } from 'lucide-react'
 import { useState } from 'react'
 import { HeaderLogo } from "./HeaderLogo";
 import { HeaderDropdown } from "./HeaderDropdown";

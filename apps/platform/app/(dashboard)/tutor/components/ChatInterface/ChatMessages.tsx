@@ -73,7 +73,7 @@ export function ChatMessages() {
       }}
     >
       <div className="space-y-6 pb-4">
-        {messages.map((msg, index) => (
+        {messages.map((msg) => (
           <div key={msg.id}>
             {msg.role === 'user' ? (
               <div className="flex justify-end">

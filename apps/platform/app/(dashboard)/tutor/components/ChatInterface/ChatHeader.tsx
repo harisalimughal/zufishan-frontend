@@ -11,7 +11,7 @@ export function ChatHeader() {
           Hi Harry! 👋
         </h2>
         <p className="text-gray-400 text-sm">
-          I'm your AI Tutor. Ask anything about databases.
+          I&apos;m your AI Tutor. Ask anything about databases.
         </p>
       </div>
     </div>
