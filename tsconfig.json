@@ -6,12 +6,5 @@
     "packages/**/*.ts",
     "packages/**/*.tsx"
   ],
-  "exclude": ["node_modules", ".next"],
-  "compilerOptions": {
-    "baseUrl": ".",
-    "paths": {
-      "@/*": ["./*"],
-      "@/public/*": ["./public/*"]
-    }
-  }
+  "exclude": ["node_modules", ".next"]
 }

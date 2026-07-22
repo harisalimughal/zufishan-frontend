@@ -1,6 +1,8 @@
 // apps/landing/sections/Solution/Solution.tsx
 import Image from 'next/image';
 
+// Import images from the apps/public folder
+// Using relative path from Solution.tsx to apps/public
 import robotLogo from '../../../public/robot-face-svgrepo-com.svg';
 import handLogo from '../../../public/hand-svgrepo-com.svg';
 import chartLogo from '../../../public/bar-chart-1-svgrepo-com.svg';
@@ -10,7 +12,6 @@ import professorImage from '../../../public/Gemini_Generated_Image_foc11efoc11ef
 import interactionImage from '../../../public/omar-lopez-rincon-WqSWLtKrDEY-unsplash.jpg';
 import accountabilityImage from '../../../public/prashant-hiremath-phS1wAgXOQI-unsplash.jpg';
 import tutorImage from '../../../public/zulfugar-karimov-g9jkFm899i0-unsplash.jpg';
-
 export function Solution() {
   return (
     <section className="py-20 px-4 font-inter" style={{ backgroundColor: '#09090B' }}>
@@ -40,7 +41,7 @@ export function Solution() {
           >
             <div 
               className="w-14 h-14 rounded-xl mb-4 flex items-center justify-center transition-transform duration-300 group-hover:scale-105"
-              style={{ backgroundColor: '#220055' }}
+              style={{ backgroundColor: '#3B82F6' }}
             >
               <Image
                 src={robotLogo}
@@ -76,7 +77,7 @@ export function Solution() {
           >
             <div 
               className="w-14 h-14 rounded-xl mb-4 flex items-center justify-center transition-transform duration-300 group-hover:scale-105"
-              style={{ backgroundColor: '#220055' }}
+              style={{ backgroundColor: '#3B82F6' }}
             >
               <Image
                 src={handLogo}
@@ -112,7 +113,7 @@ export function Solution() {
           >
             <div 
               className="w-14 h-14 rounded-xl mb-4 flex items-center justify-center transition-transform duration-300 group-hover:scale-105"
-              style={{ backgroundColor: '#220055' }}
+              style={{ backgroundColor: '#3B82F6' }}
             >
               <Image
                 src={chartLogo}
@@ -148,7 +149,7 @@ export function Solution() {
           >
             <div 
               className="w-14 h-14 rounded-xl mb-4 flex items-center justify-center transition-transform duration-300 group-hover:scale-105"
-              style={{ backgroundColor: '#220055' }}
+              style={{ backgroundColor: '#3B82F6' }}
             >
               <Image
                 src={capLogo}
@@ -178,7 +179,7 @@ export function Solution() {
         {/* Footer */}
         <div className="mt-16 text-center">
           <p className="text-lg text-gray-300 font-medium font-geist">
-            It&apos;s not just online learning. It&apos;s the <span style={{ color: '#3B82F6' }}>next generation</span> of education.
+            It's not just online learning. It's the <span style={{ color: '#3B82F6' }}>next generation</span> of education.
           </p>
           <div className="mt-4 flex justify-center gap-2">
             <span className="w-2 h-2 rounded-full" style={{ backgroundColor: '#3B82F6' }}></span>
