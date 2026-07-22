@@ -1,5 +1,3 @@
-import { ClassroomPreview } from "@/features/live-classes";
-
 export default function ClassroomPage() {
-  return <ClassroomPreview />;
+  return <h1>Live Classes</h1>;
 }
