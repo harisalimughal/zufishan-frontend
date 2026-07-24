@@ -7,18 +7,10 @@
     "packages/*"
   ],
   "scripts": {
-    "dev": "concurrently \"npm run dev:landing\" \"npm run dev:platform\"",
-    "dev:landing": "npm run dev -w @nexora/landing",
-    "dev:platform": "npm run dev -w @nexora/platform",
+    "dev": "npm run dev -w @nexora/platform",
     "build": "npm run build --workspaces --if-present",
-    "build:landing": "npm run build -w @nexora/landing",
-    "build:platform": "npm run build -w @nexora/platform",
     "lint": "npm run lint --workspaces --if-present",
-    "lint:landing": "npm run lint -w @nexora/landing",
-    "lint:platform": "npm run lint -w @nexora/platform",
     "typecheck": "npm run typecheck --workspaces --if-present",
-    "typecheck:landing": "npm run typecheck -w @nexora/landing",
-    "typecheck:platform": "npm run typecheck -w @nexora/platform",
     "format": "prettier --write ."
   },
   "dependencies": {

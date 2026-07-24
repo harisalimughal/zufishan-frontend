@@ -3,7 +3,7 @@ import type { ReactNode } from "react";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Nexora Platform",
+  title: "Nexora",
   description: "Nexora learning platform"
 };
 
