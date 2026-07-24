@@ -6,7 +6,8 @@ export type SidebarItem = {
 
 export const sidebarItems: SidebarItem[] = [
   { title: "Dashboard", href: "/dashboard", icon: "LayoutDashboard" },
-  { title: "My Courses", href: "/my-courses", icon: "BookOpen" },
+  { title: "Course Catalog", href: "/course-catalog", icon: "Compass" },
+  { title: "My Courses", href: "/my-courses", icon: "GraduationCap" },
   { title: "Live Classes", href: "/live-classes", icon: "Video" },
   { title: "Calendar", href: "/calendar", icon: "CalendarDays" },
   { title: "Attendance", href: "/attendance", icon: "ClipboardCheck" },

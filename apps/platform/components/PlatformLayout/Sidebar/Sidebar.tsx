@@ -9,6 +9,8 @@ import {
   CalendarDays,
   ClipboardCheck,
   ClipboardList,
+  Compass,
+  GraduationCap,
   LayoutDashboard,
   MessagesSquare,
   Settings,
@@ -22,6 +24,8 @@ import { sidebarItems } from "../../../lib/navigation/sidebar-items";
 const iconMap: Record<string, LucideIcon> = {
   LayoutDashboard,
   BookOpen,
+  Compass,
+  GraduationCap,
   Video,
   CalendarDays,
   ClipboardCheck,
