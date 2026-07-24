@@ -7,4 +7,4 @@ export default function DashboardLayout({
   children: ReactNode;
 }>) {
   return <PlatformLayout>{children}</PlatformLayout>;
-}
+}

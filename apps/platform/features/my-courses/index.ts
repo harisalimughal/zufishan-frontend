@@ -1,1 +1,1 @@
-export {};
+export { CourseCatalog } from "./CourseCatalog";
