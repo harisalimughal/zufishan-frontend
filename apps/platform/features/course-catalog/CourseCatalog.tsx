@@ -9,6 +9,7 @@ import {
   BarChart3,
   BrainCircuit,
   BriefcaseBusiness,
+  Cloud,
   Code2,
   Database,
   Grid2X2,
@@ -64,6 +65,12 @@ const categories: CourseCategory[] = [
     courseCount: 14,
     icon: BriefcaseBusiness,
   },
+  {
+    id: "cloud-computing",
+    label: "Cloud Computing",
+    courseCount: 12,
+    icon: Cloud,
+  },
 ];
 
 const courses: Course[] = [
@@ -79,6 +86,7 @@ const courses: Course[] = [
     level: "Beginner",
     badge: "Bestseller",
     illustration: "database",
+    slug: "database-101",
   },
   {
     id: 2,
@@ -91,6 +99,7 @@ const courses: Course[] = [
     students: "7.2K",
     level: "Beginner",
     illustration: "python",
+    slug: "python-programming",
   },
   {
     id: 3,
@@ -104,6 +113,7 @@ const courses: Course[] = [
     level: "Intermediate",
     badge: "Bestseller",
     illustration: "ai",
+    slug: "ai-machine-learning",
   },
   {
     id: 4,
@@ -117,6 +127,7 @@ const courses: Course[] = [
     level: "Intermediate",
     badge: "New",
     illustration: "code",
+    slug: "data-structures-algorithms",
   },
   {
     id: 5,
@@ -129,6 +140,7 @@ const courses: Course[] = [
     students: "5.4K",
     level: "Beginner",
     illustration: "analytics",
+    slug: "data-analysis-pandas",
   },
   {
     id: 6,
@@ -141,6 +153,7 @@ const courses: Course[] = [
     students: "4.8K",
     level: "Beginner",
     illustration: "cloud",
+    slug: "cloud-computing",
   },
   {
     id: 7,
@@ -153,6 +166,7 @@ const courses: Course[] = [
     students: "3.9K",
     level: "Intermediate",
     illustration: "business",
+    slug: "business-analytics",
   },
   {
     id: 8,
@@ -165,6 +179,7 @@ const courses: Course[] = [
     students: "6.7K",
     level: "Advanced",
     illustration: "network",
+    slug: "deep-learning",
   },
 ];
 
@@ -177,6 +192,7 @@ const categoryMap: Record<
   "ai-ml": "AI & ML",
   database: "Database",
   business: "Business",
+  "cloud-computing": "Cloud Computing",
 };
 
 type SortValue =
@@ -216,15 +232,27 @@ export function CourseCatalog() {
 
         const matchesSearch =
           !search ||
-          course.title.toLowerCase().includes(search) ||
-          course.subtitle.toLowerCase().includes(search) ||
-          course.category.toLowerCase().includes(search);
+          course.title
+            .toLowerCase()
+            .includes(search) ||
+          course.subtitle
+            .toLowerCase()
+            .includes(search) ||
+          course.category
+            .toLowerCase()
+            .includes(search);
 
-        return matchesCategory && matchesSearch;
+        return (
+          matchesCategory &&
+          matchesSearch
+        );
       })
       .sort((first, second) => {
         if (sortValue === "rating") {
-          return second.rating - first.rating;
+          return (
+            second.rating -
+            first.rating
+          );
         }
 
         if (sortValue === "title") {
@@ -275,9 +303,14 @@ export function CourseCatalog() {
 
         <div className="mt-4 flex items-center justify-between gap-3">
           <h2 className="text-[11px] font-semibold text-zinc-100">
-            All Courses{" "}
-            <span className="font-normal text-zinc-500">
-              (120)
+            {activeCategory === "all"
+              ? "All Courses"
+              : categoryMap[
+                  activeCategory
+                ]}
+
+            <span className="ml-1 font-normal text-zinc-500">
+              ({filteredCourses.length})
             </span>
           </h2>
 
@@ -290,7 +323,8 @@ export function CourseCatalog() {
               value={sortValue}
               onChange={(event) =>
                 setSortValue(
-                  event.target.value as SortValue,
+                  event.target
+                    .value as SortValue,
                 )
               }
               className="h-7 min-w-[104px] rounded-md border border-[#1F2937] bg-[#0D1422] px-2 text-[8px] text-zinc-300 outline-none"
@@ -311,6 +345,7 @@ export function CourseCatalog() {
             <div className="flex rounded-md border border-[#1F2937] bg-[#0D1422] p-0.5">
               <button
                 type="button"
+                aria-label="Grid view"
                 onClick={() =>
                   setViewMode("grid")
                 }
@@ -326,6 +361,7 @@ export function CourseCatalog() {
 
               <button
                 type="button"
+                aria-label="List view"
                 onClick={() =>
                   setViewMode("list")
                 }
@@ -342,21 +378,36 @@ export function CourseCatalog() {
           </div>
         </div>
 
-        <div
-          className={[
-            "mt-3 grid gap-2.5",
-             viewMode === "grid"
-            ? "grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
-            : "grid-cols-1 sm:grid-cols-2"
-          ].join(" ")}
-        >
-          {filteredCourses.map((course) => (
-            <CourseCard
-              key={course.id}
-              course={course}
-            />
-          ))}
-        </div>
+        {filteredCourses.length > 0 ? (
+          <div
+            className={[
+              "mt-3 grid gap-2.5",
+              viewMode === "grid"
+                ? "grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
+                : "grid-cols-1 sm:grid-cols-2",
+            ].join(" ")}
+          >
+            {filteredCourses.map(
+              (course) => (
+                <CourseCard
+                  key={course.id}
+                  course={course}
+                />
+              ),
+            )}
+          </div>
+        ) : (
+          <div className="mt-8 rounded-lg border border-[#1F2937] bg-[#0D1422] px-4 py-10 text-center">
+            <p className="text-[11px] font-medium text-zinc-300">
+              No courses found
+            </p>
+
+            <p className="mt-1 text-[9px] text-zinc-500">
+              Try changing the search or
+              category.
+            </p>
+          </div>
+        )}
 
         <Pagination
           currentPage={currentPage}
