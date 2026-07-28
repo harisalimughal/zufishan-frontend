@@ -4,6 +4,10 @@ type CoursePageProps = {
   }>;
 };
 
+export function generateStaticParams() {
+  return [{ id: "placeholder" }];
+}
+
 export default async function CoursePage({ params }: CoursePageProps) {
   await params;
 
