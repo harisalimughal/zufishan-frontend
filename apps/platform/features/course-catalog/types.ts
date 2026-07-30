@@ -1,10 +1,5 @@
 import type { LucideIcon } from "lucide-react";
 
-export type CourseLevel =
-  | "Beginner"
-  | "Intermediate"
-  | "Advanced";
-
 export type CourseCategoryName =
   | "Programming"
   | "Data Science"
@@ -12,6 +7,11 @@ export type CourseCategoryName =
   | "Database"
   | "Business"
   | "Cloud Computing";
+
+export type CourseLevel =
+  | "Beginner"
+  | "Intermediate"
+  | "Advanced";
 
 export type CourseCategory = {
   id: string;
@@ -40,4 +40,5 @@ export type Course = {
     | "cloud"
     | "business"
     | "network";
+  slug: string;
 };
