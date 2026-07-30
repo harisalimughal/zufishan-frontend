@@ -272,9 +272,12 @@ export function ClassroomPreview() {
     return () => clearInterval(timer);
   }, []);
 
-  // Auto scroll chat
+  // Auto scroll chat (scoped to chat container only, not the whole page)
   useEffect(() => {
-    chatEndRef.current?.scrollIntoView({ behavior: "smooth" });
+    const el = chatEndRef.current;
+    if (el?.parentElement) {
+      el.parentElement.scrollTop = el.parentElement.scrollHeight;
+    }
   }, [messages, isTyping]);
 
   // ── Real student join/leave simulation ──
@@ -352,7 +355,7 @@ export function ClassroomPreview() {
     <>
       {activePill && <FeatureModal pill={activePill} onClose={() => setActivePill(null)} />}
 
-      <section style={{ background: "#09090B", padding: "96px 24px", fontFamily: "'Inter', 'Geist', sans-serif" }}>
+      <section id="classroom-preview" style={{ background: "#09090B", padding: "96px 24px", fontFamily: "'Inter', 'Geist', sans-serif" }}>
 
         {/* Badge */}
         <div style={{ display: "flex", justifyContent: "center", marginBottom: 28 }}>
@@ -452,6 +455,7 @@ export function ClassroomPreview() {
                   style={{ position: "absolute" as const, top: 0, left: 0, width: "100%", height: "100%", border: "none", opacity: cameraActive ? 1 : 0, transition: "opacity 0.4s" }}
                   allow="autoplay; encrypted-media"
                   allowFullScreen
+                  tabIndex={-1}
                 />
                 {!cameraActive && (
                   <div style={{ position: "absolute" as const, inset: 0, background: "#0a0a14", display: "flex", flexDirection: "column" as const, alignItems: "center", justifyContent: "center", gap: 12 }}>
