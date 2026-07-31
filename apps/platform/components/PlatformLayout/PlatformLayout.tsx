@@ -11,16 +11,17 @@ type PlatformLayoutProps = {
 
 export function PlatformLayout({ children }: PlatformLayoutProps) {
   const [isOpen, setIsOpen] = useState(false);
+  const [collapsed, setCollapsed] = useState(false);
 
   return (
     <div className="min-h-screen bg-[#09090B] text-[#FFFFFF]">
       <div className="flex min-h-screen">
         <aside
-          className={`fixed inset-y-0 left-0 z-40 w-50 border-r border-[#27272A] bg-black p-6 transition-transform duration-200 lg:static lg:block lg:translate-x-0 ${
-            isOpen ? "translate-x-0" : "-translate-x-full"
-          }`}
+          className={`fixed inset-y-0 left-0 z-40 w-50 border-r border-[#27272A] bg-black transition-all duration-200 lg:sticky lg:top-0 lg:block lg:h-screen lg:translate-x-0 ${
+            collapsed ? "lg:w-20 p-3" : "p-6"
+          } ${isOpen ? "translate-x-0" : "-translate-x-full"}`}
         >
-          <Sidebar />
+          <Sidebar collapsed={collapsed} onToggleCollapse={() => setCollapsed((v) => !v)} />
         </aside>
 
         {isOpen ? (

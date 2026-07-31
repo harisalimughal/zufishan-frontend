@@ -284,9 +284,12 @@ export function ClassroomPreview() {
     return () => clearInterval(t);
   }, []);
 
-  // Auto scroll chat
+  // Auto scroll chat (scoped to the chat panel only, not the whole page)
   useEffect(() => {
-    chatEndRef.current?.scrollIntoView({ behavior: "smooth" });
+    const el = chatEndRef.current;
+    if (el?.parentElement) {
+      el.parentElement.scrollTop = el.parentElement.scrollHeight;
+    }
   }, [messages, isTyping]);
 
   // Live student join/leave
@@ -381,7 +384,7 @@ export function ClassroomPreview() {
     <>
       {activePill && <FeatureModal pill={activePill} onClose={() => setActivePill(null)} />}
 
-      <section style={{ background: "#09090B", padding: "96px 24px", fontFamily: "'Inter', 'Geist', sans-serif" }}>
+      <section style={{ background: "#09090B", padding: "0 24px 96px", fontFamily: "'Inter', 'Geist', sans-serif" }}>
 
         {/* ── Badge ── */}
         <div style={{ display: "flex", justifyContent: "center", marginBottom: 28 }}>
@@ -461,7 +464,8 @@ export function ClassroomPreview() {
             {/* ── Video Area ── */}
             <div style={{ flex: 1, position: "relative" as const, background: "#070B14", overflow: "hidden" }}>
               <iframe
-                src="https://www.youtube.com/embed/HXV3zeQKqGY?autoplay=1&mute=1&loop=1&playlist=HXV3zeQKqGY&controls=0&modestbranding=1&rel=0&showinfo=0"
+                src="https://player.cloudinary.com/embed/?cloud_name=lgyepgcr&public_id=Renanla-Tutor_uyw0sh&profile=cld-default&autoplay=true&muted=true&loop=true&controls=false"
+                title="Renanla Tutor live class preview"
                 style={{ position: "absolute" as const, top: 0, left: 0, width: "100%", height: "100%", border: "none", opacity: cameraActive ? 1 : 0, transition: "opacity 0.4s" }}
                 allow="autoplay; encrypted-media"
                 allowFullScreen
