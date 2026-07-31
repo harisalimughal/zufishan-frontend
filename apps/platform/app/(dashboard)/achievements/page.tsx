@@ -1,3 +1,5 @@
-export default function AchievementsPage() {
-  return <h1>Achievements</h1>;
+import AchievementsPage from '@/features/achievements';
+
+export default function Page() {
+  return <AchievementsPage />;
 }

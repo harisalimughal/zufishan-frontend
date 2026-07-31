@@ -1,11 +1,11 @@
 "use client";
 
 import React from "react";
-import { 
-  Users, 
-  MessageSquareText, 
-  GraduationCap, 
-  ChartNoAxesColumn 
+import {
+  Users,
+  MessageSquareText,
+  GraduationCap,
+  ChartNoAxesColumn
 } from "lucide-react";
 
 interface LoginSidebarProps {
@@ -61,45 +61,36 @@ export default function LoginSidebar({ isDarkMode }: LoginSidebarProps) {
       <div
         className={`
           absolute inset-0 transition-colors duration-300
-          ${isDarkMode 
-            ? "bg-black/50" 
+          ${isDarkMode
+            ? "bg-black/50"
             : "bg-white/60"
-        }
+          }
         `}
       />
 
-      <div className="relative z-10 space-y-5"> 
+      <div className="relative z-10 space-y-5">
         {/* Logo Block */}
-        <div className="flex items-center gap-1">
-          <img
-            src="/logo.png"
-            alt="Logo"
-            className="w-34 h-34 object-contain"
-          />
-
+        <div className="flex items-center gap-1 ">
           <div>
-            <h2
-              className={`text-5xl font-medium transition-colors duration-300 ${
-                isDarkMode ? "text-white" : "text-black"
-              }`}
-            >
-              <span className="text-[#3B82F6]">AI</span> University
-            </h2>
+            <img
+              src="/Nexora-logo-white-transparent.png"
+              alt="Logo"
+              className="w-100 h-auto object-contain -ml-8 -mb-4"
+            />
 
-            <p className={`text-lg transition-colors duration-300 ${
-              isDarkMode ? "text-gray-300" : "text-gray-600"
-            }`}>
+            <p className={`text-lg transition-colors duration-300 ${isDarkMode ? "text-gray-300" : "text-gray-600"
+              }`}>
               Learn. Interact. Grow.
             </p>
           </div>
+
         </div>
 
         {/* Hero Text Block */}
         <div className="max-w-md">
           <h1
-            className={`text-4xl font-medium leading-tight transition-colors duration-300 ${
-              isDarkMode ? "text-white" : "text-black"
-            }`}
+            className={`text-4xl font-medium leading-tight transition-colors duration-300 ${isDarkMode ? "text-white" : "text-black"
+              }`}
           >
             The World's First <br />
             <span className="whitespace-nowrap">
@@ -175,10 +166,9 @@ export default function LoginSidebar({ isDarkMode }: LoginSidebarProps) {
       </div>
 
       {/* Student Count Card (Premium Frosted Glassmorphism with custom glows) */}
-      <div className={`border p-8 rounded-3xl flex flex-col gap-4 relative z-10 backdrop-blur-md transition-all duration-300 max-w-sm -translate-y-6 ${
-          isDarkMode 
-            ? "bg-[#0A0A0F]/30 border-white/50 shadow-[0_0_25px_rgba(255,255,255,0.15)]" 
-            : "bg-white/40 border-[#18181B]/15 shadow-[0_0_20px_rgba(24,24,27,0.08)]"
+      <div className={`border p-8 rounded-3xl flex flex-col gap-4 relative z-10 backdrop-blur-md transition-all duration-300 max-w-sm -translate-y-6 ${isDarkMode
+        ? "bg-[#0A0A0F]/30 border-white/50 shadow-[0_0_25px_rgba(255,255,255,0.15)]"
+        : "bg-white/40 border-[#18181B]/15 shadow-[0_0_20px_rgba(24,24,27,0.08)]"
         }`}
       >
         <div className="flex -space-x-3 items-center">

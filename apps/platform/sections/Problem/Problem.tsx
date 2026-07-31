@@ -1,3 +1,5 @@
+import { TrendingDown, UserX, MessageSquareOff, SlidersHorizontal } from "lucide-react";
+
 export const Problem = () => {
   const problems = [
     {
@@ -7,7 +9,7 @@ export const Problem = () => {
       stat: "<10%",
       statText: "Average course completion rate",
       source: "HarvardX",
-      icon: "↘",
+      icon: TrendingDown,
     },
     {
       title: "No Accountability",
@@ -16,7 +18,7 @@ export const Problem = () => {
       stat: "70%",
       statText: "Students give up after the first week",
       source: "Forbes",
-      icon: "👤",
+      icon: UserX,
     },
     {
       title: "No Real Interaction",
@@ -25,7 +27,7 @@ export const Problem = () => {
       stat: "65%",
       statText: "Students feel isolated in online courses",
       source: "BestColleges",
-      icon: "💬",
+      icon: MessageSquareOff,
     },
     {
       title: "One-Size-Fits-All",
@@ -34,12 +36,12 @@ export const Problem = () => {
       stat: "80%",
       statText: "Students want personalized learning experiences",
       source: "EdFlex",
-      icon: "🕒",
+      icon: SlidersHorizontal,
     },
   ];
 
   return (
-    <section className="bg-[#09090B] py-20 px-6">
+    <section id="problem" className="bg-[#09090B] py-20 px-6">
       <div className="max-w-6xl mx-auto">
         <div className="flex justify-center mb-6">
           <div className="px-4 py-1.5 rounded-full border border-[#27272A] bg-[#111827]/40 text-[#3B82F6] text-sm font-medium flex items-center gap-2">
@@ -62,7 +64,9 @@ export const Problem = () => {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-7 mt-14 items-stretch">
-          {problems.map((item) => (
+          {problems.map((item) => {
+            const IconComponent = item.icon;
+            return (
             <div
               key={item.title}
               className="group relative h-full rounded-2xl transition-all duration-300 ease-out hover:-translate-y-3 hover:scale-[1.04]"
@@ -76,8 +80,8 @@ export const Problem = () => {
                   <div className="absolute -bottom-20 left-1/2 -translate-x-1/2 w-44 h-44 rounded-full bg-[#6D5DFB]/20 blur-3xl" />
                 </div>
 
-                <div className="relative z-10 w-10 h-10 rounded-xl bg-[#3B82F6]/10 border border-[#3B82F6]/20 flex items-center justify-center text-[#6D5DFB] text-lg mb-5 transition-transform duration-300 group-hover:scale-110">
-                  {item.icon}
+                <div className="relative z-10 w-10 h-10 rounded-xl bg-[#3B82F6]/10 border border-[#3B82F6]/20 flex items-center justify-center text-[#6D5DFB] mb-5 transition-transform duration-300 group-hover:scale-110">
+                  <IconComponent size={20} strokeWidth={1.8} />
                 </div>
 
                 <h3 className="relative z-10 text-white text-lg font-semibold mb-2">
@@ -107,7 +111,7 @@ export const Problem = () => {
                 </div>
               </div>
             </div>
-          ))}
+          )})}
         </div>
 
         <div className="flex justify-center mt-10">

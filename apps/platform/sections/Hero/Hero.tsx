@@ -1,6 +1,7 @@
 "use client";
 /* eslint-disable @next/next/no-img-element */
 
+import Link from "next/link";
 import { motion } from "framer-motion";
 import { Sparkles, Play, ChevronRight } from "lucide-react";
 import { HeroButton } from "./HeroButton";
@@ -23,8 +24,8 @@ export function Hero() {
   };
 
   return (
-    <section className="relative bg-[#09090B] text-white pt-28 pb-16 px-4 overflow-hidden flex flex-col items-center justify-center min-h-screen">
-      
+    <section className="relative bg-[#09090B] text-white pt-6 pb-16 px-4 overflow-hidden flex flex-col items-center justify-center min-h-screen">
+
       {/* Premium Ambient Background Gradients */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1200px] h-[500px] bg-gradient-to-b from-[#3B82F6]/10 via-[#6D5DFC]/5 to-transparent rounded-full blur-[140px] pointer-events-none" />
       <div className="absolute -top-[10%] left-[5%] w-[450px] h-[450px] bg-[#3B82F6]/5 rounded-full blur-[120px] pointer-events-none" />
@@ -32,7 +33,7 @@ export function Hero() {
 
       {/* Main Content Assembly */}
       <div className="relative max-w-6xl mx-auto flex flex-col items-center text-center z-10 w-full mt-10">
-        
+
         {/* Glow Badge */}
         <motion.div
           initial={{ opacity: 0, y: -10 }}
@@ -79,14 +80,15 @@ export function Hero() {
           transition={{ duration: 0.8, delay: 0.3 }}
           className="flex flex-col sm:flex-row gap-4 mb-8 w-full sm:w-auto px-4 justify-center"
         >
-          <HeroButton
-            variant="primary"
-            onClick={handleScrollToDemo}
-            icon={<Play className="w-4 h-4 fill-white" />}
-          >
-            Watch Demo
-          </HeroButton>
-          
+          <Link href="/login">
+            <HeroButton
+              variant="primary"
+              icon={<Play className="w-4 h-4 fill-white" />}
+            >
+              Try Product
+            </HeroButton>
+          </Link>
+
           <HeroButton
             variant="secondary"
             onClick={handleScrollToWaitlist}
@@ -105,26 +107,26 @@ export function Hero() {
         >
           {/* Overlapping Avatars */}
           <div className="flex -space-x-3.5">
-            <img 
-              className="inline-block h-8 w-8 rounded-full ring-2 ring-[#09090B] object-cover" 
-              src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=100&q=80" 
-              alt="Waitlist Member 1" 
+            <img
+              className="inline-block h-8 w-8 rounded-full ring-2 ring-[#09090B] object-cover"
+              src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=100&q=80"
+              alt="Waitlist Member 1"
             />
-            <img 
-              className="inline-block h-8 w-8 rounded-full ring-2 ring-[#09090B] object-cover" 
-              src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=100&q=80" 
-              alt="Waitlist Member 2" 
+            <img
+              className="inline-block h-8 w-8 rounded-full ring-2 ring-[#09090B] object-cover"
+              src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=100&q=80"
+              alt="Waitlist Member 2"
             />
-            <img 
-              className="inline-block h-8 w-8 rounded-full ring-2 ring-[#09090B] object-cover" 
-              src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=100&q=80" 
-              alt="Waitlist Member 3" 
+            <img
+              className="inline-block h-8 w-8 rounded-full ring-2 ring-[#09090B] object-cover"
+              src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=100&q=80"
+              alt="Waitlist Member 3"
             />
             <div className="inline-flex items-center justify-center h-8 w-8 rounded-full bg-[#111827] border border-[#27272A] text-[10px] font-bold text-gray-300 ring-2 ring-[#09090B]">
               +2K
             </div>
           </div>
-          
+
           {/* Caption text */}
           <span className="text-xs text-gray-400 font-sans">
             Join <span className="text-[#3B82F6] font-bold">2,847+</span> students on the waitlist
@@ -154,7 +156,7 @@ export function Hero() {
           <span className="text-[10px] font-bold text-gray-500 uppercase tracking-widest">
             Trusted by future students worldwide
           </span>
-          
+
           {/* Logo grid */}
           <div className="flex flex-wrap items-center justify-center gap-8 md:gap-14 opacity-35">
             {/* Google Logo */}

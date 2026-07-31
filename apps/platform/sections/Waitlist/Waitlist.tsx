@@ -7,7 +7,7 @@ import { Gift, Tag, Star, Bell, Shield, ArrowUpRight, Mail, GraduationCap, Spark
 
 export function Waitlist() {
   return (
-    <section className="bg-[#09090B] py-24 px-4 sm:px-6 lg:px-8 border-t border-[#27272A] font-sans antialiased">
+    <section id="waitlist" className="bg-[#09090B] py-24 px-4 sm:px-6 lg:px-8 border-t border-[#27272A] font-sans antialiased">
       <div className="mx-auto max-w-6xl text-center">
         {/* Badge */}
         <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-[#3B82F6]/30 bg-[#111827] text-xs font-medium text-[#3B82F6] shadow-[0_0_15px_rgba(59,130,246,0.15)] mb-6 tracking-wide uppercase select-none">
