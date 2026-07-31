@@ -208,6 +208,8 @@ export function CalendarView() {
   const [selectedEvent, setSelectedEvent] = useState<CalendarEvent | null>(null);
   const [showAddModal, setShowAddModal] = useState<boolean>(false);
   const [showAddTask, setShowAddTask] = useState<boolean>(false);
+  const [isSyncing, setIsSyncing] = useState<boolean>(false);
+  const [justSynced, setJustSynced] = useState<boolean>(false);
   const [currentTime, setCurrentTime] = useState<Date>(new Date());
   const [miniMonth, setMiniMonth] = useState<{ year: number; month: number }>({
     year: new Date().getFullYear(),
@@ -285,6 +287,17 @@ export function CalendarView() {
     setNewTaskTitle(""); setShowAddTask(false);
   };
 
+  const handleSync = () => {
+    if (isSyncing) return;
+    setIsSyncing(true);
+    setJustSynced(false);
+    setTimeout(() => {
+      setIsSyncing(false);
+      setJustSynced(true);
+      setTimeout(() => setJustSynced(false), 1500);
+    }, 1200);
+  };
+
   const toggleTask = (id: number) => setTasks((prev) => prev.map((t) => t.id === id ? { ...t, completed: !t.completed } : t));
   const deleteTask = (id: number) => setTasks((prev) => prev.filter((t) => t.id !== id));
 
@@ -306,8 +319,16 @@ export function CalendarView() {
           <button onClick={() => setShowAddTask(true)} style={{ display: "flex", alignItems: "center", gap: 5, background: "#1F2937", border: "1px solid #374151", borderRadius: 8, padding: "7px 12px", color: "#E4E4E7", fontSize: 12, cursor: "pointer", fontFamily: "inherit" }}>
             <CheckSquare size={13} /> Add Task
           </button>
-          <button style={{ display: "flex", alignItems: "center", gap: 5, background: "#1F2937", border: "1px solid #374151", borderRadius: 8, padding: "7px 12px", color: "#E4E4E7", fontSize: 12, cursor: "pointer", fontFamily: "inherit" }}>
-            <RefreshCw size={13} /> Sync
+          <button onClick={handleSync} disabled={isSyncing} style={{ display: "flex", alignItems: "center", gap: 5, background: "#1F2937", border: "1px solid #374151", borderRadius: 8, padding: "7px 12px", color: "#E4E4E7", fontSize: 12, cursor: isSyncing ? "default" : "pointer", fontFamily: "inherit" }}>
+            {justSynced ? (
+              <>
+                <CheckSquare size={13} color="#22C55E" /> Synced
+              </>
+            ) : (
+              <>
+                <RefreshCw size={13} className={isSyncing ? "animate-spin" : ""} /> {isSyncing ? "Syncing..." : "Sync"}
+              </>
+            )}
           </button>
           <button onClick={() => setShowAddModal(true)} style={{ display: "flex", alignItems: "center", gap: 5, background: "#6D5DFC", border: "none", borderRadius: 8, padding: "7px 14px", color: "#fff", fontSize: 12, fontWeight: 600, cursor: "pointer", fontFamily: "inherit" }}>
             <Plus size={13} /> Add Event

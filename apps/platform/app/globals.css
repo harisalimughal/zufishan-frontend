@@ -2,4 +2,55 @@
 
 html {
   scroll-behavior: smooth;
+  scrollbar-width: thin;
+  scrollbar-color: #27272a #09090b;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #09090b;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #27272a;
+  border-radius: 9999px;
+  border: 2px solid #09090b;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #3f3f46;
+}
+
+/* Sidebar navigation: thin scrollbar that only appears while scrolling/hovering */
+.sidebar-nav {
+  scrollbar-width: thin;
+  scrollbar-color: transparent transparent;
+  transition: scrollbar-color 0.2s ease;
+}
+
+.sidebar-nav:hover,
+.sidebar-nav:focus-within {
+  scrollbar-color: #27272a transparent;
+}
+
+.sidebar-nav::-webkit-scrollbar {
+  width: 6px;
+}
+
+.sidebar-nav::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.sidebar-nav::-webkit-scrollbar-thumb {
+  background-color: transparent;
+  border-radius: 9999px;
+}
+
+.sidebar-nav:hover::-webkit-scrollbar-thumb,
+.sidebar-nav:focus-within::-webkit-scrollbar-thumb {
+  background-color: #27272a;
 }

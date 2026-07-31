@@ -52,6 +52,7 @@ export default function AttendancePage() {
   const [selectedDayModal, setSelectedDayModal] = useState<CalendarDay | null>(null);
   const [selectedCourseModal, setSelectedCourseModal] = useState<CourseData | null>(null);
   const [showExportModal, setShowExportModal] = useState<boolean>(false);
+  const [showPolicyModal, setShowPolicyModal] = useState<boolean>(false);
 
   const months = ["January 2026", "February 2026", "March 2026", "April 2026", "May 2026", "June 2026", "July 2026", "August 2026"];
 
@@ -540,7 +541,7 @@ export default function AttendancePage() {
           <div className="bg-[#0D111A] border border-[#171D2A] p-6 rounded-2xl space-y-3.5">
             <div className="flex items-center justify-between">
               <h3 className="font-semibold text-sm">Attendance Policy</h3>
-              <button onClick={() => alert("Redirecting to full university policy document...")} className="text-xs text-indigo-400 hover:underline">
+              <button onClick={() => setShowPolicyModal(true)} className="text-xs text-indigo-400 hover:underline">
                 View Policy
               </button>
             </div>
@@ -707,6 +708,52 @@ export default function AttendancePage() {
                 Export CSV Data
               </button>
             </div>
+          </div>
+        </div>
+      )}
+
+      {/* 3. ATTENDANCE POLICY MODAL */}
+      {showPolicyModal && (
+        <div
+          className="fixed inset-0 bg-black/70 backdrop-blur-sm z-50 flex items-center justify-center p-4"
+          onClick={() => setShowPolicyModal(false)}
+        >
+          <div
+            onClick={(e) => e.stopPropagation()}
+            className="bg-[#0D111A] border border-[#171D2A] rounded-2xl w-full max-w-md p-6 space-y-4 relative shadow-2xl"
+          >
+            <button
+              onClick={() => setShowPolicyModal(false)}
+              className="absolute top-4 right-4 text-gray-400 hover:text-white"
+            >
+              <X size={18} />
+            </button>
+
+            <div>
+              <h3 className="font-bold text-base">Attendance Policy</h3>
+              <p className="text-xs text-gray-400 mt-1">
+                A quick summary of the university&apos;s attendance requirements. Refer to the student handbook for the full policy.
+              </p>
+            </div>
+
+            <ul className="space-y-2.5 text-xs text-gray-400">
+              <li className="flex items-start gap-2.5">
+                <Info size={14} className="text-gray-500 shrink-0 mt-0.5" />
+                <span>Minimum required attendance is <strong className="text-gray-200">75%</strong> per course</span>
+              </li>
+              <li className="flex items-start gap-2.5">
+                <FileCheck size={14} className="text-gray-500 shrink-0 mt-0.5" />
+                <span>Absences are excused only with an approved leave request or medical certificate</span>
+              </li>
+              <li className="flex items-start gap-2.5">
+                <AlertCircle size={14} className="text-gray-500 shrink-0 mt-0.5" />
+                <span>Falling below 75% attendance may result in a grade penalty or course ineligibility</span>
+              </li>
+              <li className="flex items-start gap-2.5">
+                <CalendarIcon size={14} className="text-gray-500 shrink-0 mt-0.5" />
+                <span>Leave requests must be submitted at least 24 hours in advance where possible</span>
+              </li>
+            </ul>
           </div>
         </div>
       )}

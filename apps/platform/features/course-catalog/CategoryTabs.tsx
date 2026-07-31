@@ -1,6 +1,7 @@
 "use client";
 
 import { ChevronRight } from "lucide-react";
+import { useState } from "react";
 import type { CourseCategory } from "./types";
 
 type CategoryTabsProps = {
@@ -14,10 +15,22 @@ export function CategoryTabs({
   activeCategory,
   onCategoryChange,
 }: CategoryTabsProps) {
+  const [showAllCategories, setShowAllCategories] = useState(false);
+
   return (
     <div className="flex w-full max-w-full items-center gap-2 overflow-hidden">
-      <div className="w-full max-w-full overflow-x-auto pb-1 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-        <div className="flex w-max gap-2">
+      <div
+        className={
+          showAllCategories
+            ? "w-full max-w-full"
+            : "w-full max-w-full overflow-x-auto pb-1 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+        }
+      >
+        <div
+          className={
+            showAllCategories ? "flex flex-wrap gap-2" : "flex w-max gap-2"
+          }
+        >
           {categories.map((category) => {
             const Icon = category.icon;
             const isActive = category.id === activeCategory;
@@ -62,9 +75,21 @@ export function CategoryTabs({
       <button
         type="button"
         aria-label="More categories"
-        className="hidden size-8 shrink-0 place-items-center rounded-full border border-[#27272A] bg-[#111827] text-zinc-400 transition hover:border-violet-500 hover:text-white sm:grid"
+        aria-expanded={showAllCategories}
+        onClick={() => setShowAllCategories((prev) => !prev)}
+        className={[
+          "hidden size-8 shrink-0 place-items-center rounded-full border transition sm:grid",
+          showAllCategories
+            ? "border-violet-500 bg-violet-950/30 text-white"
+            : "border-[#27272A] bg-[#111827] text-zinc-400 hover:border-violet-500 hover:text-white",
+        ].join(" ")}
       >
-        <ChevronRight size={14} />
+        <ChevronRight
+          size={14}
+          className={["transition-transform", showAllCategories ? "rotate-180" : ""].join(
+            " "
+          )}
+        />
       </button>
     </div>
   );

@@ -2,9 +2,7 @@
 
 import { useState, useEffect, useRef } from "react";
 import {
-  Bot,
   Hand,
-  HelpCircle,
   FileText,
   Users,
   Mic,
@@ -42,86 +40,7 @@ interface Student {
   color: string;
 }
 
-interface FeaturePill {
-  icon: React.ElementType;
-  label: string;
-  modalTitle: string;
-  modalDesc: string;
-  modalPoints: string[];
-  accentColor: string;
-}
-
 type TabType = "Chat" | "People" | "Notes";
-
-// ─── Feature Pills ────────────────────────────────────────────────────────────
-
-const FEATURE_PILLS: FeaturePill[] = [
-  {
-    icon: Bot,
-    label: "AI Professors",
-    modalTitle: "Meet Your AI Professor",
-    modalDesc: "Nexora's AI Professors are powered by advanced language models trained on academic content. They teach, respond, and adapt — just like a real professor.",
-    modalPoints: [
-      "🎓 Teaches live classes in real time",
-      "💬 Answers your questions instantly",
-      "📊 Adapts explanations to your level",
-      "🔁 Available 24/7 for review sessions",
-    ],
-    accentColor: "#6D5DFC",
-  },
-  {
-    icon: Hand,
-    label: "Raise Hand",
-    modalTitle: "Raise Your Hand",
-    modalDesc: "Just like in a real classroom, you can raise your hand to get the professor's attention. The AI Professor will acknowledge you and call on you.",
-    modalPoints: [
-      "✋ Signal the professor you have a question",
-      "📋 Get added to the question queue",
-      "🔔 Receive a notification when called on",
-      "🎤 Unmute automatically when acknowledged",
-    ],
-    accentColor: "#F59E0B",
-  },
-  {
-    icon: HelpCircle,
-    label: "Live Q&A",
-    modalTitle: "Live Q&A Sessions",
-    modalDesc: "Ask questions in real time and get instant responses from the AI Professor. Other students can upvote questions they also want answered.",
-    modalPoints: [
-      "⚡ Get answers instantly during class",
-      "👍 Upvote questions from other students",
-      "📌 Pin important Q&A for later review",
-      "📁 Full Q&A saved after every class",
-    ],
-    accentColor: "#22C55E",
-  },
-  {
-    icon: FileText,
-    label: "Smart Notes",
-    modalTitle: "AI-Powered Smart Notes",
-    modalDesc: "Nexora automatically generates structured notes from every class. Never miss a key point — focus on learning while we handle the note-taking.",
-    modalPoints: [
-      "📝 Auto-generated from every lecture",
-      "🏷️ Organized by topic and timestamp",
-      "📤 Export as PDF anytime",
-      "🔍 Searchable across all your classes",
-    ],
-    accentColor: "#3B82F6",
-  },
-  {
-    icon: Users,
-    label: "Collaborative Learning",
-    modalTitle: "Learn Together",
-    modalDesc: "Connect with classmates from around the world. Form study groups, collaborate on projects, and learn from each other's perspectives.",
-    modalPoints: [
-      "🌍 Students from 50+ countries",
-      "👥 Form study groups after class",
-      "🤝 Peer review and group projects",
-      "🏆 Leaderboards and team challenges",
-    ],
-    accentColor: "#EC4899",
-  },
-];
 
 // ─── Constants ───────────────────────────────────────────────────────────────
 
@@ -221,30 +140,6 @@ function AvatarCircle({ initials, color, size = 32 }: { initials: string; color:
   );
 }
 
-function FeatureModal({ pill, onClose }: { pill: FeaturePill; onClose: () => void }) {
-  const Icon = pill.icon;
-  return (
-    <div onClick={onClose} style={{ position: "fixed" as const, inset: 0, zIndex: 1000, background: "rgba(0,0,0,0.7)", backdropFilter: "blur(6px)", display: "flex", alignItems: "center", justifyContent: "center", padding: "24px" }}>
-      <div onClick={(e) => e.stopPropagation()} style={{ background: "#111827", border: `1px solid ${pill.accentColor}44`, borderRadius: 20, padding: "32px", maxWidth: 440, width: "100%", boxShadow: `0 0 60px ${pill.accentColor}22, 0 32px 80px rgba(0,0,0,0.6)`, position: "relative" as const }}>
-        <button onClick={onClose} style={{ position: "absolute" as const, top: 16, right: 16, background: "rgba(255,255,255,0.06)", border: "1px solid #27272A", borderRadius: 8, width: 32, height: 32, display: "flex", alignItems: "center", justifyContent: "center", cursor: "pointer", color: "#A1A1AA" }}>
-          <X size={16} />
-        </button>
-        <div style={{ width: 56, height: 56, borderRadius: 14, background: `${pill.accentColor}22`, border: `1px solid ${pill.accentColor}44`, display: "flex", alignItems: "center", justifyContent: "center", marginBottom: 20 }}>
-          <Icon size={26} color={pill.accentColor} />
-        </div>
-        <h3 style={{ color: "#FFFFFF", fontSize: 20, fontWeight: 800, margin: "0 0 10px 0", letterSpacing: "-0.01em" }}>{pill.modalTitle}</h3>
-        <p style={{ color: "#A1A1AA", fontSize: 14, lineHeight: 1.7, margin: "0 0 20px 0" }}>{pill.modalDesc}</p>
-        <div style={{ display: "flex", flexDirection: "column" as const, gap: 10 }}>
-          {pill.modalPoints.map((point) => (
-            <div key={point} style={{ background: `${pill.accentColor}0f`, border: `1px solid ${pill.accentColor}22`, borderRadius: 10, padding: "10px 14px", color: "#E4E4E7", fontSize: 13, lineHeight: 1.5 }}>{point}</div>
-          ))}
-        </div>
-        <button onClick={onClose} style={{ marginTop: 24, width: "100%", background: `linear-gradient(135deg, ${pill.accentColor}, ${pill.accentColor}cc)`, border: "none", borderRadius: 12, padding: "13px", color: "#fff", fontSize: 14, fontWeight: 700, cursor: "pointer", fontFamily: "inherit" }}>Got it!</button>
-      </div>
-    </div>
-  );
-}
-
 // ─── Main Component ──────────────────────────────────────────────────────────
 
 export function ClassroomPreview() {
@@ -257,7 +152,6 @@ export function ClassroomPreview() {
   const [messages, setMessages] = useState<ChatMessage[]>(INITIAL_MESSAGES);
   const [isTyping, setIsTyping] = useState(false);
   const [isLeft, setIsLeft] = useState(false);
-  const [activePill, setActivePill] = useState<FeaturePill | null>(null);
   const [isVideoMuted, setIsVideoMuted] = useState(true);
 
   // ── Real student tracking ──
@@ -356,12 +250,10 @@ export function ClassroomPreview() {
 
   return (
     <>
-      {activePill && <FeatureModal pill={activePill} onClose={() => setActivePill(null)} />}
-
-      <section id="classroom-preview" style={{ background: "#09090B", padding: "96px 24px", fontFamily: "'Inter', 'Geist', sans-serif" }}>
+      <section id="classroom-preview" style={{ background: "#09090B", padding: "64px 24px", fontFamily: "'Inter', 'Geist', sans-serif" }}>
 
         {/* Badge */}
-        <div style={{ display: "flex", justifyContent: "center", marginBottom: 28 }}>
+        <div style={{ display: "flex", justifyContent: "center", marginBottom: 20 }}>
           <div style={{ display: "inline-flex", alignItems: "center", gap: 8, background: "rgba(109,93,252,0.12)", border: "1px solid rgba(109,93,252,0.35)", borderRadius: 999, padding: "6px 16px" }}>
             <div style={{ width: 7, height: 7, borderRadius: "50%", background: "#6D5DFC", boxShadow: pulse ? "0 0 8px 2px #6D5DFC" : "none", transition: "box-shadow 0.6s ease" }} />
             <span style={{ color: "#A78BFA", fontSize: 11, fontWeight: 600, letterSpacing: "0.12em", textTransform: "uppercase" as const }}>Live Classroom Preview</span>
@@ -369,35 +261,15 @@ export function ClassroomPreview() {
         </div>
 
         {/* Headline */}
-        <div style={{ textAlign: "center" as const, marginBottom: 20 }}>
-          <h2 style={{ color: "#FFFFFF", fontSize: "clamp(2rem, 5vw, 3.2rem)", fontWeight: 800, lineHeight: 1.15, letterSpacing: "-0.02em", margin: 0 }}>
-            Experience real learning.<br />Just like a{" "}
+        <div style={{ textAlign: "center" as const, marginBottom: 32 }}>
+          <h2 style={{ color: "#FFFFFF", fontSize: "clamp(1.75rem, 4vw, 2.75rem)", fontWeight: 800, letterSpacing: "-0.02em", margin: 0 }}>
+            Just like a{" "}
             <span style={{ background: "linear-gradient(135deg, #6D5DFC, #A78BFA)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text" }}>real classroom.</span>
           </h2>
-          <p style={{ color: "#A1A1AA", fontSize: 16, lineHeight: 1.7, marginTop: 16, maxWidth: 520, marginLeft: "auto", marginRight: "auto" }}>
-            Join live classes, interact with AI professors, ask questions,<br />and learn with students from around the world.
-          </p>
-        </div>
-
-        {/* Feature Pills */}
-        <div style={{ display: "flex", flexWrap: "wrap" as const, justifyContent: "center", gap: 12, marginBottom: 52 }}>
-          {FEATURE_PILLS.map((pill) => {
-            const Icon = pill.icon;
-            return (
-              <button key={pill.label} onClick={() => setActivePill(pill)}
-                style={{ display: "inline-flex", alignItems: "center", gap: 7, background: "rgba(255,255,255,0.04)", border: "1px solid #27272A", borderRadius: 999, padding: "7px 16px", color: "#A1A1AA", fontSize: 13, fontWeight: 500, cursor: "pointer", fontFamily: "inherit", transition: "all 0.2s" }}
-                onMouseEnter={(e) => { const b = e.currentTarget as HTMLButtonElement; b.style.background = `${pill.accentColor}18`; b.style.borderColor = `${pill.accentColor}55`; b.style.color = "#fff"; }}
-                onMouseLeave={(e) => { const b = e.currentTarget as HTMLButtonElement; b.style.background = "rgba(255,255,255,0.04)"; b.style.borderColor = "#27272A"; b.style.color = "#A1A1AA"; }}
-              >
-                <Icon size={15} color={pill.accentColor} />
-                {pill.label}
-              </button>
-            );
-          })}
         </div>
 
         {/* Classroom Card */}
-        <div style={{ maxWidth: 900, margin: "0 auto" }}>
+        <div style={{ maxWidth: 1280, margin: "0 auto" }}>
 
           {/* Join/Leave Notification */}
           <div style={{ height: 36, marginBottom: 8, display: "flex", alignItems: "center", justifyContent: "center" }}>
@@ -449,7 +321,7 @@ export function ClassroomPreview() {
             </div>
 
             {/* Main Content */}
-            <div style={{ display: "flex", height: 380 }}>
+            <div style={{ display: "flex", height: 520 }}>
 
               {/* Professor Video */}
               <div style={{ flex: 1, position: "relative" as const, background: "#000", overflow: "hidden" }}>

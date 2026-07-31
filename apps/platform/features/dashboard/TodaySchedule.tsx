@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 type ScheduleItem = {
   id: string;
   time: string;
@@ -42,9 +44,9 @@ export function TodaySchedule() {
         <h3 className="text-sm font-semibold text-white">
           Today&apos;s Schedule
         </h3>
-        <button className="text-xs font-medium text-[#3B82F6] transition-colors hover:text-[#60A5FA]">
+        <Link href="/calendar" className="text-xs font-medium text-[#3B82F6] transition-colors hover:text-[#60A5FA]">
           View calendar
-        </button>
+        </Link>
       </div>
 
       {/* Schedule Items */}
@@ -90,9 +92,12 @@ export function TodaySchedule() {
             </div>
 
             {/* Join Button */}
-            <button className="shrink-0 rounded-lg border border-[#27272A] bg-transparent px-4 py-1.5 text-xs font-semibold text-gray-300 transition-all duration-200 hover:border-gray-500 hover:text-white">
+            <Link
+              href="/live-classes"
+              className="shrink-0 rounded-lg border border-[#27272A] bg-transparent px-4 py-1.5 text-xs font-semibold text-gray-300 transition-all duration-200 hover:border-gray-500 hover:text-white"
+            >
               Join
-            </button>
+            </Link>
           </div>
         ))}
       </div>

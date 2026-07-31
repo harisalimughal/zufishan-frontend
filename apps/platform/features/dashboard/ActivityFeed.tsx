@@ -1,4 +1,5 @@
 import { Award, CheckCircle2, FileUp } from "lucide-react";
+import Link from "next/link";
 import type { ReactNode } from "react";
 
 type ActivityItem = {
@@ -41,9 +42,9 @@ export function ActivityFeed() {
       {/* Header */}
       <div className="mb-4 flex items-center justify-between">
         <h3 className="text-sm font-semibold text-white">Activity Feed</h3>
-        <button className="text-xs font-medium text-[#3B82F6] transition-colors hover:text-[#60A5FA]">
+        <Link href="/achievements" className="text-xs font-medium text-[#3B82F6] transition-colors hover:text-[#60A5FA]">
           View all
-        </button>
+        </Link>
       </div>
 
       {/* Activity Items */}

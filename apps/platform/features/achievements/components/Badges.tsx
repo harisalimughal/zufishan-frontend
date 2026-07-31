@@ -102,6 +102,10 @@ function BadgesShowMore({ showAll, setShowAll, totalCount, visibleCount }: {
 export function Badges() {
   const [filter, setFilter] = useState('all')
   const [showAll, setShowAll] = useState(false)
+  const [showFilterPanel, setShowFilterPanel] = useState(false)
+
+  const statusFilters = ['All', 'Earned', 'Locked', 'In Progress']
+  const [statusFilter, setStatusFilter] = useState('All')
 
   const filterOptions = [
     { label: 'All Badges', value: 'all' },
@@ -140,13 +144,39 @@ export function Badges() {
           </button>
         ))}
         
-        {/* Filter Button - Just a button, no dropdown */}
-        <button className="flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-[#1F2937] border border-[#27272A] text-xs text-gray-300 hover:text-white hover:border-[#3B82F6] transition whitespace-nowrap">
-          <Filter size={14} />
-          <span>Filter</span>
-        </button>
+        {/* Filter Button */}
+        <div className="relative">
+          <button
+            onClick={() => setShowFilterPanel(!showFilterPanel)}
+            className="flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-[#1F2937] border border-[#27272A] text-xs text-gray-300 hover:text-white hover:border-[#3B82F6] transition whitespace-nowrap"
+          >
+            <Filter size={14} />
+            <span>Filter</span>
+          </button>
+
+          {showFilterPanel && (
+            <div className="absolute right-0 top-full mt-2 z-10 bg-[#1F2937] border border-[#27272A] rounded-xl p-3 w-48 shadow-lg">
+              <p className="text-[10px] text-gray-400 mb-2">Filter by status</p>
+              <div className="flex flex-wrap gap-1.5">
+                {statusFilters.map((status) => (
+                  <button
+                    key={status}
+                    onClick={() => setStatusFilter(status)}
+                    className={`px-3 py-1 rounded-full text-[10px] font-medium transition whitespace-nowrap ${
+                      statusFilter === status
+                        ? 'bg-[#3B82F6] text-white'
+                        : 'bg-[#111827] text-gray-400 hover:text-white hover:bg-[#2A2A3A]'
+                    }`}
+                  >
+                    {status}
+                  </button>
+                ))}
+              </div>
+            </div>
+          )}
+        </div>
       </div>
-      
+
       <BadgesGrid achievements={displayedAchievements} />
       
       {filteredAchievements.length > 10 && (

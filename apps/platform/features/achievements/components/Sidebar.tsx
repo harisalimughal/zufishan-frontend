@@ -1,5 +1,6 @@
 ﻿'use client'
 
+import Link from 'next/link'
 import { Trophy, Award, Star, Zap, ArrowRight, Crown, Medal } from 'lucide-react'
 
 // ============================================
@@ -17,10 +18,10 @@ function SidebarSummary() {
     <div className="bg-[#111827] border border-[#27272A] rounded-xl p-4">
       <div className="flex items-center justify-between mb-3">
         <h3 className="text-sm font-semibold text-white">Achievements Summary</h3>
-        <button className="text-[10px] text-[#3B82F6] hover:text-blue-400 transition flex items-center gap-1 group">
+        <Link href="/progress" className="text-[10px] text-[#3B82F6] hover:text-blue-400 transition flex items-center gap-1 group">
           <span>View Progress Details</span>
           <ArrowRight size={12} className="group-hover:translate-x-0.5 transition-transform" />
-        </button>
+        </Link>
       </div>
       <div className="grid grid-cols-2 gap-2">
         {stats.map((stat, index) => (

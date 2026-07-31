@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { Bookmark, BookOpen, Check, UserPlus } from "lucide-react";
 import { useEffect, useState } from "react";
+import type { MouseEvent } from "react";
 
 import type { Course, CourseLevel } from "./types";
 import { CourseVisualHeader } from "./CourseVisual";
@@ -31,6 +32,7 @@ function getInitials(name: string) {
 
 export function CourseCard({ course }: CourseCardProps) {
   const [registered, setRegistered] = useState(false);
+  const [isBookmarked, setIsBookmarked] = useState(false);
 
   useEffect(() => {
     setRegistered(isCourseRegistered(course.id));
@@ -39,6 +41,11 @@ export function CourseCard({ course }: CourseCardProps) {
   function handleRegister() {
     const updatedCourses = registerCourse(course);
     setRegistered(updatedCourses.some((item) => item.id === course.id));
+  }
+
+  function handleBookmark(event: MouseEvent<HTMLButtonElement>) {
+    event.stopPropagation();
+    setIsBookmarked((prev) => !prev);
   }
 
   return (
@@ -92,9 +99,14 @@ export function CourseCard({ course }: CourseCardProps) {
             <button
               type="button"
               aria-label={`Bookmark ${course.title}`}
-              className="rounded-md p-1.5 text-zinc-500 transition hover:bg-[#1F2937] hover:text-white"
+              aria-pressed={isBookmarked}
+              onClick={handleBookmark}
+              className={[
+                "rounded-md p-1.5 transition hover:bg-[#1F2937]",
+                isBookmarked ? "text-blue-400" : "text-zinc-500 hover:text-white",
+              ].join(" ")}
             >
-              <Bookmark size={14} />
+              <Bookmark size={14} fill={isBookmarked ? "currentColor" : "none"} />
             </button>
           </div>
 
