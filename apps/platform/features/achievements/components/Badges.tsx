@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import { achievementsData } from '../data/achievementsData'
 import { Filter } from 'lucide-react'
+import Image from 'next/image'
 
 // ============================================
 // Badges Grid Component
@@ -37,8 +38,18 @@ function BadgesGrid({ achievements }: { achievements: typeof achievementsData })
             className="bg-[#1F2937] rounded-xl p-4 border border-[#27272A] hover:border-[#3B82F6] transition cursor-pointer flex flex-col h-[180px]"
           >
             <div className="flex flex-col items-center text-center flex-1">
-              <div className="w-12 h-12 rounded-lg bg-[#220066] flex items-center justify-center text-2xl mb-2">
-                {achievement.icon}
+              <div className="w-12 h-12 rounded-lg bg-[#220066] flex items-center justify-center mb-2 overflow-hidden">
+                {achievement.icon.startsWith('/') ? (
+                  <Image 
+                    src={achievement.icon} 
+                    alt={achievement.title}
+                    width={32}
+                    height={32}
+                    className="object-contain w-8 h-8"
+                  />
+                ) : (
+                  <span className="text-2xl">{achievement.icon}</span>
+                )}
               </div>
               <h4 className="text-sm font-medium text-white truncate w-full">
                 {achievement.title}

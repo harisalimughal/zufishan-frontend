@@ -29,4 +29,4 @@ export { Badges } from './components/Badges';
 // DATA EXPORTS
 // ============================================
 export { achievementsData, journeyStats, filterOptions } from './data/achievementsData';
-export type { Achievement, JourneyStats as JourneyStatsType, FilterOption } from './data/achievementsData';
+export type { Achievement, JourneyStats as JourneyStatsType,} from './data/achievementsData';
