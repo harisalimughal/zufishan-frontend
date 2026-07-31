@@ -107,7 +107,7 @@ const illustrationIconMap: Record<
 
 export function CourseIllustration({
   course,
-  iconSize = 64,
+  iconSize = 52,
 }: {
   course: Course;
   iconSize?: number;
@@ -125,17 +125,17 @@ export function CourseIllustration({
       />
 
       <Binary
-        size={16}
+        size={12}
         className="absolute left-[18%] top-[24%] text-white/10"
       />
 
       <Server
-        size={16}
+        size={12}
         className="absolute bottom-[20%] right-[18%] text-white/10"
       />
 
       <Sparkles
-        size={14}
+        size={10}
         className="absolute right-[19%] top-[24%] text-white/10"
       />
     </>
@@ -144,7 +144,7 @@ export function CourseIllustration({
 
 export function CourseVisualHeader({
   course,
-  heightClassName = "h-[116px]",
+  heightClassName = "h-[96px]",
   registered = false,
 }: {
   course: Course;
@@ -157,7 +157,7 @@ export function CourseVisualHeader({
   return (
     <div
       className={[
-        "relative flex items-center justify-center overflow-hidden bg-gradient-to-br",
+        "relative flex items-center justify-center overflow-hidden rounded-t-xl bg-gradient-to-br",
         heightClassName,
         styles.background,
       ].join(" ")}
@@ -167,7 +167,7 @@ export function CourseVisualHeader({
       {course.badge && !registered && (
         <span
           className={[
-            "absolute left-2 top-2 rounded px-1.5 py-0.5 text-[8px] font-semibold text-[#111827]",
+            "absolute left-2 top-2 rounded-md px-2 py-0.5 text-[9px] font-semibold text-[#111827]",
             course.badge === "New"
               ? "bg-emerald-400"
               : "bg-amber-300",
@@ -178,18 +178,18 @@ export function CourseVisualHeader({
       )}
 
       {registered && (
-        <span className="absolute left-2 top-2 rounded bg-emerald-500/15 px-1.5 py-0.5 text-[8px] font-semibold text-emerald-300">
+        <span className="absolute left-2 top-2 rounded-md bg-emerald-500/15 px-2 py-0.5 text-[9px] font-semibold text-emerald-300">
           Registered
         </span>
       )}
 
       <span
         className={[
-          "absolute bottom-2 left-2 inline-flex items-center gap-1 rounded px-1.5 py-0.5 text-[7px] font-medium backdrop-blur-sm",
+          "absolute bottom-2 left-2 inline-flex items-center gap-1 rounded-md px-2 py-1 text-[9px] font-medium backdrop-blur-sm",
           styles.badge,
         ].join(" ")}
       >
-        <CategoryIcon size={8} />
+        <CategoryIcon size={10} />
         {course.category}
       </span>
     </div>
