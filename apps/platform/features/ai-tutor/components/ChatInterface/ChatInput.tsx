@@ -51,7 +51,7 @@ export function ChatInput({
       
       <div className="flex items-center justify-center">
         <p className="text-[10px] text-gray-500 text-center">
-          AI Tutor can make mistakes. Please verify important information.
+          Renanla Tutor can make mistakes. Please verify important information.
         </p>
       </div>
     </div>

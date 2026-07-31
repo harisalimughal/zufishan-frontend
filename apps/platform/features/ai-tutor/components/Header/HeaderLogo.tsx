@@ -8,7 +8,7 @@ export function HeaderLogo() {
       </div>
       <div>
         <h1 className="text-lg font-bold text-white">
-          AI Tutor
+          Renanla Tutor
         </h1>
         <p className="text-gray-400 text-[10px]">
           Your 24/7 AI Learning Companion

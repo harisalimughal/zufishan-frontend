@@ -1,7 +1,9 @@
 ﻿'use client'
 
 import { useState, useRef, useEffect } from 'react'
-import { Bot, User, Sparkles, ThumbsUp, Copy } from 'lucide-react'
+import Image from 'next/image'
+import { User, Sparkles, ThumbsUp, Copy } from 'lucide-react'
+import renanlaLogo from '../../../../../public/images/fav-logo.png'
 
 interface Message {
   id: string
@@ -14,7 +16,7 @@ interface Message {
 const initialMessages: Message[] = [
   {
     id: '1',
-    content: "Hi Harry! 😊\n\nI'm your AI Tutor. I can help you understand concepts, solve problems, explain topics, and much more. What would you like to learn today?",
+    content: "Hi Harry! 😊\n\nI'm your Renanla Tutor. I can help you understand concepts, solve problems, explain topics, and much more. What would you like to learn today?",
     role: 'assistant',
     timestamp: new Date()
   }
@@ -89,11 +91,11 @@ export function ChatMessages() {
             ) : (
               <div className="flex">
                 <div className="bg-[#1F2937] border border-[#27272A] rounded-2xl p-5 max-w-2xl w-full flex gap-4">
-                  <Bot className="text-[#3B82F6] mt-1 flex-shrink-0" size={20} />
+                  <Image src={renanlaLogo} alt="Renanla Tutor" width={20} height={20} className="w-5 h-5 rounded-full mt-1 self-start flex-shrink-0 object-cover" />
                   <div className="flex-1">
                     <div className="flex items-center gap-2 mb-3">
                       <h3 className="font-semibold text-white flex items-center gap-2">
-                        AI Tutor
+                        Renanla Tutor
                         <Sparkles size={15} className="text-yellow-400" />
                       </h3>
                       {msg.isToday && (
@@ -156,7 +158,7 @@ export function ChatMessages() {
         {isTyping && (
           <div className="flex">
             <div className="bg-[#1F2937] border border-[#27272A] rounded-2xl p-5 flex gap-4">
-              <Bot className="text-[#3B82F6]" size={20} />
+              <Image src={renanlaLogo} alt="Renanla Tutor" width={20} height={20} className="w-5 h-5 rounded-full self-start flex-shrink-0 object-cover" />
               <div className="flex items-center gap-1">
                 <span className="w-2 h-2 bg-[#3B82F6] rounded-full animate-bounce" style={{ animationDelay: '0ms' }} />
                 <span className="w-2 h-2 bg-[#3B82F6] rounded-full animate-bounce" style={{ animationDelay: '150ms' }} />

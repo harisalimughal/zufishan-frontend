@@ -5,10 +5,10 @@ import ProductTabButton from "./ProductTabButton";
 import { LayoutDashboard, BookOpen, Video, CalendarCheck, Bot, Monitor } from "lucide-react";
 
 // 1. Direct Relative Imports (Adjust the "../" based on your exact depth)
-import dashboardImg from "../../../public/images/product-preview/dashboard.avif";
-import coursesImg from "../../../public/images/product-preview/courses.avif";
+import dashboardImg from "../../../public/images/product-preview/dashboard.png";
+import coursesImg from "../../../public/images/product-preview/courses.png";
 import liveImg from "../../../public/images/product-preview/live-classes.jpg";
-import attendanceImg from "../../../public/images/product-preview/attendance.avif";
+import attendanceImg from "../../../public/images/product-preview/attendance.png";
 import aiImg from "../../../public/images/product-preview/ai-tutor.avif";
 
 type TabType = "dashboard" | "courses" | "live" | "attendance" | "ai";
@@ -81,11 +81,23 @@ export function ProductPreview() {
 
         {/* Image Canvas Frame with Blue Neon Glow Effect */}
         <div className="mt-12 relative mx-auto max-w-5xl rounded-2xl border border-[#052E70] p-2 bg-[#111827]/40 shadow-[0_0_50px_rgba(59,130,246,0.25)] backdrop-blur-sm transition-all duration-300">
-          <img
-            src={tabImages[activeTab].src}
-            alt={tabImages[activeTab].alt}
-            className="w-full h-auto rounded-xl object-cover border border-[#27272A]/40 min-h-[320px] max-h-[580px]"
-          />
+          {activeTab === "live" ? (
+            <video
+              key="live-classes-video"
+              src="https://res.cloudinary.com/lgyepgcr/video/upload/v1785494731/Prof._Jane_-_Renanla_i1us2z.mp4"
+              autoPlay
+              muted
+              loop
+              playsInline
+              className="w-full h-auto rounded-xl object-cover border border-[#27272A]/40 min-h-[320px] max-h-[580px]"
+            />
+          ) : (
+            <img
+              src={tabImages[activeTab].src}
+              alt={tabImages[activeTab].alt}
+              className="w-full h-auto rounded-xl object-cover border border-[#27272A]/40 min-h-[320px] max-h-[580px]"
+            />
+          )}
         </div>
       </div>
     </section>

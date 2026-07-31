@@ -236,7 +236,13 @@ export function HeroVideoPreview() {
                     <span>{isHandRaised ? "Hand Raised" : "Raise Hand"}</span>
                   </button>
 
-                  <button className="flex items-center gap-2 px-4 py-2 rounded-lg border border-white/10 bg-white/5 text-xs font-semibold text-gray-300 hover:bg-white/10 transition-all cursor-pointer">
+                  <button
+                    onClick={() => setActiveTab("Notes")}
+                    className={`flex items-center gap-2 px-4 py-2 rounded-lg border text-xs font-semibold transition-all duration-200 cursor-pointer ${activeTab === "Notes"
+                      ? "bg-[#3B82F6] border-[#3B82F6] text-white hover:opacity-90"
+                      : "bg-white/5 border-white/10 text-gray-300 hover:bg-white/10"
+                      }`}
+                  >
                     <FileText className="w-3.5 h-3.5" />
                     <span>Notes</span>
                   </button>

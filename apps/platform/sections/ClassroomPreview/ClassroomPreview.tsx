@@ -19,6 +19,8 @@ import {
   X,
   UserPlus,
   UserMinus,
+  Volume2,
+  VolumeX,
 } from "lucide-react";
 
 // ─── Types ───────────────────────────────────────────────────────────────────
@@ -142,7 +144,7 @@ const INITIAL_MESSAGES: ChatMessage[] = [
     time: "08:12 AM",
     avatar: "SK",
     avatarColor: "#6D5DFC",
-    message: "Professor, can you explain the difference between 2NF and 3NF with an example?",
+    message: "Professor, can you explain the difference between classification and regression with an example?",
     isAI: false,
   },
   {
@@ -153,7 +155,7 @@ const INITIAL_MESSAGES: ChatMessage[] = [
     avatarColor: "#A78BFA",
     message: "Great question, Sarah! Let me show you with a practical example.",
     isAI: true,
-    attachment: { name: "Normalization_Example.pdf", size: "1.2 MB" },
+    attachment: { name: "Supervised_Learning_Example.pdf", size: "1.2 MB" },
   },
   {
     id: 3,
@@ -176,15 +178,15 @@ const BOTTOM_STUDENTS: Student[] = [
 const TABS: TabType[] = ["Chat", "People", "Notes"];
 
 const NOTES_CONTENT = [
-  { title: "1NF – Atomic Values", body: "Each column must contain atomic (indivisible) values. No repeating groups." },
-  { title: "2NF – Remove Partial Dependencies", body: "Must be in 1NF. Every non-key attribute must depend on the whole primary key." },
-  { title: "3NF – Remove Transitive Dependencies", body: "Must be in 2NF. No transitive dependency of non-key attributes on the primary key." },
+  { title: "Labeled Data", body: "Every training example has a known correct output. The model learns to map inputs to these labels." },
+  { title: "Regression", body: "Predicts continuous values, such as a price or a temperature, from the input features." },
+  { title: "Classification", body: "Predicts a discrete category, such as spam or not spam, from the input features." },
 ];
 
 const AI_REPLIES = [
   "Great question! Let me elaborate on that concept for you.",
   "That's exactly the right way to think about it! Here's more detail...",
-  "Excellent observation! In database theory, this is a fundamental concept.",
+  "Excellent observation! In machine learning theory, this is a fundamental concept.",
   "I'm glad you asked! This is a common area of confusion. Let me clarify.",
   "Perfect timing — we were just about to cover that in the next slide!",
 ];
@@ -256,6 +258,7 @@ export function ClassroomPreview() {
   const [isTyping, setIsTyping] = useState(false);
   const [isLeft, setIsLeft] = useState(false);
   const [activePill, setActivePill] = useState<FeaturePill | null>(null);
+  const [isVideoMuted, setIsVideoMuted] = useState(true);
 
   // ── Real student tracking ──
   const [presentStudents, setPresentStudents] = useState<string[]>(["You"]);
@@ -344,7 +347,7 @@ export function ClassroomPreview() {
         <div style={{ textAlign: "center" as const }}>
           <div style={{ fontSize: 48, marginBottom: 16 }}>👋</div>
           <h3 style={{ color: "#fff", fontSize: 24, fontWeight: 700, marginBottom: 8 }}>You left the class</h3>
-          <p style={{ color: "#A1A1AA", marginBottom: 24 }}>Database 101 is still in session</p>
+          <p style={{ color: "#A1A1AA", marginBottom: 24 }}>Machine Learning 101 is still in session</p>
           <button onClick={handleRejoin} style={{ background: "#6D5DFC", border: "none", borderRadius: 10, padding: "12px 28px", color: "#fff", fontSize: 14, fontWeight: 700, cursor: "pointer", fontFamily: "inherit" }}>Rejoin Class</button>
         </div>
       </section>
@@ -429,7 +432,7 @@ export function ClassroomPreview() {
                   <div style={{ width: 8, height: 8, borderRadius: "50%", background: "#22C55E", boxShadow: pulse ? "0 0 6px #22C55E" : "none", transition: "box-shadow 0.6s" }} />
                   <span style={{ color: "#22C55E", fontSize: 11, fontWeight: 700, letterSpacing: "0.1em" }}>LIVE</span>
                 </div>
-                <span style={{ color: "#FFFFFF", fontWeight: 700, fontSize: 14 }}>Database 101</span>
+                <span style={{ color: "#FFFFFF", fontWeight: 700, fontSize: 14 }}>Machine Learning 101</span>
                 <span style={{ color: "#A1A1AA", fontSize: 12 }}>08:00 AM – 09:30 AM</span>
               </div>
               <div style={{ display: "flex", alignItems: "center", gap: 14 }}>
@@ -451,12 +454,22 @@ export function ClassroomPreview() {
               {/* Professor Video */}
               <div style={{ flex: 1, position: "relative" as const, background: "#000", overflow: "hidden" }}>
                 <iframe
-                  src="https://www.youtube.com/embed/HXV3zeQKqGY?autoplay=1&mute=1&loop=1&playlist=HXV3zeQKqGY&controls=0&modestbranding=1&rel=0&showinfo=0"
+                  key={isVideoMuted ? "muted" : "unmuted"}
+                  src={`https://player.cloudinary.com/embed/?cloud_name=lgyepgcr&public_id=Renanla-Tutor_uyw0sh&profile=cld-default&autoplay=true&muted=${isVideoMuted}&loop=true&controls=false`}
+                  title="Renanla Tutor live class preview"
                   style={{ position: "absolute" as const, top: 0, left: 0, width: "100%", height: "100%", border: "none", opacity: cameraActive ? 1 : 0, transition: "opacity 0.4s" }}
                   allow="autoplay; encrypted-media"
                   allowFullScreen
                   tabIndex={-1}
                 />
+                <button
+                  type="button"
+                  onClick={() => setIsVideoMuted((v) => !v)}
+                  aria-label={isVideoMuted ? "Unmute video" : "Mute video"}
+                  style={{ position: "absolute" as const, bottom: 12, right: 12, zIndex: 2, background: "rgba(0,0,0,0.6)", backdropFilter: "blur(4px)", border: "1px solid rgba(255,255,255,0.1)", borderRadius: 8, width: 28, height: 28, display: "flex", alignItems: "center", justifyContent: "center", cursor: "pointer" }}
+                >
+                  {isVideoMuted ? <VolumeX size={14} color="#fff" /> : <Volume2 size={14} color="#fff" />}
+                </button>
                 {!cameraActive && (
                   <div style={{ position: "absolute" as const, inset: 0, background: "#0a0a14", display: "flex", flexDirection: "column" as const, alignItems: "center", justifyContent: "center", gap: 12 }}>
                     <div style={{ width: 64, height: 64, borderRadius: "50%", background: "rgba(109,93,252,0.2)", display: "flex", alignItems: "center", justifyContent: "center" }}>
@@ -468,7 +481,7 @@ export function ClassroomPreview() {
                 <div style={{ position: "absolute" as const, top: 12, left: 12, background: "rgba(109,93,252,0.85)", borderRadius: 6, padding: "3px 10px", fontSize: 10, fontWeight: 700, color: "#fff", letterSpacing: "0.08em", textTransform: "uppercase" as const, zIndex: 2, backdropFilter: "blur(4px)" }}>AI Professor</div>
                 <div style={{ position: "absolute" as const, bottom: 48, left: 12, zIndex: 2, background: "rgba(0,0,0,0.6)", backdropFilter: "blur(4px)", borderRadius: 8, padding: "6px 10px" }}>
                   <div style={{ color: "#FFFFFF", fontWeight: 700, fontSize: 14, lineHeight: 1 }}>Lucas</div>
-                  <div style={{ color: "#A78BFA", fontSize: 11, marginTop: 2 }}>Database Systems Expert</div>
+                  <div style={{ color: "#A78BFA", fontSize: 11, marginTop: 2 }}>Machine Learning Expert</div>
                 </div>
                 {!micActive && (
                   <div style={{ position: "absolute" as const, top: 12, right: 12, background: "rgba(239,68,68,0.85)", borderRadius: 6, padding: "4px 8px", display: "flex", alignItems: "center", gap: 4, zIndex: 2 }}>
@@ -561,7 +574,7 @@ export function ClassroomPreview() {
                   {/* NOTES TAB */}
                   {activeTab === "Notes" && (
                     <>
-                      <div style={{ color: "#A78BFA", fontSize: 11, fontWeight: 600, marginBottom: 4 }}>📝 Database 101 — Today&apos;s Notes</div>
+                      <div style={{ color: "#A78BFA", fontSize: 11, fontWeight: 600, marginBottom: 4 }}>📝 Machine Learning 101 — Today&apos;s Notes</div>
                       {NOTES_CONTENT.map((note) => (
                         <div key={note.title} style={{ background: "rgba(109,93,252,0.08)", border: "1px solid rgba(109,93,252,0.2)", borderRadius: 8, padding: "10px 12px" }}>
                           <div style={{ color: "#FFFFFF", fontSize: 11, fontWeight: 700, marginBottom: 4 }}>{note.title}</div>
