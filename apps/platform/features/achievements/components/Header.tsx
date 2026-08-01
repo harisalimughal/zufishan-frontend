@@ -1,6 +1,7 @@
 ﻿'use client'
 
 import { useState } from 'react'
+import { AnimatePresence, motion } from 'framer-motion'
 import { Trophy, Database, ChevronDown, Coins, HelpCircle, X } from 'lucide-react'
 
 // ============================================
@@ -30,8 +31,8 @@ interface HeaderDropdownProps {
 
 function HeaderDropdown({ selectedCourse, setSelectedCourse }: HeaderDropdownProps) {
   return (
-    <div className="flex-1 flex justify-center px-4">
-      <div className="relative w-[220px]">
+    <div className="w-full sm:flex-1 flex justify-center px-0 sm:px-4">
+      <div className="relative w-full sm:w-[220px]">
         <select
           value={selectedCourse}
           onChange={(e) => setSelectedCourse(e.target.value)}
@@ -80,34 +81,44 @@ function HeaderPoints() {
         <span>How it works</span>
       </button>
 
-      {showHowItWorks && (
-        <div
-          className="fixed inset-0 bg-black/70 z-50 flex items-center justify-center p-4"
-          onClick={() => setShowHowItWorks(false)}
-        >
-          <div
-            onClick={(e) => e.stopPropagation()}
-            className="bg-[#111827] border border-[#27272A] rounded-2xl w-full max-w-md p-6 relative shadow-2xl"
+      <AnimatePresence>
+        {showHowItWorks && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.15 }}
+            className="fixed inset-0 bg-black/70 z-50 flex items-center justify-center p-4"
+            onClick={() => setShowHowItWorks(false)}
           >
-            <button
-              onClick={() => setShowHowItWorks(false)}
-              className="absolute top-4 right-4 text-gray-400 hover:text-white"
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.95 }}
+              transition={{ duration: 0.15 }}
+              onClick={(e) => e.stopPropagation()}
+              className="bg-[#111827] border border-[#27272A] rounded-2xl w-full max-w-md p-6 relative shadow-2xl"
             >
-              <X size={18} />
-            </button>
-            <h3 className="text-base font-semibold text-white mb-2">How Achievements Work</h3>
-            <p className="text-xs text-gray-400 mb-3">
-              You earn badges and XP by staying active across your courses — attending live classes, submitting assignments, and keeping up your streak.
-            </p>
-            <ul className="space-y-1.5 text-xs text-gray-400 list-disc list-inside">
-              <li>Complete course activities to unlock new badges</li>
-              <li>Each badge awards XP that adds to your total points</li>
-              <li>Some badges track progress and unlock automatically once complete</li>
-              <li>Climb the leaderboard by earning more XP than other students</li>
-            </ul>
-          </div>
-        </div>
-      )}
+              <button
+                onClick={() => setShowHowItWorks(false)}
+                className="absolute top-4 right-4 text-gray-400 hover:text-white"
+              >
+                <X size={18} />
+              </button>
+              <h3 className="text-base font-semibold text-white mb-2">How Achievements Work</h3>
+              <p className="text-xs text-gray-400 mb-3">
+                You earn badges and XP by staying active across your courses — attending live classes, submitting assignments, and keeping up your streak.
+              </p>
+              <ul className="space-y-1.5 text-xs text-gray-400 list-disc list-inside">
+                <li>Complete course activities to unlock new badges</li>
+                <li>Each badge awards XP that adds to your total points</li>
+                <li>Some badges track progress and unlock automatically once complete</li>
+                <li>Climb the leaderboard by earning more XP than other students</li>
+              </ul>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   )
 }
@@ -119,7 +130,7 @@ export function Header() {
   const [selectedCourse, setSelectedCourse] = useState('All Courses')
 
   return (
-    <header className="border-b border-[#27272A] bg-black px-6 py-4 flex items-center justify-between flex-shrink-0">
+    <header className="border-b border-[#27272A] bg-black px-4 sm:px-6 py-4 flex flex-col sm:flex-row items-center gap-3 sm:justify-between flex-shrink-0">
       <HeaderLogo />
       <HeaderDropdown 
         selectedCourse={selectedCourse}

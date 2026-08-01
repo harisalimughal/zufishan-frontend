@@ -1,5 +1,8 @@
+"use client";
+
 import { Award, CheckCircle2, FileUp } from "lucide-react";
 import Link from "next/link";
+import { motion } from "framer-motion";
 import type { ReactNode } from "react";
 
 type ActivityItem = {
@@ -49,8 +52,14 @@ export function ActivityFeed() {
 
       {/* Activity Items */}
       <div className="space-y-4">
-        {activityItems.map((item) => (
-          <div key={item.id} className="flex items-start gap-3">
+        {activityItems.map((item, idx) => (
+          <motion.div
+            key={item.id}
+            initial={{ opacity: 0, y: 15 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.35, delay: idx * 0.08 }}
+            className="flex items-start gap-3"
+          >
             {/* Icon */}
             <div
               className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-full ${item.iconBg}`}
@@ -70,7 +79,7 @@ export function ActivityFeed() {
               )}
               <p className="mt-1 text-[11px] text-gray-600">{item.time}</p>
             </div>
-          </div>
+          </motion.div>
         ))}
       </div>
     </div>

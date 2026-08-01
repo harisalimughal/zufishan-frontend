@@ -1,7 +1,7 @@
 import type { Course } from "../course-catalog/types";
 
 export const REGISTERED_COURSES_KEY =
-  "nexora-registered-courses";
+  "ranenla-registered-courses";
 
 export const REGISTERED_COURSES_EVENT =
   "registered-courses-updated";

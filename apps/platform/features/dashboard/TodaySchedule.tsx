@@ -1,4 +1,7 @@
+"use client";
+
 import Link from "next/link";
+import { motion } from "framer-motion";
 
 type ScheduleItem = {
   id: string;
@@ -51,9 +54,12 @@ export function TodaySchedule() {
 
       {/* Schedule Items */}
       <div className="space-y-3">
-        {scheduleItems.map((item) => (
-          <div
+        {scheduleItems.map((item, idx) => (
+          <motion.div
             key={item.id}
+            initial={{ opacity: 0, y: 15 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.35, delay: idx * 0.08 }}
             className="group flex items-center gap-3 rounded-lg p-2.5 transition-all duration-200 hover:bg-[#1F2937]"
           >
             {/* Status Indicator */}
@@ -98,7 +104,7 @@ export function TodaySchedule() {
             >
               Join
             </Link>
-          </div>
+          </motion.div>
         ))}
       </div>
     </div>

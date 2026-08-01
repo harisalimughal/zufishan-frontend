@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { motion } from "framer-motion";
 import { Send, Users, Search } from "lucide-react";
 
 type GroupMessage = {
@@ -186,7 +187,13 @@ export function GroupChat() {
 
         <div ref={scrollRef} className="flex-1 overflow-y-auto px-5 py-4 space-y-4">
           {activeGroup.messages.map((msg) => (
-            <div key={msg.id} className={`flex gap-3 ${msg.isMe ? "flex-row-reverse" : ""}`}>
+            <motion.div
+              key={msg.id}
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.25 }}
+              className={`flex gap-3 ${msg.isMe ? "flex-row-reverse" : ""}`}
+            >
               <AvatarCircle initials={msg.author.slice(0, 1)} color={msg.avatarColor} size={32} />
               <div className={`max-w-md ${msg.isMe ? "items-end" : "items-start"} flex flex-col`}>
                 <div className="flex items-baseline gap-2 mb-1">
@@ -201,7 +208,7 @@ export function GroupChat() {
                   {msg.content}
                 </div>
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
 

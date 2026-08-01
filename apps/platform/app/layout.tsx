@@ -1,10 +1,17 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import type { ReactNode } from "react";
+import { ThemeProvider } from "../lib/theme/ThemeContext";
+import { SplashScreen } from "../components/SplashScreen/SplashScreen";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Nexora",
-  description: "Nexora learning platform"
+  title: "Ranenla",
+  description: "Ranenla learning platform"
+};
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1
 };
 
 export default function RootLayout({
@@ -14,7 +21,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body>
+        <SplashScreen />
+        <ThemeProvider>{children}</ThemeProvider>
+      </body>
     </html>
   );
 }

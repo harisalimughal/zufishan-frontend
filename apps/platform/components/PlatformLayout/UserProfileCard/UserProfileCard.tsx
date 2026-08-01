@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
+import { AnimatePresence, motion } from "framer-motion";
 import { LogOut, Settings } from "lucide-react";
 
 type UserProfileCardProps = {
@@ -41,28 +42,36 @@ export function UserProfileCard({ collapsed = false }: UserProfileCardProps) {
         )}
       </button>
 
-      {open && (
-        <div className="absolute right-0 top-full mt-2 w-44 rounded-xl border border-[#27272A] bg-black p-1.5 shadow-2xl z-50">
-          <Link
-            href="/settings"
-            onClick={() => setOpen(false)}
-            className="flex items-center gap-2 rounded-lg px-2.5 py-2 text-xs text-slate-200 transition hover:bg-[#27272A] hover:text-white"
+      <AnimatePresence>
+        {open && (
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.95 }}
+            transition={{ duration: 0.15 }}
+            className="absolute right-0 top-full mt-2 w-44 rounded-xl border border-[#27272A] bg-black p-1.5 shadow-2xl z-50"
           >
-            <Settings className="h-3.5 w-3.5" />
-            Settings
-          </Link>
-          <button
-            onClick={() => {
-              console.log("Log out");
-              setOpen(false);
-            }}
-            className="flex w-full items-center gap-2 rounded-lg px-2.5 py-2 text-xs text-red-400 transition hover:bg-[#27272A] hover:text-red-300"
-          >
-            <LogOut className="h-3.5 w-3.5" />
-            Log out
-          </button>
-        </div>
-      )}
+            <Link
+              href="/settings"
+              onClick={() => setOpen(false)}
+              className="flex items-center gap-2 rounded-lg px-2.5 py-2 text-xs text-slate-200 transition hover:bg-[#27272A] hover:text-white"
+            >
+              <Settings className="h-3.5 w-3.5" />
+              Settings
+            </Link>
+            <button
+              onClick={() => {
+                console.log("Log out");
+                setOpen(false);
+              }}
+              className="flex w-full items-center gap-2 rounded-lg px-2.5 py-2 text-xs text-red-400 transition hover:bg-[#27272A] hover:text-red-300"
+            >
+              <LogOut className="h-3.5 w-3.5" />
+              Log out
+            </button>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }

@@ -346,10 +346,10 @@ export function ClassroomPreview() {
           </div>
 
           {/* ── Content Row ── */}
-          <div style={{ display: "flex", height: 560 }}>
+          <div className="flex flex-col lg:flex-row lg:h-[560px]">
 
             {/* ── Video Area ── */}
-            <div style={{ flex: 1, minWidth: 0, position: "relative" as const, background: "#070B14", overflow: "hidden" }}>
+            <div className="relative bg-[#070B14] overflow-hidden min-w-0 h-56 sm:h-72 lg:h-auto lg:flex-1">
               <iframe
                 key={isVideoMuted ? "muted" : "unmuted"}
                 src={`https://player.cloudinary.com/embed/?cloud_name=lgyepgcr&public_id=Renanla-Tutor_uyw0sh&profile=cld-default&autoplay=true&muted=${isVideoMuted}&loop=true&controls=false`}
@@ -400,7 +400,10 @@ export function ClassroomPreview() {
             </div>
 
             {/* ── Right Panel ── */}
-            <div style={{ width: 300, background: "#111827", borderLeft: "1px solid #1F2937", display: "flex", flexDirection: "column" as const, flexShrink: 0 }}>
+            <div
+              className="flex h-80 lg:h-auto w-full lg:w-[300px] flex-shrink-0 flex-col border-t border-[#1F2937] lg:border-t-0 lg:border-l"
+              style={{ background: "#111827" }}
+            >
 
               {/* Tabs */}
               <div style={{ display: "flex", borderBottom: "1px solid #1F2937" }}>

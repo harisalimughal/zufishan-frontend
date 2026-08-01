@@ -1,10 +1,12 @@
 "use client";
 /* eslint-disable @next/next/no-img-element */
 
+import { motion } from "framer-motion";
 import { Github, Linkedin, Youtube } from "lucide-react";
 import { FooterLinkColumn } from "./FooterLinkColumn";
 import { FooterSocialButton } from "./FooterSocialButton";
 import { FooterNewsletter } from "./FooterNewsletter";
+import { useTheme } from "../../lib/theme/ThemeContext";
 
 // Custom SVG for Discord Brand Icon
 const DiscordIcon = (props: React.SVGProps<SVGSVGElement>) => (
@@ -44,41 +46,55 @@ const legalLinks = [
 ];
 
 export function Footer() {
+  const { isDarkMode } = useTheme();
+
   return (
-    <footer className="relative bg-[#09090B] text-white border-t border-[#27272A] overflow-hidden pt-20 px-6 sm:px-12 md:px-16 lg:px-24">
+    <footer
+      className={`relative border-t overflow-hidden pt-20 px-6 sm:px-12 md:px-16 lg:px-24 transition-colors duration-300 ${
+        isDarkMode ? "bg-[#09090B] text-white border-[#27272A]" : "bg-white text-zinc-900 border-zinc-200"
+      }`}
+    >
       {/* Subtle Background Glows */}
       <div className="absolute -bottom-48 left-1/4 w-[600px] h-[300px] bg-[#3B82F6]/5 rounded-full blur-[100px] pointer-events-none" />
       <div className="absolute -bottom-48 right-1/4 w-[500px] h-[250px] bg-[#6D5DFC]/5 rounded-full blur-[100px] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto w-full relative z-10">
-        
+
         {/* Main Grid Layout */}
-        <div className="grid grid-cols-1 lg:grid-cols-5 gap-12 lg:gap-16 pb-16">
-          
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.6 }}
+          className="grid grid-cols-1 lg:grid-cols-5 gap-12 lg:gap-16 pb-16"
+        >
+
           {/* Brand Identity & Newsletter Block (Spans 2 columns on desktop) */}
           <div className="lg:col-span-2 flex flex-col items-start space-y-6 ">
             <div className="flex items-center gap-2.5">
-              <img 
-                src="/Nexora-logo-white-transparent.png" 
-                alt="Nexora Logo" 
-                className="h-10 w-auto select-none"
+              <img
+                src={isDarkMode ? "/Ranenla-logo-transparent-dark.png" : "/Ranenla-logo-transparent-light.png"}
+                alt="Ranenla Logo"
+                className="h-16 w-auto select-none"
               />
             </div>
-            
-            <p className="text-sm text-gray-400 leading-relaxed font-sans max-w-sm text-left">
-              Nexora is the world&apos;s first AI-powered virtual university, delivering live-simulated classrooms, personalized academic mentorship, and automated smart notes for students globally.
+
+            <p className={`text-sm leading-relaxed font-sans max-w-sm text-left transition-colors duration-300 ${isDarkMode ? "text-gray-400" : "text-zinc-600"}`}>
+              Ranenla is the world&apos;s first AI-powered virtual university, delivering live-simulated classrooms, personalized academic mentorship, and automated smart notes for students globally.
             </p>
 
             {/* Newsletter Subscription component */}
             <FooterNewsletter />
 
             {/* System Status Indicator */}
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#111827] border border-[#27272A] text-xs text-gray-400">
+            <div className={`inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border text-xs transition-colors duration-300 ${
+              isDarkMode ? "bg-[#111827] border-[#27272A] text-gray-400" : "bg-zinc-100 border-zinc-200 text-zinc-500"
+            }`}>
               <span className="relative flex h-2 w-2">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
               </span>
-              <span className="font-mono text-[10px] tracking-wide text-gray-300">
+              <span className={`font-mono text-[10px] tracking-wide transition-colors duration-300 ${isDarkMode ? "text-gray-300" : "text-zinc-700"}`}>
                 All Systems Operational
               </span>
             </div>
@@ -93,14 +109,14 @@ export function Footer() {
             </div>
           </div>
 
-        </div>
+        </motion.div>
 
         {/* Bottom Social / Copyright Bar */}
-        <div className="border-t border-[#27272A] py-8 flex flex-col md:flex-row items-center justify-between gap-6">
-          
+        <div className={`border-t py-8 flex flex-col md:flex-row items-center justify-between gap-6 transition-colors duration-300 ${isDarkMode ? "border-[#27272A]" : "border-zinc-200"}`}>
+
           {/* Copyright Statement */}
-          <p className="text-xs text-gray-500 font-sans">
-            &copy; {new Date().getFullYear()} Nexora Technologies Inc. All rights reserved.
+          <p className={`text-xs font-sans transition-colors duration-300 ${isDarkMode ? "text-gray-500" : "text-zinc-500"}`}>
+            &copy; {new Date().getFullYear()} Ranenla Technologies Inc. All rights reserved.
           </p>
 
           {/* Social Network Icon Grid */}

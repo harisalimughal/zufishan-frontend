@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { User, Hand, BarChart3, GraduationCap } from "lucide-react";
+import { useTheme } from "../../lib/theme/ThemeContext";
 
 const benefits = [
   {
@@ -27,6 +28,8 @@ const benefits = [
 ];
 
 export function HeroStats() {
+  const { isDarkMode } = useTheme();
+
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-10 max-w-6xl mx-auto w-full px-4 mb-20 text-left">
       {benefits.map((benefit, idx) => {
@@ -50,10 +53,10 @@ export function HeroStats() {
 
             {/* Content */}
             <div className="space-y-2">
-              <h3 className="text-lg font-bold text-white tracking-tight">
+              <h3 className={`text-lg font-bold tracking-tight transition-colors duration-300 ${isDarkMode ? "text-white" : "text-zinc-900"}`}>
                 {benefit.title}
               </h3>
-              <p className="text-sm text-gray-400 leading-relaxed font-sans">
+              <p className={`text-sm leading-relaxed font-sans transition-colors duration-300 ${isDarkMode ? "text-gray-400" : "text-zinc-600"}`}>
                 {benefit.description}
               </p>
             </div>

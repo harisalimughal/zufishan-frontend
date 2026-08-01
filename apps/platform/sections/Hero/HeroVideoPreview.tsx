@@ -81,7 +81,7 @@ export function HeroVideoPreview() {
       "Look at the database diagram in the chat. Note how the Enrollments table acts as a bridge.",
       "If we have student_id determining major, and major determining major_advisor, that is transitive!",
       "To resolve this, we decompose the table so that every non-key column depends solely on the key.",
-      "Nexora's AI automatically compiles these diagrams and summaries in your 'Notes' tab in real time."
+      "Ranenla's AI automatically compiles these diagrams and summaries in your 'Notes' tab in real time."
     ];
     let idx = 0;
     const interval = setInterval(() => {

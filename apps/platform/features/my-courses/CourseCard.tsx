@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { motion } from "framer-motion";
 import { Bookmark, BookOpen, Check, UserPlus } from "lucide-react";
 import { useEffect, useState } from "react";
 import type { MouseEvent } from "react";
@@ -11,6 +12,7 @@ import { isCourseRegistered, registerCourse } from "../my-courses/storage";
 
 type CourseCardProps = {
   course: Course;
+  index?: number;
 };
 
 const levelStyles: Record<CourseLevel, string> = {
@@ -30,7 +32,7 @@ function getInitials(name: string) {
     .join("");
 }
 
-export function CourseCard({ course }: CourseCardProps) {
+export function CourseCard({ course, index = 0 }: CourseCardProps) {
   const [registered, setRegistered] = useState(false);
   const [isBookmarked, setIsBookmarked] = useState(false);
 
@@ -49,7 +51,13 @@ export function CourseCard({ course }: CourseCardProps) {
   }
 
   return (
-    <article className="group flex h-full w-full min-w-0 flex-col overflow-hidden rounded-xl border border-[#1F2937] bg-[#0D1422] transition-all duration-300 hover:-translate-y-1 hover:border-zinc-700 hover:shadow-xl">
+    <motion.article
+      initial={{ opacity: 0, y: 15 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.35, delay: Math.min(index, 8) * 0.05 }}
+      whileHover={{ y: -4 }}
+      className="group flex h-full w-full min-w-0 flex-col overflow-hidden rounded-xl border border-[#1F2937] bg-[#0D1422] transition-all duration-300 hover:border-zinc-700 hover:shadow-xl"
+    >
       <CourseVisualHeader course={course} />
 
       <div className="flex flex-1 flex-col justify-between p-4 sm:p-4">
@@ -145,6 +153,6 @@ export function CourseCard({ course }: CourseCardProps) {
           </div>
         </div>
       </div>
-    </article>
+    </motion.article>
   );
 }

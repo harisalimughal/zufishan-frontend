@@ -73,15 +73,10 @@ export default function LoginSidebar({ isDarkMode }: LoginSidebarProps) {
         <div className="flex items-center gap-1 ">
           <div>
             <img
-              src="/Nexora-logo-white-transparent.png"
+              src={isDarkMode ? "/Ranenla-logo-transparent-dark.png" : "/Ranenla-logo-transparent-light.png"}
               alt="Logo"
               className="w-100 h-auto object-contain -ml-8 -mb-4"
             />
-
-            <p className={`text-lg transition-colors duration-300 ${isDarkMode ? "text-gray-300" : "text-gray-600"
-              }`}>
-              Learn. Interact. Grow.
-            </p>
           </div>
 
         </div>

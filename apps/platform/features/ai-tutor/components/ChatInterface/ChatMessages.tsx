@@ -2,6 +2,7 @@
 
 import { useRef, useEffect } from 'react'
 import Image from 'next/image'
+import { AnimatePresence, motion } from 'framer-motion'
 import { User, Sparkles, ThumbsUp, Copy } from 'lucide-react'
 import renanlaLogo from '../../../../../public/images/fav-logo.png'
 import type { Message } from './ChatInterface'
@@ -40,7 +41,12 @@ export function ChatMessages({ messages, isTyping, onSuggestionClick }: ChatMess
     >
       <div className="space-y-6 pb-4">
         {messages.map((msg) => (
-          <div key={msg.id}>
+          <motion.div
+            key={msg.id}
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.25 }}
+          >
             {msg.role === 'user' ? (
               <div className="flex justify-end">
                 <div className="bg-[#3B82F6] px-5 py-3 rounded-2xl max-w-lg flex items-start gap-3 shadow-lg shadow-blue-500/10">
@@ -117,20 +123,28 @@ export function ChatMessages({ messages, isTyping, onSuggestionClick }: ChatMess
                 </div>
               </div>
             )}
-          </div>
+          </motion.div>
         ))}
-        {isTyping && (
-          <div className="flex">
-            <div className="bg-[#1F2937] border border-[#27272A] rounded-2xl p-5 flex gap-4">
-              <Image src={renanlaLogo} alt="Renanla Tutor" width={20} height={20} className="w-5 h-5 rounded-full self-start flex-shrink-0 object-cover" />
-              <div className="flex items-center gap-1">
-                <span className="w-2 h-2 bg-[#3B82F6] rounded-full animate-bounce" style={{ animationDelay: '0ms' }} />
-                <span className="w-2 h-2 bg-[#3B82F6] rounded-full animate-bounce" style={{ animationDelay: '150ms' }} />
-                <span className="w-2 h-2 bg-[#3B82F6] rounded-full animate-bounce" style={{ animationDelay: '300ms' }} />
+        <AnimatePresence>
+          {isTyping && (
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.2 }}
+              className="flex"
+            >
+              <div className="bg-[#1F2937] border border-[#27272A] rounded-2xl p-5 flex gap-4">
+                <Image src={renanlaLogo} alt="Renanla Tutor" width={20} height={20} className="w-5 h-5 rounded-full self-start flex-shrink-0 object-cover" />
+                <div className="flex items-center gap-1">
+                  <span className="w-2 h-2 bg-[#3B82F6] rounded-full animate-bounce" style={{ animationDelay: '0ms' }} />
+                  <span className="w-2 h-2 bg-[#3B82F6] rounded-full animate-bounce" style={{ animationDelay: '150ms' }} />
+                  <span className="w-2 h-2 bg-[#3B82F6] rounded-full animate-bounce" style={{ animationDelay: '300ms' }} />
+                </div>
               </div>
-            </div>
-          </div>
-        )}
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
 
       {/* Suggestion buttons - outside message box, at the bottom */}

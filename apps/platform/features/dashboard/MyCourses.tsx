@@ -1,5 +1,8 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
+import { motion } from "framer-motion";
 import { ChevronRight } from "lucide-react";
 
 type Course = {
@@ -81,9 +84,13 @@ export function MyCourses() {
 
       {/* Course Cards */}
       <div className="space-y-3">
-        {courses.map((course) => (
-          <div
+        {courses.map((course, idx) => (
+          <motion.div
             key={course.id}
+            initial={{ opacity: 0, y: 15 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.35, delay: idx * 0.08 }}
+            whileHover={{ y: -2 }}
             className="group flex flex-col gap-4 rounded-xl border border-[#27272A] bg-[#111827] p-4 transition-all duration-300 hover:border-[#3B82F6]/30 sm:flex-row sm:items-center"
           >
             {/* Course Image */}
@@ -133,7 +140,7 @@ export function MyCourses() {
                 Details
               </Link>
             </div>
-          </div>
+          </motion.div>
         ))}
       </div>
     </div>

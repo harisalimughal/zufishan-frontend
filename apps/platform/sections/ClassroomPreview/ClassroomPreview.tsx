@@ -1,6 +1,8 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
+import { motion } from "framer-motion";
+import { useTheme } from "../../lib/theme/ThemeContext";
 import {
   Hand,
   FileText,
@@ -143,6 +145,7 @@ function AvatarCircle({ initials, color, size = 32 }: { initials: string; color:
 // ─── Main Component ──────────────────────────────────────────────────────────
 
 export function ClassroomPreview() {
+  const { isDarkMode } = useTheme();
   const [activeTab, setActiveTab] = useState<TabType>("Chat");
   const [raiseHandActive, setRaiseHandActive] = useState(false);
   const [micActive, setMicActive] = useState(true);
@@ -237,11 +240,11 @@ export function ClassroomPreview() {
 
   if (isLeft) {
     return (
-      <section style={{ background: "#09090B", padding: "96px 24px", fontFamily: "'Inter', 'Geist', sans-serif", minHeight: 400, display: "flex", alignItems: "center", justifyContent: "center" }}>
+      <section style={{ background: isDarkMode ? "#09090B" : "#FFFFFF", padding: "96px 24px", fontFamily: "'Inter', 'Geist', sans-serif", minHeight: 400, display: "flex", alignItems: "center", justifyContent: "center", transition: "background-color 0.3s ease" }}>
         <div style={{ textAlign: "center" as const }}>
           <div style={{ fontSize: 48, marginBottom: 16 }}>👋</div>
-          <h3 style={{ color: "#fff", fontSize: 24, fontWeight: 700, marginBottom: 8 }}>You left the class</h3>
-          <p style={{ color: "#A1A1AA", marginBottom: 24 }}>Machine Learning 101 is still in session</p>
+          <h3 style={{ color: isDarkMode ? "#fff" : "#18181B", fontSize: 24, fontWeight: 700, marginBottom: 8, transition: "color 0.3s ease" }}>You left the class</h3>
+          <p style={{ color: isDarkMode ? "#A1A1AA" : "#52525B", marginBottom: 24, transition: "color 0.3s ease" }}>Machine Learning 101 is still in session</p>
           <button onClick={handleRejoin} style={{ background: "#6D5DFC", border: "none", borderRadius: 10, padding: "12px 28px", color: "#fff", fontSize: 14, fontWeight: 700, cursor: "pointer", fontFamily: "inherit" }}>Rejoin Class</button>
         </div>
       </section>
@@ -250,23 +253,44 @@ export function ClassroomPreview() {
 
   return (
     <>
-      <section id="classroom-preview" style={{ background: "#09090B", padding: "64px 24px", fontFamily: "'Inter', 'Geist', sans-serif" }}>
+      <section id="classroom-preview" style={{ background: isDarkMode ? "#09090B" : "#FFFFFF", padding: "64px 24px", fontFamily: "'Inter', 'Geist', sans-serif", transition: "background-color 0.3s ease" }}>
 
         {/* Badge */}
-        <div style={{ display: "flex", justifyContent: "center", marginBottom: 20 }}>
-          <div style={{ display: "inline-flex", alignItems: "center", gap: 8, background: "rgba(109,93,252,0.12)", border: "1px solid rgba(109,93,252,0.35)", borderRadius: 999, padding: "6px 16px" }}>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.6 }}
+          style={{ display: "flex", justifyContent: "center", marginBottom: 20 }}
+        >
+          <div
+            style={{
+              display: "inline-flex", alignItems: "center", gap: 8,
+              background: isDarkMode ? "#111827" : "#FFFFFF",
+              border: `1px solid ${isDarkMode ? "#27272A" : "#E4E4E7"}`,
+              borderRadius: 999, padding: "8px 16px",
+              boxShadow: isDarkMode ? "none" : "0 1px 2px rgba(0,0,0,0.05)",
+              transition: "background-color 0.3s ease, border-color 0.3s ease",
+            }}
+          >
             <div style={{ width: 7, height: 7, borderRadius: "50%", background: "#6D5DFC", boxShadow: pulse ? "0 0 8px 2px #6D5DFC" : "none", transition: "box-shadow 0.6s ease" }} />
-            <span style={{ color: "#A78BFA", fontSize: 11, fontWeight: 600, letterSpacing: "0.12em", textTransform: "uppercase" as const }}>Live Classroom Preview</span>
+            <span style={{ color: "#3B82F6", fontSize: 12, fontWeight: 600, letterSpacing: "0.05em", textTransform: "uppercase" as const }}>Live Classroom Preview</span>
           </div>
-        </div>
+        </motion.div>
 
         {/* Headline */}
-        <div style={{ textAlign: "center" as const, marginBottom: 32 }}>
-          <h2 style={{ color: "#FFFFFF", fontSize: "clamp(1.75rem, 4vw, 2.75rem)", fontWeight: 800, letterSpacing: "-0.02em", margin: 0 }}>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.6, delay: 0.1 }}
+          style={{ textAlign: "center" as const, marginBottom: 32 }}
+        >
+          <h2 style={{ color: isDarkMode ? "#FFFFFF" : "#18181B", fontSize: "clamp(1.75rem, 4vw, 2.75rem)", fontWeight: 800, letterSpacing: "-0.02em", margin: 0, transition: "color 0.3s ease" }}>
             Just like a{" "}
             <span style={{ background: "linear-gradient(135deg, #6D5DFC, #A78BFA)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text" }}>real classroom.</span>
           </h2>
-        </div>
+        </motion.div>
 
         {/* Classroom Card */}
         <div style={{ maxWidth: 1280, margin: "0 auto" }}>
@@ -321,10 +345,10 @@ export function ClassroomPreview() {
             </div>
 
             {/* Main Content */}
-            <div style={{ display: "flex", height: 520 }}>
+            <div className="flex flex-col lg:flex-row lg:h-[520px]">
 
               {/* Professor Video */}
-              <div style={{ flex: 1, position: "relative" as const, background: "#000", overflow: "hidden" }}>
+              <div className="relative bg-black overflow-hidden h-56 sm:h-72 lg:h-auto lg:flex-1">
                 <iframe
                   key={isVideoMuted ? "muted" : "unmuted"}
                   src={`https://player.cloudinary.com/embed/?cloud_name=lgyepgcr&public_id=Renanla-Tutor_uyw0sh&profile=cld-default&autoplay=true&muted=${isVideoMuted}&loop=true&controls=false`}
@@ -365,7 +389,10 @@ export function ClassroomPreview() {
               </div>
 
               {/* Chat Panel */}
-              <div style={{ width: 248, background: "#0D1117", borderLeft: "1px solid #27272A", display: "flex", flexDirection: "column" as const, flexShrink: 0 }}>
+              <div
+                className="flex h-80 lg:h-auto w-full lg:w-[248px] flex-shrink-0 flex-col border-t border-[#27272A] lg:border-t-0 lg:border-l"
+                style={{ background: "#0D1117" }}
+              >
                 <div style={{ display: "flex", borderBottom: "1px solid #27272A", padding: "0 12px" }}>
                   {TABS.map((tab) => (
                     <button key={tab} onClick={() => setActiveTab(tab)}

@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
 import {
   Calendar as CalendarIcon,
   Download,
@@ -150,25 +151,33 @@ export default function AttendancePage() {
               <ChevronDown size={14} className={`text-gray-400 ml-1 transition-transform ${showCourseDropdown ? "rotate-180" : ""}`} />
             </button>
 
-            {showCourseDropdown && (
-              <div className="absolute right-0 mt-2 w-52 bg-[#11151E] border border-[#1A202C] rounded-xl shadow-2xl py-1 z-30">
-                <button 
-                  onClick={() => { setSelectedCourse("All Courses"); setShowCourseDropdown(false); }}
-                  className={`w-full text-left px-4 py-2 text-xs hover:bg-[#1A202C] ${selectedCourse === "All Courses" ? "text-indigo-400 font-bold" : "text-gray-300"}`}
+            <AnimatePresence>
+              {showCourseDropdown && (
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.95 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.95 }}
+                  transition={{ duration: 0.15 }}
+                  className="absolute right-0 mt-2 w-52 bg-[#11151E] border border-[#1A202C] rounded-xl shadow-2xl py-1 z-30"
                 >
-                  All Courses
-                </button>
-                {courseList.map((c) => (
                   <button
-                    key={c.id}
-                    onClick={() => { setSelectedCourse(c.name); setShowCourseDropdown(false); }}
-                    className={`w-full text-left px-4 py-2 text-xs hover:bg-[#1A202C] ${selectedCourse === c.name ? "text-indigo-400 font-bold" : "text-gray-300"}`}
+                    onClick={() => { setSelectedCourse("All Courses"); setShowCourseDropdown(false); }}
+                    className={`w-full text-left px-4 py-2 text-xs hover:bg-[#1A202C] ${selectedCourse === "All Courses" ? "text-indigo-400 font-bold" : "text-gray-300"}`}
                   >
-                    {c.name}
+                    All Courses
                   </button>
-                ))}
-              </div>
-            )}
+                  {courseList.map((c) => (
+                    <button
+                      key={c.id}
+                      onClick={() => { setSelectedCourse(c.name); setShowCourseDropdown(false); }}
+                      className={`w-full text-left px-4 py-2 text-xs hover:bg-[#1A202C] ${selectedCourse === c.name ? "text-indigo-400 font-bold" : "text-gray-300"}`}
+                    >
+                      {c.name}
+                    </button>
+                  ))}
+                </motion.div>
+              )}
+            </AnimatePresence>
           </div>
 
           {/* Date Range Dropdown */}
@@ -185,19 +194,27 @@ export default function AttendancePage() {
               <ChevronDown size={14} className={`text-gray-400 ml-1 transition-transform ${showDateDropdown ? "rotate-180" : ""}`} />
             </button>
 
-            {showDateDropdown && (
-              <div className="absolute right-0 mt-2 w-48 bg-[#11151E] border border-[#1A202C] rounded-xl shadow-2xl py-1 z-30">
-                {["May 1 - May 31, 2026", "Apr 1 - Apr 30, 2026", "Semester 1 (Jan - May)"].map((range) => (
-                  <button
-                    key={range}
-                    onClick={() => { setDateRange(range); setShowDateDropdown(false); }}
-                    className={`w-full text-left px-4 py-2 text-xs hover:bg-[#1A202C] ${dateRange === range ? "text-indigo-400 font-bold" : "text-gray-300"}`}
-                  >
-                    {range}
-                  </button>
-                ))}
-              </div>
-            )}
+            <AnimatePresence>
+              {showDateDropdown && (
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.95 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.95 }}
+                  transition={{ duration: 0.15 }}
+                  className="absolute right-0 mt-2 w-48 bg-[#11151E] border border-[#1A202C] rounded-xl shadow-2xl py-1 z-30"
+                >
+                  {["May 1 - May 31, 2026", "Apr 1 - Apr 30, 2026", "Semester 1 (Jan - May)"].map((range) => (
+                    <button
+                      key={range}
+                      onClick={() => { setDateRange(range); setShowDateDropdown(false); }}
+                      className={`w-full text-left px-4 py-2 text-xs hover:bg-[#1A202C] ${dateRange === range ? "text-indigo-400 font-bold" : "text-gray-300"}`}
+                    >
+                      {range}
+                    </button>
+                  ))}
+                </motion.div>
+              )}
+            </AnimatePresence>
           </div>
 
           {/* Export Report Button */}
@@ -574,9 +591,22 @@ export default function AttendancePage() {
           ========================================================================= */}
       
       {/* 1. DAY DETAILS MODAL */}
-      {selectedDayModal && (
-        <div className="fixed inset-0 bg-black/70 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-          <div className="bg-[#0D111A] border border-[#171D2A] rounded-2xl w-full max-w-md p-6 space-y-4 relative shadow-2xl">
+      <AnimatePresence>
+        {selectedDayModal && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.15 }}
+            className="fixed inset-0 bg-black/70 backdrop-blur-sm z-50 flex items-center justify-center p-4"
+          >
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.95 }}
+              transition={{ duration: 0.15 }}
+              className="bg-[#0D111A] border border-[#171D2A] rounded-2xl w-full max-w-md p-6 space-y-4 relative shadow-2xl"
+            >
             <button 
               onClick={() => setSelectedDayModal(null)}
               className="absolute top-4 right-4 text-gray-400 hover:text-white"
@@ -622,14 +652,28 @@ export default function AttendancePage() {
             >
               Close
             </button>
-          </div>
-        </div>
-      )}
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       {/* 2. COURSE DETAILS MODAL */}
-      {selectedCourseModal && (
-        <div className="fixed inset-0 bg-black/70 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-          <div className="bg-[#0D111A] border border-[#171D2A] rounded-2xl w-full max-w-md p-6 space-y-5 relative shadow-2xl">
+      <AnimatePresence>
+        {selectedCourseModal && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.15 }}
+            className="fixed inset-0 bg-black/70 backdrop-blur-sm z-50 flex items-center justify-center p-4"
+          >
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.95 }}
+              transition={{ duration: 0.15 }}
+              className="bg-[#0D111A] border border-[#171D2A] rounded-2xl w-full max-w-md p-6 space-y-5 relative shadow-2xl"
+            >
             <button 
               onClick={() => setSelectedCourseModal(null)}
               className="absolute top-4 right-4 text-gray-400 hover:text-white"
@@ -664,14 +708,28 @@ export default function AttendancePage() {
             >
               Done
             </button>
-          </div>
-        </div>
-      )}
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       {/* 3. EXPORT REPORT MODAL */}
-      {showExportModal && (
-        <div className="fixed inset-0 bg-black/70 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-          <div className="bg-[#0D111A] border border-[#171D2A] rounded-2xl w-full max-w-sm p-6 space-y-4 relative shadow-2xl text-center">
+      <AnimatePresence>
+        {showExportModal && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.15 }}
+            className="fixed inset-0 bg-black/70 backdrop-blur-sm z-50 flex items-center justify-center p-4"
+          >
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.95 }}
+              transition={{ duration: 0.15 }}
+              className="bg-[#0D111A] border border-[#171D2A] rounded-2xl w-full max-w-sm p-6 space-y-4 relative shadow-2xl text-center"
+            >
             <button 
               onClick={() => setShowExportModal(false)}
               className="absolute top-4 right-4 text-gray-400 hover:text-white"
@@ -708,20 +766,30 @@ export default function AttendancePage() {
                 Export CSV Data
               </button>
             </div>
-          </div>
-        </div>
-      )}
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       {/* 3. ATTENDANCE POLICY MODAL */}
-      {showPolicyModal && (
-        <div
-          className="fixed inset-0 bg-black/70 backdrop-blur-sm z-50 flex items-center justify-center p-4"
-          onClick={() => setShowPolicyModal(false)}
-        >
-          <div
-            onClick={(e) => e.stopPropagation()}
-            className="bg-[#0D111A] border border-[#171D2A] rounded-2xl w-full max-w-md p-6 space-y-4 relative shadow-2xl"
+      <AnimatePresence>
+        {showPolicyModal && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.15 }}
+            className="fixed inset-0 bg-black/70 backdrop-blur-sm z-50 flex items-center justify-center p-4"
+            onClick={() => setShowPolicyModal(false)}
           >
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.95 }}
+              transition={{ duration: 0.15 }}
+              onClick={(e) => e.stopPropagation()}
+              className="bg-[#0D111A] border border-[#171D2A] rounded-2xl w-full max-w-md p-6 space-y-4 relative shadow-2xl"
+            >
             <button
               onClick={() => setShowPolicyModal(false)}
               className="absolute top-4 right-4 text-gray-400 hover:text-white"
@@ -754,9 +822,10 @@ export default function AttendancePage() {
                 <span>Leave requests must be submitted at least 24 hours in advance where possible</span>
               </li>
             </ul>
-          </div>
-        </div>
-      )}
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
     </div>
   );

@@ -1,6 +1,7 @@
 ﻿'use client'
 
 import { useState } from 'react'
+import { AnimatePresence, motion } from 'framer-motion'
 import { achievementsData } from '../data/achievementsData'
 import { Filter } from 'lucide-react'
 import Image from 'next/image'
@@ -13,7 +14,7 @@ function BadgesGrid({ achievements }: { achievements: typeof achievementsData })
 
   return (
     <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4">
-      {displayAchievements.map((achievement) => {
+      {displayAchievements.map((achievement, idx) => {
         let statusText = ''
         let statusColor = ''
         
@@ -33,8 +34,12 @@ function BadgesGrid({ achievements }: { achievements: typeof achievementsData })
           : 0
 
         return (
-          <div
+          <motion.div
             key={achievement.id}
+            initial={{ opacity: 0, y: 15 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.35, delay: Math.min(idx, 10) * 0.05 }}
+            whileHover={{ y: -3 }}
             className="bg-[#1F2937] rounded-xl p-4 border border-[#27272A] hover:border-[#3B82F6] transition cursor-pointer flex flex-col h-[180px]"
           >
             <div className="flex flex-col items-center text-center flex-1">
@@ -78,7 +83,7 @@ function BadgesGrid({ achievements }: { achievements: typeof achievementsData })
                 </div>
               </div>
             )}
-          </div>
+          </motion.div>
         )
       })}
     </div>
@@ -165,26 +170,34 @@ export function Badges() {
             <span>Filter</span>
           </button>
 
-          {showFilterPanel && (
-            <div className="absolute right-0 top-full mt-2 z-10 bg-[#1F2937] border border-[#27272A] rounded-xl p-3 w-48 shadow-lg">
-              <p className="text-[10px] text-gray-400 mb-2">Filter by status</p>
-              <div className="flex flex-wrap gap-1.5">
-                {statusFilters.map((status) => (
-                  <button
-                    key={status}
-                    onClick={() => setStatusFilter(status)}
-                    className={`px-3 py-1 rounded-full text-[10px] font-medium transition whitespace-nowrap ${
-                      statusFilter === status
-                        ? 'bg-[#3B82F6] text-white'
-                        : 'bg-[#111827] text-gray-400 hover:text-white hover:bg-[#2A2A3A]'
-                    }`}
-                  >
-                    {status}
-                  </button>
-                ))}
-              </div>
-            </div>
-          )}
+          <AnimatePresence>
+            {showFilterPanel && (
+              <motion.div
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.95 }}
+                transition={{ duration: 0.15 }}
+                className="absolute right-0 top-full mt-2 z-10 bg-[#1F2937] border border-[#27272A] rounded-xl p-3 w-48 shadow-lg"
+              >
+                <p className="text-[10px] text-gray-400 mb-2">Filter by status</p>
+                <div className="flex flex-wrap gap-1.5">
+                  {statusFilters.map((status) => (
+                    <button
+                      key={status}
+                      onClick={() => setStatusFilter(status)}
+                      className={`px-3 py-1 rounded-full text-[10px] font-medium transition whitespace-nowrap ${
+                        statusFilter === status
+                          ? 'bg-[#3B82F6] text-white'
+                          : 'bg-[#111827] text-gray-400 hover:text-white hover:bg-[#2A2A3A]'
+                      }`}
+                    >
+                      {status}
+                    </button>
+                  ))}
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
         </div>
       </div>
 

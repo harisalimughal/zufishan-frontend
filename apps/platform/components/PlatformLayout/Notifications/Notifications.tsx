@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
 import { Bell } from "lucide-react";
 
 const mockNotifications = [
@@ -33,22 +34,30 @@ export function Notifications() {
         <Bell className="h-4 w-4" />
       </button>
 
-      {open && (
-        <div className="absolute right-0 top-full mt-2 w-72 rounded-xl border border-[#27272A] bg-black p-2 shadow-2xl z-50">
-          <p className="px-2 py-1.5 text-xs font-semibold text-white">Notifications</p>
-          <div className="space-y-1">
-            {mockNotifications.map((notification, index) => (
-              <div
-                key={index}
-                className="rounded-lg px-2 py-2 transition hover:bg-[#27272A]"
-              >
-                <p className="text-xs text-slate-200">{notification.title}</p>
-                <p className="mt-0.5 text-[10px] text-slate-500">{notification.time}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      )}
+      <AnimatePresence>
+        {open && (
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.95 }}
+            transition={{ duration: 0.15 }}
+            className="absolute right-0 top-full mt-2 w-72 rounded-xl border border-[#27272A] bg-black p-2 shadow-2xl z-50"
+          >
+            <p className="px-2 py-1.5 text-xs font-semibold text-white">Notifications</p>
+            <div className="space-y-1">
+              {mockNotifications.map((notification, index) => (
+                <div
+                  key={index}
+                  className="rounded-lg px-2 py-2 transition hover:bg-[#27272A]"
+                >
+                  <p className="text-xs text-slate-200">{notification.title}</p>
+                  <p className="mt-0.5 text-[10px] text-slate-500">{notification.time}</p>
+                </div>
+              ))}
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }

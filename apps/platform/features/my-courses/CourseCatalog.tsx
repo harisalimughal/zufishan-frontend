@@ -173,8 +173,8 @@ export function CourseCatalog() {
                 : "mt-5 flex flex-col gap-4"
             }
           >
-            {filteredCourses.map((course) => (
-              <CourseCard key={course.id} course={course} />
+            {filteredCourses.map((course, index) => (
+              <CourseCard key={course.id} course={course} index={index} />
             ))}
           </div>
         ) : (

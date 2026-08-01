@@ -3,8 +3,10 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Send, CheckCircle2 } from "lucide-react";
+import { useTheme } from "../../lib/theme/ThemeContext";
 
 export function FooterNewsletter() {
+  const { isDarkMode } = useTheme();
   const [email, setEmail] = useState("");
   const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
   const [errorMessage, setErrorMessage] = useState("");
@@ -32,10 +34,10 @@ export function FooterNewsletter() {
 
   return (
     <div className="w-full max-w-sm text-left">
-      <h4 className="text-xs font-extrabold text-gray-200 uppercase tracking-widest mb-3">
+      <h4 className={`text-xs font-extrabold uppercase tracking-widest mb-3 transition-colors duration-300 ${isDarkMode ? "text-gray-200" : "text-zinc-800"}`}>
         Stay Updated
       </h4>
-      <p className="text-sm text-gray-400 mb-4 leading-relaxed font-sans">
+      <p className={`text-sm mb-4 leading-relaxed font-sans transition-colors duration-300 ${isDarkMode ? "text-gray-400" : "text-zinc-600"}`}>
         Subscribe to our newsletter for product updates, study tips, and campus news.
       </p>
 
@@ -48,7 +50,7 @@ export function FooterNewsletter() {
             className="flex items-center gap-2 p-3 bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 rounded-xl text-xs font-semibold"
           >
             <CheckCircle2 className="w-4 h-4 shrink-0" />
-            <span>Awesome! You have successfully subscribed to Nexora. 🎉</span>
+            <span>Awesome! You have successfully subscribed to Ranenla. 🎉</span>
           </motion.div>
         ) : (
           <motion.form
@@ -69,7 +71,11 @@ export function FooterNewsletter() {
                   if (status === "error") setStatus("idle");
                 }}
                 disabled={status === "submitting"}
-                className="w-full bg-[#09090B] border border-[#27272A] hover:border-gray-700 focus:border-[#3B82F6] rounded-xl px-4 py-3 text-xs text-white placeholder-gray-500 focus:outline-none transition-colors duration-300 disabled:opacity-50"
+                className={`w-full border focus:border-[#3B82F6] rounded-xl px-4 py-3 text-xs focus:outline-none transition-colors duration-300 disabled:opacity-50 ${
+                  isDarkMode
+                    ? "bg-[#09090B] border-[#27272A] hover:border-gray-700 text-white placeholder-gray-500"
+                    : "bg-white border-zinc-300 hover:border-zinc-400 text-zinc-900 placeholder-zinc-400"
+                }`}
               />
               <button
                 type="submit"
@@ -89,7 +95,7 @@ export function FooterNewsletter() {
               <motion.p
                 initial={{ opacity: 0, y: -5 }}
                 animate={{ opacity: 1, y: 0 }}
-                className="text-[11px] text-red-400 font-semibold pl-1"
+                className={`text-[11px] font-semibold pl-1 ${isDarkMode ? "text-red-400" : "text-red-500"}`}
               >
                 {errorMessage}
               </motion.p>
