@@ -40,4 +40,5 @@ export type Course = {
     | "cloud"
     | "business"
     | "network";
+  slug: string;
 };
