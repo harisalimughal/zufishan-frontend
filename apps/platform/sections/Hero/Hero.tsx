@@ -180,9 +180,8 @@ export function Hero() {
             isDarkMode ? "text-gray-400" : "text-zinc-600"
           }`}
         >
-          Attend live classes taught by AI professors. <br className="hidden sm:block" />
-          Ask questions naturally. Stay accountable. <br className="hidden sm:block" />
-          Learn like you&apos;re in a real classroom.
+          Attend live classes taught by AI professors. Ask questions naturally. <br className="hidden sm:block" />
+          Stay accountable. Learn like you&apos;re in a real classroom.
         </motion.p>
 
         {/* Call to Actions (CTAs) */}
