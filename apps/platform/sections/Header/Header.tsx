@@ -1,58 +1,93 @@
+"use client";
+
 import Link from "next/link";
+import { Moon, Sun } from "lucide-react";
+import { useTheme } from "../../lib/theme/ThemeContext";
 
 export default function Header() {
+  const { isDarkMode, toggleTheme } = useTheme();
+
+  const handleSmoothScroll = (e: React.MouseEvent<HTMLAnchorElement>, targetId: string) => {
+    e.preventDefault();
+    const element = document.getElementById(targetId);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth", block: "start" });
+      // Avoid persisting #hash in URL so refreshes start at the top
+      window.history.pushState(null, "", window.location.pathname);
+    }
+  };
+
   return (
-    <header className="w-full bg-[#09090B] border-b border-[#27272A]">
+    <header
+      className={`w-full border-b transition-colors duration-300 ${
+        isDarkMode ? "bg-[#09090B] border-transparent" : "bg-white border-zinc-200"
+      }`}
+    >
       <nav className="max-w-7xl mx-auto px-8 h-[86px] flex items-center justify-between">
-        
+
         {/* Logo */}
         <a href="/" className="flex items-center">
-        <img
-            src="/Nexora-logo-white-transparent.png"
+          <img
+            src={isDarkMode ? "/Ranenla-logo-transparent-dark.png" : "/Ranenla-logo-transparent-light.png"}
             alt="AI University Logo"
             className="h-[170px] w-[190px] object-contain"
-         />
+          />
 
-    <span className="text-white text-2xl font-bold tracking-tight">
-    AI University
-  </span>
-</a>
+
+        </a>
         {/* Menu */}
-        <div className="hidden md:flex items-center gap-10 text-sm font-medium text-gray-300">
-          <Link href="#features" className="hover:text-white transition">
-            Features
-          </Link>
-          <Link href="#how-it-works" className="hover:text-white transition">
-            How It Works
-          </Link>
-          <Link href="#courses" className="hover:text-white transition">
-            Courses
-          </Link>
-          <Link href="#institutions" className="hover:text-white transition">
-            For Institutions
-          </Link>
-          <Link href="#pricing" className="hover:text-white transition">
-            Pricing
-          </Link>
+        <div
+          className={`hidden md:flex items-center gap-8 text-base font-medium transition-colors duration-300 ${
+            isDarkMode ? "text-gray-300" : "text-zinc-600"
+          }`}
+        >
+          <a href="#problem" onClick={(e) => handleSmoothScroll(e, "problem")} className={`transition ${isDarkMode ? "hover:text-white" : "hover:text-black"}`}>
+            Problem
+          </a>
+          <a href="#solution" onClick={(e) => handleSmoothScroll(e, "solution")} className={`transition ${isDarkMode ? "hover:text-white" : "hover:text-black"}`}>
+            Solution
+          </a>
+          <a href="#product-preview" onClick={(e) => handleSmoothScroll(e, "product-preview")} className={`transition ${isDarkMode ? "hover:text-white" : "hover:text-black"}`}>
+            Product Preview
+          </a>
+          <a href="#classroom-preview" onClick={(e) => handleSmoothScroll(e, "classroom-preview")} className={`transition ${isDarkMode ? "hover:text-white" : "hover:text-black"}`}>
+            Live Classroom
+          </a>
         </div>
 
         {/* Buttons */}
-        <div className="hidden md:flex items-center gap-6">
+        <div className="hidden md:flex items-center gap-5">
+          <button
+            type="button"
+            onClick={toggleTheme}
+            aria-label={isDarkMode ? "Switch to light mode" : "Switch to dark mode"}
+            className={`h-10 w-10 rounded-full border flex items-center justify-center transition-colors duration-300 ${
+              isDarkMode
+                ? "border-[#27272A] text-gray-300 hover:bg-[#1F2937] hover:text-white"
+                : "border-zinc-200 text-zinc-600 hover:bg-zinc-100 hover:text-black"
+            }`}
+          >
+            {isDarkMode ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
+          </button>
+
           <Link
             href="/login"
-            className="text-sm font-medium text-gray-300 hover:text-white transition"
+            className={`text-sm font-medium transition ${
+              isDarkMode ? "text-gray-300 hover:text-white" : "text-zinc-600 hover:text-black"
+            }`}
           >
             Log in
           </Link>
 
-          <Link
+          <a
             href="#waitlist"
+            onClick={(e) => handleSmoothScroll(e, "waitlist")}
             className="px-6 py-3 rounded-full text-white text-sm font-semibold bg-gradient-to-r from-[#3B82F6] to-[#6D5DFB] hover:opacity-90 transition"
           >
             Join Waitlist
-          </Link>
+          </a>
         </div>
-        
+
       </nav>
     </header>
   );

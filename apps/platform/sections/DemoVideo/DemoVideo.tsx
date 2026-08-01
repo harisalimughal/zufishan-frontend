@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { motion } from "framer-motion";
 import {
   Play,
   ChevronRight,
@@ -8,6 +9,7 @@ import {
   Users,
   Star,
 } from "lucide-react";
+import { useTheme } from "../../lib/theme/ThemeContext";
 
 // ─── Constants ────────────────────────────────────────────────────────────────
 
@@ -16,7 +18,7 @@ import {
 const YOUTUBE_ID = "ABcjJAavSxE"; // Replace with your actual YouTube video ID
 
 const CHAPTERS = [
-  { time: "0:00", label: "Introduction to Nexora" },
+  { time: "0:00", label: "Introduction to Ranenla" },
   { time: "0:28", label: "Live AI Professor in Action" },
   { time: "1:02", label: "Real-Time Q&A Demo" },
   { time: "1:35", label: "Smart Notes & Attendance" },
@@ -37,6 +39,7 @@ function timeToSeconds(timeStr: string): number {
 // ─── Main Component ───────────────────────────────────────────────────────────
 
 export function DemoVideo() {
+  const { isDarkMode } = useTheme();
   const [hasStarted, setHasStarted] = useState<boolean>(false);
   const [pulse, setPulse] = useState(true);
   const [startTime, setStartTime] = useState(0);
@@ -65,12 +68,17 @@ export function DemoVideo() {
 
   const embedUrl = `https://www.youtube.com/embed/${YOUTUBE_ID}?autoplay=1&start=${startTime}&rel=0&modestbranding=1&showinfo=0`;
 
+  const textPrimary = isDarkMode ? "#FFFFFF" : "#18181B";
+  const textSecondary = isDarkMode ? "#A1A1AA" : "#52525B";
+  const borderColor = isDarkMode ? "#27272A" : "#E4E4E7";
+
   return (
     <section
       style={{
-        background: "#09090B",
+        background: isDarkMode ? "#09090B" : "#FFFFFF",
         padding: "96px 24px",
         fontFamily: "'Inter', 'Geist', sans-serif",
+        transition: "background-color 0.3s ease",
       }}
     >
       {/* ── Badge ── */}
@@ -78,9 +86,11 @@ export function DemoVideo() {
         <div
           style={{
             display: "inline-flex", alignItems: "center", gap: 8,
-            background: "rgba(109,93,252,0.12)",
-            border: "1px solid rgba(109,93,252,0.35)",
-            borderRadius: 999, padding: "6px 16px",
+            background: isDarkMode ? "#111827" : "#FFFFFF",
+            border: `1px solid ${borderColor}`,
+            borderRadius: 999, padding: "8px 16px",
+            boxShadow: isDarkMode ? "none" : "0 1px 2px rgba(0,0,0,0.05)",
+            transition: "background-color 0.3s ease, border-color 0.3s ease",
           }}
         >
           <div
@@ -92,8 +102,8 @@ export function DemoVideo() {
             }}
           />
           <span style={{
-            color: "#A78BFA", fontSize: 11, fontWeight: 600,
-            letterSpacing: "0.12em", textTransform: "uppercase" as const,
+            color: "#3B82F6", fontSize: 12, fontWeight: 600,
+            letterSpacing: "0.05em", textTransform: "uppercase" as const,
           }}>
             Product Demo
           </span>
@@ -101,14 +111,21 @@ export function DemoVideo() {
       </div>
 
       {/* ── Headline ── */}
-      <div style={{ textAlign: "center" as const, marginBottom: 16 }}>
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.3 }}
+        transition={{ duration: 0.6 }}
+        style={{ textAlign: "center" as const, marginBottom: 16 }}
+      >
         <h2 style={{
-          color: "#FFFFFF",
+          color: textPrimary,
           fontSize: "clamp(2rem, 5vw, 3.2rem)",
           fontWeight: 800, lineHeight: 1.15,
           letterSpacing: "-0.02em", margin: 0,
+          transition: "color 0.3s ease",
         }}>
-          See Nexora in action.
+          See Ranenla in action.
           <br />
           <span style={{
             background: "linear-gradient(135deg, #6D5DFC, #A78BFA)",
@@ -120,33 +137,49 @@ export function DemoVideo() {
           </span>
         </h2>
         <p style={{
-          color: "#A1A1AA", fontSize: 16, lineHeight: 1.7,
+          color: textSecondary, fontSize: 16, lineHeight: 1.7,
           marginTop: 16, maxWidth: 520,
           marginLeft: "auto", marginRight: "auto",
+          transition: "color 0.3s ease",
         }}>
-          Watch how Nexora&apos;s AI Professor teaches a live class, answers student
+          Watch how Ranenla&apos;s AI Professor teaches a live class, answers student
           questions, and tracks attendance — all in real time.
         </p>
-      </div>
+      </motion.div>
 
       {/* ── Stats Row ── */}
-      <div style={{
-        display: "flex", flexWrap: "wrap" as const,
-        justifyContent: "center", gap: 24, marginBottom: 48,
-      }}>
-        {STATS.map(({ icon: Icon, value, label }) => (
-          <div key={label} style={{
-            display: "flex", alignItems: "center", gap: 8,
-            background: "rgba(255,255,255,0.04)",
-            border: "1px solid #27272A",
-            borderRadius: 999, padding: "8px 18px",
-          }}>
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.3 }}
+        transition={{ duration: 0.6, delay: 0.1 }}
+        style={{
+          display: "flex", flexWrap: "wrap" as const,
+          justifyContent: "center", gap: 24, marginBottom: 48,
+        }}
+      >
+        {STATS.map(({ icon: Icon, value, label }, idx) => (
+          <motion.div
+            key={label}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ duration: 0.5, delay: idx * 0.1 }}
+            whileHover={{ y: -4 }}
+            style={{
+              display: "flex", alignItems: "center", gap: 8,
+              background: isDarkMode ? "rgba(255,255,255,0.04)" : "rgba(0,0,0,0.03)",
+              border: `1px solid ${borderColor}`,
+              borderRadius: 999, padding: "8px 18px",
+              transition: "background-color 0.3s ease, border-color 0.3s ease",
+            }}
+          >
             <Icon size={14} color="#A78BFA" />
-            <span style={{ color: "#FFFFFF", fontSize: 13, fontWeight: 700 }}>{value}</span>
-            <span style={{ color: "#A1A1AA", fontSize: 13 }}>{label}</span>
-          </div>
+            <span style={{ color: textPrimary, fontSize: 13, fontWeight: 700, transition: "color 0.3s ease" }}>{value}</span>
+            <span style={{ color: textSecondary, fontSize: 13, transition: "color 0.3s ease" }}>{label}</span>
+          </motion.div>
         ))}
-      </div>
+      </motion.div>
 
       {/* ── Video + Chapters Layout ── */}
       <div style={{
@@ -158,11 +191,12 @@ export function DemoVideo() {
         <div style={{ flex: 1, minWidth: 0 }}>
           <div style={{
             borderRadius: 16, overflow: "hidden",
-            border: "1px solid #27272A",
+            border: `1px solid ${borderColor}`,
             boxShadow: "0 32px 80px rgba(0,0,0,0.6), 0 0 0 1px rgba(109,93,252,0.08)",
             position: "relative" as const,
             background: "#000",
             aspectRatio: "16/9",
+            transition: "border-color 0.3s ease",
           }}>
 
             {/* Thumbnail / Play overlay — shown before user clicks play */}
@@ -244,15 +278,17 @@ export function DemoVideo() {
         {/* ── Chapters Panel ── */}
         <div style={{
           width: 220, flexShrink: 0,
-          background: "#111827",
-          border: "1px solid #27272A",
+          background: isDarkMode ? "#111827" : "#F4F4F5",
+          border: `1px solid ${borderColor}`,
           borderRadius: 14, overflow: "hidden",
+          transition: "background-color 0.3s ease, border-color 0.3s ease",
         }}>
           <div style={{
             padding: "12px 16px",
-            borderBottom: "1px solid #27272A",
-            color: "#FFFFFF", fontSize: 12, fontWeight: 700,
+            borderBottom: `1px solid ${borderColor}`,
+            color: textPrimary, fontSize: 12, fontWeight: 700,
             letterSpacing: "0.05em",
+            transition: "color 0.3s ease, border-color 0.3s ease",
           }}>
             Chapters
           </div>
@@ -262,7 +298,7 @@ export function DemoVideo() {
               onClick={() => handleChapterClick(chapter.time)}
               style={{
                 width: "100%", background: "none", border: "none",
-                borderBottom: i < CHAPTERS.length - 1 ? "1px solid #1F2937" : "none",
+                borderBottom: i < CHAPTERS.length - 1 ? `1px solid ${isDarkMode ? "#1F2937" : "#E4E4E7"}` : "none",
                 padding: "12px 16px",
                 display: "flex", alignItems: "center", gap: 10,
                 cursor: "pointer", textAlign: "left" as const,
@@ -285,10 +321,10 @@ export function DemoVideo() {
                 <ChevronRight size={14} color="#A78BFA" />
               </div>
               <div style={{ minWidth: 0 }}>
-                <div style={{ color: "#FFFFFF", fontSize: 11, fontWeight: 600, lineHeight: 1.3 }}>
+                <div style={{ color: textPrimary, fontSize: 11, fontWeight: 600, lineHeight: 1.3, transition: "color 0.3s ease" }}>
                   {chapter.label}
                 </div>
-                <div style={{ color: "#A1A1AA", fontSize: 10, marginTop: 2 }}>
+                <div style={{ color: textSecondary, fontSize: 10, marginTop: 2, transition: "color 0.3s ease" }}>
                   {chapter.time}
                 </div>
               </div>
@@ -299,20 +335,24 @@ export function DemoVideo() {
 
       {/* ── CTA ── */}
       <div style={{ textAlign: "center" as const, marginTop: 48 }}>
-        <p style={{ color: "#A1A1AA", fontSize: 14, marginBottom: 20 }}>
+        <p style={{ color: textSecondary, fontSize: 14, marginBottom: 20, transition: "color 0.3s ease" }}>
           Ready to experience it yourself?
         </p>
-        <button style={{
-          background: "linear-gradient(135deg, #6D5DFC, #A78BFA)",
-          border: "none", borderRadius: 12,
-          padding: "14px 36px",
-          color: "#fff", fontSize: 15, fontWeight: 700,
-          cursor: "pointer", fontFamily: "inherit",
-          boxShadow: "0 8px 32px rgba(109,93,252,0.35)",
-          letterSpacing: "0.01em",
-        }}>
+        <motion.button
+          whileHover={{ scale: 1.03, translateY: -1 }}
+          whileTap={{ scale: 0.98 }}
+          style={{
+            background: "linear-gradient(135deg, #6D5DFC, #A78BFA)",
+            border: "none", borderRadius: 12,
+            padding: "14px 36px",
+            color: "#fff", fontSize: 15, fontWeight: 700,
+            cursor: "pointer", fontFamily: "inherit",
+            boxShadow: "0 8px 32px rgba(109,93,252,0.35)",
+            letterSpacing: "0.01em",
+          }}
+        >
           Join the Waitlist →
-        </button>
+        </motion.button>
       </div>
     </section>
   );

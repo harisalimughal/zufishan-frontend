@@ -87,7 +87,7 @@ export default function SignUpModal({
                 }
               `}
             >
-              Join Nexora today
+              Join Ranenla today
             </p>
           </div>
 

@@ -7,8 +7,8 @@ interface HeaderDropdownProps {
 
 export function HeaderDropdown({ selectedCourse, setSelectedCourse }: HeaderDropdownProps) {
   return (
-    <div className="flex-1 flex justify-center px-4">
-      <div className="relative w-[220px]">
+    <div className="w-full sm:flex-1 flex justify-center px-0 sm:px-4">
+      <div className="relative w-full sm:w-[220px]">
         <select
           value={selectedCourse}
           onChange={(e) => setSelectedCourse(e.target.value)}

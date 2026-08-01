@@ -1,3 +1,5 @@
+import { ComingSoon } from "../../../components/ComingSoon/ComingSoon";
+
 export default function AssignmentsPage() {
-  return <h1>Assignments</h1>;
+  return <ComingSoon title="Assignments" icon="ClipboardList" />;
 }

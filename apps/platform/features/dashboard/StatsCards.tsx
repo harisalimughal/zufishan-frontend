@@ -1,3 +1,6 @@
+"use client";
+
+import { motion } from "framer-motion";
 import {
   BookOpen,
   CalendarClock,
@@ -48,11 +51,15 @@ const stats = [
 export function StatsCards() {
   return (
     <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4">
-      {stats.map((stat) => {
+      {stats.map((stat, idx) => {
         const Icon = stat.icon;
         return (
-          <div
+          <motion.div
             key={stat.label}
+            initial={{ opacity: 0, y: 15 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.35, delay: idx * 0.08 }}
+            whileHover={{ y: -2 }}
             className="group relative overflow-hidden rounded-xl border border-[#27272A] bg-[#111827] p-5 transition-all duration-300 hover:border-[#3B82F6]/40 hover:shadow-lg hover:shadow-[#3B82F6]/5"
           >
             {/* Subtle gradient overlay on hover */}
@@ -105,7 +112,7 @@ export function StatsCards() {
                 )}
               </div>
             </div>
-          </div>
+          </motion.div>
         );
       })}
     </div>
