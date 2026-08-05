@@ -1,4 +1,8 @@
+"use client";
+
 import Image from "next/image";
+import Link from "next/link";
+import { motion } from "framer-motion";
 import { ChevronRight } from "lucide-react";
 
 type Course = {
@@ -8,6 +12,7 @@ type Course = {
   progress: number;
   image: string;
   liveClassToday?: boolean;
+  detailSlug: string;
 };
 
 const courses: Course[] = [
@@ -18,6 +23,7 @@ const courses: Course[] = [
     progress: 72,
     image: "/course-database.png",
     liveClassToday: true,
+    detailSlug: "database-101",
   },
   {
     id: "2",
@@ -25,6 +31,7 @@ const courses: Course[] = [
     professor: "Prof. Ava (AI)",
     progress: 48,
     image: "/course-ai-engineering.png",
+    detailSlug: "ai-machine-learning",
   },
   {
     id: "3",
@@ -32,6 +39,7 @@ const courses: Course[] = [
     professor: "Prof. Ethan (AI)",
     progress: 35,
     image: "/course-python.png",
+    detailSlug: "python-programming",
   },
   {
     id: "4",
@@ -39,6 +47,7 @@ const courses: Course[] = [
     professor: "Prof. Zoe (AI)",
     progress: 20,
     image: "/course-dsa.png",
+    detailSlug: "data-structures-algorithms",
   },
 ];
 
@@ -64,17 +73,24 @@ export function MyCourses() {
       {/* Section Header */}
       <div className="mb-4 flex items-center justify-between">
         <h2 className="text-lg font-semibold text-white">My Courses</h2>
-        <button className="group flex items-center gap-1.5 rounded-lg border border-[#27272A] bg-transparent px-4 py-2 text-sm font-medium text-gray-300 transition-all duration-200 hover:border-gray-500 hover:text-white">
+        <Link
+          href="/my-courses"
+          className="group flex items-center gap-1.5 rounded-lg border border-[#27272A] bg-transparent px-4 py-2 text-sm font-medium text-gray-300 transition-all duration-200 hover:border-gray-500 hover:text-white"
+        >
           View all courses
           <ChevronRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
-        </button>
+        </Link>
       </div>
 
       {/* Course Cards */}
       <div className="space-y-3">
-        {courses.map((course) => (
-          <div
+        {courses.map((course, idx) => (
+          <motion.div
             key={course.id}
+            initial={{ opacity: 0, y: 15 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.35, delay: idx * 0.08 }}
+            whileHover={{ y: -2 }}
             className="group flex flex-col gap-4 rounded-xl border border-[#27272A] bg-[#111827] p-4 transition-all duration-300 hover:border-[#3B82F6]/30 sm:flex-row sm:items-center"
           >
             {/* Course Image */}
@@ -111,14 +127,20 @@ export function MyCourses() {
 
             {/* Action Buttons */}
             <div className="flex shrink-0 gap-2 sm:flex-col">
-              <button className="rounded-lg border border-[#27272A] bg-transparent px-5 py-2 text-xs font-semibold text-gray-300 transition-all duration-200 hover:border-gray-500 hover:text-white">
+              <Link
+                href={course.liveClassToday ? "/live-classes" : `/course-detail/${course.detailSlug}`}
+                className="rounded-lg border border-[#27272A] bg-transparent px-5 py-2 text-center text-xs font-semibold text-gray-300 transition-all duration-200 hover:border-gray-500 hover:text-white"
+              >
                 {course.liveClassToday ? "Join Class" : "Continue"}
-              </button>
-              <button className="rounded-lg border border-[#27272A] bg-transparent px-5 py-2 text-xs font-semibold text-gray-300 transition-all duration-200 hover:border-gray-500 hover:text-white">
+              </Link>
+              <Link
+                href={`/course-detail/${course.detailSlug}`}
+                className="rounded-lg border border-[#27272A] bg-transparent px-5 py-2 text-center text-xs font-semibold text-gray-300 transition-all duration-200 hover:border-gray-500 hover:text-white"
+              >
                 Details
-              </button>
+              </Link>
             </div>
-          </div>
+          </motion.div>
         ))}
       </div>
     </div>

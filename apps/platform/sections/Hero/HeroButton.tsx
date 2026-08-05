@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import type { ReactNode } from "react";
+import { useTheme } from "../../lib/theme/ThemeContext";
 
 interface HeroButtonProps {
   children: ReactNode;
@@ -18,6 +19,8 @@ export function HeroButton({
   className = "",
   icon
 }: HeroButtonProps) {
+  const { isDarkMode } = useTheme();
+
   if (variant === "primary") {
     return (
       <motion.button
@@ -37,7 +40,11 @@ export function HeroButton({
       whileHover={{ scale: 1.03, translateY: -1 }}
       whileTap={{ scale: 0.98 }}
       onClick={onClick}
-      className={`relative inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-full text-white text-base font-semibold bg-transparent border border-[#27272A] hover:border-gray-500 hover:bg-white/5 transition-all duration-300 cursor-pointer ${className}`}
+      className={`relative inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-full text-base font-semibold bg-transparent border transition-all duration-300 cursor-pointer ${
+        isDarkMode
+          ? "text-white border-[#27272A] hover:border-gray-500 hover:bg-white/5"
+          : "text-zinc-900 border-zinc-300 hover:border-zinc-400 hover:bg-zinc-100"
+      } ${className}`}
     >
       <span>{children}</span>
       {icon && <span className="inline-flex items-center justify-center">{icon}</span>}

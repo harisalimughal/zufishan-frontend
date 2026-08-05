@@ -6,10 +6,12 @@ import { ClassroomPreview } from "../sections/ClassroomPreview";
 import { Waitlist } from "../sections/Waitlist";
 import { Header } from "../sections/Header";
 import { Footer } from "../sections/Footer";
+import { ScrollToTop } from "../sections/ScrollToTop";
 
 export default function LandingPage() {
   return (
     <main>
+      <ScrollToTop />
       <Header />
       <Hero />
       <Problem />

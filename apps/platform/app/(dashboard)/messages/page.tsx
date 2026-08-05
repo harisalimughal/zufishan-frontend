@@ -1,3 +1,5 @@
+import { ComingSoon } from "../../../components/ComingSoon/ComingSoon";
+
 export default function MessagesPage() {
-  return <h1>Messages</h1>;
+  return <ComingSoon title="Messages" icon="MessagesSquare" />;
 }

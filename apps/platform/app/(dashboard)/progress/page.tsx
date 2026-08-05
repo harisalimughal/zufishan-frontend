@@ -1,3 +1,5 @@
+import { ComingSoon } from "../../../components/ComingSoon/ComingSoon";
+
 export default function ProgressPage() {
-  return <h1>Progress</h1>;
+  return <ComingSoon title="Progress" icon="TrendingUp" />;
 }

@@ -9,6 +9,7 @@ import {
   BarChart3,
   BrainCircuit,
   BriefcaseBusiness,
+  Cloud,
   Code2,
   Database,
   Grid2X2,
@@ -19,7 +20,6 @@ import {
 import { CategoryTabs } from "./CategoryTabs";
 import { CourseCard } from "./CourseCard";
 import { CourseSearch } from "./CourseSearch";
-import { Pagination } from "./Pagination";
 
 import type {
   Course,
@@ -64,6 +64,12 @@ const categories: CourseCategory[] = [
     courseCount: 14,
     icon: BriefcaseBusiness,
   },
+  {
+    id: "cloud-computing",
+    label: "Cloud Computing",
+    courseCount: 12,
+    icon: Cloud,
+  },
 ];
 
 const courses: Course[] = [
@@ -79,6 +85,7 @@ const courses: Course[] = [
     level: "Beginner",
     badge: "Bestseller",
     illustration: "database",
+    slug: "database-101",
   },
   {
     id: 2,
@@ -91,6 +98,7 @@ const courses: Course[] = [
     students: "7.2K",
     level: "Beginner",
     illustration: "python",
+    slug: "python-programming",
   },
   {
     id: 3,
@@ -104,6 +112,7 @@ const courses: Course[] = [
     level: "Intermediate",
     badge: "Bestseller",
     illustration: "ai",
+    slug: "ai-machine-learning",
   },
   {
     id: 4,
@@ -117,6 +126,7 @@ const courses: Course[] = [
     level: "Intermediate",
     badge: "New",
     illustration: "code",
+    slug: "data-structures-algorithms",
   },
   {
     id: 5,
@@ -129,6 +139,7 @@ const courses: Course[] = [
     students: "5.4K",
     level: "Beginner",
     illustration: "analytics",
+    slug: "data-analysis-pandas",
   },
   {
     id: 6,
@@ -141,6 +152,7 @@ const courses: Course[] = [
     students: "4.8K",
     level: "Beginner",
     illustration: "cloud",
+    slug: "cloud-computing",
   },
   {
     id: 7,
@@ -153,6 +165,7 @@ const courses: Course[] = [
     students: "3.9K",
     level: "Intermediate",
     illustration: "business",
+    slug: "business-analytics",
   },
   {
     id: 8,
@@ -165,54 +178,35 @@ const courses: Course[] = [
     students: "6.7K",
     level: "Advanced",
     illustration: "network",
+    slug: "deep-learning",
   },
 ];
 
-const categoryMap: Record<
-  string,
-  CourseCategoryName
-> = {
+const categoryMap: Record<string, CourseCategoryName> = {
   programming: "Programming",
   "data-science": "Data Science",
   "ai-ml": "AI & ML",
   database: "Database",
   business: "Business",
+  "cloud-computing": "Cloud Computing",
 };
 
-type SortValue =
-  | "popular"
-  | "rating"
-  | "title";
+type SortValue = "popular" | "rating" | "title";
 
 export function CourseCatalog() {
-  const [searchValue, setSearchValue] =
-    useState("");
-
-  const [activeCategory, setActiveCategory] =
-    useState("all");
-
-  const [sortValue, setSortValue] =
-    useState<SortValue>("popular");
-
-  const [currentPage, setCurrentPage] =
-    useState(1);
-
-  const [viewMode, setViewMode] =
-    useState<"grid" | "list">("grid");
+  const [searchValue, setSearchValue] = useState("");
+  const [activeCategory, setActiveCategory] = useState("all");
+  const [sortValue, setSortValue] = useState<SortValue>("popular");
+  const [viewMode, setViewMode] = useState<"grid" | "list">("grid");
 
   const filteredCourses = useMemo(() => {
-    const search = searchValue
-      .trim()
-      .toLowerCase();
+    const search = searchValue.trim().toLowerCase();
 
     return courses
       .filter((course) => {
-        const selectedCategory =
-          categoryMap[activeCategory];
-
+        const selectedCategory = categoryMap[activeCategory];
         const matchesCategory =
-          activeCategory === "all" ||
-          course.category === selectedCategory;
+          activeCategory === "all" || course.category === selectedCategory;
 
         const matchesSearch =
           !search ||
@@ -228,31 +222,24 @@ export function CourseCatalog() {
         }
 
         if (sortValue === "title") {
-          return first.title.localeCompare(
-            second.title,
-          );
+          return first.title.localeCompare(second.title);
         }
 
         return first.id - second.id;
       });
-  }, [
-    activeCategory,
-    searchValue,
-    sortValue,
-  ]);
+  }, [activeCategory, searchValue, sortValue]);
 
   return (
     <section className="min-h-screen min-w-0 bg-[#050914] text-white">
-      <div className="mx-auto w-full max-w-[1600px] px-3 py-3 sm:px-4 lg:px-5">
-        <header className="flex flex-col gap-3 border-b border-[#101827] pb-3 lg:flex-row lg:items-start lg:justify-between">
+      <div className="mx-auto w-full max-w-[1700px] px-4 py-4 sm:px-5 lg:px-6">
+        <header className="flex flex-col gap-4 border-b border-[#101827] pb-4 md:flex-row md:items-center md:justify-between">
           <div>
-            <h1 className="text-[17px] font-semibold leading-5 tracking-tight">
+            <h1 className="text-2xl font-semibold tracking-tight">
               Course Catalog
             </h1>
 
-            <p className="mt-1 text-[9px] text-zinc-500">
-              Explore expert-led courses and start
-              your learning journey.
+            <p className="mt-2 text-sm text-zinc-400">
+              Explore expert-led courses and start your learning journey.
             </p>
           </div>
 
@@ -262,107 +249,98 @@ export function CourseCatalog() {
           />
         </header>
 
-        <div className="mt-3">
+        <div className="mt-5">
           <CategoryTabs
             categories={categories}
             activeCategory={activeCategory}
             onCategoryChange={(category) => {
               setActiveCategory(category);
-              setCurrentPage(1);
             }}
           />
         </div>
 
-        <div className="mt-4 flex items-center justify-between gap-3">
-          <h2 className="text-[11px] font-semibold text-zinc-100">
-            All Courses{" "}
-            <span className="font-normal text-zinc-500">
-              (120)
+        <div className="mt-6 flex items-center justify-between gap-4">
+          <h2 className="text-lg font-semibold text-zinc-100">
+            {activeCategory === "all"
+              ? "All Courses"
+              : categoryMap[activeCategory]}
+            <span className="ml-1.5 font-normal text-zinc-500">
+              ({filteredCourses.length})
             </span>
           </h2>
 
-          <div className="flex items-center gap-2">
-            <span className="hidden text-[8px] text-zinc-600 sm:block">
+          <div className="flex items-center gap-2.5">
+            <span className="hidden text-xs text-zinc-400 sm:block">
               Sort by
             </span>
 
             <select
               value={sortValue}
               onChange={(event) =>
-                setSortValue(
-                  event.target.value as SortValue,
-                )
+                setSortValue(event.target.value as SortValue)
               }
-              className="h-7 min-w-[104px] rounded-md border border-[#1F2937] bg-[#0D1422] px-2 text-[8px] text-zinc-300 outline-none"
+              className="h-10 min-w-[150px] rounded-lg border border-[#1F2937] bg-[#0D1422] px-3 text-xs font-medium text-zinc-300 outline-none transition focus:border-violet-500"
             >
-              <option value="popular">
-                Popular
-              </option>
-
-              <option value="rating">
-                Highest Rating
-              </option>
-
-              <option value="title">
-                Course Name
-              </option>
+              <option value="popular">Popular</option>
+              <option value="rating">Highest Rating</option>
+              <option value="title">Course Name</option>
             </select>
 
-            <div className="flex rounded-md border border-[#1F2937] bg-[#0D1422] p-0.5">
+            <div className="flex rounded-lg border border-[#1F2937] bg-[#0D1422] p-1">
               <button
                 type="button"
-                onClick={() =>
-                  setViewMode("grid")
-                }
+                aria-label="Grid view"
+                onClick={() => setViewMode("grid")}
                 className={[
-                  "grid size-6 place-items-center rounded",
+                  "grid size-8 place-items-center rounded-md transition",
                   viewMode === "grid"
                     ? "bg-violet-700 text-white"
-                    : "text-zinc-500",
+                    : "text-zinc-500 hover:text-white",
                 ].join(" ")}
               >
-                <Grid2X2 size={11} />
+                <Grid2X2 size={15} />
               </button>
 
               <button
                 type="button"
-                onClick={() =>
-                  setViewMode("list")
-                }
+                aria-label="List view"
+                onClick={() => setViewMode("list")}
                 className={[
-                  "grid size-6 place-items-center rounded",
+                  "grid size-8 place-items-center rounded-md transition",
                   viewMode === "list"
                     ? "bg-violet-700 text-white"
-                    : "text-zinc-500",
+                    : "text-zinc-500 hover:text-white",
                 ].join(" ")}
               >
-                <List size={12} />
+                <List size={15} />
               </button>
             </div>
           </div>
         </div>
 
-        <div
-          className={[
-            "mt-3 grid gap-2.5",
-             viewMode === "grid"
-            ? "grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
-            : "grid-cols-1 sm:grid-cols-2"
-          ].join(" ")}
-        >
-          {filteredCourses.map((course) => (
-            <CourseCard
-              key={course.id}
-              course={course}
-            />
-          ))}
-        </div>
+        {filteredCourses.length > 0 ? (
+          <div
+            className={
+              viewMode === "grid"
+                ? "mt-5 grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3"
+                : "mt-5 flex flex-col gap-4"
+            }
+          >
+            {filteredCourses.map((course, index) => (
+              <CourseCard key={course.id} course={course} index={index} />
+            ))}
+          </div>
+        ) : (
+          <div className="mt-8 rounded-xl border border-[#1F2937] bg-[#0D1422] px-4 py-12 text-center">
+            <p className="text-sm font-medium text-zinc-300">
+              No courses found
+            </p>
 
-        <Pagination
-          currentPage={currentPage}
-          totalPages={10}
-          onPageChange={setCurrentPage}
-        />
+            <p className="mt-1 text-xs text-zinc-500">
+              Try changing your search query or category filter.
+            </p>
+          </div>
+        )}
       </div>
     </section>
   );
