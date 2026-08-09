@@ -1,1 +1,1 @@
-export {};
+export { AssignmentsView } from "./assignmentview";

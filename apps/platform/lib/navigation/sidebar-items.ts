@@ -42,7 +42,7 @@ export const sidebarSections: SidebarSection[] = [
   {
     label: "Communication",
     items: [
-      { title: "Messages", href: "/messages", icon: "MessagesSquare" },
+      { title: "Announcements", href: "/announcements", icon: "Megaphone" },
       { title: "Group Chat", href: "/group-chat", icon: "Users" }
     ]
   },
