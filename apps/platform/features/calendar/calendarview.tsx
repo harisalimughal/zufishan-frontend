@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { AnimatePresence, motion } from "framer-motion";
 import {
   ChevronLeft, ChevronRight, Plus, RefreshCw,
   Monitor, MapPin, Wifi, Clock, CheckSquare, Trash2,
@@ -209,8 +208,6 @@ export function CalendarView() {
   const [selectedEvent, setSelectedEvent] = useState<CalendarEvent | null>(null);
   const [showAddModal, setShowAddModal] = useState<boolean>(false);
   const [showAddTask, setShowAddTask] = useState<boolean>(false);
-  const [isSyncing, setIsSyncing] = useState<boolean>(false);
-  const [justSynced, setJustSynced] = useState<boolean>(false);
   const [currentTime, setCurrentTime] = useState<Date>(new Date());
   const [miniMonth, setMiniMonth] = useState<{ year: number; month: number }>({
     year: new Date().getFullYear(),
@@ -288,17 +285,6 @@ export function CalendarView() {
     setNewTaskTitle(""); setShowAddTask(false);
   };
 
-  const handleSync = () => {
-    if (isSyncing) return;
-    setIsSyncing(true);
-    setJustSynced(false);
-    setTimeout(() => {
-      setIsSyncing(false);
-      setJustSynced(true);
-      setTimeout(() => setJustSynced(false), 1500);
-    }, 1200);
-  };
-
   const toggleTask = (id: number) => setTasks((prev) => prev.map((t) => t.id === id ? { ...t, completed: !t.completed } : t));
   const deleteTask = (id: number) => setTasks((prev) => prev.filter((t) => t.id !== id));
 
@@ -320,16 +306,8 @@ export function CalendarView() {
           <button onClick={() => setShowAddTask(true)} style={{ display: "flex", alignItems: "center", gap: 5, background: "#1F2937", border: "1px solid #374151", borderRadius: 8, padding: "7px 12px", color: "#E4E4E7", fontSize: 12, cursor: "pointer", fontFamily: "inherit" }}>
             <CheckSquare size={13} /> Add Task
           </button>
-          <button onClick={handleSync} disabled={isSyncing} style={{ display: "flex", alignItems: "center", gap: 5, background: "#1F2937", border: "1px solid #374151", borderRadius: 8, padding: "7px 12px", color: "#E4E4E7", fontSize: 12, cursor: isSyncing ? "default" : "pointer", fontFamily: "inherit" }}>
-            {justSynced ? (
-              <>
-                <CheckSquare size={13} color="#22C55E" /> Synced
-              </>
-            ) : (
-              <>
-                <RefreshCw size={13} className={isSyncing ? "animate-spin" : ""} /> {isSyncing ? "Syncing..." : "Sync"}
-              </>
-            )}
+          <button style={{ display: "flex", alignItems: "center", gap: 5, background: "#1F2937", border: "1px solid #374151", borderRadius: 8, padding: "7px 12px", color: "#E4E4E7", fontSize: 12, cursor: "pointer", fontFamily: "inherit" }}>
+            <RefreshCw size={13} /> Sync
           </button>
           <button onClick={() => setShowAddModal(true)} style={{ display: "flex", alignItems: "center", gap: 5, background: "#6D5DFC", border: "none", borderRadius: 8, padding: "7px 14px", color: "#fff", fontSize: 12, fontWeight: 600, cursor: "pointer", fontFamily: "inherit" }}>
             <Plus size={13} /> Add Event
@@ -536,24 +514,9 @@ export function CalendarView() {
       </div>
 
       {/* ── Event Detail Modal ── */}
-      <AnimatePresence>
-        {selectedEvent && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.15 }}
-            onClick={() => setSelectedEvent(null)}
-            style={{ position: "fixed" as const, inset: 0, zIndex: 100, background: "rgba(0,0,0,0.6)", backdropFilter: "blur(4px)", display: "flex", alignItems: "center", justifyContent: "center" }}
-          >
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.95 }}
-              transition={{ duration: 0.15 }}
-              onClick={(e) => e.stopPropagation()}
-              style={{ background: "#111827", border: `1px solid ${selectedEvent.color}44`, borderRadius: 16, padding: 24, width: 340, boxShadow: `0 0 40px ${selectedEvent.color}22` }}
-            >
+      {selectedEvent && (
+        <div onClick={() => setSelectedEvent(null)} style={{ position: "fixed" as const, inset: 0, zIndex: 100, background: "rgba(0,0,0,0.6)", backdropFilter: "blur(4px)", display: "flex", alignItems: "center", justifyContent: "center" }}>
+          <div onClick={(e) => e.stopPropagation()} style={{ background: "#111827", border: `1px solid ${selectedEvent.color}44`, borderRadius: 16, padding: 24, width: 340, boxShadow: `0 0 40px ${selectedEvent.color}22` }}>
             <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 16 }}>
               <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
                 <div style={{ width: 36, height: 36, borderRadius: 8, background: `${selectedEvent.color}22`, border: `1px solid ${selectedEvent.color}44`, display: "flex", alignItems: "center", justifyContent: "center" }}>
@@ -588,30 +551,14 @@ export function CalendarView() {
                 Join Class
               </button>
             )}
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+          </div>
+        </div>
+      )}
 
       {/* ── Add Event Modal ── */}
-      <AnimatePresence>
-        {showAddModal && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.15 }}
-            onClick={() => setShowAddModal(false)}
-            style={{ position: "fixed" as const, inset: 0, zIndex: 100, background: "rgba(0,0,0,0.6)", backdropFilter: "blur(4px)", display: "flex", alignItems: "center", justifyContent: "center" }}
-          >
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.95 }}
-              transition={{ duration: 0.15 }}
-              onClick={(e) => e.stopPropagation()}
-              style={{ background: "#111827", border: "1px solid #374151", borderRadius: 16, padding: 24, width: 380, maxHeight: "90vh", overflowY: "auto" as const }}
-            >
+      {showAddModal && (
+        <div onClick={() => setShowAddModal(false)} style={{ position: "fixed" as const, inset: 0, zIndex: 100, background: "rgba(0,0,0,0.6)", backdropFilter: "blur(4px)", display: "flex", alignItems: "center", justifyContent: "center" }}>
+          <div onClick={(e) => e.stopPropagation()} style={{ background: "#111827", border: "1px solid #374151", borderRadius: 16, padding: 24, width: 380, maxHeight: "90vh", overflowY: "auto" as const }}>
             <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 20 }}>
               <span style={{ color: "#fff", fontSize: 16, fontWeight: 700 }}>Add Event</span>
               <button onClick={() => setShowAddModal(false)} style={{ background: "none", border: "none", color: "#6B7280", cursor: "pointer", fontSize: 20 }}>×</button>
@@ -659,30 +606,14 @@ export function CalendarView() {
                 Add Event
               </button>
             </div>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+          </div>
+        </div>
+      )}
 
       {/* ── Add Task Modal ── */}
-      <AnimatePresence>
-        {showAddTask && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.15 }}
-            onClick={() => setShowAddTask(false)}
-            style={{ position: "fixed" as const, inset: 0, zIndex: 100, background: "rgba(0,0,0,0.6)", backdropFilter: "blur(4px)", display: "flex", alignItems: "center", justifyContent: "center" }}
-          >
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.95 }}
-              transition={{ duration: 0.15 }}
-              onClick={(e) => e.stopPropagation()}
-              style={{ background: "#111827", border: "1px solid #374151", borderRadius: 16, padding: 24, width: 360 }}
-            >
+      {showAddTask && (
+        <div onClick={() => setShowAddTask(false)} style={{ position: "fixed" as const, inset: 0, zIndex: 100, background: "rgba(0,0,0,0.6)", backdropFilter: "blur(4px)", display: "flex", alignItems: "center", justifyContent: "center" }}>
+          <div onClick={(e) => e.stopPropagation()} style={{ background: "#111827", border: "1px solid #374151", borderRadius: 16, padding: 24, width: 360 }}>
             <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 20 }}>
               <span style={{ color: "#fff", fontSize: 16, fontWeight: 700 }}>Add Task</span>
               <button onClick={() => setShowAddTask(false)} style={{ background: "none", border: "none", color: "#6B7280", cursor: "pointer", fontSize: 20 }}>×</button>
@@ -704,10 +635,9 @@ export function CalendarView() {
                 Add Task
               </button>
             </div>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
