@@ -15,8 +15,8 @@ import {
   Compass,
   GraduationCap,
   LayoutDashboard,
-  MessagesSquare,
   Settings,
+  Megaphone,
   TrendingUp,
   Trophy,
   Users,
@@ -38,7 +38,7 @@ const iconMap: Record<string, LucideIcon> = {
   Bot,
   TrendingUp,
   Trophy,
-  MessagesSquare,
+  Megaphone,
   Users,
   Settings
 };
