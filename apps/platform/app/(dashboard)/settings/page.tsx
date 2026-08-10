@@ -1,5 +1,5 @@
-import { ComingSoon } from "../../../components/ComingSoon/ComingSoon";
+import { SettingsView } from "@/features/settings";
 
 export default function SettingsPage() {
-  return <ComingSoon title="Settings" icon="Settings" />;
+  return <SettingsView/>;
 }
