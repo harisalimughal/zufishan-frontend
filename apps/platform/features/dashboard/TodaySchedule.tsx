@@ -1,7 +1,9 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
+import { courseService } from "@/services/courseService";
 
 type ScheduleItem = {
   id: string;
@@ -12,10 +14,10 @@ type ScheduleItem = {
   dotColor?: string;
 };
 
-const scheduleItems: ScheduleItem[] = [
+const defaultScheduleItems: ScheduleItem[] = [
   {
     id: "1",
-    time: "08:00",
+    time: "08:00 AM",
     title: "Database 101",
     professor: "Prof. Lucas (AI)",
     isLive: true,
@@ -40,6 +42,32 @@ const scheduleItems: ScheduleItem[] = [
 ];
 
 export function TodaySchedule() {
+  const [scheduleItems, setScheduleItems] = useState<ScheduleItem[]>(defaultScheduleItems);
+
+  useEffect(() => {
+    async function loadLiveSchedule() {
+      try {
+        const liveCourses = await courseService.getCourses();
+        if (liveCourses && liveCourses.length > 0) {
+          const times = ["08:00 AM", "11:00 AM", "02:00 PM", "04:30 PM"];
+          const colors = ["bg-[#3B82F6]", "bg-emerald-400", "bg-amber-400", "bg-purple-400"];
+          const mapped: ScheduleItem[] = liveCourses.map((c, idx) => ({
+            id: c.id,
+            time: times[idx % times.length],
+            title: c.title,
+            professor: c.instructorName || "Prof. Lucas (AI)",
+            isLive: Boolean(c.liveClassToday || idx === 0),
+            dotColor: colors[idx % colors.length],
+          }));
+          setScheduleItems(mapped);
+        }
+      } catch (err) {
+        console.warn("Could not load live schedule:", err);
+      }
+    }
+    loadLiveSchedule();
+  }, []);
+
   return (
     <div className="rounded-xl border border-[#27272A] bg-[#111827] p-5">
       {/* Header */}

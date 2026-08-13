@@ -1,9 +1,7 @@
 "use client";
 
-import {
-  useMemo,
-  useState,
-} from "react";
+import { useEffect, useMemo, useState } from "react";
+import { courseService } from "@/services/courseService";
 
 import {
   BarChart3,
@@ -27,52 +25,7 @@ import type {
   CourseCategoryName,
 } from "./types";
 
-const categories: CourseCategory[] = [
-  {
-    id: "all",
-    label: "All Courses",
-    courseCount: 120,
-    icon: Layers3,
-  },
-  {
-    id: "programming",
-    label: "Programming",
-    courseCount: 28,
-    icon: Code2,
-  },
-  {
-    id: "data-science",
-    label: "Data Science",
-    courseCount: 24,
-    icon: BarChart3,
-  },
-  {
-    id: "ai-ml",
-    label: "AI & ML",
-    courseCount: 18,
-    icon: BrainCircuit,
-  },
-  {
-    id: "database",
-    label: "Database",
-    courseCount: 16,
-    icon: Database,
-  },
-  {
-    id: "business",
-    label: "Business",
-    courseCount: 14,
-    icon: BriefcaseBusiness,
-  },
-  {
-    id: "cloud-computing",
-    label: "Cloud Computing",
-    courseCount: 12,
-    icon: Cloud,
-  },
-];
-
-const courses: Course[] = [
+const defaultCourses: Course[] = [
   {
     id: 1,
     title: "Database 101",
@@ -141,45 +94,6 @@ const courses: Course[] = [
     illustration: "analytics",
     slug: "data-analysis-pandas",
   },
-  {
-    id: 6,
-    title: "Cloud Computing Essentials",
-    subtitle: "AWS, Azure & Cloud Fundamentals",
-    category: "Cloud Computing",
-    instructor: "Prof. Mia (AI)",
-    rating: 4.6,
-    reviews: "643",
-    students: "4.8K",
-    level: "Beginner",
-    illustration: "cloud",
-    slug: "cloud-computing",
-  },
-  {
-    id: 7,
-    title: "Business Analytics",
-    subtitle: "Data-Driven Decision Making",
-    category: "Business",
-    instructor: "Prof. James (AI)",
-    rating: 4.7,
-    reviews: "589",
-    students: "3.9K",
-    level: "Intermediate",
-    illustration: "business",
-    slug: "business-analytics",
-  },
-  {
-    id: 8,
-    title: "Deep Learning Fundamentals",
-    subtitle: "Neural Networks & Beyond",
-    category: "AI & ML",
-    instructor: "Prof. Ava (AI)",
-    rating: 4.9,
-    reviews: "1.1K",
-    students: "6.7K",
-    level: "Advanced",
-    illustration: "network",
-    slug: "deep-learning",
-  },
 ];
 
 const categoryMap: Record<string, CourseCategoryName> = {
@@ -198,11 +112,87 @@ export function CourseCatalog() {
   const [activeCategory, setActiveCategory] = useState("all");
   const [sortValue, setSortValue] = useState<SortValue>("popular");
   const [viewMode, setViewMode] = useState<"grid" | "list">("grid");
+  const [courseList, setCourseList] = useState<Course[]>(defaultCourses);
+
+  useEffect(() => {
+    async function loadLiveCourses() {
+      try {
+        const liveData = await courseService.getCourses();
+        if (liveData && liveData.length > 0) {
+          const mapped: Course[] = liveData.map((c, idx) => ({
+            id: typeof c.id === "number" ? c.id : idx + 1,
+            title: c.title,
+            subtitle: c.description || "Interactive AI Course",
+            category: (c.category as CourseCategoryName) || "Programming",
+            instructor: c.instructorName || "Prof. Lucas (AI)",
+            rating: c.rating || 4.8,
+            reviews: "500+",
+            students: `${c.totalStudents || 0}`,
+            level: (c.level as any) || "Beginner",
+            illustration: c.category?.toLowerCase().includes("data") ? "analytics" : "code",
+            slug: c.detailSlug || `course-${c.id}`,
+          }));
+          setCourseList(mapped);
+        }
+      } catch (err) {
+        console.warn("Could not fetch live courses, using default catalog:", err);
+      }
+    }
+
+    loadLiveCourses();
+  }, []);
+
+  const categories = useMemo<CourseCategory[]>(() => {
+    return [
+      {
+        id: "all",
+        label: "All Courses",
+        courseCount: courseList.length,
+        icon: Layers3,
+      },
+      {
+        id: "programming",
+        label: "Programming",
+        courseCount: courseList.filter((c) => c.category === "Programming").length,
+        icon: Code2,
+      },
+      {
+        id: "data-science",
+        label: "Data Science",
+        courseCount: courseList.filter((c) => c.category === "Data Science").length,
+        icon: BarChart3,
+      },
+      {
+        id: "ai-ml",
+        label: "AI & ML",
+        courseCount: courseList.filter((c) => c.category === "AI & ML").length,
+        icon: BrainCircuit,
+      },
+      {
+        id: "database",
+        label: "Database",
+        courseCount: courseList.filter((c) => c.category === "Database").length,
+        icon: Database,
+      },
+      {
+        id: "business",
+        label: "Business",
+        courseCount: courseList.filter((c) => c.category === "Business").length,
+        icon: BriefcaseBusiness,
+      },
+      {
+        id: "cloud-computing",
+        label: "Cloud Computing",
+        courseCount: courseList.filter((c) => c.category === "Cloud Computing").length,
+        icon: Cloud,
+      },
+    ];
+  }, [courseList]);
 
   const filteredCourses = useMemo(() => {
     const search = searchValue.trim().toLowerCase();
 
-    return courses
+    return courseList
       .filter((course) => {
         const selectedCategory = categoryMap[activeCategory];
         const matchesCategory =
@@ -225,9 +215,9 @@ export function CourseCatalog() {
           return first.title.localeCompare(second.title);
         }
 
-        return first.id - second.id;
+        return Number(first.id) - Number(second.id);
       });
-  }, [activeCategory, searchValue, sortValue]);
+  }, [activeCategory, courseList, searchValue, sortValue]);
 
   return (
     <section className="min-h-screen min-w-0 bg-[#050914] text-white">

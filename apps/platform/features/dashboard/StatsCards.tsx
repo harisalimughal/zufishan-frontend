@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import {
   BookOpen,
@@ -8,47 +9,69 @@ import {
   Flame,
   TrendingUp,
 } from "lucide-react";
-
-const stats = [
-  {
-    label: "Upcoming Class",
-    value: "Database 101",
-    subtitle: "08:00 AM – 09:30 AM",
-    badge: "Starts in 1h 15m",
-    icon: CalendarClock,
-    iconBg: "bg-[#3B82F6]/20",
-    iconColor: "text-[#3B82F6]",
-  },
-  {
-    label: "Attendance",
-    value: "96%",
-    subtitle: "This Week",
-    trend: "↑ 4% vs last week",
-    icon: CheckCircle,
-    iconBg: "bg-emerald-500/20",
-    iconColor: "text-emerald-400",
-  },
-  {
-    label: "Current Streak",
-    value: "7 Days",
-    subtitle: "Keep it going!",
-    streakIcons: true,
-    icon: Flame,
-    iconBg: "bg-orange-500/20",
-    iconColor: "text-orange-400",
-  },
-  {
-    label: "Courses Enrolled",
-    value: "4",
-    subtitle: "2 in progress",
-    extra: "2 upcoming",
-    icon: BookOpen,
-    iconBg: "bg-purple-500/20",
-    iconColor: "text-purple-400",
-  },
-];
+import { courseService, Course } from "@/services/courseService";
+import { useAuth } from "@/context/AuthContext";
 
 export function StatsCards() {
+  const { user } = useAuth();
+  const [courseCount, setCourseCount] = useState<number>(4);
+  const [upcomingTitle, setUpcomingTitle] = useState<string>("Database 101");
+
+  useEffect(() => {
+    async function loadStats() {
+      try {
+        const liveCourses = await courseService.getCourses();
+        if (liveCourses && liveCourses.length > 0) {
+          setCourseCount(liveCourses.length);
+          const liveClass = liveCourses.find((c) => c.liveClassToday) || liveCourses[0];
+          setUpcomingTitle(liveClass.title);
+        }
+      } catch (err) {
+        console.warn("Stats API warning:", err);
+      }
+    }
+    loadStats();
+  }, []);
+
+  const stats = [
+    {
+      label: "Upcoming Class",
+      value: upcomingTitle,
+      subtitle: "08:00 AM – 09:30 AM",
+      badge: "Starts soon",
+      icon: CalendarClock,
+      iconBg: "bg-[#3B82F6]/20",
+      iconColor: "text-[#3B82F6]",
+    },
+    {
+      label: "Attendance",
+      value: "96%",
+      subtitle: "This Week",
+      trend: "↑ 4% vs last week",
+      icon: CheckCircle,
+      iconBg: "bg-emerald-500/20",
+      iconColor: "text-emerald-400",
+    },
+    {
+      label: "Current Streak",
+      value: "7 Days",
+      subtitle: "Keep it going!",
+      streakIcons: true,
+      icon: Flame,
+      iconBg: "bg-orange-500/20",
+      iconColor: "text-orange-400",
+    },
+    {
+      label: "Courses Enrolled",
+      value: `${courseCount}`,
+      subtitle: `${Math.ceil(courseCount / 2)} in progress`,
+      extra: `${Math.floor(courseCount / 2)} available`,
+      icon: BookOpen,
+      iconBg: "bg-purple-500/20",
+      iconColor: "text-purple-400",
+    },
+  ];
+
   return (
     <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4">
       {stats.map((stat, idx) => {

@@ -23,14 +23,47 @@ import {
   removeRegisteredCourse,
 } from "./storage";
 
+import { courseService } from "@/services/courseService";
+
 export function MyCourses() {
   const [courses, setCourses] = useState<Course[]>([]);
   const [searchValue, setSearchValue] = useState("");
   const [loading, setLoading] = useState(true);
 
-  const loadCourses = useCallback(() => {
-    setCourses(getRegisteredCourses());
-    setLoading(false);
+  const loadCourses = useCallback(async () => {
+    const local = getRegisteredCourses();
+    if (local && local.length > 0) {
+      setCourses(local);
+      setLoading(false);
+      return;
+    }
+
+    try {
+      const liveData = await courseService.getCourses();
+      if (liveData && liveData.length > 0) {
+        const mapped: Course[] = liveData.map((c, idx) => ({
+          id: typeof c.id === "number" ? c.id : idx + 1,
+          title: c.title,
+          subtitle: c.description || "Interactive AI Course",
+          category: (c.category as any) || "Programming",
+          instructor: c.instructorName || "Prof. Lucas (AI)",
+          rating: c.rating || 4.8,
+          reviews: "500+",
+          students: `${c.totalStudents || 0}`,
+          level: (c.level as any) || "Beginner",
+          illustration: c.category?.toLowerCase().includes("data") ? "analytics" : "code",
+          slug: c.detailSlug || `course-${c.id}`,
+        }));
+        setCourses(mapped);
+      } else {
+        setCourses([]);
+      }
+    } catch (err) {
+      console.warn("Could not fetch live courses for MyCourses:", err);
+      setCourses([]);
+    } finally {
+      setLoading(false);
+    }
   }, []);
 
   useEffect(() => {

@@ -112,9 +112,9 @@ export function CourseIllustration({
   course: Course;
   iconSize?: number;
 }) {
-  const styles = categoryStyles[course.category];
+  const styles = categoryStyles[course.category] || categoryStyles.Programming;
   const IllustrationIcon =
-    illustrationIconMap[course.illustration];
+    illustrationIconMap[course.illustration] || Code2;
 
   return (
     <>
@@ -151,8 +151,8 @@ export function CourseVisualHeader({
   heightClassName?: string;
   registered?: boolean;
 }) {
-  const styles = categoryStyles[course.category];
-  const CategoryIcon = categoryIconMap[course.category];
+  const styles = categoryStyles[course.category] || categoryStyles.Programming;
+  const CategoryIcon = categoryIconMap[course.category] || Code2;
 
   return (
     <div

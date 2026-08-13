@@ -1,9 +1,11 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { ChevronRight } from "lucide-react";
+import { courseService } from "@/services/courseService";
 
 type Course = {
   id: string;
@@ -15,7 +17,7 @@ type Course = {
   detailSlug: string;
 };
 
-const courses: Course[] = [
+const defaultCourses: Course[] = [
   {
     id: "1",
     title: "Database Fundamentals",
@@ -68,6 +70,30 @@ function ProgressBar({ value }: { value: number }) {
 }
 
 export function MyCourses() {
+  const [courses, setCourses] = useState<Course[]>(defaultCourses);
+
+  useEffect(() => {
+    async function fetchLiveCourses() {
+      try {
+        const data = await courseService.getCourses();
+        if (data && data.length > 0) {
+          const mapped: Course[] = data.map((c, idx) => ({
+            id: c.id,
+            title: c.title,
+            professor: c.instructorName || "Prof. Lucas (AI)",
+            progress: (idx + 1) * 25 % 100 || 45,
+            image: c.bannerUrl || "/course-database.png",
+            liveClassToday: Boolean(c.liveClassToday),
+            detailSlug: c.detailSlug || `course-${c.id}`,
+          }));
+          setCourses(mapped);
+        }
+      } catch (err) {
+        console.warn("Could not load live courses for dashboard widget:", err);
+      }
+    }
+    fetchLiveCourses();
+  }, []);
   return (
     <div>
       {/* Section Header */}

@@ -49,6 +49,16 @@ export const courseService = {
     return data.data || data;
   },
 
+  async getCourseBySlug(slug: string): Promise<Course | null> {
+    const courses = await this.getCourses();
+    return courses.find((c) => c.detailSlug === slug || c.id === slug) || null;
+  },
+
+  async getCourseModules(courseId: string): Promise<any[]> {
+    const data = await apiClient.get<any>(`/courses/${courseId}/modules`);
+    return Array.isArray(data) ? data : data.data || [];
+  },
+
   async deleteCourseResource(id: string): Promise<{ message: string }> {
     return apiClient.delete<{ message: string }>(`/resources/${id}`);
   },
