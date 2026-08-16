@@ -50,8 +50,13 @@ export const courseService = {
   },
 
   async getCourseBySlug(slug: string): Promise<Course | null> {
-    const courses = await this.getCourses();
-    return courses.find((c) => c.detailSlug === slug || c.id === slug) || null;
+    try {
+      const data = await apiClient.get<any>(`/courses/slug/${encodeURIComponent(slug)}`);
+      return data.data || data;
+    } catch {
+      const courses = await this.getCourses();
+      return courses.find((c) => c.detailSlug === slug || c.id === slug) || null;
+    }
   },
 
   async getCourseModules(courseId: string): Promise<any[]> {

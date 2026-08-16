@@ -1,15 +1,16 @@
-﻿'use client'
+"use client";
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
-import { achievementsData } from '../data/achievementsData'
+import { achievementsData, Achievement } from '../data/achievementsData'
+import { achievementService } from '@/services/achievementService'
 import { Filter } from 'lucide-react'
 import Image from 'next/image'
 
 // ============================================
 // Badges Grid Component
 // ============================================
-function BadgesGrid({ achievements }: { achievements: typeof achievementsData }) {
+function BadgesGrid({ achievements }: { achievements: Achievement[] }) {
   const displayAchievements = achievements.slice(0, 10)
 
   return (
@@ -22,7 +23,7 @@ function BadgesGrid({ achievements }: { achievements: typeof achievementsData })
           statusText = 'Earned'
           statusColor = 'text-green-400'
         } else if (achievement.status === 'in-progress') {
-          statusText = achievement.progress + '/' + achievement.total
+          statusText = (achievement.progress || 0) + '/' + (achievement.total || 100)
           statusColor = 'text-yellow-400'
         } else if (achievement.status === 'locked') {
           statusText = 'Locked'
@@ -53,7 +54,7 @@ function BadgesGrid({ achievements }: { achievements: typeof achievementsData })
                     className="object-contain w-8 h-8"
                   />
                 ) : (
-                  <span className="text-2xl">{achievement.icon}</span>
+                  <span className="text-2xl">{achievement.icon || '🏆'}</span>
                 )}
               </div>
               <h4 className="text-sm font-medium text-white truncate w-full">
@@ -119,9 +120,33 @@ export function Badges() {
   const [filter, setFilter] = useState('all')
   const [showAll, setShowAll] = useState(false)
   const [showFilterPanel, setShowFilterPanel] = useState(false)
+  const [list, setList] = useState<Achievement[]>(achievementsData)
 
   const statusFilters = ['All', 'Earned', 'Locked', 'In Progress']
   const [statusFilter, setStatusFilter] = useState('All')
+
+  useEffect(() => {
+    async function loadAchievements() {
+      try {
+        const res = await achievementService.getAchievements()
+        if (res && res.achievements && res.achievements.length > 0) {
+          const mapped: Achievement[] = res.achievements.map((item) => ({
+            id: item.id,
+            title: item.title,
+            description: item.description,
+            icon: item.icon || '🏆',
+            xp: item.xpPoints || 100,
+            status: item.isUnlocked ? 'earned' : 'locked',
+            category: item.category ? item.category.toLowerCase() : 'general',
+          }))
+          setList(mapped)
+        }
+      } catch (err) {
+        // Keep mock fallback
+      }
+    }
+    loadAchievements()
+  }, [])
 
   const filterOptions = [
     { label: 'All Badges', value: 'all' },
@@ -133,8 +158,8 @@ export function Badges() {
   ]
 
   const filteredAchievements = filter === 'all'
-    ? achievementsData
-    : achievementsData.filter(a => a.category === filter)
+    ? list
+    : list.filter(a => a.category === filter)
 
   const displayedAchievements = showAll
     ? filteredAchievements

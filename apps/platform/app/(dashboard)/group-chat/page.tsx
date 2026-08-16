@@ -1,3 +1,5 @@
+"use client";
+
 import { GroupChat } from "@/features/group-chat";
 
 export default function GroupChatPage() {

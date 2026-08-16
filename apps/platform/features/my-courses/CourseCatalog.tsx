@@ -203,7 +203,7 @@ export function CourseCatalog() {
             }
           >
             {filteredCourses.map((course, index) => (
-              <CourseCard key={course.id} course={course} index={index} />
+              <CourseCard key={`${course.id}_${index}`} course={course} index={index} />
             ))}
           </div>
         ) : (

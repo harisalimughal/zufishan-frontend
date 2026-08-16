@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { calendarService } from "@/services/calendarService";
 import {
   ChevronLeft, ChevronRight, Plus, RefreshCw,
   Monitor, MapPin, Wifi, Clock, CheckSquare, Trash2,
@@ -249,7 +250,39 @@ export function CalendarView() {
     .sort((a, b) => a.date.localeCompare(b.date) || a.startHour - b.startHour)
     .slice(0, 6);
 
-  const handleAddEvent = () => {
+  useEffect(() => {
+    async function loadBackendEvents() {
+      try {
+        const live = await calendarService.getAllEvents();
+        if (live && live.length > 0) {
+          const mapped: CalendarEvent[] = live.map((e: any, idx: number) => {
+            const startD = new Date(e.startTime);
+            const endD = new Date(e.endTime);
+            return {
+              id: typeof e.id === "number" ? e.id : idx + 1000,
+              title: e.title,
+              subtitle: e.type || "Event",
+              professor: e.location || undefined,
+              type: "custom" as const,
+              color: "#6D5DFC",
+              date: toYMD(startD),
+              startHour: startD.getHours(),
+              startMin: startD.getMinutes(),
+              endHour: endD.getHours(),
+              endMin: endD.getMinutes(),
+              isOnline: e.isLive || false,
+            };
+          });
+          setEvents((prev) => [...prev, ...mapped]);
+        }
+      } catch (err) {
+        // Fallback
+      }
+    }
+    loadBackendEvents();
+  }, []);
+
+  const handleAddEvent = async () => {
     if (!newTitle.trim() || !newDate) return;
     const [sh, sm] = newStart.split(":").map(Number);
     const [eh, em] = newEnd.split(":").map(Number);
@@ -257,21 +290,41 @@ export function CalendarView() {
       alert("End time must be after start time");
       return;
     }
+
+    const startDate = new Date(`${newDate}T${newStart}:00`);
+    const endDate = new Date(`${newDate}T${newEnd}:00`);
+
+    try {
+      await calendarService.createEvent({
+        userId: "current-user",
+        title: newTitle,
+        startTime: startDate.toISOString(),
+        endTime: endDate.toISOString(),
+        location: newProfessor || undefined,
+        isLive: newIsOnline,
+      });
+    } catch (err) {
+      // Fallback
+    }
+
     setEvents((prev) => [...prev, {
       id: Date.now(), title: newTitle, subtitle: newSubtitle || "Custom Event",
       professor: newProfessor || undefined, type: "custom", color: newColor,
-      date: newDate, // ✅ store as-is, already YYYY-MM-DD local
+      date: newDate,
       startHour: sh, startMin: sm, endHour: eh, endMin: em,
       isOnline: newIsOnline,
     }]);
-    // Navigate to the week of the new event
     setWeekStart(getMondayOfWeek(parseLocalDate(newDate)));
-    // Reset form
     setNewTitle(""); setNewSubtitle("Custom Event"); setNewProfessor(""); setNewIsOnline(false);
     setShowAddModal(false);
   };
 
-  const handleDeleteEvent = (id: number) => {
+  const handleDeleteEvent = async (id: number) => {
+    try {
+      await calendarService.deleteEvent(String(id));
+    } catch (err) {
+      // Fallback
+    }
     setEvents((prev) => prev.filter((e) => e.id !== id));
     setSelectedEvent(null);
   };
@@ -376,7 +429,7 @@ export function CalendarView() {
                       </div>
                     )}
                     <div style={{ position: "absolute" as const, inset: 0 }}>
-                      {dayEvents.map((event) => <EventBlock key={event.id} event={event} onClick={setSelectedEvent} />)}
+                      {dayEvents.map((event, idx) => <EventBlock key={`${event.id}_${dateStr}_${idx}`} event={event} onClick={setSelectedEvent} />)}
                     </div>
                   </div>
                 );

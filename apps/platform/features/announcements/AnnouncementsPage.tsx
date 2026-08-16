@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Bell,
   AlertTriangle,
@@ -10,6 +10,7 @@ import {
   Megaphone,
   CheckCircle2,
 } from "lucide-react";
+import { achievementService, ActivityLogItem } from "@/services/achievementService";
 
 interface Announcement {
   id: string;
@@ -23,73 +24,42 @@ interface Announcement {
   iconColor: string;
 }
 
-const mockAnnouncements: Announcement[] = [
-  {
-    id: "1",
-    title: "Midterm Examination Schedule Released",
-    description:
-      "The official examination schedule for Fall 2026 is now available. Please review your dates.",
-    time: "10 min ago",
-    isUnread: true,
-    category: "important",
-    icon: ShieldAlert,
-    iconBg: "bg-rose-500/10 border-rose-500/20",
-    iconColor: "text-rose-400",
-  },
-  {
-    id: "2",
-    title: "System Maintenance Notice",
-    description:
-      "Platform services will undergo scheduled maintenance tonight from 2:00 AM to 4:00 AM UTC.",
-    time: "2 hrs ago",
-    isUnread: true,
-    category: "important",
-    icon: AlertTriangle,
-    iconBg: "bg-amber-500/10 border-amber-500/20",
-    iconColor: "text-amber-400",
-  },
-  {
-    id: "3",
-    title: "Campus Hackathon 2026 Registration Open",
-    description:
-      "Register your team now for the annual 48-hour AI innovation hackathon. Prizes up to $5,000.",
-    time: "Yesterday",
-    isUnread: false,
-    category: "general",
-    icon: Megaphone,
-    iconBg: "bg-indigo-500/10 border-indigo-500/20",
-    iconColor: "text-indigo-400",
-  },
-  {
-    id: "4",
-    title: "Guest Lecture: Scalable Systems Architecture",
-    description:
-      "Join us this Thursday at 4 PM for a live session with senior infrastructure engineers.",
-    time: "2 days ago",
-    isUnread: false,
-    category: "general",
-    icon: Calendar,
-    iconBg: "bg-emerald-500/10 border-emerald-500/20",
-    iconColor: "text-emerald-400",
-  },
-  {
-    id: "5",
-    title: "Library Portal Upgrade Completed",
-    description:
-      "The digital research portal has been updated with faster search and direct journal access.",
-    time: "3 days ago",
-    isUnread: false,
-    category: "general",
-    icon: Info,
-    iconBg: "bg-blue-500/10 border-blue-500/20",
-    iconColor: "text-blue-400",
-  },
-];
-
 export function AnnouncementsPage() {
   const [activeTab, setActiveTab] = useState<"important" | "general">("important");
+  const [announcements, setAnnouncements] = useState<Announcement[]>([]);
+  const [loading, setLoading] = useState(true);
 
-  const filteredAnnouncements = mockAnnouncements.filter(
+  useEffect(() => {
+    async function fetchAnnouncements() {
+      try {
+        const feed = await achievementService.getActivityFeed(20, 0);
+        if (feed.activities && feed.activities.length > 0) {
+          const mapped: Announcement[] = feed.activities.map((act: ActivityLogItem, idx: number) => {
+            const isImportant = act.type.includes("ASSIGNMENT") || act.type.includes("PASSWORD");
+            return {
+              id: act.id,
+              title: act.title,
+              description: act.subtitle || `System activity recorded on ${new Date(act.createdAt).toLocaleDateString()}`,
+              time: new Date(act.createdAt).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+              isUnread: idx < 2,
+              category: isImportant ? "important" : "general",
+              icon: isImportant ? ShieldAlert : Info,
+              iconBg: isImportant ? "bg-rose-500/10 border-rose-500/20" : "bg-blue-500/10 border-blue-500/20",
+              iconColor: isImportant ? "text-rose-400" : "text-blue-400",
+            };
+          });
+          setAnnouncements(mapped);
+        }
+      } catch (err) {
+        console.warn("Could not fetch live announcements:", err);
+      } finally {
+        setLoading(false);
+      }
+    }
+    fetchAnnouncements();
+  }, []);
+
+  const filteredAnnouncements = announcements.filter(
     (item) => item.category === activeTab
   );
 
@@ -101,7 +71,7 @@ export function AnnouncementsPage() {
           Announcements
         </h1>
         <p className="text-sm text-zinc-400 mt-1">
-          Stay updated with important platform updates, notices, and general news.
+          Stay updated with live platform updates, course notices, and activity logs.
         </p>
       </div>
 

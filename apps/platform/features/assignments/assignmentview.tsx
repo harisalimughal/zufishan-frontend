@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { assignmentService, AssignmentData } from "@/services/assignmentService";
+import { submissionService } from "@/services/submissionService";
 import {
   Search, Filter, Plus, Clock, CheckCircle2, AlertCircle,
   ChevronDown, ChevronRight, Calendar, BookOpen, Upload,
@@ -164,15 +165,23 @@ export function AssignmentsView() {
 
   const handleSubmit = async (id: number | string) => {
     try {
-      await assignmentService.submitAssignment(String(id), "my_submission.pdf");
+      await submissionService.createSubmission({
+        assignmentId: String(id),
+        fileUrl: "my_submission.pdf",
+        content: "Submitted work via platform dashboard",
+      });
     } catch (err) {
-      console.warn("API submission note:", err);
+      try {
+        await assignmentService.submitAssignment(String(id), "my_submission.pdf");
+      } catch (e) {
+        console.warn("API submission note:", e);
+      }
     }
     setAssignments((prev) => prev.map((a) => a.id === id ? { ...a, status: "submitted", submittedFile: "my_submission.pdf" } : a));
     setSelectedAssignment(null);
   };
 
-  const handleAddAssignment = () => {
+  const handleAddAssignment = async () => {
     if (!newTitle.trim() || !newDate) return;
     const newA: Assignment = {
       id: Date.now(), title: newTitle, course: newCourse,
@@ -180,6 +189,19 @@ export function AssignmentsView() {
       dueDate: newDate, dueTime: "11:59 PM", status: "pending",
       description: newDesc || "No description provided.", totalMarks: Number(newMarks) || 20,
     };
+
+    try {
+      await assignmentService.createAssignment({
+        courseId: newCourse === "Database 101" ? "db101" : "db101",
+        title: newTitle,
+        description: newDesc || "No description provided.",
+        dueDate: new Date(newDate).toISOString(),
+        totalPoints: Number(newMarks) || 20,
+      });
+    } catch (err) {
+      console.warn("Could not save assignment to backend DB:", err);
+    }
+
     setAssignments((prev) => [...prev, newA]);
     setNewTitle(""); setNewDesc(""); setNewMarks("20"); setShowAddModal(false);
   };

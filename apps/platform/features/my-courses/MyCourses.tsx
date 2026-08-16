@@ -24,6 +24,7 @@ import {
 } from "./storage";
 
 import { courseService } from "@/services/courseService";
+import { enrollmentService } from "@/services/enrollmentService";
 
 export function MyCourses() {
   const [courses, setCourses] = useState<Course[]>([]);
@@ -32,8 +33,45 @@ export function MyCourses() {
 
   const loadCourses = useCallback(async () => {
     const local = getRegisteredCourses();
+    let backendCourses: Course[] = [];
+
+    try {
+      const res = await enrollmentService.getMyEnrollments();
+      if (res && res.enrollments && res.enrollments.length > 0) {
+        backendCourses = res.enrollments
+          .filter((e) => e.course)
+          .map((e, idx) => ({
+            id: typeof e.course!.id === "number" ? e.course!.id : idx + 100,
+            title: e.course!.title,
+            subtitle: e.course!.description || "Enrolled Course",
+            category: (e.course!.category as any) || "Programming",
+            instructor: e.course!.instructorName || "Prof. Lucas (AI)",
+            rating: e.course!.rating || 4.8,
+            reviews: "500+",
+            students: `${e.course!.totalStudents || 0}`,
+            level: (e.course!.level as any) || "Beginner",
+            illustration: "code",
+            slug: e.course!.detailSlug || `course-${e.course!.id}`,
+          }));
+      }
+    } catch (err) {
+      // Backend enrollment optional fallback
+    }
+
     if (local && local.length > 0) {
-      setCourses(local);
+      const combined = [...local];
+      for (const bc of backendCourses) {
+        if (!combined.some((c) => c.slug === bc.slug)) {
+          combined.push(bc);
+        }
+      }
+      setCourses(combined);
+      setLoading(false);
+      return;
+    }
+
+    if (backendCourses.length > 0) {
+      setCourses(backendCourses);
       setLoading(false);
       return;
     }
@@ -168,9 +206,9 @@ export function MyCourses() {
 
         {filteredCourses.length > 0 ? (
           <div className="mt-5 grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
-            {filteredCourses.map((course) => (
+            {filteredCourses.map((course, idx) => (
               <article
-                key={course.id}
+                key={`${course.id}_${idx}`}
                 className="group flex h-full w-full min-w-0 flex-col overflow-hidden rounded-xl border border-[#1F2937] bg-[#0D1422] transition-all duration-300 hover:-translate-y-1 hover:border-zinc-700 hover:shadow-xl"
               >
                 <CourseVisualHeader

@@ -1,4 +1,6 @@
-﻿import {Header  } from './components/Header';
+"use client";
+
+import { Header } from './components/Header';
 import { Sidebar } from './components/Sidebar';
 import { Journey } from './components/Journey';
 import { Badges } from './components/Badges';

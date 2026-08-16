@@ -112,7 +112,7 @@ export function MyCourses() {
       <div className="space-y-3">
         {courses.map((course, idx) => (
           <motion.div
-            key={course.id}
+            key={`${course.id}_${idx}`}
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.35, delay: idx * 0.08 }}

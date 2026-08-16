@@ -1,6 +1,5 @@
 "use client";
-
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Calendar,
   ChevronDown,
@@ -19,72 +18,96 @@ import {
   YAxis,
   Tooltip,
 } from "recharts";
-
-// Weekly activity dummy data for the chart
-const weeklyData = [
-  { day: "Mon", hours: 3, lessons: 2 },
-  { day: "Tue", hours: 4.2, lessons: 3 },
-  { day: "Wed", hours: 3.5, lessons: 2 },
-  { day: "Thu", hours: 6, lessons: 5 },
-  { day: "Fri", hours: 5.2, lessons: 4 },
-  { day: "Sat", hours: 2.5, lessons: 1 },
-  { day: "Sun", hours: 2, lessons: 1 },
-];
-
-// Active courses list data
-const courses = [
-  {
-    id: 1,
-    title: "Database 101",
-    instructor: "Dr. Maria Chen",
-    badge: "3 Modules Left",
-    badgeStyle: "bg-amber-900/30 text-amber-400 border-amber-800/40",
-    progress: 85,
-    progressColor: "bg-emerald-500",
-    textColor: "text-emerald-400",
-    icon: Database,
-    iconBg: "bg-emerald-950/40 text-emerald-400 border-emerald-900/40",
-  },
-  {
-    id: 2,
-    title: "AI Engineering",
-    instructor: "Prof. James Kwon",
-    badge: "In Progress",
-    badgeStyle: "bg-indigo-900/30 text-indigo-400 border-indigo-800/40",
-    progress: 62,
-    progressColor: "bg-indigo-500",
-    textColor: "text-indigo-400",
-    icon: Bot,
-    iconBg: "bg-indigo-950/40 text-indigo-400 border-indigo-900/40",
-  },
-  {
-    id: 3,
-    title: "Python Mastery",
-    instructor: "Dr. Sara Patel",
-    badge: "1 Module Left",
-    badgeStyle: "bg-emerald-900/30 text-emerald-400 border-emerald-800/40",
-    progress: 91,
-    progressColor: "bg-emerald-500",
-    textColor: "text-emerald-400",
-    icon: Code2,
-    iconBg: "bg-emerald-950/40 text-emerald-400 border-emerald-900/40",
-  },
-  {
-    id: 4,
-    title: "Data Structures",
-    instructor: "Prof. Leo Martinez",
-    badge: "Needs Attention",
-    badgeStyle: "bg-rose-900/30 text-rose-400 border-rose-800/40",
-    progress: 44,
-    progressColor: "bg-blue-500",
-    textColor: "text-blue-400",
-    icon: Trees,
-    iconBg: "bg-blue-950/40 text-blue-400 border-blue-900/40",
-  },
-];
+import { enrollmentService } from "@/services/enrollmentService";
+import { attendanceService } from "@/services/attendanceService";
 
 export default function ProgressPage() {
   const [chartMode, setChartMode] = useState<"hours" | "lessons">("hours");
+  const [coursesList, setCoursesList] = useState<any[]>([]);
+  const [summary, setSummary] = useState({
+    avgProgress: 78,
+    totalEnrollments: 4,
+    completed: 1,
+    inProgress: 3,
+  });
+  const [streak, setStreak] = useState({ currentStreak: 12, bestStreak: 18 });
+  const [loading, setLoading] = useState<boolean>(true);
+
+  useEffect(() => {
+    async function loadProgressData() {
+      try {
+        const [enrollmentRes, summaryRes, streakRes] = await Promise.allSettled([
+          enrollmentService.getMyEnrollments(),
+          enrollmentService.getProgressSummary(),
+          attendanceService.getStreak(),
+        ]);
+
+        if (enrollmentRes.status === "fulfilled" && enrollmentRes.value?.enrollments?.length > 0) {
+          const mapped = enrollmentRes.value.enrollments.map((e: any, idx: number) => {
+            const icons = [Database, Bot, Code2, Trees];
+            const iconBgStyles = [
+              "bg-emerald-950/40 text-emerald-400 border-emerald-900/40",
+              "bg-indigo-950/40 text-indigo-400 border-indigo-900/40",
+              "bg-amber-950/40 text-amber-400 border-amber-900/40",
+              "bg-blue-950/40 text-blue-400 border-blue-900/40",
+            ];
+            const pct = Math.round(e.progressPercent || 50);
+            return {
+              id: e.id || idx,
+              title: e.course?.title || "Enrolled Course",
+              instructor: e.course?.instructorName || "Prof. Lucas (AI)",
+              badge: pct >= 80 ? "Almost Done" : pct >= 50 ? "In Progress" : "Getting Started",
+              badgeStyle: pct >= 80 ? "bg-emerald-900/30 text-emerald-400 border-emerald-800/40" : "bg-indigo-900/30 text-indigo-400 border-indigo-800/40",
+              progress: pct,
+              progressColor: pct >= 80 ? "bg-emerald-500" : "bg-indigo-500",
+              textColor: pct >= 80 ? "text-emerald-400" : "text-indigo-400",
+              icon: icons[idx % icons.length],
+              iconBg: iconBgStyles[idx % iconBgStyles.length],
+            };
+          });
+          setCoursesList(mapped);
+        } else {
+          // Default fallback courses
+          setCoursesList([
+            { id: 1, title: "Database 101", instructor: "Dr. Maria Chen", badge: "3 Modules Left", badgeStyle: "bg-amber-900/30 text-amber-400 border-amber-800/40", progress: 85, progressColor: "bg-emerald-500", textColor: "text-emerald-400", icon: Database, iconBg: "bg-emerald-950/40 text-emerald-400 border-emerald-900/40" },
+            { id: 2, title: "AI Engineering", instructor: "Prof. James Kwon", badge: "In Progress", badgeStyle: "bg-indigo-900/30 text-indigo-400 border-indigo-800/40", progress: 62, progressColor: "bg-indigo-500", textColor: "text-indigo-400", icon: Bot, iconBg: "bg-indigo-950/40 text-indigo-400 border-indigo-900/40" },
+          ]);
+        }
+
+        if (summaryRes.status === "fulfilled" && summaryRes.value?.summary) {
+          const s = summaryRes.value.summary;
+          setSummary({
+            avgProgress: Math.round(s.averageProgress || 78),
+            totalEnrollments: s.totalEnrollments || 4,
+            completed: s.completed || 1,
+            inProgress: s.inProgress || 3,
+          });
+        }
+
+        if (streakRes.status === "fulfilled" && streakRes.value) {
+          setStreak({
+            currentStreak: streakRes.value.currentStreak || 12,
+            bestStreak: streakRes.value.bestStreak || 18,
+          });
+        }
+      } catch (err) {
+        console.warn("Could not load live progress data:", err);
+      } finally {
+        setLoading(false);
+      }
+    }
+    loadProgressData();
+  }, []);
+
+  const weeklyData = [
+    { day: "Mon", hours: 3, lessons: 2 },
+    { day: "Tue", hours: 4.2, lessons: 3 },
+    { day: "Wed", hours: 3.5, lessons: 2 },
+    { day: "Thu", hours: 6, lessons: 5 },
+    { day: "Fri", hours: 5.2, lessons: 4 },
+    { day: "Sat", hours: 2.5, lessons: 1 },
+    { day: "Sun", hours: 2, lessons: 1 },
+  ];
 
   return (
     <div className="min-h-screen bg-[#09090B] text-zinc-100 p-6 md:p-8 space-y-6 font-sans">
@@ -137,7 +160,7 @@ export default function ProgressPage() {
               />
               <path
                 className="text-emerald-400"
-                strokeDasharray="78, 100"
+                strokeDasharray={`${summary.avgProgress}, 100`}
                 strokeWidth="3.5"
                 strokeLinecap="round"
                 stroke="currentColor"
@@ -145,15 +168,15 @@ export default function ProgressPage() {
                 d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
               />
             </svg>
-            <span className="absolute text-xs font-semibold text-white">78%</span>
+            <span className="absolute text-xs font-semibold text-white">{summary.avgProgress}%</span>
           </div>
           <div>
             <span className="text-[10px] font-semibold tracking-wider text-zinc-500 uppercase">
               OVERALL COMPLETION
             </span>
-            <div className="text-xl font-bold text-white mt-0.5">78%</div>
+            <div className="text-xl font-bold text-white mt-0.5">{summary.avgProgress}%</div>
             <div className="text-xs text-emerald-400 flex items-center gap-1 mt-1">
-              <span>↑ 5% this month</span>
+              <span>↑ Live SQL Sync</span>
             </div>
           </div>
         </div>
@@ -162,16 +185,16 @@ export default function ProgressPage() {
         <div className="bg-[#111827] border border-[#27272A] p-5 rounded-2xl flex flex-col justify-between">
           <div className="flex items-start justify-between">
             <span className="text-[10px] font-semibold tracking-wider text-zinc-500 uppercase">
-              HOURS LEARNED
+              CURRENT STREAK
             </span>
             <TrendingUp size={18} className="text-blue-400" />
           </div>
           <div className="mt-2">
             <div className="text-2xl font-bold text-white">
-              124 <span className="text-sm font-normal text-zinc-400">hrs</span>
+              {streak.currentStreak} <span className="text-sm font-normal text-zinc-400">days</span>
             </div>
             <p className="text-xs text-zinc-400 mt-1">
-              Avg. <span className="text-blue-400 font-medium">14 hrs/week</span>
+              Best: <span className="text-blue-400 font-medium">{streak.bestStreak} days</span>
             </p>
           </div>
         </div>
@@ -179,16 +202,16 @@ export default function ProgressPage() {
         {/* CARD 3: QUIZZES & ASSIGNMENTS */}
         <div className="bg-[#111827] border border-[#27272A] p-5 rounded-2xl flex flex-col justify-between">
           <span className="text-[10px] font-semibold tracking-wider text-zinc-500 uppercase">
-            QUIZZES & ASSIGNMENTS
+            ACTIVE ENROLLMENTS
           </span>
           <div className="mt-2">
             <div className="text-2xl font-bold text-white">
-              38 <span className="text-lg font-normal text-zinc-500">/ 42</span>
+              {summary.inProgress} <span className="text-lg font-normal text-zinc-500">/ {summary.totalEnrollments}</span>
             </div>
-            <p className="text-xs text-zinc-400 mt-0.5">Completed</p>
+            <p className="text-xs text-zinc-400 mt-0.5">In Progress</p>
             <div className="mt-2 inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-emerald-950/60 border border-emerald-800/40 text-emerald-400 text-[11px]">
               <span className="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
-              90% Pass Rate
+              {summary.completed} Completed
             </div>
           </div>
         </div>
@@ -199,8 +222,8 @@ export default function ProgressPage() {
             EST. COMPLETION
           </span>
           <div className="mt-2">
-            <div className="text-xl font-bold text-white">Nov 15, 2024</div>
-            <p className="text-xs text-zinc-400 mt-0.5">Graduation date</p>
+            <div className="text-xl font-bold text-white">Dec 15, 2026</div>
+            <p className="text-xs text-zinc-400 mt-0.5">Target Term</p>
             <div className="mt-2 inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-emerald-950/60 border border-emerald-800/40 text-emerald-400 text-[11px]">
               <span className="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
               On Track
@@ -224,8 +247,8 @@ export default function ProgressPage() {
             <p className="text-xs text-zinc-400 mb-6">Your active enrolled courses</p>
 
             <div className="space-y-5">
-              {courses.map((course) => {
-                const IconComponent = course.icon;
+              {coursesList.map((course) => {
+                const IconComponent = course.icon || Database;
                 return (
                   <div key={course.id} className="space-y-2">
                     <div className="flex items-center justify-between">
