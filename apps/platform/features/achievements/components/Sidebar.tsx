@@ -1,17 +1,49 @@
-﻿'use client'
+"use client";
 
+import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { Trophy, Award, Star, Zap, ArrowRight, Crown, Medal } from 'lucide-react'
+import { achievementService, ActivityLogItem } from '@/services/achievementService'
+import { attendanceService } from '@/services/attendanceService'
 
 // ============================================
 // Sidebar Summary Component
 // ============================================
 function SidebarSummary() {
+  const [earnedCount, setEarnedCount] = useState<number>(28)
+  const [totalXp, setTotalXp] = useState<number>(1250)
+  const [streakVal, setStreakVal] = useState<number>(12)
+
+  useEffect(() => {
+    async function loadStats() {
+      try {
+        const [achRes, streakRes] = await Promise.allSettled([
+          achievementService.getAchievements(),
+          attendanceService.getStreak(),
+        ])
+
+        if (achRes.status === 'fulfilled' && achRes.value?.achievements) {
+          const unlocked = achRes.value.achievements.filter((a) => a.isUnlocked)
+          setEarnedCount(unlocked.length)
+          const xp = unlocked.reduce((acc, curr) => acc + (curr.xpPoints || 100), 0)
+          if (xp > 0) setTotalXp(xp)
+        }
+
+        if (streakRes.status === 'fulfilled' && streakRes.value?.currentStreak) {
+          setStreakVal(streakRes.value.currentStreak)
+        }
+      } catch (err) {
+        // Fallback
+      }
+    }
+    loadStats()
+  }, [])
+
   const stats = [
-    { icon: Trophy, label: 'Earned', value: '28', color: 'text-yellow-400' },
+    { icon: Trophy, label: 'Earned', value: String(earnedCount), color: 'text-yellow-400' },
     { icon: Award, label: 'In Progress', value: '7', color: 'text-blue-400' },
-    { icon: Star, label: 'Total XP', value: '1,250', color: 'text-purple-400' },
-    { icon: Zap, label: 'Day Streak', value: '12', color: 'text-orange-400' }
+    { icon: Star, label: 'Total XP', value: totalXp.toLocaleString(), color: 'text-purple-400' },
+    { icon: Zap, label: 'Day Streak', value: String(streakVal), color: 'text-orange-400' }
   ]
 
   return (
@@ -44,17 +76,38 @@ function SidebarSummary() {
 // Sidebar Recent Achievements Component
 // ============================================
 function SidebarRecentAchievements() {
-  const recentAchievements = [
-    { title: 'Perfect Attendance', description: 'Attend 10 classes without any absence', date: 'May 20, 2024', xp: '+200 XP', icon: '🎯' },
-    { title: 'Code Starter', description: 'Submit your first assignment', date: 'May 18, 2024', xp: '+100 XP', icon: '💻' },
-    { title: 'Quick Learner', description: 'Complete 5 lessons in a day', date: 'May 17, 2024', xp: '+150 XP', icon: '📚' }
-  ]
+  const [recent, setRecent] = useState<Array<{ title: string; description: string; date: string; xp: string; icon: string }>>([
+    { title: 'Perfect Attendance', description: 'Attend 10 classes without any absence', date: 'May 20, 2026', xp: '+200 XP', icon: '🎯' },
+    { title: 'Code Starter', description: 'Submit your first assignment', date: 'May 18, 2026', xp: '+100 XP', icon: '💻' },
+    { title: 'Quick Learner', description: 'Complete 5 lessons in a day', date: 'May 17, 2026', xp: '+150 XP', icon: '📚' }
+  ])
+
+  useEffect(() => {
+    async function loadRecentFeed() {
+      try {
+        const feed = await achievementService.getActivityFeed(3, 0)
+        if (feed.activities && feed.activities.length > 0) {
+          const mapped = feed.activities.map((item: ActivityLogItem) => ({
+            title: item.title,
+            description: item.subtitle || `Completed on ${new Date(item.createdAt).toLocaleDateString()}`,
+            date: new Date(item.createdAt).toLocaleDateString('en-US', { month: 'short', day: 'numeric' }),
+            xp: '+100 XP',
+            icon: item.type.includes('ASSIGNMENT') ? '💻' : item.type.includes('ATTENDANCE') ? '🎯' : '🏆',
+          }))
+          setRecent(mapped)
+        }
+      } catch (err) {
+        // Fallback
+      }
+    }
+    loadRecentFeed()
+  }, [])
 
   return (
     <div className="bg-[#111827] border border-[#27272A] rounded-xl p-4">
       <h3 className="text-sm font-semibold text-white mb-3">Recent Achievements</h3>
       <div className="space-y-3">
-        {recentAchievements.map((item, index) => (
+        {recent.map((item, index) => (
           <div key={index} className="flex items-start gap-2.5 p-2.5 rounded-lg bg-[#1F2937] hover:bg-[#2A2A3A] transition border border-transparent hover:border-[#3B82F6]/30">
             <div className="w-8 h-8 rounded-lg bg-[#220066] flex items-center justify-center flex-shrink-0 text-base">{item.icon}</div>
             <div className="flex-1 min-w-0">

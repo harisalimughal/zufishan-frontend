@@ -10,6 +10,7 @@ import {
   ArrowRight
 } from "lucide-react";
 
+import { useAuth } from "@/context/AuthContext";
 import SocialLoginButtons from "./SocialLoginButtons";
 
 interface LoginFormProps {
@@ -22,17 +23,16 @@ export default function LoginForm({
   onOpenSignUp
 }: LoginFormProps) {
   const router = useRouter();
+  const { login } = useAuth();
 
   const [email, setEmail] = useState("");
-  const [password, setPassword] =
-    useState("");
-  const [showPassword, setShowPassword] =
-    useState(false);
-  const [rememberMe, setRememberMe] =
-    useState(true);
+  const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
+  const [rememberMe, setRememberMe] = useState(true);
   const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
 
-  const handleLogin = (
+  const handleLogin = async (
     e: React.FormEvent
   ) => {
     e.preventDefault();
@@ -44,7 +44,15 @@ export default function LoginForm({
       return;
     }
 
-    router.push("/dashboard");
+    setLoading(true);
+    try {
+      await login(email, password);
+      router.push("/dashboard");
+    } catch (err: any) {
+      setError(err.response?.data?.message || err.message || "Invalid email or password");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (

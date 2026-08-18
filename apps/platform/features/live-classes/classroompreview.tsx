@@ -7,6 +7,7 @@ import {
   Send, Download, ThumbsUp, Smile, ChevronLeft,
   Users, MoreVertical, X, Volume2, VolumeX
 } from "lucide-react";
+import { messagingService } from "@/services/messagingService";
 
 // ─── Types ───────────────────────────────────────────────────────────────────
 
@@ -234,7 +235,7 @@ export function ClassroomPreview() {
   const studentCount = presentStudents.length + 243;
 
   // Send chat message
-  const handleSend = () => {
+  const handleSend = async () => {
     const text = chatInput.trim();
     if (!text || isLeft) return;
     const userMsg: ChatMessage = {
@@ -244,6 +245,13 @@ export function ClassroomPreview() {
     setMessages((prev) => [...prev, userMsg]);
     setChatInput("");
     setIsTyping(true);
+
+    try {
+      await messagingService.sendGroupMessage("live-class-1", "current-user", text);
+    } catch (err) {
+      // Offline fallback
+    }
+
     setTimeout(() => {
       setIsTyping(false);
       const aiMsg: ChatMessage = {

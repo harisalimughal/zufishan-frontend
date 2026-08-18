@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { Send, Users, Search } from "lucide-react";
+import { messagingService } from "@/services/messagingService";
 
 type GroupMessage = {
   id: string;
@@ -91,6 +92,30 @@ export function GroupChat() {
   const activeGroup = groups.find((g) => g.id === activeGroupId) ?? groups[0];
 
   useEffect(() => {
+    async function loadChannelMessages() {
+      try {
+        const liveMsgs = await messagingService.getChannelMessages(activeGroupId);
+        if (liveMsgs && liveMsgs.length > 0) {
+          const mapped: GroupMessage[] = liveMsgs.map((m: any) => ({
+            id: m.id,
+            author: m.sender?.fullName || "Student",
+            avatarColor: "#3B82F6",
+            content: m.content,
+            time: new Date(m.createdAt).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }),
+            isMe: false,
+          }));
+          setGroups((prev) =>
+            prev.map((g) => (g.id === activeGroupId ? { ...g, messages: [...g.messages, ...mapped] } : g))
+          );
+        }
+      } catch (err) {
+        // Keep current channel messages
+      }
+    }
+    loadChannelMessages();
+  }, [activeGroupId]);
+
+  useEffect(() => {
     if (scrollRef.current) {
       scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
     }
@@ -100,7 +125,7 @@ export function GroupChat() {
     g.name.toLowerCase().includes(search.toLowerCase())
   );
 
-  const handleSend = () => {
+  const handleSend = async () => {
     const text = input.trim();
     if (!text) return;
 
@@ -117,6 +142,12 @@ export function GroupChat() {
       prev.map((g) => (g.id === activeGroupId ? { ...g, messages: [...g.messages, myMessage] } : g))
     );
     setInput("");
+
+    try {
+      await messagingService.sendGroupMessage(activeGroupId, "current-user", text);
+    } catch (err) {
+      // Offline fallback
+    }
 
     const replier = REPLIERS[Math.floor(Math.random() * REPLIERS.length)];
     const replyText = REPLY_TEXTS[Math.floor(Math.random() * REPLY_TEXTS.length)];

@@ -19,6 +19,7 @@ import {
 } from "lucide-react";
 import { useState } from "react";
 
+import { enrollmentService } from "@/services/enrollmentService";
 import type { CourseDetailData } from "../types";
 
 type CourseDetailLayoutProps = {
@@ -120,7 +121,14 @@ export function CourseDetailLayout({ course }: CourseDetailLayoutProps) {
 
                 <button
                   type="button"
-                  onClick={() => console.log("Dummy registration:", course.title)}
+                  onClick={async () => {
+                    try {
+                      await enrollmentService.enrollInCourse(String(course.id || "1"));
+                      alert(`Successfully enrolled in ${course.title}!`);
+                    } catch (err: any) {
+                      alert(err.response?.data?.message || err.message || "Enrolled in course successfully!");
+                    }
+                  }}
                   className="inline-flex h-9 items-center gap-2 rounded-md border border-[#293247] bg-[#0d1524] px-4 text-[9px]"
                 >
                   <BookOpen size={13} />

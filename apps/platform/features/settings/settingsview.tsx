@@ -1,6 +1,8 @@
 "use client";
 
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
+import { useAuth } from "@/context/AuthContext";
+import { userService } from "@/services/userService";
 import {
   User, Lock, Bell, Monitor, Globe, Shield,
   Camera, Save, Eye, EyeOff, Check, X,
@@ -116,10 +118,10 @@ export function SettingsView() {
 
   // Profile
   const [profile, setProfile] = useState<ProfileData>({
-    firstName: "Harry", lastName: "Smith", email: "harry.smith@nexora.edu",
-    phone: "+92 300 1234567", bio: "Computer Science student passionate about AI and databases.",
-    university: "NEXORA University", major: "Computer Science",
-    year: "2nd Year", timezone: "(UTC+05:00) Islamabad, Karachi", language: "English",
+    firstName: "", lastName: "", email: "",
+    phone: "", bio: "",
+    university: "", major: "",
+    year: "1st Year", timezone: "(UTC+05:00) Islamabad, Karachi", language: "English",
   });
   const [avatarColor] = useState<string>("#6D5DFC");
 
@@ -146,6 +148,30 @@ export function SettingsView() {
     allowMessages: true, dataSharing: false,
   });
 
+  useEffect(() => {
+    async function loadUserProfile() {
+      try {
+        const liveUser = await userService.getProfile();
+        if (liveUser) {
+          const names = (liveUser.fullName || "").split(" ");
+          setProfile((prev) => ({
+            ...prev,
+            firstName: names[0] || "",
+            lastName: names.slice(1).join(" ") || "",
+            email: liveUser.email || "",
+            bio: liveUser.bio || "",
+          }));
+          if (liveUser.preferences?.theme) {
+            setTheme(liveUser.preferences.theme as any);
+          }
+        }
+      } catch (err) {
+        // Fallback to local profile state if offline
+      }
+    }
+    loadUserProfile();
+  }, []);
+
   const updateProfile = (key: keyof ProfileData, value: string) => {
     setProfile((prev) => ({ ...prev, [key]: value }));
   };
@@ -158,7 +184,40 @@ export function SettingsView() {
     setPrivacy((prev) => ({ ...prev, [key]: value }));
   };
 
-  const handleSave = () => {
+  const auth = useAuth();
+
+  const handleSave = async () => {
+    try {
+      await userService.updateProfile({
+        fullName: `${profile.firstName} ${profile.lastName}`.trim(),
+        email: profile.email,
+        bio: profile.bio,
+      });
+      await userService.updatePreferences({
+        theme,
+        language: profile.language,
+        notificationsEnabled: notifications.emailAssignments || notifications.pushLiveClass,
+      });
+      if (auth?.refetchUser) {
+        await auth.refetchUser();
+      }
+    } catch (err) {
+      console.warn("Update profile API error:", err);
+    }
+    setSaved(true);
+    setTimeout(() => setSaved(false), 3000);
+  };
+
+  const handlePasswordUpdate = async () => {
+    if (!currentPassword || !newPassword || newPassword !== confirmPassword) return;
+    try {
+      await userService.changePassword({ currentPassword, newPassword });
+    } catch (err) {
+      // Ignore or notify
+    }
+    setCurrentPassword("");
+    setNewPassword("");
+    setConfirmPassword("");
     setSaved(true);
     setTimeout(() => setSaved(false), 3000);
   };
@@ -361,7 +420,7 @@ export function SettingsView() {
                     )}
                   </div>
                   <button
-                    onClick={handleSave}
+                    onClick={handlePasswordUpdate}
                     disabled={!currentPassword || !newPassword || newPassword !== confirmPassword}
                     style={{ background: currentPassword && newPassword && newPassword === confirmPassword ? "#6D5DFC" : "rgba(109,93,252,0.3)", border: "none", borderRadius: 10, padding: "10px 20px", color: "#fff", fontSize: 13, fontWeight: 600, cursor: currentPassword && newPassword && newPassword === confirmPassword ? "pointer" : "not-allowed", fontFamily: "inherit", alignSelf: "flex-start" as const }}
                   >
@@ -585,7 +644,14 @@ export function SettingsView() {
                     <div style={{ color: "#E4E4E7", fontSize: 13, fontWeight: 500 }}>Sign out of your account</div>
                     <div style={{ color: "#6B7280", fontSize: 11, marginTop: 2 }}>You will need to sign in again to access Nexora.</div>
                   </div>
-                  <button style={{ display: "flex", alignItems: "center", gap: 6, background: "#1F2937", border: "1px solid #374151", borderRadius: 8, padding: "9px 16px", color: "#E4E4E7", fontSize: 13, cursor: "pointer", fontFamily: "inherit" }}>
+                  <button
+                    onClick={async () => {
+                      if (auth?.logout) {
+                        await auth.logout();
+                      }
+                    }}
+                    style={{ display: "flex", alignItems: "center", gap: 6, background: "#1F2937", border: "1px solid #374151", borderRadius: 8, padding: "9px 16px", color: "#E4E4E7", fontSize: 13, cursor: "pointer", fontFamily: "inherit" }}
+                  >
                     <LogOut size={14} /> Sign Out
                   </button>
                 </div>

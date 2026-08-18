@@ -1,4 +1,4 @@
-﻿'use client'
+"use client";
 
 import { journeyStats } from '../data/achievementsData'
 

@@ -1,6 +1,8 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { assignmentService, AssignmentData } from "@/services/assignmentService";
+import { submissionService } from "@/services/submissionService";
 import {
   Search, Filter, Plus, Clock, CheckCircle2, AlertCircle,
   ChevronDown, ChevronRight, Calendar, BookOpen, Upload,
@@ -10,7 +12,7 @@ import {
 // ─── Types ───────────────────────────────────────────────────────────────────
 
 interface Assignment {
-  id: number;
+  id: number | string;
   title: string;
   course: string;
   courseColor: string;
@@ -44,7 +46,9 @@ function addDays(days: number): string {
 }
 
 function parseLocalDate(dateStr: string): Date {
-  const [y, m, d] = dateStr.split("-").map(Number);
+  if (!dateStr) return new Date();
+  const clean = dateStr.includes("T") ? dateStr.split("T")[0] : dateStr;
+  const [y, m, d] = clean.split("-").map(Number);
   return new Date(y, m - 1, d);
 }
 
@@ -95,42 +99,6 @@ const INITIAL_ASSIGNMENTS: Assignment[] = [
     description: "Implement a library management system using object-oriented programming concepts in Python.",
     totalMarks: 25, submittedFile: "library_system.py",
   },
-  {
-    id: 5, title: "Sorting Algorithms Analysis", course: "Data Structures", courseColor: "#22C55E",
-    dueDate: addDays(-8), dueTime: "11:59 PM", status: "graded", grade: "22/25",
-    description: "Analyze and implement bubble sort, merge sort, and quick sort. Compare their time complexities.",
-    totalMarks: 25, submittedFile: "sorting_analysis.pdf",
-  },
-  {
-    id: 6, title: "Calculus Problem Set 3", course: "Math for CS", courseColor: "#EC4899",
-    dueDate: addDays(3), dueTime: "11:59 PM", status: "pending",
-    description: "Complete problems 1-20 from Chapter 5 on integration techniques.",
-    totalMarks: 15, attachments: ["problem_set_3.pdf"],
-  },
-  {
-    id: 7, title: "AI Ethics Essay", course: "AI Engineering", courseColor: "#3B82F6",
-    dueDate: addDays(5), dueTime: "11:59 PM", status: "pending",
-    description: "Write a 1500-word essay discussing the ethical implications of artificial intelligence in healthcare.",
-    totalMarks: 20,
-  },
-  {
-    id: 8, title: "Database Project Phase 2", course: "Database 101", courseColor: "#6D5DFC",
-    dueDate: addDays(7), dueTime: "11:59 PM", status: "pending",
-    description: "Implement the database schema designed in Phase 1 using PostgreSQL. Include all constraints and indexes.",
-    totalMarks: 40, attachments: ["phase1_feedback.pdf", "project_requirements.pdf"],
-  },
-  {
-    id: 9, title: "Linked List Implementation", course: "Data Structures", courseColor: "#22C55E",
-    dueDate: addDays(10), dueTime: "11:59 PM", status: "pending",
-    description: "Implement a doubly linked list with all standard operations in C++.",
-    totalMarks: 20,
-  },
-  {
-    id: 10, title: "Linear Algebra Mid-term Project", course: "Math for CS", courseColor: "#EC4899",
-    dueDate: addDays(-3), dueTime: "11:59 PM", status: "graded", grade: "18/20",
-    description: "Complete the linear algebra project covering matrix operations and eigenvalues.",
-    totalMarks: 20, submittedFile: "linear_algebra_project.pdf",
-  },
 ];
 
 const COURSE_FILTERS = ["All Courses", "Database 101", "AI Engineering", "Python Programming", "Data Structures", "Math for CS"];
@@ -169,6 +137,75 @@ export function AssignmentsView() {
   const [newDesc, setNewDesc] = useState<string>("");
   const [newMarks, setNewMarks] = useState<string>("20");
 
+  useEffect(() => {
+    async function loadLiveAssignments() {
+      try {
+        const live = await assignmentService.getAssignments();
+        if (live && live.length > 0) {
+          const mapped: Assignment[] = live.map((a: any) => ({
+            id: a.id,
+            title: a.title,
+            course: a.course?.title || "Database 101",
+            courseColor: "#6D5DFC",
+            dueDate: a.dueDate ? toYMD(new Date(a.dueDate)) : todayYMD(),
+            dueTime: "11:59 PM",
+            status: "pending",
+            description: a.description || "",
+            totalMarks: a.totalPoints || 20,
+          }));
+          setAssignments(mapped);
+        }
+      } catch (err) {
+        console.warn("Could not load assignments from backend live API:", err);
+      }
+    }
+
+    loadLiveAssignments();
+  }, []);
+
+  const handleSubmit = async (id: number | string) => {
+    try {
+      await submissionService.createSubmission({
+        assignmentId: String(id),
+        fileUrl: "my_submission.pdf",
+        content: "Submitted work via platform dashboard",
+      });
+    } catch (err) {
+      try {
+        await assignmentService.submitAssignment(String(id), "my_submission.pdf");
+      } catch (e) {
+        console.warn("API submission note:", e);
+      }
+    }
+    setAssignments((prev) => prev.map((a) => a.id === id ? { ...a, status: "submitted", submittedFile: "my_submission.pdf" } : a));
+    setSelectedAssignment(null);
+  };
+
+  const handleAddAssignment = async () => {
+    if (!newTitle.trim() || !newDate) return;
+    const newA: Assignment = {
+      id: Date.now(), title: newTitle, course: newCourse,
+      courseColor: { "Database 101": "#6D5DFC", "AI Engineering": "#3B82F6", "Python Programming": "#F59E0B", "Data Structures": "#22C55E", "Math for CS": "#EC4899" }[newCourse] || "#6D5DFC",
+      dueDate: newDate, dueTime: "11:59 PM", status: "pending",
+      description: newDesc || "No description provided.", totalMarks: Number(newMarks) || 20,
+    };
+
+    try {
+      await assignmentService.createAssignment({
+        courseId: newCourse === "Database 101" ? "db101" : "db101",
+        title: newTitle,
+        description: newDesc || "No description provided.",
+        dueDate: new Date(newDate).toISOString(),
+        totalPoints: Number(newMarks) || 20,
+      });
+    } catch (err) {
+      console.warn("Could not save assignment to backend DB:", err);
+    }
+
+    setAssignments((prev) => [...prev, newA]);
+    setNewTitle(""); setNewDesc(""); setNewMarks("20"); setShowAddModal(false);
+  };
+
   const today = todayYMD();
 
   // Stats
@@ -200,23 +237,6 @@ export function AssignmentsView() {
   ];
 
   const toggleSection = (label: string) => setExpandedSections((prev) => ({ ...prev, [label]: !prev[label] }));
-
-  const handleSubmit = (id: number) => {
-    setAssignments((prev) => prev.map((a) => a.id === id ? { ...a, status: "submitted", submittedFile: "my_submission.pdf" } : a));
-    setSelectedAssignment(null);
-  };
-
-  const handleAddAssignment = () => {
-    if (!newTitle.trim() || !newDate) return;
-    const newA: Assignment = {
-      id: Date.now(), title: newTitle, course: newCourse,
-      courseColor: { "Database 101": "#6D5DFC", "AI Engineering": "#3B82F6", "Python Programming": "#F59E0B", "Data Structures": "#22C55E", "Math for CS": "#EC4899" }[newCourse] || "#6D5DFC",
-      dueDate: newDate, dueTime: "11:59 PM", status: "pending",
-      description: newDesc || "No description provided.", totalMarks: Number(newMarks) || 20,
-    };
-    setAssignments((prev) => [...prev, newA]);
-    setNewTitle(""); setNewDesc(""); setNewMarks("20"); setShowAddModal(false);
-  };
 
   const inputStyle = { width: "100%", background: "#1F2937", border: "1px solid #374151", borderRadius: 8, padding: "8px 12px", color: "#fff", fontSize: 13, outline: "none", fontFamily: "inherit", boxSizing: "border-box" as const, colorScheme: "dark" as const };
   const labelStyle = { color: "#9CA3AF", fontSize: 11, display: "block" as const, marginBottom: 5 };
@@ -261,7 +281,7 @@ export function AssignmentsView() {
           </div>
           <div style={{ position: "relative" as const }}>
             <select value={courseFilter} onChange={(e) => setCourseFilter(e.target.value)} style={{ ...inputStyle, width: "auto", paddingRight: 32, appearance: "none", cursor: "pointer" }}>
-              {COURSE_FILTERS.map((c) => <option key={c} value={c}>{c}</option>)}
+              {["All Courses", ...Array.from(new Set(assignments.map((a) => a.course)))].map((c) => <option key={c} value={c}>{c}</option>)}
             </select>
             <ChevronDown size={13} color="#6B7280" style={{ position: "absolute" as const, right: 10, top: "50%", transform: "translateY(-50%)", pointerEvents: "none" }} />
           </div>

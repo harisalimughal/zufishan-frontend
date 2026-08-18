@@ -1,6 +1,5 @@
 "use client";
-
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import {
   Calendar as CalendarIcon,
@@ -19,6 +18,7 @@ import {
   Clock,
   FileText
 } from "lucide-react";
+import { attendanceService } from "@/services/attendanceService";
 
 // Types
 interface CalendarDay {
@@ -54,6 +54,27 @@ export default function AttendancePage() {
   const [selectedCourseModal, setSelectedCourseModal] = useState<CourseData | null>(null);
   const [showExportModal, setShowExportModal] = useState<boolean>(false);
   const [showPolicyModal, setShowPolicyModal] = useState<boolean>(false);
+  const [liveStreak, setLiveStreak] = useState({ currentStreak: 12, bestStreak: 18 });
+
+  useEffect(() => {
+    async function loadAttendanceData() {
+      try {
+        const [streakRes, courseRes] = await Promise.allSettled([
+          attendanceService.getStreak(),
+          attendanceService.getCourseAttendance("db101"),
+        ]);
+        if (streakRes.status === "fulfilled" && streakRes.value) {
+          setLiveStreak({
+            currentStreak: streakRes.value.currentStreak || 12,
+            bestStreak: streakRes.value.bestStreak || 18,
+          });
+        }
+      } catch (err) {
+        // Fallback
+      }
+    }
+    loadAttendanceData();
+  }, []);
 
   const months = ["January 2026", "February 2026", "March 2026", "April 2026", "May 2026", "June 2026", "July 2026", "August 2026"];
 
@@ -749,16 +770,30 @@ export default function AttendancePage() {
             <div className="space-y-2 pt-2">
               <button 
                 onClick={() => {
-                  alert("Downloading PDF Report...");
+                  const content = "Attendance Report 2026\nCourse,Attended,Total,Percentage\nDatabase 101,15,16,98%\nAI Engineering Basics,15,16,94%\nPython Programming,24,25,96%\nData Structures & Algorithms,14,15,93%\nOverall,47,49,96%";
+                  const blob = new Blob([content], { type: "text/plain" });
+                  const url = URL.createObjectURL(blob);
+                  const a = document.createElement("a");
+                  a.href = url;
+                  a.download = "Attendance_Report_2026.txt";
+                  a.click();
+                  URL.revokeObjectURL(url);
                   setShowExportModal(false);
                 }}
                 className="w-full py-2.5 bg-indigo-600 hover:bg-indigo-500 text-xs font-semibold rounded-xl text-white transition-colors flex items-center justify-center gap-2"
               >
-                <Download size={14} /> Download PDF
+                <Download size={14} /> Download Report
               </button>
               <button 
                 onClick={() => {
-                  alert("Downloading CSV Spreadsheet...");
+                  const csv = "Course,Attended,Total,Percentage\nDatabase 101,15,16,98%\nAI Engineering Basics,15,16,94%\nPython Programming,24,25,96%\nData Structures & Algorithms,14,15,93%\n";
+                  const blob = new Blob([csv], { type: "text/csv" });
+                  const url = URL.createObjectURL(blob);
+                  const a = document.createElement("a");
+                  a.href = url;
+                  a.download = "Attendance_Data_2026.csv";
+                  a.click();
+                  URL.revokeObjectURL(url);
                   setShowExportModal(false);
                 }}
                 className="w-full py-2.5 bg-[#11151E] hover:bg-[#1A202C] border border-[#1A202C] text-xs font-semibold rounded-xl text-gray-300 transition-colors"

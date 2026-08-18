@@ -23,4 +23,9 @@ export const assignmentService = {
   async submitAssignment(assignmentId: string, fileUrl: string): Promise<any> {
     return apiClient.post<any>(`/assignments/${assignmentId}/submit`, { fileUrl });
   },
+
+  async createAssignment(input: { courseId: string; title: string; description: string; dueDate: string; totalPoints?: number }): Promise<AssignmentData> {
+    const data = await apiClient.post<any>("/assignments", input);
+    return data.data || data;
+  },
 };

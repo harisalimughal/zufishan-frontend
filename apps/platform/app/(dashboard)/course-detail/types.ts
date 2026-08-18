@@ -14,6 +14,7 @@ export type CourseModule = {
 };
 
 export type CourseDetailData = {
+  id?: string | number;
   title: string;
   subtitle: string;
   description: string;

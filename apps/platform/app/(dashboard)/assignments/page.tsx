@@ -1,3 +1,5 @@
+"use client";
+
 import { AssignmentsView } from "@/features/assignments";
 
 export default function AssignmentsPage() {
