@@ -1,13 +1,12 @@
 "use client";
-
 import { useState } from "react";
-import { ShieldCheck, Headphones, Award } from "lucide-react"
-
+import { ShieldCheck, Headphones, Award, Shield } from "lucide-react"
 import LoginSidebar from "./LoginSidebar";
 import LoginForm from "./LoginForm";
 import SignUpModal from "./SignUpModal";
 import ThemeToggle from "./ThemeToggle";
 import LanguageSelector from "./LanguageSelector";
+import Link from "next/link";
 
 export default function LoginPage() {
   const [isDarkMode, setIsDarkMode] = useState(true);
@@ -32,15 +31,11 @@ export default function LoginPage() {
 
         {/* TOP RIGHT CONTROLS */}
         <div className="absolute top-6 right-15 z-40 flex items-center gap-5">
-          <ThemeToggle
-            isDarkMode={isDarkMode}
-            onToggle={toggleTheme}
-          />
+          <ThemeToggle isDarkMode={isDarkMode} onToggle={toggleTheme} />
           <LanguageSelector isDarkMode={isDarkMode} />
         </div>
 
         {/* INNER VERTICAL CONTENT BLOCK */}
-        {/* Wrapping the Form and Badges inside this single max-w-md block forces them to stay grouped! */}
         <div className="max-w-xl w-full mx-auto px-3 space-y-8 mt-12">
 
           {/* LOGIN FORM */}
@@ -49,9 +44,26 @@ export default function LoginPage() {
             onOpenSignUp={() => setIsSignUpOpen(true)}
           />
 
+          {/* DIVIDER */}
+          <div className="flex items-center gap-3">
+            <div className={`flex-1 border-t ${isDarkMode ? "border-[#1C1C21]" : "border-gray-200"}`} />
+            <span className={`text-xs ${isDarkMode ? "text-gray-500" : "text-gray-400"}`}>or</span>
+            <div className={`flex-1 border-t ${isDarkMode ? "border-[#1C1C21]" : "border-gray-200"}`} />
+          </div>
+
+          {/* ADMIN LOGIN BUTTON */}
+          <Link
+            href="/admin/login"
+            className={`flex items-center justify-center gap-3 w-full py-3 px-4 rounded-xl border-2 border-[#6366F1] font-semibold text-sm transition-all duration-200 hover:bg-[#6366F1] hover:text-white ${
+              isDarkMode ? "text-[#6366F1]" : "text-[#6366F1]"
+            }`}
+          >
+            <Shield size={18} />
+            Login as Admin
+          </Link>
+
           {/* TRUST BADGES */}
-          <div className={`grid grid-cols-3 gap-4 border-t pt-7 text-center w-full transition-colors duration-300 ${isDarkMode ? "border-[#1C1C21]" : "border-gray-200"
-            }`}>
+          <div className={`grid grid-cols-3 gap-4 border-t pt-7 text-center w-full transition-colors duration-300 ${isDarkMode ? "border-[#1C1C21]" : "border-gray-200"}`}>
             <div className="flex flex-col items-center">
               <ShieldCheck size={26} className="text-[#6366F1] mb-1" />
               <h5 className={`text-[11px] font-bold ${isDarkMode ? "text-gray-200" : "text-black"}`}>
@@ -59,7 +71,6 @@ export default function LoginPage() {
               </h5>
               <p className="text-[10px] text-gray-500 mt-0.5">Your data is 100% safe</p>
             </div>
-
             <div className="flex flex-col items-center">
               <Award size={26} className="text-[#6366F1] mb-1" />
               <h5 className={`text-[11px] font-bold ${isDarkMode ? "text-gray-200" : "text-black"}`}>
@@ -67,13 +78,12 @@ export default function LoginPage() {
               </h5>
               <p className="text-[10px] text-gray-500 mt-0.5">Loved by 12k+ learners</p>
             </div>
-
             <div className="flex flex-col items-center">
               <Headphones size={26} className="text-[#6366F1] mb-1" />
               <h5 className={`text-[11px] font-bold ${isDarkMode ? "text-gray-200" : "text-black"}`}>
                 24/7 Support
               </h5>
-              <p className="text-[10px] text-gray-500 mt-0.5">We're here to help</p>
+              <p className="text-[10px] text-gray-500 mt-0.5">We&apos;re here to help</p>
             </div>
           </div>
 

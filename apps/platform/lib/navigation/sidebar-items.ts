@@ -48,6 +48,9 @@ export const sidebarSections: SidebarSection[] = [
   },
   {
     label: "System",
-    items: [{ title: "Settings", href: "/settings", icon: "Settings" }]
+    items: [
+      { title: "Settings", href: "/settings", icon: "Settings" }
+    
+    ]
   }
 ];
