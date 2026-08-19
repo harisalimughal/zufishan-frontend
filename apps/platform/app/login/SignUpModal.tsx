@@ -1,8 +1,10 @@
 "use client";
 
 import React, { useState } from "react";
-import { X, Mail, Lock, ArrowRight } from "lucide-react";
+import { X, Mail, Lock, User, ArrowRight } from "lucide-react";
 import { useRouter } from "next/navigation";
+import { useAuth } from "@/context/AuthContext";
+import { ApiError } from "@/lib/apiClient";
 
 interface SignUpModalProps {
   isOpen: boolean;
@@ -16,20 +18,24 @@ export default function SignUpModal({
   isDarkMode
 }: SignUpModalProps) {
   const router = useRouter();
+  const { register } = useAuth();
 
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [error, setError] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   if (!isOpen) return null;
 
-  const handleSignUp = (e: React.FormEvent) => {
+  const handleSignUp = async (e: React.FormEvent) => {
     e.preventDefault();
 
     setError("");
 
-    if (!email || !password || !confirmPassword) {
+    if (!firstName || !lastName || !email || !password || !confirmPassword) {
       setError("Please fill all fields");
       return;
     }
@@ -39,7 +45,16 @@ export default function SignUpModal({
       return;
     }
 
-    router.push("/dashboard");
+    setIsSubmitting(true);
+    try {
+      await register({ email, password, firstName, lastName });
+      onClose();
+      router.push("/dashboard");
+    } catch (err) {
+      setError(err instanceof ApiError ? err.message : "Failed to create account");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -120,6 +135,73 @@ export default function SignUpModal({
           onSubmit={handleSignUp}
           className="space-y-4"
         >
+          {/* Name */}
+          <div className="grid grid-cols-2 gap-3">
+            <div>
+              <label className="block text-sm mb-2">
+                First Name
+              </label>
+              <div className="relative">
+                <User
+                  size={16}
+                  className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500"
+                />
+                <input
+                  type="text"
+                  placeholder="First name"
+                  value={firstName}
+                  onChange={(e) => setFirstName(e.target.value)}
+                  className={`
+                    w-full
+                    rounded-xl
+                    border
+                    pl-11
+                    pr-4
+                    py-3
+                    outline-none
+                    ${
+                      isDarkMode
+                        ? "bg-[#09090B] border-[#27272A] text-white"
+                        : "bg-white border-[#E5E7EB] text-black"
+                    }
+                  `}
+                />
+              </div>
+            </div>
+
+            <div>
+              <label className="block text-sm mb-2">
+                Last Name
+              </label>
+              <div className="relative">
+                <User
+                  size={16}
+                  className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500"
+                />
+                <input
+                  type="text"
+                  placeholder="Last name"
+                  value={lastName}
+                  onChange={(e) => setLastName(e.target.value)}
+                  className={`
+                    w-full
+                    rounded-xl
+                    border
+                    pl-11
+                    pr-4
+                    py-3
+                    outline-none
+                    ${
+                      isDarkMode
+                        ? "bg-[#09090B] border-[#27272A] text-white"
+                        : "bg-white border-[#E5E7EB] text-black"
+                    }
+                  `}
+                />
+              </div>
+            </div>
+          </div>
+
           {/* Email */}
           <div>
             <label className="block text-sm mb-2">
@@ -234,6 +316,7 @@ export default function SignUpModal({
           {/* Create Account Button */}
           <button
             type="submit"
+            disabled={isSubmitting}
             className="
               w-full
               mt-2
@@ -248,10 +331,20 @@ export default function SignUpModal({
               font-medium
               hover:bg-[#2563EB]
               transition
+              disabled:opacity-60
             "
           >
-            Create Account
-            <ArrowRight size={16} />
+            {isSubmitting ? (
+              <>
+                <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
+                Creating account…
+              </>
+            ) : (
+              <>
+                Create Account
+                <ArrowRight size={16} />
+              </>
+            )}
           </button>
         </form>
       </div>

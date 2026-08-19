@@ -300,6 +300,7 @@ export default function LoginForm({
         {/* Login */}
         <button
           type="submit"
+          disabled={loading}
           className="
             flex
             w-full
@@ -313,11 +314,21 @@ export default function LoginForm({
             text-white
             transition
             hover:bg-[#2563EB]
+            disabled:opacity-60
+            disabled:cursor-not-allowed
           "
         >
-          Login
-
-          <ArrowRight size={16} />
+          {loading ? (
+            <>
+              <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
+              Logging in…
+            </>
+          ) : (
+            <>
+              Login
+              <ArrowRight size={16} />
+            </>
+          )}
         </button>
       </form>
 
