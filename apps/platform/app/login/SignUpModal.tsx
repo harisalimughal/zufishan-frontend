@@ -45,13 +45,29 @@ export default function SignUpModal({
       return;
     }
 
+    if (
+      password.length < 8 ||
+      !/[A-Z]/.test(password) ||
+      !/[a-z]/.test(password) ||
+      !/[0-9]/.test(password)
+    ) {
+      setError(
+        "Password must be at least 8 characters and include an uppercase letter, a lowercase letter, and a number"
+      );
+      return;
+    }
+
     setIsSubmitting(true);
     try {
       await register({ email, password, firstName, lastName });
       onClose();
       router.push("/dashboard");
     } catch (err) {
-      setError(err instanceof ApiError ? err.message : "Failed to create account");
+      if (err instanceof ApiError) {
+        setError(err.errors?.[0]?.message || err.message);
+      } else {
+        setError("Failed to create account");
+      }
     } finally {
       setIsSubmitting(false);
     }
@@ -274,6 +290,9 @@ export default function SignUpModal({
                 `}
               />
             </div>
+            <p className={`mt-1.5 text-xs ${isDarkMode ? "text-[#71717A]" : "text-gray-400"}`}>
+              At least 8 characters, with an uppercase letter, a lowercase letter, and a number.
+            </p>
           </div>
 
           {/* Confirm Password */}
