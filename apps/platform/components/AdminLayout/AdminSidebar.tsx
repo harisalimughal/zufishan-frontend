@@ -2,12 +2,31 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { ArrowLeft, LayoutDashboard, LogOut, Settings, TrendingUp, Users } from "lucide-react";
+import {
+  ArrowLeft,
+  BarChart2,
+  Bell,
+  BookOpen,
+  Bot,
+  ClipboardList,
+  LayoutDashboard,
+  LogOut,
+  Settings,
+  TrendingUp,
+  Tv,
+  Users,
+} from "lucide-react";
 import { useAuth } from "@/context/AuthContext";
 
 const navigationItems = [
   { href: "/admin", label: "Dashboard", icon: LayoutDashboard },
   { href: "/admin/users", label: "Users", icon: Users },
+  { href: "/admin/courses", label: "Courses", icon: BookOpen },
+  { href: "/admin/assignments", label: "Assignments", icon: ClipboardList },
+  { href: "/admin/live-classes", label: "Live Classes", icon: Tv },
+  { href: "/admin/analytics", label: "Analytics", icon: BarChart2 },
+  { href: "/admin/announcements", label: "Announcements", icon: Bell },
+  { href: "/admin/ai-professor", label: "AI Professors", icon: Bot },
   { href: "/admin/reports", label: "Reports", icon: TrendingUp },
   { href: "/admin/settings", label: "Settings", icon: Settings },
 ];

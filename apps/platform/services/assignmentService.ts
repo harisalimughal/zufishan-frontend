@@ -7,6 +7,7 @@ export interface AssignmentData {
   description: string;
   dueDate: string;
   totalPoints: number;
+  course?: { id: string; title: string };
 }
 
 export const assignmentService = {
@@ -27,5 +28,14 @@ export const assignmentService = {
   async createAssignment(input: { courseId: string; title: string; description: string; dueDate: string; totalPoints?: number }): Promise<AssignmentData> {
     const data = await apiClient.post<any>("/assignments", input);
     return data.data || data;
+  },
+
+  async updateAssignment(id: string, input: Partial<{ title: string; description: string; dueDate: string; totalPoints: number }>): Promise<AssignmentData> {
+    const data = await apiClient.patch<any>(`/assignments/${id}`, input);
+    return data.data || data;
+  },
+
+  async deleteAssignment(id: string): Promise<{ message: string }> {
+    return apiClient.delete<{ message: string }>(`/assignments/${id}`);
   },
 };

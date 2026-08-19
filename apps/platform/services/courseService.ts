@@ -16,6 +16,19 @@ export interface Course {
   liveClassToday?: boolean;
 }
 
+export interface CourseInput {
+  title: string;
+  detailSlug: string;
+  description: string;
+  instructorName: string;
+  category: string;
+  level?: string;
+  bannerUrl?: string;
+  icon?: string;
+  iconBg?: string;
+  liveClassToday?: boolean;
+}
+
 export interface CourseResource {
   id: string;
   courseId: string;
@@ -66,5 +79,17 @@ export const courseService = {
 
   async deleteCourseResource(id: string): Promise<{ message: string }> {
     return apiClient.delete<{ message: string }>(`/resources/${id}`);
+  },
+
+  async createCourse(input: CourseInput): Promise<Course> {
+    return apiClient.post<Course>("/courses", input);
+  },
+
+  async updateCourse(id: string, input: Partial<CourseInput>): Promise<Course> {
+    return apiClient.patch<Course>(`/courses/${id}`, input);
+  },
+
+  async deleteCourse(id: string): Promise<{ message: string }> {
+    return apiClient.delete<{ message: string }>(`/courses/${id}`);
   },
 };

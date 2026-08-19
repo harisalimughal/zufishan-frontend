@@ -7,7 +7,7 @@
     "packages/*"
   ],
   "scripts": {
-    "dev": "concurrently \"npm run dev:landing\" \"npm run dev:platform\"",
+    "dev": "npm run dev -w @nexora/platform",
     "dev:landing": "npm run dev -w @nexora/landing",
     "dev:platform": "npm run dev -w @nexora/platform",
     "build": "npm run build --workspaces --if-present",
@@ -35,6 +35,7 @@
     "@types/node": "^22.15.29",
     "@types/react": "^19.1.6",
     "@types/react-dom": "^19.1.5",
+    "concurrently": "^9.1.2",
     "eslint": "^9.28.0",
     "eslint-config-next": "^15.3.3",
     "next": "^16.2.10",

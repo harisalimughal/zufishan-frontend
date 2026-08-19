@@ -1,12 +1,11 @@
 "use client";
 import { useState } from "react";
-import { ShieldCheck, Headphones, Award, Shield } from "lucide-react"
+import { ShieldCheck, Headphones, Award } from "lucide-react"
 import LoginSidebar from "./LoginSidebar";
 import LoginForm from "./LoginForm";
 import SignUpModal from "./SignUpModal";
 import ThemeToggle from "./ThemeToggle";
 import LanguageSelector from "./LanguageSelector";
-import Link from "next/link";
 
 export default function LoginPage() {
   const [isDarkMode, setIsDarkMode] = useState(true);
@@ -43,24 +42,6 @@ export default function LoginPage() {
             isDarkMode={isDarkMode}
             onOpenSignUp={() => setIsSignUpOpen(true)}
           />
-
-          {/* DIVIDER */}
-          <div className="flex items-center gap-3">
-            <div className={`flex-1 border-t ${isDarkMode ? "border-[#1C1C21]" : "border-gray-200"}`} />
-            <span className={`text-xs ${isDarkMode ? "text-gray-500" : "text-gray-400"}`}>or</span>
-            <div className={`flex-1 border-t ${isDarkMode ? "border-[#1C1C21]" : "border-gray-200"}`} />
-          </div>
-
-          {/* ADMIN LOGIN BUTTON */}
-          <Link
-            href="/admin/login"
-            className={`flex items-center justify-center gap-3 w-full py-3 px-4 rounded-xl border-2 border-[#6366F1] font-semibold text-sm transition-all duration-200 hover:bg-[#6366F1] hover:text-white ${
-              isDarkMode ? "text-[#6366F1]" : "text-[#6366F1]"
-            }`}
-          >
-            <Shield size={18} />
-            Login as Admin
-          </Link>
 
           {/* TRUST BADGES */}
           <div className={`grid grid-cols-3 gap-4 border-t pt-7 text-center w-full transition-colors duration-300 ${isDarkMode ? "border-[#1C1C21]" : "border-gray-200"}`}>
