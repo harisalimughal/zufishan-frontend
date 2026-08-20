@@ -12,7 +12,7 @@ const ThemeContext = createContext<ThemeContextValue>({
   toggleTheme: () => {}
 });
 
-const THEME_KEY = "ranenla-landing-theme";
+const THEME_KEY = "zufishan-landing-theme";
 
 export function ThemeProvider({ children }: { children: ReactNode }) {
   const [isDarkMode, setIsDarkMode] = useState(true);

@@ -12,9 +12,9 @@ export function HeaderDropdown({ selectedCourse, setSelectedCourse }: HeaderDrop
         <select
           value={selectedCourse}
           onChange={(e) => setSelectedCourse(e.target.value)}
-          className="w-full bg-[#111827] border border-[#27272A] rounded-lg pl-10 pr-8 py-2 text-white focus:outline-none focus:border-[#3B82F6] transition text-sm appearance-none cursor-pointer"
+          className="w-full bg-[#111827] border border-[#27272A] rounded-lg pl-10 pr-8 py-2 text-white focus:outline-none focus:border-[#10b981] transition text-sm appearance-none cursor-pointer"
         >
-          <option>Database 101</option>
+          <option>Tajweed Foundations</option>
           <option>Operating Systems</option>
           <option>React</option>
           <option>Data Structures</option>
@@ -22,7 +22,7 @@ export function HeaderDropdown({ selectedCourse, setSelectedCourse }: HeaderDrop
         </select>
         
         <div className="absolute left-3 top-1/2 transform -translate-y-1/2 pointer-events-none">
-          <Database size={16} className="text-[#3B82F6]" />
+          <Database size={16} className="text-[#10b981]" />
         </div>
         
         <div className="absolute right-3 top-1/2 transform -translate-y-1/2 pointer-events-none">

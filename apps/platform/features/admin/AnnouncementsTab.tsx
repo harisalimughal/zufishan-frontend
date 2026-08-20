@@ -59,7 +59,7 @@ export function AnnouncementsTab() {
           <h1 style={{ color: "#fff", fontSize: 20, fontWeight: 800, margin: 0 }}>Announcements</h1>
           <p style={{ color: "#6B7280", fontSize: 12, margin: "4px 0 0" }}>Send announcements to users.</p>
         </div>
-        <button onClick={() => setShowAddAnnouncement(true)} style={{ display: "flex", alignItems: "center", gap: 6, background: "#6D5DFC", border: "none", borderRadius: 8, padding: "9px 16px", color: "#fff", fontSize: 13, fontWeight: 600, cursor: "pointer", fontFamily: "inherit" }}>
+        <button onClick={() => setShowAddAnnouncement(true)} style={{ display: "flex", alignItems: "center", gap: 6, background: "#059669", border: "none", borderRadius: 8, padding: "9px 16px", color: "#fff", fontSize: 13, fontWeight: 600, cursor: "pointer", fontFamily: "inherit" }}>
           <Plus size={14} /> New Announcement
         </button>
       </div>
@@ -70,9 +70,9 @@ export function AnnouncementsTab() {
             <div style={{ display: "flex", alignItems: "flex-start", justifyContent: "space-between", marginBottom: 10 }}>
               <div style={{ flex: 1 }}>
                 <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 6 }}>
-                  <Bell size={15} color="#6D5DFC" />
+                  <Bell size={15} color="#059669" />
                   <span style={{ color: "#fff", fontSize: 14, fontWeight: 700 }}>{ann.title}</span>
-                  <Badge label={`To: ${ann.target}`} color="#A78BFA" bg="rgba(109,93,252,0.12)" />
+                  <Badge label={`To: ${ann.target}`} color="#34d399" bg="rgba(5,150,105,0.12)" />
                 </div>
                 <div style={{ color: "#9CA3AF", fontSize: 13, lineHeight: 1.6 }}>{ann.message}</div>
               </div>
@@ -107,7 +107,7 @@ export function AnnouncementsTab() {
                 </select>
               </div>
               <div><label style={labelStyle}>Message *</label><textarea value={newAnnMessage} onChange={(e) => setNewAnnMessage(e.target.value)} placeholder="Write your announcement..." rows={4} style={{ ...inputStyle, resize: "vertical" as const }} /></div>
-              <button onClick={handleAddAnnouncement} disabled={!newAnnTitle.trim() || !newAnnMessage.trim()} style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 6, background: newAnnTitle.trim() ? "#6D5DFC" : "rgba(109,93,252,0.3)", border: "none", borderRadius: 10, padding: 11, color: "#fff", fontSize: 13, fontWeight: 600, cursor: newAnnTitle.trim() ? "pointer" : "not-allowed", fontFamily: "inherit" }}>
+              <button onClick={handleAddAnnouncement} disabled={!newAnnTitle.trim() || !newAnnMessage.trim()} style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 6, background: newAnnTitle.trim() ? "#059669" : "rgba(5,150,105,0.3)", border: "none", borderRadius: 10, padding: 11, color: "#fff", fontSize: 13, fontWeight: 600, cursor: newAnnTitle.trim() ? "pointer" : "not-allowed", fontFamily: "inherit" }}>
                 <Send size={14} /> Send Announcement
               </button>
             </div>

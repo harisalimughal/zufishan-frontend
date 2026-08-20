@@ -38,9 +38,9 @@ const REPLY_TEXTS = [
 const INITIAL_GROUPS: Group[] = [
   {
     id: "db101",
-    name: "Database 101 Study Group",
+    name: "Tajweed Foundations Study Group",
     members: 24,
-    avatarColor: "#3B82F6",
+    avatarColor: "#10b981",
     messages: [
       { id: "1", author: "Sarah K.", avatarColor: "#EC4899", content: "Anyone free to review 3NF together before the quiz?", time: "09:12 AM" },
       { id: "2", author: "Michael T.", avatarColor: "#F59E0B", content: "I'm in! Let's do a call after class.", time: "09:14 AM" },
@@ -48,20 +48,20 @@ const INITIAL_GROUPS: Group[] = [
   },
   {
     id: "ai-eng",
-    name: "AI Engineering Cohort",
+    name: "Hadith Sciences Cohort",
     members: 41,
-    avatarColor: "#6D5DFC",
+    avatarColor: "#059669",
     messages: [
       { id: "1", author: "Priya M.", avatarColor: "#22C55E", content: "Posted the assignment notes in Smart Notes, check it out.", time: "08:40 AM" },
     ],
   },
   {
     id: "dsa",
-    name: "Study Buddies - DSA",
+    name: "Study Buddies - Fiqh",
     members: 12,
     avatarColor: "#22C55E",
     messages: [
-      { id: "1", author: "James L.", avatarColor: "#3B82F6", content: "Binary tree traversal practice set is up, who's joining?", time: "Yesterday" },
+      { id: "1", author: "James L.", avatarColor: "#10b981", content: "Binary tree traversal practice set is up, who's joining?", time: "Yesterday" },
     ],
   },
 ];
@@ -99,7 +99,7 @@ export function GroupChat() {
           const mapped: GroupMessage[] = liveMsgs.map((m: any) => ({
             id: m.id,
             author: m.sender?.fullName || "Student",
-            avatarColor: "#3B82F6",
+            avatarColor: "#10b981",
             content: m.content,
             time: new Date(m.createdAt).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }),
             isMe: false,
@@ -132,7 +132,7 @@ export function GroupChat() {
     const myMessage: GroupMessage = {
       id: `${nextIdRef.current++}`,
       author: "You",
-      avatarColor: "#6D5DFC",
+      avatarColor: "#059669",
       content: text,
       time: getTime(),
       isMe: true,
@@ -177,7 +177,7 @@ export function GroupChat() {
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               placeholder="Search groups..."
-              className="w-full bg-[#09090B] border border-[#27272A] rounded-lg pl-8 pr-3 py-2 text-xs text-white placeholder-gray-500 outline-none focus:border-[#3B82F6] transition"
+              className="w-full bg-[#09090B] border border-[#27272A] rounded-lg pl-8 pr-3 py-2 text-xs text-white placeholder-gray-500 outline-none focus:border-[#10b981] transition"
             />
           </div>
         </div>
@@ -190,7 +190,7 @@ export function GroupChat() {
                 key={group.id}
                 onClick={() => setActiveGroupId(group.id)}
                 className={`w-full flex items-center gap-3 px-4 py-3 text-left transition-colors border-l-2 ${
-                  isActive ? "bg-[#1F2937] border-l-[#3B82F6]" : "border-l-transparent hover:bg-[#1F2937]/50"
+                  isActive ? "bg-[#1F2937] border-l-[#10b981]" : "border-l-transparent hover:bg-[#1F2937]/50"
                 }`}
               >
                 <AvatarCircle initials={<Users size={16} />} color={group.avatarColor} />
@@ -233,7 +233,7 @@ export function GroupChat() {
                 </div>
                 <div
                   className={`px-4 py-2.5 rounded-2xl text-sm leading-relaxed ${
-                    msg.isMe ? "bg-[#3B82F6] text-white" : "bg-[#1F2937] border border-[#27272A] text-gray-200"
+                    msg.isMe ? "bg-[#10b981] text-white" : "bg-[#1F2937] border border-[#27272A] text-gray-200"
                   }`}
                 >
                   {msg.content}
@@ -249,12 +249,12 @@ export function GroupChat() {
             onChange={(e) => setInput(e.target.value)}
             onKeyDown={(e) => e.key === "Enter" && handleSend()}
             placeholder={`Message ${activeGroup.name}...`}
-            className="flex-1 bg-[#09090B] border border-[#27272A] rounded-xl px-4 py-2.5 text-sm text-white placeholder-gray-500 outline-none focus:border-[#3B82F6] transition"
+            className="flex-1 bg-[#09090B] border border-[#27272A] rounded-xl px-4 py-2.5 text-sm text-white placeholder-gray-500 outline-none focus:border-[#10b981] transition"
           />
           <button
             onClick={handleSend}
             disabled={!input.trim()}
-            className="bg-[#3B82F6] px-5 rounded-xl flex items-center justify-center hover:bg-blue-600 transition disabled:opacity-50 disabled:cursor-not-allowed"
+            className="bg-[#10b981] px-5 rounded-xl flex items-center justify-center hover:bg-primary-600 transition disabled:opacity-50 disabled:cursor-not-allowed"
           >
             <Send size={16} className="text-white" />
           </button>

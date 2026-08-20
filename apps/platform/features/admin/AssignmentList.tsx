@@ -38,7 +38,7 @@ export function AssignmentList({ assignments, onEdit, onDelete }: AssignmentList
                 {assignment.totalPoints}
               </td>
               <td className="whitespace-nowrap px-6 py-4 text-sm font-medium space-x-3">
-                <button onClick={() => onEdit(assignment)} className="text-[#3B82F6] hover:text-blue-400">
+                <button onClick={() => onEdit(assignment)} className="text-[#10b981] hover:text-primary-400">
                   Edit
                 </button>
                 <button onClick={() => onDelete(assignment)} className="text-red-400 hover:text-red-300">

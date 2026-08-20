@@ -1,7 +1,7 @@
 import type { Course } from "../course-catalog/types";
 
 export const REGISTERED_COURSES_KEY =
-  "ranenla-registered-courses";
+  "zufishan-registered-courses";
 
 export const REGISTERED_COURSES_EVENT =
   "registered-courses-updated";

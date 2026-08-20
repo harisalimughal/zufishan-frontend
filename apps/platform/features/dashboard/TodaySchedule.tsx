@@ -18,16 +18,16 @@ const defaultScheduleItems: ScheduleItem[] = [
   {
     id: "1",
     time: "08:00 AM",
-    title: "Database 101",
-    professor: "Prof. Lucas (AI)",
+    title: "Tajweed Foundations",
+    professor: "Ustaz Ibrahim Malik",
     isLive: true,
-    dotColor: "bg-[#3B82F6]",
+    dotColor: "bg-[#10b981]",
   },
   {
     id: "2",
     time: "11:00 AM",
-    title: "AI Engineering Basics",
-    professor: "Prof. Ava (AI)",
+    title: "Hadith Sciences: An Introduction",
+    professor: "Ustaza Maryam Siddiqui",
     isLive: false,
     dotColor: "bg-emerald-400",
   },
@@ -50,12 +50,12 @@ export function TodaySchedule() {
         const liveCourses = await courseService.getCourses();
         if (liveCourses && liveCourses.length > 0) {
           const times = ["08:00 AM", "11:00 AM", "02:00 PM", "04:30 PM"];
-          const colors = ["bg-[#3B82F6]", "bg-emerald-400", "bg-amber-400", "bg-purple-400"];
+          const colors = ["bg-[#10b981]", "bg-emerald-400", "bg-amber-400", "bg-purple-400"];
           const mapped: ScheduleItem[] = liveCourses.map((c, idx) => ({
             id: c.id,
             time: times[idx % times.length],
             title: c.title,
-            professor: c.instructorName || "Prof. Lucas (AI)",
+            professor: c.instructorName || "Ustaz Ibrahim Malik",
             isLive: Boolean(c.liveClassToday || idx === 0),
             dotColor: colors[idx % colors.length],
           }));
@@ -75,7 +75,7 @@ export function TodaySchedule() {
         <h3 className="text-sm font-semibold text-white">
           Today&apos;s Schedule
         </h3>
-        <Link href="/calendar" className="text-xs font-medium text-[#3B82F6] transition-colors hover:text-[#60A5FA]">
+        <Link href="/calendar" className="text-xs font-medium text-[#10b981] transition-colors hover:text-[#34d399]">
           View calendar
         </Link>
       </div>
@@ -93,8 +93,8 @@ export function TodaySchedule() {
             {/* Status Indicator */}
             <div className="flex flex-col items-center">
               <div
-                className={`h-2.5 w-2.5 rounded-full ${item.dotColor ?? "bg-[#3B82F6]"} ${
-                  item.isLive ? "animate-pulse shadow-sm shadow-blue-500/50" : ""
+                className={`h-2.5 w-2.5 rounded-full ${item.dotColor ?? "bg-[#10b981]"} ${
+                  item.isLive ? "animate-pulse shadow-sm shadow-primary-500/50" : ""
                 }`}
               />
             </div>
@@ -102,7 +102,7 @@ export function TodaySchedule() {
             {/* Time */}
             <div className="w-14 shrink-0">
               {item.isLive ? (
-                <span className="inline-flex rounded bg-[#3B82F6]/20 px-1.5 py-0.5 text-[10px] font-bold uppercase tracking-wider text-[#3B82F6]">
+                <span className="inline-flex rounded bg-[#10b981]/20 px-1.5 py-0.5 text-[10px] font-bold uppercase tracking-wider text-[#10b981]">
                   LIVE
                 </span>
               ) : (

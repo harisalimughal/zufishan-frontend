@@ -17,7 +17,7 @@ export default function AdminReportsPage() {
           {reports.map((report) => (
             <div
               key={report.title}
-              className="rounded-lg border border-[#27272A] p-4 transition-colors hover:border-[#3B82F6]/40"
+              className="rounded-lg border border-[#27272A] p-4 transition-colors hover:border-[#10b981]/40"
             >
               <h3 className="font-semibold text-white">{report.title}</h3>
               <p className="mt-2 text-sm text-slate-400">{report.description}</p>

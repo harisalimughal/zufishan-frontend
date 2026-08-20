@@ -45,7 +45,7 @@ export function MyCourses() {
             title: e.course!.title,
             subtitle: e.course!.description || "Enrolled Course",
             category: (e.course!.category as any) || "Programming",
-            instructor: e.course!.instructorName || "Prof. Lucas (AI)",
+            instructor: e.course!.instructorName || "Ustaz Ibrahim Malik",
             rating: e.course!.rating || 4.8,
             reviews: "500+",
             students: `${e.course!.totalStudents || 0}`,
@@ -84,7 +84,7 @@ export function MyCourses() {
           title: c.title,
           subtitle: c.description || "Interactive AI Course",
           category: (c.category as any) || "Programming",
-          instructor: c.instructorName || "Prof. Lucas (AI)",
+          instructor: c.instructorName || "Ustaz Ibrahim Malik",
           rating: c.rating || 4.8,
           reviews: "500+",
           students: `${c.totalStudents || 0}`,
@@ -162,7 +162,7 @@ export function MyCourses() {
             <div className="flex items-center gap-2">
               <GraduationCap
                 size={24}
-                className="text-violet-400"
+                className="text-primary-400"
               />
               <h1 className="text-2xl font-semibold tracking-tight">
                 My Courses
@@ -189,7 +189,7 @@ export function MyCourses() {
                 setSearchValue(event.target.value)
               }
               placeholder="Search my courses..."
-              className="h-10 w-full rounded-lg border border-[#1F2937] bg-[#0D1422] pl-10 pr-4 text-xs font-medium text-white outline-none placeholder:text-zinc-500 transition focus:border-violet-500"
+              className="h-10 w-full rounded-lg border border-[#1F2937] bg-[#0D1422] pl-10 pr-4 text-xs font-medium text-white outline-none placeholder:text-zinc-500 transition focus:border-primary-500"
             />
           </div>
         </header>
@@ -199,7 +199,7 @@ export function MyCourses() {
             Registered Courses
           </h2>
 
-          <span className="rounded-lg border border-violet-500/30 bg-violet-500/10 px-3 py-1 text-xs font-semibold text-violet-300">
+          <span className="rounded-lg border border-primary-500/30 bg-primary-500/10 px-3 py-1 text-xs font-semibold text-primary-300">
             {courses.length} registered
           </span>
         </div>
@@ -240,7 +240,7 @@ export function MyCourses() {
                   <div className="mt-4 grid grid-cols-[1fr_auto] gap-2.5 pt-4 border-t border-[#1F2937]">
                     <Link
                       href={`/course-detail/${course.slug}`}
-                      className="inline-flex h-9 items-center justify-center gap-2 rounded-lg bg-violet-600 px-3 text-xs font-semibold text-white transition hover:bg-violet-500"
+                      className="inline-flex h-9 items-center justify-center gap-2 rounded-lg bg-primary-600 px-3 text-xs font-semibold text-white transition hover:bg-primary-500"
                     >
                       <CheckCircle2 size={14} />
                       Start Course
@@ -261,7 +261,7 @@ export function MyCourses() {
           </div>
         ) : (
           <div className="mt-8 flex min-h-[380px] flex-col items-center justify-center rounded-xl border border-dashed border-[#1F2937] bg-[#0D1422]/60 px-4 text-center">
-            <BookOpen size={36} className="text-violet-400" />
+            <BookOpen size={36} className="text-primary-400" />
             <h2 className="mt-4 text-base font-semibold text-white">
               No registered courses found
             </h2>
@@ -270,7 +270,7 @@ export function MyCourses() {
             </p>
             <Link
               href="/course-catalog"
-              className="mt-5 rounded-lg bg-violet-600 px-4 py-2.5 text-xs font-semibold text-white transition hover:bg-violet-500"
+              className="mt-5 rounded-lg bg-primary-600 px-4 py-2.5 text-xs font-semibold text-white transition hover:bg-primary-500"
             >
               Browse Course Catalog
             </Link>

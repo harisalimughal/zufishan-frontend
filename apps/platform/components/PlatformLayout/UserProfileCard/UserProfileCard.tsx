@@ -46,7 +46,7 @@ export function UserProfileCard({ collapsed = false }: UserProfileCardProps) {
           collapsed ? "justify-center" : ""
         }`}
       >
-        <div className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-[#3B82F6] text-sm font-semibold text-white">
+        <div className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-[#10b981] text-sm font-semibold text-white">
           {avatarLetter}
         </div>
         {!collapsed && (

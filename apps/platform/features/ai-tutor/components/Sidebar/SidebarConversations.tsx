@@ -34,10 +34,10 @@ export function SidebarConversations() {
       {/* Header with View All button on the right */}
       <div className="flex items-center justify-between mb-2.5">
         <h3 className="text-sm font-semibold text-white flex items-center gap-1.5">
-          <Clock size={15} className="text-[#3B82F6]" />
+          <Clock size={15} className="text-[#10b981]" />
           Recent Conversations
         </h3>
-        <button className="text-[10px] text-[#3B82F6] hover:text-blue-400 transition-colors duration-300 flex items-center gap-1 group">
+        <button className="text-[10px] text-[#10b981] hover:text-primary-400 transition-colors duration-300 flex items-center gap-1 group">
           <span>View all</span>
           <ArrowRight size={12} className="group-hover:translate-x-0.5 transition-transform" />
         </button>

@@ -50,7 +50,7 @@ function SidebarSummary() {
     <div className="bg-[#111827] border border-[#27272A] rounded-xl p-4">
       <div className="flex items-center justify-between mb-3">
         <h3 className="text-sm font-semibold text-white">Achievements Summary</h3>
-        <Link href="/progress" className="text-[10px] text-[#3B82F6] hover:text-blue-400 transition flex items-center gap-1 group">
+        <Link href="/progress" className="text-[10px] text-[#10b981] hover:text-primary-400 transition flex items-center gap-1 group">
           <span>View Progress Details</span>
           <ArrowRight size={12} className="group-hover:translate-x-0.5 transition-transform" />
         </Link>
@@ -108,7 +108,7 @@ function SidebarRecentAchievements() {
       <h3 className="text-sm font-semibold text-white mb-3">Recent Achievements</h3>
       <div className="space-y-3">
         {recent.map((item, index) => (
-          <div key={index} className="flex items-start gap-2.5 p-2.5 rounded-lg bg-[#1F2937] hover:bg-[#2A2A3A] transition border border-transparent hover:border-[#3B82F6]/30">
+          <div key={index} className="flex items-start gap-2.5 p-2.5 rounded-lg bg-[#1F2937] hover:bg-[#2A2A3A] transition border border-transparent hover:border-[#10b981]/30">
             <div className="w-8 h-8 rounded-lg bg-[#220066] flex items-center justify-center flex-shrink-0 text-base">{item.icon}</div>
             <div className="flex-1 min-w-0">
               <div className="flex items-start justify-between gap-2">
@@ -116,7 +116,7 @@ function SidebarRecentAchievements() {
                   <h4 className="text-xs font-medium text-white truncate">{item.title}</h4>
                   <p className="text-[10px] text-gray-400 truncate">{item.description}</p>
                 </div>
-                <span className="text-[10px] font-bold text-[#3B82F6] flex-shrink-0 whitespace-nowrap">
+                <span className="text-[10px] font-bold text-[#10b981] flex-shrink-0 whitespace-nowrap">
                   {item.xp}
                 </span>
               </div>
@@ -161,15 +161,15 @@ function SidebarLeaderboard() {
         </div>
         {leaderboardData.map((item) => {
           const rowClass = item.isCurrentUser
-            ? 'bg-[#220066] border border-[#3B82F6]/50'
+            ? 'bg-[#220066] border border-[#10b981]/50'
             : 'hover:bg-[#1F2937]'
 
           const nameClass = item.isCurrentUser
-            ? 'text-[#3B82F6]'
+            ? 'text-[#10b981]'
             : 'text-white'
 
           const xpClass = item.isCurrentUser
-            ? 'text-[#3B82F6]'
+            ? 'text-[#10b981]'
             : 'text-white'
 
           return (

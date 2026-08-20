@@ -40,7 +40,7 @@ export function CourseList({ courses, onEdit, onDelete }: CourseListProps) {
                 {course.totalStudents}
               </td>
               <td className="whitespace-nowrap px-6 py-4 text-sm font-medium space-x-3">
-                <button onClick={() => onEdit(course)} className="text-[#3B82F6] hover:text-blue-400">
+                <button onClick={() => onEdit(course)} className="text-[#10b981] hover:text-primary-400">
                   Edit
                 </button>
                 <button

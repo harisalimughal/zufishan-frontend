@@ -25,12 +25,24 @@ interface AuthContextType {
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
+// TEMPORARY: bypasses the real backend so login/register work without the API running.
+// Flip back to false once the backend is available again.
+export const AUTH_DISABLED = true;
+const MOCK_USER_KEY = "zufishan-mock-user";
+
 export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [user, setUser] = useState<UserProfile | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const router = useRouter();
 
   const fetchUserSession = async () => {
+    if (AUTH_DISABLED) {
+      const stored = typeof window !== "undefined" ? localStorage.getItem(MOCK_USER_KEY) : null;
+      setUser(stored ? JSON.parse(stored) : null);
+      setIsLoading(false);
+      return;
+    }
+
     const token = getAuthToken();
     if (!token) {
       setUser(null);
@@ -68,6 +80,19 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   }, [router]);
 
   const login = async (email: string, password: string) => {
+    if (AUTH_DISABLED) {
+      const mockUser: UserProfile = {
+        id: "mock-user-id",
+        email,
+        fullName: email.split("@")[0] || "Demo User",
+        role: "STUDENT"
+      };
+      setAuthToken("mock-token");
+      localStorage.setItem(MOCK_USER_KEY, JSON.stringify(mockUser));
+      setUser(mockUser);
+      return;
+    }
+
     const response = await apiClient.post<any>("/auth/login", { email, password });
     const payload = response.data || response;
     const token = payload.tokens?.accessToken || payload.accessToken || payload.token;
@@ -89,11 +114,32 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   };
 
   const register = async (data: { email: string; password: string; firstName: string; lastName: string }) => {
+    if (AUTH_DISABLED) {
+      const mockUser: UserProfile = {
+        id: "mock-user-id",
+        email: data.email,
+        fullName: `${data.firstName} ${data.lastName}`.trim() || "Demo User",
+        role: "STUDENT"
+      };
+      setAuthToken("mock-token");
+      localStorage.setItem(MOCK_USER_KEY, JSON.stringify(mockUser));
+      setUser(mockUser);
+      return;
+    }
+
     await apiClient.post<any>("/auth/register", data);
     await login(data.email, data.password);
   };
 
   const logout = async () => {
+    if (AUTH_DISABLED) {
+      setAuthToken(null);
+      localStorage.removeItem(MOCK_USER_KEY);
+      setUser(null);
+      router.push("/login");
+      return;
+    }
+
     try {
       const refreshToken = typeof window !== "undefined" ? localStorage.getItem("refreshToken") : null;
       await apiClient.post("/auth/logout", { refreshToken });

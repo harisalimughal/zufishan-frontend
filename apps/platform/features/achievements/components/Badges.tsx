@@ -41,7 +41,7 @@ function BadgesGrid({ achievements }: { achievements: Achievement[] }) {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.35, delay: Math.min(idx, 10) * 0.05 }}
             whileHover={{ y: -3 }}
-            className="bg-[#1F2937] rounded-xl p-4 border border-[#27272A] hover:border-[#3B82F6] transition cursor-pointer flex flex-col h-[180px]"
+            className="bg-[#1F2937] rounded-xl p-4 border border-[#27272A] hover:border-[#10b981] transition cursor-pointer flex flex-col h-[180px]"
           >
             <div className="flex flex-col items-center text-center flex-1">
               <div className="w-12 h-12 rounded-lg bg-[#220066] flex items-center justify-center mb-2 overflow-hidden">
@@ -69,7 +69,7 @@ function BadgesGrid({ achievements }: { achievements: Achievement[] }) {
               <span className={'text-[10px] font-medium ' + statusColor}>
                 {statusText}
               </span>
-              <span className="text-[10px] font-bold text-[#3B82F6] flex-shrink-0">
+              <span className="text-[10px] font-bold text-[#10b981] flex-shrink-0">
                 +{achievement.xp} XP
               </span>
             </div>
@@ -78,7 +78,7 @@ function BadgesGrid({ achievements }: { achievements: Achievement[] }) {
               <div className="mt-1.5">
                 <div className="w-full h-1 bg-[#111827] rounded-full overflow-hidden">
                   <div
-                    className="h-full rounded-full bg-[#3B82F6] transition-all duration-500"
+                    className="h-full rounded-full bg-[#10b981] transition-all duration-500"
                     style={{ width: progressPercentage + '%' }}
                   />
                 </div>
@@ -103,7 +103,7 @@ function BadgesShowMore({ showAll, setShowAll, totalCount, visibleCount }: {
   return (
     <button
       onClick={() => setShowAll(!showAll)}
-      className="w-full mt-6 py-3 text-sm text-[#3B82F6] hover:text-blue-400 transition border border-[#27272A] rounded-xl hover:border-[#3B82F6] flex items-center justify-center gap-2"
+      className="w-full mt-6 py-3 text-sm text-[#10b981] hover:text-primary-400 transition border border-[#27272A] rounded-xl hover:border-[#10b981] flex items-center justify-center gap-2"
     >
       {showAll ? 'Show Less' : 'Show More ▼'}
       <span className="text-xs text-gray-500">
@@ -177,7 +177,7 @@ export function Badges() {
             onClick={() => setFilter(option.value)}
             className={`px-4 py-1.5 rounded-full text-xs font-medium transition whitespace-nowrap ${
               filter === option.value
-                ? 'bg-[#3B82F6] text-white'
+                ? 'bg-[#10b981] text-white'
                 : 'bg-[#1F2937] text-gray-400 hover:text-white hover:bg-[#2A2A3A]'
             }`}
           >
@@ -189,7 +189,7 @@ export function Badges() {
         <div className="relative">
           <button
             onClick={() => setShowFilterPanel(!showFilterPanel)}
-            className="flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-[#1F2937] border border-[#27272A] text-xs text-gray-300 hover:text-white hover:border-[#3B82F6] transition whitespace-nowrap"
+            className="flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-[#1F2937] border border-[#27272A] text-xs text-gray-300 hover:text-white hover:border-[#10b981] transition whitespace-nowrap"
           >
             <Filter size={14} />
             <span>Filter</span>
@@ -212,7 +212,7 @@ export function Badges() {
                       onClick={() => setStatusFilter(status)}
                       className={`px-3 py-1 rounded-full text-[10px] font-medium transition whitespace-nowrap ${
                         statusFilter === status
-                          ? 'bg-[#3B82F6] text-white'
+                          ? 'bg-[#10b981] text-white'
                           : 'bg-[#111827] text-gray-400 hover:text-white hover:bg-[#2A2A3A]'
                       }`}
                     >

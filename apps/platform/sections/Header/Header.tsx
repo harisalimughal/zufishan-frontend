@@ -28,9 +28,9 @@ export default function Header() {
         {/* Logo */}
         <a href="/" className="flex items-center">
           <img
-            src={isDarkMode ? "/Ranenla-logo-transparent-dark.png" : "/Ranenla-logo-transparent-light.png"}
-            alt="AI University Logo"
-            className="h-[170px] w-[190px] object-contain"
+            src={isDarkMode ? "/Zufishan-logo-transparent-dark.svg" : "/Zufishan-logo-transparent-light.svg"}
+            alt="Zufishan Logo"
+            className="h-[110px] w-[190px] object-contain"
           />
 
 
@@ -42,16 +42,16 @@ export default function Header() {
           }`}
         >
           <a href="#problem" onClick={(e) => handleSmoothScroll(e, "problem")} className={`transition ${isDarkMode ? "hover:text-white" : "hover:text-black"}`}>
-            Problem
+            The Problem
           </a>
           <a href="#solution" onClick={(e) => handleSmoothScroll(e, "solution")} className={`transition ${isDarkMode ? "hover:text-white" : "hover:text-black"}`}>
-            Solution
+            Our Solution
           </a>
           <a href="#product-preview" onClick={(e) => handleSmoothScroll(e, "product-preview")} className={`transition ${isDarkMode ? "hover:text-white" : "hover:text-black"}`}>
-            Product Preview
+            Platform Preview
           </a>
           <a href="#classroom-preview" onClick={(e) => handleSmoothScroll(e, "classroom-preview")} className={`transition ${isDarkMode ? "hover:text-white" : "hover:text-black"}`}>
-            Live Classroom
+            Live Halaqa
           </a>
         </div>
 
@@ -82,7 +82,7 @@ export default function Header() {
           <a
             href="#waitlist"
             onClick={(e) => handleSmoothScroll(e, "waitlist")}
-            className="px-6 py-3 rounded-full text-white text-sm font-semibold bg-gradient-to-r from-[#3B82F6] to-[#6D5DFB] hover:opacity-90 transition"
+            className="px-6 py-3 rounded-full text-white text-sm font-semibold bg-gradient-to-r from-[#10b981] to-[#059669] hover:opacity-90 transition"
           >
             Join Waitlist
           </a>

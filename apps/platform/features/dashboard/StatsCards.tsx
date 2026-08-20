@@ -15,7 +15,7 @@ import { useAuth } from "@/context/AuthContext";
 export function StatsCards() {
   const { user } = useAuth();
   const [courseCount, setCourseCount] = useState<number>(4);
-  const [upcomingTitle, setUpcomingTitle] = useState<string>("Database 101");
+  const [upcomingTitle, setUpcomingTitle] = useState<string>("Tajweed Foundations");
 
   useEffect(() => {
     async function loadStats() {
@@ -40,8 +40,8 @@ export function StatsCards() {
       subtitle: "08:00 AM – 09:30 AM",
       badge: "Starts soon",
       icon: CalendarClock,
-      iconBg: "bg-[#3B82F6]/20",
-      iconColor: "text-[#3B82F6]",
+      iconBg: "bg-[#10b981]/20",
+      iconColor: "text-[#10b981]",
     },
     {
       label: "Attendance",
@@ -83,10 +83,10 @@ export function StatsCards() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.35, delay: idx * 0.08 }}
             whileHover={{ y: -2 }}
-            className="group relative overflow-hidden rounded-xl border border-[#27272A] bg-[#111827] p-5 transition-all duration-300 hover:border-[#3B82F6]/40 hover:shadow-lg hover:shadow-[#3B82F6]/5"
+            className="group relative overflow-hidden rounded-xl border border-[#27272A] bg-[#111827] p-5 transition-all duration-300 hover:border-[#10b981]/40 hover:shadow-lg hover:shadow-[#10b981]/5"
           >
             {/* Subtle gradient overlay on hover */}
-            <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-[#3B82F6]/5 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+            <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-[#10b981]/5 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
 
             <div className="relative flex items-start gap-4">
               <div
@@ -105,7 +105,7 @@ export function StatsCards() {
                 <p className="mt-0.5 text-xs text-gray-500">{stat.subtitle}</p>
 
                 {stat.badge && (
-                  <span className="mt-2 inline-block rounded-full bg-[#3B82F6]/20 px-3 py-1 text-xs font-semibold text-[#3B82F6]">
+                  <span className="mt-2 inline-block rounded-full bg-[#10b981]/20 px-3 py-1 text-xs font-semibold text-[#10b981]">
                     {stat.badge}
                   </span>
                 )}

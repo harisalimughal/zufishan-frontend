@@ -10,7 +10,7 @@ export default function HeaderButton({
   return (
     <a
       href={href}
-      className="px-6 py-3 rounded-full text-white text-sm font-semibold bg-gradient-to-r from-[#3B82F6] to-[#6D5DFB] hover:opacity-90 transition"
+      className="px-6 py-3 rounded-full text-white text-sm font-semibold bg-gradient-to-r from-[#10b981] to-[#059669] hover:opacity-90 transition"
     >
       {children}
     </a>

@@ -2,7 +2,7 @@
 
 import { useEffect, type ReactNode } from "react";
 import { useRouter } from "next/navigation";
-import { useAuth } from "@/context/AuthContext";
+import { useAuth, AUTH_DISABLED } from "@/context/AuthContext";
 import { AdminSidebar } from "@/components/AdminLayout/AdminSidebar";
 
 export default function AdminLayout({ children }: { children: ReactNode }) {
@@ -10,6 +10,7 @@ export default function AdminLayout({ children }: { children: ReactNode }) {
   const router = useRouter();
 
   useEffect(() => {
+    if (AUTH_DISABLED) return;
     if (isLoading) return;
     if (!isAuthenticated) {
       router.replace("/login");
@@ -20,7 +21,7 @@ export default function AdminLayout({ children }: { children: ReactNode }) {
     }
   }, [isLoading, isAuthenticated, user, router]);
 
-  if (isLoading || !user || user.role !== "ADMIN") {
+  if (!AUTH_DISABLED && (isLoading || !user || user.role !== "ADMIN")) {
     return (
       <div className="flex min-h-screen items-center justify-center bg-[#09090B]">
         <p className="text-slate-400">Loading…</p>

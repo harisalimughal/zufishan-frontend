@@ -73,8 +73,8 @@ export default function LoginSidebar({ isDarkMode }: LoginSidebarProps) {
         <div className="flex items-center gap-1 ">
           <div>
             <img
-              src={isDarkMode ? "/Ranenla-logo-transparent-dark.png" : "/Ranenla-logo-transparent-light.png"}
-              alt="Logo"
+              src={isDarkMode ? "/Zufishan-logo-transparent-dark.svg" : "/Zufishan-logo-transparent-light.svg"}
+              alt="Zufishan Logo"
               className="w-100 h-auto object-contain -ml-8 -mb-4"
             />
           </div>
@@ -89,7 +89,7 @@ export default function LoginSidebar({ isDarkMode }: LoginSidebarProps) {
           >
             The World's First <br />
             <span className="whitespace-nowrap">
-              <span className="text-[#3B82F6]">AI-Powered</span> University
+              <span className="text-[#10b981]">AI-Powered</span> University
             </span>
           </h1>
         </div>
@@ -127,7 +127,7 @@ export default function LoginSidebar({ isDarkMode }: LoginSidebarProps) {
                     justify-center
                     shrink-0
                     transition-colors duration-300
-                    ${isDarkMode ? "bg-[#3B82F6] text-white" : "bg-[#3B82F6]/30 text-black"}
+                    ${isDarkMode ? "bg-[#10b981] text-white" : "bg-[#10b981]/30 text-black"}
                   `}
                 >
                   <IconComponent size={20} strokeWidth={2} />
@@ -171,7 +171,7 @@ export default function LoginSidebar({ isDarkMode }: LoginSidebarProps) {
           <div className={`w-10 h-10 rounded-full border-2 bg-cover bg-center transition-colors duration-300 ${isDarkMode ? "border-[#1c1c24]" : "border-white"}`} style={{ backgroundImage: "url('https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=100&q=80')" }} />
           <div className={`w-10 h-10 rounded-full border-2 bg-cover bg-center transition-colors duration-300 ${isDarkMode ? "border-[#1c1c24]" : "border-white"}`} style={{ backgroundImage: "url('https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=100&q=80')" }} />
           <div className={`w-10 h-10 rounded-full border-2 bg-cover bg-center transition-colors duration-300 ${isDarkMode ? "border-[#1c1c24]" : "border-white"}`} style={{ backgroundImage: "url('https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=100&q=80')" }} />
-          <div className={`w-10 h-10 rounded-full border-2 bg-[#3B82F6] flex items-center justify-center text-xs font-bold text-white shadow-lg transition-colors duration-300 ${isDarkMode ? "border-[#1c1c24]" : "border-white"}`}>+12K</div>
+          <div className={`w-10 h-10 rounded-full border-2 bg-[#10b981] flex items-center justify-center text-xs font-bold text-white shadow-lg transition-colors duration-300 ${isDarkMode ? "border-[#1c1c24]" : "border-white"}`}>+12K</div>
         </div>
         <div>
           <p className={`text-sm font-medium tracking-wide transition-colors duration-300 ${isDarkMode ? "text-gray-200" : "text-gray-800"}`}>

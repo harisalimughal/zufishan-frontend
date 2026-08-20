@@ -32,7 +32,7 @@ export function CourseSearch({
           value={searchValue}
           onChange={(event) => onSearchChange(event.target.value)}
           placeholder="Search courses..."
-          className="h-10 w-full min-w-0 rounded-lg border border-[#1F2937] bg-[#0D1422] pl-10 pr-3 text-xs font-medium text-white outline-none placeholder:text-zinc-500 transition focus:border-violet-500"
+          className="h-10 w-full min-w-0 rounded-lg border border-[#1F2937] bg-[#0D1422] pl-10 pr-3 text-xs font-medium text-white outline-none placeholder:text-zinc-500 transition focus:border-primary-500"
         />
       </label>
 
@@ -63,7 +63,7 @@ export function CourseSearch({
                 {filterLevels.map((level) => (
                   <span
                     key={level}
-                    className="cursor-pointer rounded-full border border-[#27272A] bg-[#0D1117] px-2.5 py-1 text-[11px] text-gray-300 transition hover:border-violet-500 hover:text-white"
+                    className="cursor-pointer rounded-full border border-[#27272A] bg-[#0D1117] px-2.5 py-1 text-[11px] text-gray-300 transition hover:border-primary-500 hover:text-white"
                   >
                     {level}
                   </span>
@@ -83,7 +83,7 @@ export function CourseSearch({
           className="relative grid size-10 shrink-0 place-items-center rounded-lg border border-[#1F2937] bg-[#0D1422] text-zinc-400 transition hover:border-zinc-700 hover:text-white"
         >
           <Bell size={16} />
-          <span className="absolute -right-1 -top-1 grid size-4 place-items-center rounded-full bg-violet-600 text-[9px] font-bold text-white">
+          <span className="absolute -right-1 -top-1 grid size-4 place-items-center rounded-full bg-primary-600 text-[9px] font-bold text-white">
             3
           </span>
         </button>

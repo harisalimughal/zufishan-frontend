@@ -76,7 +76,7 @@ export function LiveClassFormModal({ event, courses, onClose, onSubmit }: LiveCl
               required
               value={form.courseId}
               onChange={(e) => setForm((prev) => ({ ...prev, courseId: e.target.value }))}
-              className="w-full rounded-lg border border-[#27272A] bg-black px-3 py-2 text-white focus:outline-none focus:ring-2 focus:ring-[#3B82F6]"
+              className="w-full rounded-lg border border-[#27272A] bg-black px-3 py-2 text-white focus:outline-none focus:ring-2 focus:ring-[#10b981]"
             >
               {courses.length === 0 && <option value="">No courses yet — add one first</option>}
               {courses.map((c) => (
@@ -93,7 +93,7 @@ export function LiveClassFormModal({ event, courses, onClose, onSubmit }: LiveCl
               required
               value={form.title}
               onChange={(e) => setForm((prev) => ({ ...prev, title: e.target.value }))}
-              className="w-full rounded-lg border border-[#27272A] bg-black px-3 py-2 text-white focus:outline-none focus:ring-2 focus:ring-[#3B82F6]"
+              className="w-full rounded-lg border border-[#27272A] bg-black px-3 py-2 text-white focus:outline-none focus:ring-2 focus:ring-[#10b981]"
             />
           </div>
 
@@ -105,7 +105,7 @@ export function LiveClassFormModal({ event, courses, onClose, onSubmit }: LiveCl
                 type="datetime-local"
                 value={form.startTime}
                 onChange={(e) => setForm((prev) => ({ ...prev, startTime: e.target.value }))}
-                className="w-full rounded-lg border border-[#27272A] bg-black px-3 py-2 text-white focus:outline-none focus:ring-2 focus:ring-[#3B82F6]"
+                className="w-full rounded-lg border border-[#27272A] bg-black px-3 py-2 text-white focus:outline-none focus:ring-2 focus:ring-[#10b981]"
               />
             </div>
             <div>
@@ -115,7 +115,7 @@ export function LiveClassFormModal({ event, courses, onClose, onSubmit }: LiveCl
                 type="datetime-local"
                 value={form.endTime}
                 onChange={(e) => setForm((prev) => ({ ...prev, endTime: e.target.value }))}
-                className="w-full rounded-lg border border-[#27272A] bg-black px-3 py-2 text-white focus:outline-none focus:ring-2 focus:ring-[#3B82F6]"
+                className="w-full rounded-lg border border-[#27272A] bg-black px-3 py-2 text-white focus:outline-none focus:ring-2 focus:ring-[#10b981]"
               />
             </div>
           </div>
@@ -141,7 +141,7 @@ export function LiveClassFormModal({ event, courses, onClose, onSubmit }: LiveCl
             <button
               type="submit"
               disabled={isSubmitting || !form.courseId}
-              className="rounded-lg bg-[#3B82F6] px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-blue-600 disabled:opacity-60"
+              className="rounded-lg bg-[#10b981] px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-primary-600 disabled:opacity-60"
             >
               {isSubmitting ? "Saving…" : event ? "Save Changes" : "Schedule"}
             </button>

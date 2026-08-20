@@ -20,8 +20,8 @@ type Course = {
 const defaultCourses: Course[] = [
   {
     id: "1",
-    title: "Database Fundamentals",
-    professor: "Prof. Lucas (AI)",
+    title: "Tajweed Foundations",
+    professor: "Ustaz Ibrahim Malik",
     progress: 72,
     image: "/course-database.png",
     liveClassToday: true,
@@ -29,24 +29,24 @@ const defaultCourses: Course[] = [
   },
   {
     id: "2",
-    title: "AI Engineering Basics",
-    professor: "Prof. Ava (AI)",
+    title: "Hadith Sciences: An Introduction",
+    professor: "Ustaza Maryam Siddiqui",
     progress: 48,
     image: "/course-ai-engineering.png",
     detailSlug: "ai-machine-learning",
   },
   {
     id: "3",
-    title: "Python Programming",
-    professor: "Prof. Ethan (AI)",
+    title: "Qur'anic Arabic for Beginners",
+    professor: "Ustaz Yusuf Rahman",
     progress: 35,
     image: "/course-python.png",
     detailSlug: "python-programming",
   },
   {
     id: "4",
-    title: "Data Structures & Algorithms",
-    professor: "Prof. Zoe (AI)",
+    title: "Fiqh of Worship: Salah & Purification",
+    professor: "Ustaza Amina Yusuf",
     progress: 20,
     image: "/course-dsa.png",
     detailSlug: "data-structures-algorithms",
@@ -58,7 +58,7 @@ function ProgressBar({ value }: { value: number }) {
     <div className="flex items-center gap-3">
       <div className="h-1.5 flex-1 overflow-hidden rounded-full bg-[#27272A]">
         <div
-          className="h-full rounded-full bg-gradient-to-r from-[#3B82F6] to-[#6D5DFB] transition-all duration-500"
+          className="h-full rounded-full bg-gradient-to-r from-[#10b981] to-[#059669] transition-all duration-500"
           style={{ width: `${value}%` }}
         />
       </div>
@@ -80,7 +80,7 @@ export function MyCourses() {
           const mapped: Course[] = data.map((c, idx) => ({
             id: c.id,
             title: c.title,
-            professor: c.instructorName || "Prof. Lucas (AI)",
+            professor: c.instructorName || "Ustaz Ibrahim Malik",
             progress: (idx + 1) * 25 % 100 || 45,
             image: c.bannerUrl || "/course-database.png",
             liveClassToday: Boolean(c.liveClassToday),
@@ -117,7 +117,7 @@ export function MyCourses() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.35, delay: idx * 0.08 }}
             whileHover={{ y: -2 }}
-            className="group flex flex-col gap-4 rounded-xl border border-[#27272A] bg-[#111827] p-4 transition-all duration-300 hover:border-[#3B82F6]/30 sm:flex-row sm:items-center"
+            className="group flex flex-col gap-4 rounded-xl border border-[#27272A] bg-[#111827] p-4 transition-all duration-300 hover:border-[#10b981]/30 sm:flex-row sm:items-center"
           >
             {/* Course Image */}
             <div className="relative h-20 w-20 shrink-0 overflow-hidden rounded-lg sm:h-[72px] sm:w-[72px]">
@@ -137,8 +137,8 @@ export function MyCourses() {
                   {course.title}
                 </h3>
                 {course.liveClassToday && (
-                  <span className="inline-flex items-center gap-1 rounded-full bg-[#3B82F6]/20 px-2.5 py-0.5 text-xs font-semibold text-[#3B82F6]">
-                    <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-[#3B82F6]" />
+                  <span className="inline-flex items-center gap-1 rounded-full bg-[#10b981]/20 px-2.5 py-0.5 text-xs font-semibold text-[#10b981]">
+                    <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-[#10b981]" />
                     Live Class Today
                   </span>
                 )}

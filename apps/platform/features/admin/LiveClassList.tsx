@@ -18,7 +18,7 @@ function statusBadge(status: "live" | "scheduled" | "ended") {
     case "live":
       return "bg-emerald-500/20 text-emerald-400";
     case "scheduled":
-      return "bg-[#3B82F6]/20 text-[#3B82F6]";
+      return "bg-[#10b981]/20 text-[#10b981]";
     case "ended":
       return "bg-slate-500/20 text-slate-400";
   }
@@ -45,7 +45,7 @@ export function LiveClassList({ events, onEdit, onDelete }: LiveClassListProps) 
               {status}
             </span>
             <div className="flex gap-3 text-sm font-medium">
-              <button onClick={() => onEdit(event)} className="text-[#3B82F6] hover:text-blue-400">
+              <button onClick={() => onEdit(event)} className="text-[#10b981] hover:text-primary-400">
                 Edit
               </button>
               <button onClick={() => onDelete(event)} className="text-red-400 hover:text-red-300">

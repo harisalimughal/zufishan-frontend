@@ -20,7 +20,7 @@ function getRoleBadgeColor(role: string) {
     case "ADMIN":
       return "bg-purple-500/20 text-purple-300";
     case "TUTOR":
-      return "bg-[#3B82F6]/20 text-[#3B82F6]";
+      return "bg-[#10b981]/20 text-[#10b981]";
     case "STUDENT":
       return "bg-emerald-500/20 text-emerald-400";
     default:
@@ -56,7 +56,7 @@ export function UserList({ users, onDeleteUser }: UserListProps) {
                       className="mr-3 h-8 w-8 rounded-full"
                     />
                   ) : (
-                    <div className="mr-3 flex h-8 w-8 items-center justify-center rounded-full bg-[#3B82F6] text-xs font-semibold text-white">
+                    <div className="mr-3 flex h-8 w-8 items-center justify-center rounded-full bg-[#10b981] text-xs font-semibold text-white">
                       {getUserInitials(user.fullName)}
                     </div>
                   )}
@@ -75,7 +75,7 @@ export function UserList({ users, onDeleteUser }: UserListProps) {
                 {new Date(user.createdAt).toLocaleDateString()}
               </td>
               <td className="whitespace-nowrap px-6 py-4 text-sm font-medium space-x-3">
-                <Link href={`/admin/users/${user.id}`} className="text-[#3B82F6] hover:text-blue-400">
+                <Link href={`/admin/users/${user.id}`} className="text-[#10b981] hover:text-primary-400">
                   View
                 </Link>
                 {onDeleteUser && (

@@ -30,7 +30,7 @@ export function SidebarRecommendations() {
           <Sparkles size={15} className="text-yellow-400" />
           Recommended for You
         </h3>
-        <button className="text-[10px] text-blue-400 hover:text-blue-300 transition-colors duration-300 flex items-center gap-1">
+        <button className="text-[10px] text-primary-400 hover:text-primary-300 transition-colors duration-300 flex items-center gap-1">
           <span>View all</span>
           <ArrowRight size={12} />
         </button>

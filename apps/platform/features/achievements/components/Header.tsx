@@ -11,7 +11,7 @@ function HeaderLogo() {
   return (
     <div className="flex items-center gap-3 flex-shrink-0">
       <div className="w-10 h-10 rounded-xl bg-[#220066] flex items-center justify-center">
-        <Trophy className="text-[#3B82F6]" size={24} />
+        <Trophy className="text-[#10b981]" size={24} />
       </div>
       <div>
         <h1 className="text-lg font-bold text-white">Achievements</h1>
@@ -36,17 +36,17 @@ function HeaderDropdown({ selectedCourse, setSelectedCourse }: HeaderDropdownPro
         <select
           value={selectedCourse}
           onChange={(e) => setSelectedCourse(e.target.value)}
-          className="w-full bg-[#111827] border border-[#27272A] rounded-lg pl-10 pr-8 py-2 text-white focus:outline-none focus:border-[#3B82F6] transition text-sm appearance-none cursor-pointer"
+          className="w-full bg-[#111827] border border-[#27272A] rounded-lg pl-10 pr-8 py-2 text-white focus:outline-none focus:border-[#10b981] transition text-sm appearance-none cursor-pointer"
         >
           <option>All Courses</option>
-          <option>Database 101</option>
+          <option>Tajweed Foundations</option>
           <option>Operating Systems</option>
           <option>React</option>
           <option>Data Structures</option>
           <option>Algorithms</option>
         </select>
         <div className="absolute left-3 top-1/2 transform -translate-y-1/2 pointer-events-none">
-          <Database size={16} className="text-[#3B82F6]" />
+          <Database size={16} className="text-[#10b981]" />
         </div>
         <div className="absolute right-3 top-1/2 transform -translate-y-1/2 pointer-events-none">
           <ChevronDown size={16} className="text-gray-400" />
@@ -75,9 +75,9 @@ function HeaderPoints() {
       {/* How it works button - replaces history icon */}
       <button
         onClick={() => setShowHowItWorks(true)}
-        className="flex items-center gap-1.5 px-4 py-2 rounded-lg bg-[#1F2937] border border-[#27272A] text-xs text-gray-300 hover:text-white hover:border-[#3B82F6] transition"
+        className="flex items-center gap-1.5 px-4 py-2 rounded-lg bg-[#1F2937] border border-[#27272A] text-xs text-gray-300 hover:text-white hover:border-[#10b981] transition"
       >
-        <HelpCircle size={16} className="text-[#3B82F6]" />
+        <HelpCircle size={16} className="text-[#10b981]" />
         <span>How it works</span>
       </button>
 

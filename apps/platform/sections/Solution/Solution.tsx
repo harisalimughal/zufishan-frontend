@@ -2,7 +2,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Bot, Hand, BarChart3, GraduationCap } from 'lucide-react';
+import { GraduationCap, Clock, ShoppingBag, ShieldCheck } from 'lucide-react';
 import liveClassesImg from "../../../public/images/product-preview/live-classes.jpg";
 import attendanceImg from "../../../public/images/product-preview/attendance.png";
 import aiTutorImg from "../../../public/images/product-preview/ai-tutor.avif";
@@ -13,30 +13,30 @@ export function Solution() {
 
   const cards = [
     {
-      icon: Bot,
-      title: "AI Professors",
-      description: "Attend live classes taught by AI professors that explain, teach, and adapt to you.",
+      icon: GraduationCap,
+      title: "Verified Scholars",
+      description: "Every teacher's credentials are reviewed by our Advisory Board before they earn a Verified Ustaz badge.",
       image: "/professor.png",
       imageAlt: "AI Professors feature",
     },
     {
-      icon: Hand,
-      title: "Live Interaction",
-      description: "Raise your hand, ask questions, and get real-time answers just like a real classroom.",
+      icon: Clock,
+      title: "Daily Religious Utilities",
+      description: "Accurate prayer times, Qibla direction and a Zakat calculator, cached for offline so they're always ready.",
       image: liveClassesImg.src,
       imageAlt: "Live Interaction feature",
     },
     {
-      icon: BarChart3,
-      title: "Stay Accountable",
-      description: "We track attendance, progress, and participation to keep you motivated and on track.",
+      icon: ShoppingBag,
+      title: "Halal Marketplace",
+      description: "Browse verified vendors for Islamic goods and book trusted services like Qurbani and Nikah officiants.",
       image: attendanceImg.src,
       imageAlt: "Stay Accountable feature",
     },
     {
-      icon: GraduationCap,
-      title: "Personal AI Tutor",
-      description: "Get personalized help anytime, review concepts, and prepare better for every class.",
+      icon: ShieldCheck,
+      title: "Multi-Scholar Trust",
+      description: "Every Fatwa is reviewed by at least three independent, verified scholars before it's published.",
       image: aiTutorImg.src,
       imageAlt: "Personal AI Tutor feature",
     },
@@ -58,7 +58,7 @@ export function Solution() {
           className="text-center mb-16"
         >
           <span
-            className={`inline-block px-4 py-2 text-xs font-semibold text-[#3B82F6] tracking-wide uppercase rounded-full mb-4 border shadow-sm transition-colors duration-300 ${
+            className={`inline-block px-4 py-2 text-xs font-semibold text-[#10b981] tracking-wide uppercase rounded-full mb-4 border shadow-sm transition-colors duration-300 ${
               isDarkMode
                 ? "border-[#27272A] bg-[#111827] hover:border-gray-700"
                 : "border-zinc-200 bg-white hover:border-zinc-300"
@@ -67,10 +67,10 @@ export function Solution() {
             THE SOLUTION
           </span>
           <h2 className={`text-4xl md:text-5xl font-bold mb-4 font-geist transition-colors duration-300 ${isDarkMode ? "text-white" : "text-zinc-900"}`}>
-            An AI University built for <span style={{ color: '#3B82F6' }}>how you learn</span>.
+            One platform built for <span style={{ color: '#10b981' }}>how you practice your Deen</span>.
           </h2>
           <p className={`text-lg max-w-2xl mx-auto transition-colors duration-300 ${isDarkMode ? "text-gray-400" : "text-zinc-600"}`}>
-            We combine the power of AI with proven learning principles to deliver real education outcomes.
+            Verified scholarship, daily utilities and a trusted marketplace — brought together into one dependable platform for the Ummah.
           </p>
         </motion.div>
 
@@ -86,7 +86,7 @@ export function Solution() {
                 viewport={{ once: true, amount: 0.3 }}
                 transition={{ duration: 0.5, delay: idx * 0.1 }}
                 whileHover={{ y: -4 }}
-                className="group p-6 rounded-xl border transition-all duration-300 hover:shadow-xl hover:shadow-blue-500/10"
+                className="group p-6 rounded-xl border transition-all duration-300 hover:shadow-xl hover:shadow-primary-500/10"
                 style={{
                   backgroundColor: isDarkMode ? '#111827' : '#FAFAFA',
                   borderColor: isDarkMode ? '#27272A' : '#E4E4E7'
@@ -94,11 +94,11 @@ export function Solution() {
               >
                 <div
                   className="w-14 h-14 rounded-xl mb-4 flex items-center justify-center transition-transform duration-300 group-hover:scale-105"
-                  style={{ backgroundColor: '#220055' }}
+                  style={{ backgroundColor: '#022c22' }}
                 >
                   <IconComponent size={26} strokeWidth={1.6} className="text-white" />
                 </div>
-                <h3 className={`text-xl font-bold mb-3 font-geist group-hover:text-blue-400 transition-colors ${isDarkMode ? "text-white" : "text-zinc-900"}`}>
+                <h3 className={`text-xl font-bold mb-3 font-geist group-hover:text-primary-400 transition-colors ${isDarkMode ? "text-white" : "text-zinc-900"}`}>
                   {card.title}
                 </h3>
                 <p className={`mb-4 text-sm leading-relaxed transition-colors duration-300 ${isDarkMode ? "text-gray-400" : "text-zinc-600"}`}>
@@ -126,7 +126,7 @@ export function Solution() {
           className="mt-16 text-center"
         >
           <p className={`text-lg font-medium font-geist transition-colors duration-300 ${isDarkMode ? "text-gray-300" : "text-zinc-700"}`}>
-            It&apos;s not just online learning. It&apos;s the <span style={{ color: '#3B82F6' }}>next generation</span> of education.
+            It&apos;s not just an app. It&apos;s a trusted <span style={{ color: '#10b981' }}>digital home</span> for your Deen.
           </p>
         </motion.div>
       </div>

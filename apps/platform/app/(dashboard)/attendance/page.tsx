@@ -80,10 +80,10 @@ export default function AttendancePage() {
 
   // Course Breakdown Data
   const courseList: CourseData[] = [
-    { id: "db101", name: "Database 101", icon: "🗄️", bg: "bg-purple-900/30", percentage: 98, classes: "15 / 16 classes", attended: 15, total: 16 },
-    { id: "ai101", name: "AI Engineering Basics", icon: "🌐", bg: "bg-blue-900/30", percentage: 94, classes: "15 / 16 classes", attended: 15, total: 16 },
-    { id: "py101", name: "Python Programming", icon: "</>", bg: "bg-emerald-900/30", percentage: 96, classes: "24 / 25 classes", attended: 24, total: 25 },
-    { id: "dsa101", name: "Data Structures & Algorithms", icon: "⚙️", bg: "bg-amber-900/30", percentage: 93, classes: "14 / 15 classes", attended: 14, total: 15 },
+    { id: "db101", name: "Tajweed Foundations", icon: "🗄️", bg: "bg-purple-900/30", percentage: 98, classes: "15 / 16 classes", attended: 15, total: 16 },
+    { id: "ai101", name: "Hadith Sciences: An Introduction", icon: "🌐", bg: "bg-blue-900/30", percentage: 94, classes: "15 / 16 classes", attended: 15, total: 16 },
+    { id: "py101", name: "Qur'anic Arabic for Beginners", icon: "</>", bg: "bg-emerald-900/30", percentage: 96, classes: "24 / 25 classes", attended: 24, total: 25 },
+    { id: "dsa101", name: "Fiqh of Worship: Salah & Purification", icon: "⚙️", bg: "bg-amber-900/30", percentage: 93, classes: "14 / 15 classes", attended: 14, total: 15 },
   ];
 
   // Calendar Days Matrix
@@ -91,15 +91,15 @@ export default function AttendancePage() {
     { day: 28, currentMonth: false },
     { day: 29, currentMonth: false },
     { day: 30, currentMonth: false },
-    { day: 1, currentMonth: true, status: "present", details: [{ class: "Database 101", time: "09:00 AM", topic: "SQL Joins & Indexing" }] },
-    { day: 2, currentMonth: true, status: "present", details: [{ class: "Python Programming", time: "11:30 AM", topic: "Decorators & Generators" }] },
-    { day: 3, currentMonth: true, status: "present", details: [{ class: "AI Engineering Basics", time: "02:00 PM", topic: "Neural Networks Overview" }] },
+    { day: 1, currentMonth: true, status: "present", details: [{ class: "Tajweed Foundations", time: "09:00 AM", topic: "Makharij & Articulation Points" }] },
+    { day: 2, currentMonth: true, status: "present", details: [{ class: "Qur'anic Arabic for Beginners", time: "11:30 AM", topic: "Root Letters & Verb Patterns" }] },
+    { day: 3, currentMonth: true, status: "present", details: [{ class: "Hadith Sciences: An Introduction", time: "02:00 PM", topic: "Introduction to Isnad" }] },
     { day: 4, currentMonth: true },
-    { day: 5, currentMonth: true, status: "absent", details: [{ class: "Data Structures & Algorithms", time: "10:00 AM", topic: "Binary Search Trees" }] },
-    { day: 6, currentMonth: true, status: "present", details: [{ class: "Database 101", time: "09:00 AM", topic: "Normalization Forms" }] },
-    { day: 7, currentMonth: true, status: "present", details: [{ class: "Python Programming", time: "11:30 AM", topic: "AsyncIO & Multithreading" }] },
-    { day: 8, currentMonth: true, status: "present", details: [{ class: "AI Engineering Basics", time: "02:00 PM", topic: "Backpropagation" }] },
-    { day: 9, currentMonth: true, status: "present", details: [{ class: "Data Structures & Algorithms", time: "10:00 AM", topic: "Graph Traversal BFS/DFS" }] },
+    { day: 5, currentMonth: true, status: "absent", details: [{ class: "Fiqh of Worship: Salah & Purification", time: "10:00 AM", topic: "Conditions of Wudu" }] },
+    { day: 6, currentMonth: true, status: "present", details: [{ class: "Tajweed Foundations", time: "09:00 AM", topic: "Rules of Idgham & Ikhfa" }] },
+    { day: 7, currentMonth: true, status: "present", details: [{ class: "Qur'anic Arabic for Beginners", time: "11:30 AM", topic: "Sentence Structure Basics" }] },
+    { day: 8, currentMonth: true, status: "present", details: [{ class: "Hadith Sciences: An Introduction", time: "02:00 PM", topic: "Grading Sahih & Da'if Hadith" }] },
+    { day: 9, currentMonth: true, status: "present", details: [{ class: "Fiqh of Worship: Salah & Purification", time: "10:00 AM", topic: "Pillars of Salah" }] },
     { day: 10, currentMonth: true, status: "present" },
     { day: 11, currentMonth: true, status: "present" },
     { day: 12, currentMonth: true, status: "present" },
@@ -117,7 +117,7 @@ export default function AttendancePage() {
     { day: 24, currentMonth: true, status: "present" },
     { day: 25, currentMonth: true },
     { day: 26, currentMonth: true, status: "present" },
-    { day: 27, currentMonth: true, status: "absent", details: [{ class: "Python Programming", time: "11:30 AM", topic: "FastAPI Integration" }] },
+    { day: 27, currentMonth: true, status: "absent", details: [{ class: "Qur'anic Arabic for Beginners", time: "11:30 AM", topic: "Reading Qur'anic Verses" }] },
     { day: 28, currentMonth: true, status: "present" },
     { day: 29, currentMonth: true, status: "present" },
     { day: 30, currentMonth: true, status: "present" },
@@ -167,7 +167,7 @@ export default function AttendancePage() {
               }}
               className="flex items-center gap-2 px-3.5 py-2 rounded-xl bg-[#11151E] border border-[#1A202C] text-xs font-medium text-gray-300 hover:bg-[#161B26] transition-colors"
             >
-              <span className="w-2 h-2 rounded-full bg-indigo-500"></span>
+              <span className="w-2 h-2 rounded-full bg-primary-500"></span>
               <span>{selectedCourse}</span>
               <ChevronDown size={14} className={`text-gray-400 ml-1 transition-transform ${showCourseDropdown ? "rotate-180" : ""}`} />
             </button>
@@ -183,7 +183,7 @@ export default function AttendancePage() {
                 >
                   <button
                     onClick={() => { setSelectedCourse("All Courses"); setShowCourseDropdown(false); }}
-                    className={`w-full text-left px-4 py-2 text-xs hover:bg-[#1A202C] ${selectedCourse === "All Courses" ? "text-indigo-400 font-bold" : "text-gray-300"}`}
+                    className={`w-full text-left px-4 py-2 text-xs hover:bg-[#1A202C] ${selectedCourse === "All Courses" ? "text-primary-400 font-bold" : "text-gray-300"}`}
                   >
                     All Courses
                   </button>
@@ -191,7 +191,7 @@ export default function AttendancePage() {
                     <button
                       key={c.id}
                       onClick={() => { setSelectedCourse(c.name); setShowCourseDropdown(false); }}
-                      className={`w-full text-left px-4 py-2 text-xs hover:bg-[#1A202C] ${selectedCourse === c.name ? "text-indigo-400 font-bold" : "text-gray-300"}`}
+                      className={`w-full text-left px-4 py-2 text-xs hover:bg-[#1A202C] ${selectedCourse === c.name ? "text-primary-400 font-bold" : "text-gray-300"}`}
                     >
                       {c.name}
                     </button>
@@ -228,7 +228,7 @@ export default function AttendancePage() {
                     <button
                       key={range}
                       onClick={() => { setDateRange(range); setShowDateDropdown(false); }}
-                      className={`w-full text-left px-4 py-2 text-xs hover:bg-[#1A202C] ${dateRange === range ? "text-indigo-400 font-bold" : "text-gray-300"}`}
+                      className={`w-full text-left px-4 py-2 text-xs hover:bg-[#1A202C] ${dateRange === range ? "text-primary-400 font-bold" : "text-gray-300"}`}
                     >
                       {range}
                     </button>
@@ -253,7 +253,7 @@ export default function AttendancePage() {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
         
         {/* Card 1: Overall Attendance */}
-        <div className="bg-[#0D111A] border border-[#171D2A] p-5 rounded-2xl flex items-center justify-between hover:border-indigo-500/30 transition-colors">
+        <div className="bg-[#0D111A] border border-[#171D2A] p-5 rounded-2xl flex items-center justify-between hover:border-primary-500/30 transition-colors">
           <div>
             <p className="text-xs text-gray-400 font-medium">Overall Attendance</p>
             <div className="flex items-baseline gap-2 mt-2">
@@ -377,7 +377,7 @@ export default function AttendancePage() {
     {/* Today Button */}
     <button 
       onClick={handleResetToday}
-      className="px-3.5 py-1.5 text-xs font-medium bg-[#1C1A38] hover:bg-[#26234D] text-indigo-300 rounded-xl transition-colors"
+      className="px-3.5 py-1.5 text-xs font-medium bg-[#1C1A38] hover:bg-[#26234D] text-primary-300 rounded-xl transition-colors"
     >
       Today
     </button>
@@ -443,7 +443,7 @@ export default function AttendancePage() {
                     <div className={`w-9 h-9 rounded-xl ${course.bg} flex items-center justify-center text-sm border border-white/5`}>
                       {course.icon}
                     </div>
-                    <span className="text-xs font-semibold text-gray-200 group-hover:text-indigo-400 transition-colors">
+                    <span className="text-xs font-semibold text-gray-200 group-hover:text-primary-400 transition-colors">
                       {course.name}
                     </span>
                   </div>
@@ -460,7 +460,7 @@ export default function AttendancePage() {
                   <div className="flex items-center gap-6">
                     <span className="text-sm font-bold w-10 text-right">{course.percentage}%</span>
                     <span className="text-xs text-gray-400 w-24 text-right hidden md:inline">{course.classes}</span>
-                    <ChevronRightSmall size={16} className="text-gray-500 group-hover:text-indigo-400 transition-colors" />
+                    <ChevronRightSmall size={16} className="text-gray-500 group-hover:text-primary-400 transition-colors" />
                   </div>
                 </div>
               ))}
@@ -469,7 +469,7 @@ export default function AttendancePage() {
             <div className="mt-6 pt-4 border-t border-[#171D2A] text-center">
               <button 
                 onClick={() => setShowExportModal(true)}
-                className="text-xs font-semibold text-indigo-400 hover:text-indigo-300 flex items-center justify-center gap-1 mx-auto transition-colors"
+                className="text-xs font-semibold text-primary-400 hover:text-primary-300 flex items-center justify-center gap-1 mx-auto transition-colors"
               >
                 <span>View detailed attendance report</span>
                 <ChevronRightSmall size={14} />
@@ -528,15 +528,15 @@ export default function AttendancePage() {
               <svg className="w-full h-full overflow-visible" viewBox="0 0 100 40" preserveAspectRatio="none">
                 <defs>
                   <linearGradient id="chartGradient" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="0%" stopColor="#6366F1" stopOpacity="0.4" />
-                    <stop offset="100%" stopColor="#6366F1" stopOpacity="0.0" />
+                    <stop offset="0%" stopColor="#10b981" stopOpacity="0.4" />
+                    <stop offset="100%" stopColor="#10b981" stopOpacity="0.0" />
                   </linearGradient>
                 </defs>
                 <path d="M0 20 Q 25 15, 50 10 T 100 5 L 100 40 L 0 40 Z" fill="url(#chartGradient)" />
-                <path d="M0 20 Q 25 15, 50 10 T 100 5" fill="none" stroke="#6366F1" strokeWidth="1.5" />
-                <circle cx="100" cy="5" r="2" className="fill-indigo-400 stroke-indigo-200 stroke-1" />
+                <path d="M0 20 Q 25 15, 50 10 T 100 5" fill="none" stroke="#10b981" strokeWidth="1.5" />
+                <circle cx="100" cy="5" r="2" className="fill-primary-400 stroke-primary-200 stroke-1" />
               </svg>
-              <span className="absolute top-0 right-0 text-[10px] font-bold text-indigo-300 bg-indigo-950/80 px-1.5 py-0.5 rounded border border-indigo-800/40">
+              <span className="absolute top-0 right-0 text-[10px] font-bold text-primary-300 bg-primary-950/80 px-1.5 py-0.5 rounded border border-primary-800/40">
                 96%
               </span>
             </div>
@@ -579,7 +579,7 @@ export default function AttendancePage() {
           <div className="bg-[#0D111A] border border-[#171D2A] p-6 rounded-2xl space-y-3.5">
             <div className="flex items-center justify-between">
               <h3 className="font-semibold text-sm">Attendance Policy</h3>
-              <button onClick={() => setShowPolicyModal(true)} className="text-xs text-indigo-400 hover:underline">
+              <button onClick={() => setShowPolicyModal(true)} className="text-xs text-primary-400 hover:underline">
                 View Policy
               </button>
             </div>
@@ -636,7 +636,7 @@ export default function AttendancePage() {
             </button>
 
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-xl bg-indigo-950/60 border border-indigo-800/40 flex items-center justify-center text-indigo-400 font-bold">
+              <div className="w-10 h-10 rounded-xl bg-primary-950/60 border border-primary-800/40 flex items-center justify-center text-primary-400 font-bold">
                 {selectedDayModal.day}
               </div>
               <div>
@@ -659,7 +659,7 @@ export default function AttendancePage() {
                       <span>{item.class}</span>
                       <span className="flex items-center gap-1 text-gray-400 text-[10px]"><Clock size={12}/> {item.time}</span>
                     </div>
-                    <p className="text-xs text-indigo-400 font-medium">Topic: {item.topic}</p>
+                    <p className="text-xs text-primary-400 font-medium">Topic: {item.topic}</p>
                   </div>
                 ))
               ) : (
@@ -719,13 +719,13 @@ export default function AttendancePage() {
               </div>
               <div className="bg-[#11151E] p-3 rounded-xl border border-[#1A202C]">
                 <span className="text-[10px] text-gray-400">Percentage Score</span>
-                <p className="text-lg font-bold text-indigo-400 mt-1">{selectedCourseModal.percentage}%</p>
+                <p className="text-lg font-bold text-primary-400 mt-1">{selectedCourseModal.percentage}%</p>
               </div>
             </div>
 
             <button 
               onClick={() => setSelectedCourseModal(null)}
-              className="w-full py-2.5 bg-indigo-600 hover:bg-indigo-500 text-xs font-semibold rounded-xl text-white transition-colors"
+              className="w-full py-2.5 bg-primary-600 hover:bg-primary-500 text-xs font-semibold rounded-xl text-white transition-colors"
             >
               Done
             </button>
@@ -758,7 +758,7 @@ export default function AttendancePage() {
               <X size={18} />
             </button>
 
-            <div className="w-12 h-12 rounded-2xl bg-indigo-950/60 border border-indigo-800/40 text-indigo-400 flex items-center justify-center mx-auto">
+            <div className="w-12 h-12 rounded-2xl bg-primary-950/60 border border-primary-800/40 text-primary-400 flex items-center justify-center mx-auto">
               <FileText size={24} />
             </div>
 
@@ -770,7 +770,7 @@ export default function AttendancePage() {
             <div className="space-y-2 pt-2">
               <button 
                 onClick={() => {
-                  const content = "Attendance Report 2026\nCourse,Attended,Total,Percentage\nDatabase 101,15,16,98%\nAI Engineering Basics,15,16,94%\nPython Programming,24,25,96%\nData Structures & Algorithms,14,15,93%\nOverall,47,49,96%";
+                  const content = "Attendance Report 2026\nCourse,Attended,Total,Percentage\nTajweed Foundations,15,16,98%\nHadith Sciences: An Introduction,15,16,94%\nQur'anic Arabic for Beginners,24,25,96%\nFiqh of Worship: Salah & Purification,14,15,93%\nOverall,47,49,96%";
                   const blob = new Blob([content], { type: "text/plain" });
                   const url = URL.createObjectURL(blob);
                   const a = document.createElement("a");
@@ -780,13 +780,13 @@ export default function AttendancePage() {
                   URL.revokeObjectURL(url);
                   setShowExportModal(false);
                 }}
-                className="w-full py-2.5 bg-indigo-600 hover:bg-indigo-500 text-xs font-semibold rounded-xl text-white transition-colors flex items-center justify-center gap-2"
+                className="w-full py-2.5 bg-primary-600 hover:bg-primary-500 text-xs font-semibold rounded-xl text-white transition-colors flex items-center justify-center gap-2"
               >
                 <Download size={14} /> Download Report
               </button>
               <button 
                 onClick={() => {
-                  const csv = "Course,Attended,Total,Percentage\nDatabase 101,15,16,98%\nAI Engineering Basics,15,16,94%\nPython Programming,24,25,96%\nData Structures & Algorithms,14,15,93%\n";
+                  const csv = "Course,Attended,Total,Percentage\nTajweed Foundations,15,16,98%\nHadith Sciences: An Introduction,15,16,94%\nQur'anic Arabic for Beginners,24,25,96%\nFiqh of Worship: Salah & Purification,14,15,93%\n";
                   const blob = new Blob([csv], { type: "text/csv" });
                   const url = URL.createObjectURL(blob);
                   const a = document.createElement("a");

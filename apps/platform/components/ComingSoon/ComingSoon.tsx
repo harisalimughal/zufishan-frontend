@@ -32,13 +32,13 @@ export function ComingSoon({ title, description, icon }: ComingSoonProps) {
       transition={{ duration: 0.3 }}
       className="flex min-h-[60vh] flex-col items-center justify-center gap-4 text-center"
     >
-      <div className="flex h-16 w-16 items-center justify-center rounded-2xl border border-[#27272A] bg-[#111827] text-[#3B82F6]">
+      <div className="flex h-16 w-16 items-center justify-center rounded-2xl border border-[#27272A] bg-[#111827] text-[#10b981]">
         <Icon className="h-7 w-7" />
       </div>
 
       <div className="space-y-1.5">
         <h1 className="text-xl font-bold text-white">{title}</h1>
-        <span className="inline-flex items-center gap-1.5 rounded-full border border-[#3B82F6]/30 bg-[#3B82F6]/10 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-[#3B82F6]">
+        <span className="inline-flex items-center gap-1.5 rounded-full border border-[#10b981]/30 bg-[#10b981]/10 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-[#10b981]">
           Coming Soon
         </span>
       </div>

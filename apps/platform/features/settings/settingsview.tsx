@@ -72,7 +72,7 @@ function Toggle({ checked, onChange }: { checked: boolean; onChange: (v: boolean
       onClick={() => onChange(!checked)}
       style={{
         width: 44, height: 24, borderRadius: 12, border: "none", cursor: "pointer",
-        background: checked ? "#6D5DFC" : "#374151", position: "relative" as const,
+        background: checked ? "#059669" : "#374151", position: "relative" as const,
         transition: "background 0.2s", flexShrink: 0,
       }}
     >
@@ -114,7 +114,7 @@ export function SettingsView() {
   const [saved, setSaved] = useState<boolean>(false);
   const [showDeleteConfirm, setShowDeleteConfirm] = useState<boolean>(false);
   const [theme, setTheme] = useState<"dark" | "light" | "system">("dark");
-  const [accentColor, setAccentColor] = useState<string>("#6D5DFC");
+  const [accentColor, setAccentColor] = useState<string>("#059669");
 
   // Profile
   const [profile, setProfile] = useState<ProfileData>({
@@ -123,7 +123,7 @@ export function SettingsView() {
     university: "", major: "",
     year: "1st Year", timezone: "(UTC+05:00) Islamabad, Karachi", language: "English",
   });
-  const [avatarColor] = useState<string>("#6D5DFC");
+  const [avatarColor] = useState<string>("#059669");
 
   // Security
   const [currentPassword, setCurrentPassword] = useState<string>("");
@@ -227,7 +227,7 @@ export function SettingsView() {
     if (newPassword.length < 6) return { label: "Weak", color: "#EF4444", width: "25%" };
     if (newPassword.length < 10) return { label: "Fair", color: "#F59E0B", width: "50%" };
     if (newPassword.length < 14) return { label: "Good", color: "#22C55E", width: "75%" };
-    return { label: "Strong", color: "#6D5DFC", width: "100%" };
+    return { label: "Strong", color: "#059669", width: "100%" };
   };
 
   const inputStyle = {
@@ -267,8 +267,8 @@ export function SettingsView() {
               style={{
                 width: "100%", display: "flex", alignItems: "center", gap: 10,
                 padding: "10px 12px", borderRadius: 8, border: "none", marginBottom: 4,
-                background: activeTab === key ? "rgba(109,93,252,0.15)" : "none",
-                color: activeTab === key ? "#A78BFA" : "#6B7280",
+                background: activeTab === key ? "rgba(5,150,105,0.15)" : "none",
+                color: activeTab === key ? "#34d399" : "#6B7280",
                 fontSize: 13, fontWeight: activeTab === key ? 600 : 400,
                 cursor: "pointer", fontFamily: "inherit", textAlign: "left" as const,
                 transition: "all 0.15s",
@@ -276,9 +276,9 @@ export function SettingsView() {
               onMouseEnter={(e) => { if (activeTab !== key) (e.currentTarget as HTMLButtonElement).style.background = "rgba(255,255,255,0.04)"; }}
               onMouseLeave={(e) => { if (activeTab !== key) (e.currentTarget as HTMLButtonElement).style.background = "none"; }}
             >
-              <Icon size={16} color={activeTab === key ? "#A78BFA" : "#6B7280"} />
+              <Icon size={16} color={activeTab === key ? "#34d399" : "#6B7280"} />
               {label}
-              {activeTab === key && <ChevronRight size={14} color="#A78BFA" style={{ marginLeft: "auto" }} />}
+              {activeTab === key && <ChevronRight size={14} color="#34d399" style={{ marginLeft: "auto" }} />}
             </button>
           ))}
         </div>
@@ -293,17 +293,17 @@ export function SettingsView() {
               <SectionCard title="Profile Picture">
                 <div style={{ display: "flex", alignItems: "center", gap: 20 }}>
                   <div style={{ position: "relative" as const }}>
-                    <div style={{ width: 80, height: 80, borderRadius: "50%", background: `linear-gradient(135deg, ${avatarColor}, #A78BFA)`, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 28, fontWeight: 800, color: "#fff" }}>
+                    <div style={{ width: 80, height: 80, borderRadius: "50%", background: `linear-gradient(135deg, ${avatarColor}, #34d399)`, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 28, fontWeight: 800, color: "#fff" }}>
                       {profile.firstName[0]}{profile.lastName[0]}
                     </div>
-                    <div style={{ position: "absolute" as const, bottom: 0, right: 0, width: 26, height: 26, borderRadius: "50%", background: "#6D5DFC", border: "2px solid #111827", display: "flex", alignItems: "center", justifyContent: "center", cursor: "pointer" }}>
+                    <div style={{ position: "absolute" as const, bottom: 0, right: 0, width: 26, height: 26, borderRadius: "50%", background: "#059669", border: "2px solid #111827", display: "flex", alignItems: "center", justifyContent: "center", cursor: "pointer" }}>
                       <Camera size={12} color="#fff" />
                     </div>
                   </div>
                   <div>
                     <div style={{ color: "#fff", fontSize: 18, fontWeight: 700 }}>{profile.firstName} {profile.lastName}</div>
                     <div style={{ color: "#6B7280", fontSize: 12, marginTop: 2 }}>{profile.email}</div>
-                    <div style={{ color: "#6D5DFC", fontSize: 12, marginTop: 4, cursor: "pointer" }}>Change photo</div>
+                    <div style={{ color: "#059669", fontSize: 12, marginTop: 4, cursor: "pointer" }}>Change photo</div>
                   </div>
                 </div>
               </SectionCard>
@@ -366,7 +366,7 @@ export function SettingsView() {
                 </div>
               </SectionCard>
 
-              <button onClick={handleSave} style={{ display: "flex", alignItems: "center", gap: 8, background: "#6D5DFC", border: "none", borderRadius: 10, padding: "11px 24px", color: "#fff", fontSize: 14, fontWeight: 600, cursor: "pointer", fontFamily: "inherit" }}>
+              <button onClick={handleSave} style={{ display: "flex", alignItems: "center", gap: 8, background: "#059669", border: "none", borderRadius: 10, padding: "11px 24px", color: "#fff", fontSize: 14, fontWeight: 600, cursor: "pointer", fontFamily: "inherit" }}>
                 <Save size={15} /> Save Changes
               </button>
             </>
@@ -422,7 +422,7 @@ export function SettingsView() {
                   <button
                     onClick={handlePasswordUpdate}
                     disabled={!currentPassword || !newPassword || newPassword !== confirmPassword}
-                    style={{ background: currentPassword && newPassword && newPassword === confirmPassword ? "#6D5DFC" : "rgba(109,93,252,0.3)", border: "none", borderRadius: 10, padding: "10px 20px", color: "#fff", fontSize: 13, fontWeight: 600, cursor: currentPassword && newPassword && newPassword === confirmPassword ? "pointer" : "not-allowed", fontFamily: "inherit", alignSelf: "flex-start" as const }}
+                    style={{ background: currentPassword && newPassword && newPassword === confirmPassword ? "#059669" : "rgba(5,150,105,0.3)", border: "none", borderRadius: 10, padding: "10px 20px", color: "#fff", fontSize: 13, fontWeight: 600, cursor: currentPassword && newPassword && newPassword === confirmPassword ? "pointer" : "not-allowed", fontFamily: "inherit", alignSelf: "flex-start" as const }}
                   >
                     Update Password
                   </button>
@@ -434,8 +434,8 @@ export function SettingsView() {
                   <Toggle checked={twoFA} onChange={setTwoFA} />
                 </SettingRow>
                 {twoFA && (
-                  <div style={{ marginTop: 12, background: "rgba(109,93,252,0.08)", border: "1px solid rgba(109,93,252,0.2)", borderRadius: 10, padding: "14px 16px" }}>
-                    <div style={{ color: "#A78BFA", fontSize: 13, fontWeight: 600, marginBottom: 4 }}>2FA is enabled</div>
+                  <div style={{ marginTop: 12, background: "rgba(5,150,105,0.08)", border: "1px solid rgba(5,150,105,0.2)", borderRadius: 10, padding: "14px 16px" }}>
+                    <div style={{ color: "#34d399", fontSize: 13, fontWeight: 600, marginBottom: 4 }}>2FA is enabled</div>
                     <div style={{ color: "#9CA3AF", fontSize: 12 }}>Your account is protected with two-factor authentication via your phone.</div>
                   </div>
                 )}
@@ -500,7 +500,7 @@ export function SettingsView() {
               <SectionCard title="Sound & Reminder">
                 <SettingRow label="Notification Sound" description="Play a sound when you receive notifications.">
                   <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-                    {notifications.soundEnabled ? <Volume2 size={16} color="#6D5DFC" /> : <VolumeX size={16} color="#6B7280" />}
+                    {notifications.soundEnabled ? <Volume2 size={16} color="#059669" /> : <VolumeX size={16} color="#6B7280" />}
                     <Toggle checked={notifications.soundEnabled} onChange={(v) => updateNotif("soundEnabled", v)} />
                   </div>
                 </SettingRow>
@@ -511,7 +511,7 @@ export function SettingsView() {
                 </SettingRow>
               </SectionCard>
 
-              <button onClick={handleSave} style={{ display: "flex", alignItems: "center", gap: 8, background: "#6D5DFC", border: "none", borderRadius: 10, padding: "11px 24px", color: "#fff", fontSize: 14, fontWeight: 600, cursor: "pointer", fontFamily: "inherit" }}>
+              <button onClick={handleSave} style={{ display: "flex", alignItems: "center", gap: 8, background: "#059669", border: "none", borderRadius: 10, padding: "11px 24px", color: "#fff", fontSize: 14, fontWeight: 600, cursor: "pointer", fontFamily: "inherit" }}>
                 <Save size={15} /> Save Preferences
               </button>
             </>
@@ -531,14 +531,14 @@ export function SettingsView() {
                       key={key}
                       onClick={() => setTheme(key as "dark" | "light" | "system")}
                       style={{
-                        background: theme === key ? "rgba(109,93,252,0.15)" : "#1F2937",
-                        border: `2px solid ${theme === key ? "#6D5DFC" : "#374151"}`,
+                        background: theme === key ? "rgba(5,150,105,0.15)" : "#1F2937",
+                        border: `2px solid ${theme === key ? "#059669" : "#374151"}`,
                         borderRadius: 12, padding: "16px 12px", cursor: "pointer", fontFamily: "inherit",
                         display: "flex", flexDirection: "column" as const, alignItems: "center", gap: 8,
                         transition: "all 0.15s",
                       }}
                     >
-                      <Icon size={22} color={theme === key ? "#A78BFA" : "#6B7280"} />
+                      <Icon size={22} color={theme === key ? "#34d399" : "#6B7280"} />
                       <div style={{ color: theme === key ? "#fff" : "#9CA3AF", fontSize: 13, fontWeight: 600 }}>{label}</div>
                       <div style={{ color: "#6B7280", fontSize: 10 }}>{desc}</div>
                     </button>
@@ -548,7 +548,7 @@ export function SettingsView() {
 
               <SectionCard title="Accent Color">
                 <div style={{ display: "flex", gap: 12, flexWrap: "wrap" as const }}>
-                  {["#6D5DFC", "#3B82F6", "#22C55E", "#F59E0B", "#EC4899", "#EF4444", "#8B5CF6", "#06B6D4"].map((c) => (
+                  {["#059669", "#10b981", "#22C55E", "#F59E0B", "#EC4899", "#EF4444", "#8B5CF6", "#06B6D4"].map((c) => (
                     <button
                       key={c}
                       onClick={() => setAccentColor(c)}
@@ -572,7 +572,7 @@ export function SettingsView() {
                 </SettingRow>
               </SectionCard>
 
-              <button onClick={handleSave} style={{ display: "flex", alignItems: "center", gap: 8, background: "#6D5DFC", border: "none", borderRadius: 10, padding: "11px 24px", color: "#fff", fontSize: 14, fontWeight: 600, cursor: "pointer", fontFamily: "inherit" }}>
+              <button onClick={handleSave} style={{ display: "flex", alignItems: "center", gap: 8, background: "#059669", border: "none", borderRadius: 10, padding: "11px 24px", color: "#fff", fontSize: 14, fontWeight: 600, cursor: "pointer", fontFamily: "inherit" }}>
                 <Save size={15} /> Save Appearance
               </button>
             </>
@@ -613,7 +613,7 @@ export function SettingsView() {
                 </div>
               </SectionCard>
 
-              <button onClick={handleSave} style={{ display: "flex", alignItems: "center", gap: 8, background: "#6D5DFC", border: "none", borderRadius: 10, padding: "11px 24px", color: "#fff", fontSize: 14, fontWeight: 600, cursor: "pointer", fontFamily: "inherit" }}>
+              <button onClick={handleSave} style={{ display: "flex", alignItems: "center", gap: 8, background: "#059669", border: "none", borderRadius: 10, padding: "11px 24px", color: "#fff", fontSize: 14, fontWeight: 600, cursor: "pointer", fontFamily: "inherit" }}>
                 <Save size={15} /> Save Privacy Settings
               </button>
             </>

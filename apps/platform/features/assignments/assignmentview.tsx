@@ -64,7 +64,7 @@ function getDaysLeft(dateStr: string): number {
 
 function getDueLabel(assignment: Assignment): { label: string; color: string; bg: string } {
   if (assignment.status === "submitted") return { label: "Submitted", color: "#22C55E", bg: "rgba(34,197,94,0.12)" };
-  if (assignment.status === "graded") return { label: `Graded: ${assignment.grade}`, color: "#6D5DFC", bg: "rgba(109,93,252,0.12)" };
+  if (assignment.status === "graded") return { label: `Graded: ${assignment.grade}`, color: "#059669", bg: "rgba(5,150,105,0.12)" };
   const days = getDaysLeft(assignment.dueDate);
   if (days < 0) return { label: `${Math.abs(days)}d overdue`, color: "#EF4444", bg: "rgba(239,68,68,0.12)" };
   if (days === 0) return { label: "Due Today", color: "#F59E0B", bg: "rgba(245,158,11,0.12)" };
@@ -76,32 +76,32 @@ function getDueLabel(assignment: Assignment): { label: string; color: string; bg
 
 const INITIAL_ASSIGNMENTS: Assignment[] = [
   {
-    id: 1, title: "ER Diagram Design", course: "Database 101", courseColor: "#6D5DFC",
+    id: 1, title: "Tajweed Practice Log", course: "Tajweed Foundations", courseColor: "#059669",
     dueDate: todayYMD(), dueTime: "11:59 PM", status: "pending",
     description: "Design a complete ER diagram for a university management system. Include all entities, relationships, and cardinalities. Submit as a PDF file.",
     totalMarks: 20, attachments: ["ER_Diagram_Guidelines.pdf"],
   },
   {
-    id: 2, title: "Neural Network Implementation", course: "AI Engineering", courseColor: "#3B82F6",
+    id: 2, title: "Neural Network Implementation", course: "Hadith Sciences: An Introduction", courseColor: "#10b981",
     dueDate: todayYMD(), dueTime: "11:59 PM", status: "pending",
     description: "Implement a simple neural network from scratch using Python. Train it on the MNIST dataset and achieve at least 90% accuracy.",
     totalMarks: 30, attachments: ["starter_code.zip", "dataset_instructions.pdf"],
   },
   {
-    id: 3, title: "Normalization Quiz", course: "Database 101", courseColor: "#6D5DFC",
+    id: 3, title: "Tajweed Rules Quiz", course: "Tajweed Foundations", courseColor: "#059669",
     dueDate: addDays(-2), dueTime: "11:59 PM", status: "overdue",
     description: "Complete the online quiz on database normalization covering 1NF, 2NF, 3NF and BCNF.",
     totalMarks: 10,
   },
   {
-    id: 4, title: "Python OOP Assignment", course: "Python Programming", courseColor: "#F59E0B",
+    id: 4, title: "Arabic Grammar Assignment", course: "Qur'anic Arabic for Beginners", courseColor: "#F59E0B",
     dueDate: addDays(-5), dueTime: "11:59 PM", status: "submitted",
     description: "Implement a library management system using object-oriented programming concepts in Python.",
     totalMarks: 25, submittedFile: "library_system.py",
   },
 ];
 
-const COURSE_FILTERS = ["All Courses", "Database 101", "AI Engineering", "Python Programming", "Data Structures", "Math for CS"];
+const COURSE_FILTERS = ["All Courses", "Tajweed Foundations", "Hadith Sciences: An Introduction", "Qur'anic Arabic for Beginners", "Fiqh of Worship", "Aqeedah Studies"];
 
 // ─── Sub Components ──────────────────────────────────────────────────────────
 
@@ -132,7 +132,7 @@ export function AssignmentsView() {
 
   // Add assignment form
   const [newTitle, setNewTitle] = useState<string>("");
-  const [newCourse, setNewCourse] = useState<string>("Database 101");
+  const [newCourse, setNewCourse] = useState<string>("Tajweed Foundations");
   const [newDate, setNewDate] = useState<string>(todayYMD());
   const [newDesc, setNewDesc] = useState<string>("");
   const [newMarks, setNewMarks] = useState<string>("20");
@@ -145,8 +145,8 @@ export function AssignmentsView() {
           const mapped: Assignment[] = live.map((a: any) => ({
             id: a.id,
             title: a.title,
-            course: a.course?.title || "Database 101",
-            courseColor: "#6D5DFC",
+            course: a.course?.title || "Tajweed Foundations",
+            courseColor: "#059669",
             dueDate: a.dueDate ? toYMD(new Date(a.dueDate)) : todayYMD(),
             dueTime: "11:59 PM",
             status: "pending",
@@ -185,14 +185,14 @@ export function AssignmentsView() {
     if (!newTitle.trim() || !newDate) return;
     const newA: Assignment = {
       id: Date.now(), title: newTitle, course: newCourse,
-      courseColor: { "Database 101": "#6D5DFC", "AI Engineering": "#3B82F6", "Python Programming": "#F59E0B", "Data Structures": "#22C55E", "Math for CS": "#EC4899" }[newCourse] || "#6D5DFC",
+      courseColor: { "Tajweed Foundations": "#059669", "Hadith Sciences: An Introduction": "#10b981", "Qur'anic Arabic for Beginners": "#F59E0B", "Fiqh of Worship": "#22C55E", "Aqeedah Studies": "#EC4899" }[newCourse] || "#059669",
       dueDate: newDate, dueTime: "11:59 PM", status: "pending",
       description: newDesc || "No description provided.", totalMarks: Number(newMarks) || 20,
     };
 
     try {
       await assignmentService.createAssignment({
-        courseId: newCourse === "Database 101" ? "db101" : "db101",
+        courseId: newCourse === "Tajweed Foundations" ? "db101" : "db101",
         title: newTitle,
         description: newDesc || "No description provided.",
         dueDate: new Date(newDate).toISOString(),
@@ -231,9 +231,9 @@ export function AssignmentsView() {
   const groups: { label: string; items: Assignment[]; color: string }[] = [
     { label: "Due Today", items: filtered.filter((a) => a.dueDate === today && a.status === "pending"), color: "#F59E0B" },
     { label: "Past Due", items: filtered.filter((a) => a.dueDate < today && a.status === "overdue"), color: "#EF4444" },
-    { label: "Upcoming", items: filtered.filter((a) => a.dueDate > today && a.status === "pending"), color: "#6D5DFC" },
+    { label: "Upcoming", items: filtered.filter((a) => a.dueDate > today && a.status === "pending"), color: "#059669" },
     { label: "Submitted", items: filtered.filter((a) => a.status === "submitted"), color: "#22C55E" },
-    { label: "Graded", items: filtered.filter((a) => a.status === "graded"), color: "#A78BFA" },
+    { label: "Graded", items: filtered.filter((a) => a.status === "graded"), color: "#34d399" },
   ];
 
   const toggleSection = (label: string) => setExpandedSections((prev) => ({ ...prev, [label]: !prev[label] }));
@@ -260,7 +260,7 @@ export function AssignmentsView() {
             <h1 style={{ color: "#fff", fontSize: 22, fontWeight: 800, margin: 0 }}>Assignments</h1>
             <p style={{ color: "#6B7280", fontSize: 13, margin: "4px 0 0" }}>Track and manage all your assignments in one place.</p>
           </div>
-          <button onClick={() => setShowAddModal(true)} style={{ display: "flex", alignItems: "center", gap: 6, background: "#6D5DFC", border: "none", borderRadius: 8, padding: "9px 16px", color: "#fff", fontSize: 13, fontWeight: 600, cursor: "pointer", fontFamily: "inherit" }}>
+          <button onClick={() => setShowAddModal(true)} style={{ display: "flex", alignItems: "center", gap: 6, background: "#059669", border: "none", borderRadius: 8, padding: "9px 16px", color: "#fff", fontSize: 13, fontWeight: 600, cursor: "pointer", fontFamily: "inherit" }}>
             <Plus size={15} /> Add Assignment
           </button>
         </div>
@@ -269,7 +269,7 @@ export function AssignmentsView() {
         <div style={{ display: "flex", gap: 12, marginBottom: 16, flexWrap: "wrap" as const }}>
           <StatCard label="Due Today" value={dueToday} color="#F59E0B" icon={Clock} />
           <StatCard label="Past Due" value={pastDue} color="#EF4444" icon={AlertCircle} />
-          <StatCard label="Upcoming" value={upcoming} color="#6D5DFC" icon={Calendar} />
+          <StatCard label="Upcoming" value={upcoming} color="#059669" icon={Calendar} />
           <StatCard label="Submitted" value={submitted} color="#22C55E" icon={CheckCircle2} />
         </div>
 
@@ -291,7 +291,7 @@ export function AssignmentsView() {
         <div style={{ display: "flex", gap: 6, flexWrap: "wrap" as const }}>
           {FILTER_BUTTONS.map(({ key, label }) => (
             <button key={key} onClick={() => setActiveFilter(key)}
-              style={{ background: activeFilter === key ? "#6D5DFC" : "#1F2937", border: `1px solid ${activeFilter === key ? "#6D5DFC" : "#374151"}`, borderRadius: 999, padding: "5px 14px", color: activeFilter === key ? "#fff" : "#9CA3AF", fontSize: 12, fontWeight: activeFilter === key ? 600 : 400, cursor: "pointer", fontFamily: "inherit", transition: "all 0.15s" }}
+              style={{ background: activeFilter === key ? "#059669" : "#1F2937", border: `1px solid ${activeFilter === key ? "#059669" : "#374151"}`, borderRadius: 999, padding: "5px 14px", color: activeFilter === key ? "#fff" : "#9CA3AF", fontSize: 12, fontWeight: activeFilter === key ? 600 : 400, cursor: "pointer", fontFamily: "inherit", transition: "all 0.15s" }}
             >
               {label}
             </button>
@@ -444,7 +444,7 @@ export function AssignmentsView() {
                       <div key={file} style={{ background: "#1F2937", border: "1px solid #374151", borderRadius: 8, padding: "10px 14px", display: "flex", alignItems: "center", gap: 10 }}>
                         <Paperclip size={14} color="#6B7280" />
                         <span style={{ color: "#E4E4E7", fontSize: 12, flex: 1 }}>{file}</span>
-                        <Eye size={14} color="#6D5DFC" style={{ cursor: "pointer" }} />
+                        <Eye size={14} color="#059669" style={{ cursor: "pointer" }} />
                       </div>
                     ))}
                   </div>
@@ -464,8 +464,8 @@ export function AssignmentsView() {
 
               {/* Grade */}
               {selectedAssignment.grade && (
-                <div style={{ background: "rgba(109,93,252,0.1)", border: "1px solid rgba(109,93,252,0.25)", borderRadius: 10, padding: "14px 16px", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-                  <span style={{ color: "#A78BFA", fontSize: 13, fontWeight: 600 }}>Your Grade</span>
+                <div style={{ background: "rgba(5,150,105,0.1)", border: "1px solid rgba(5,150,105,0.25)", borderRadius: 10, padding: "14px 16px", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+                  <span style={{ color: "#34d399", fontSize: 13, fontWeight: 600 }}>Your Grade</span>
                   <span style={{ color: "#fff", fontSize: 20, fontWeight: 800 }}>{selectedAssignment.grade}</span>
                 </div>
               )}
@@ -517,7 +517,7 @@ export function AssignmentsView() {
                 <label style={labelStyle}>Description</label>
                 <textarea value={newDesc} onChange={(e) => setNewDesc(e.target.value)} placeholder="Assignment instructions..." rows={3} style={{ ...inputStyle, resize: "vertical" as const }} />
               </div>
-              <button onClick={handleAddAssignment} disabled={!newTitle.trim()} style={{ background: newTitle.trim() ? "#6D5DFC" : "rgba(109,93,252,0.3)", border: "none", borderRadius: 10, padding: 11, color: "#fff", fontSize: 13, fontWeight: 600, cursor: newTitle.trim() ? "pointer" : "not-allowed", fontFamily: "inherit" }}>
+              <button onClick={handleAddAssignment} disabled={!newTitle.trim()} style={{ background: newTitle.trim() ? "#059669" : "rgba(5,150,105,0.3)", border: "none", borderRadius: 10, padding: 11, color: "#fff", fontSize: 13, fontWeight: 600, cursor: newTitle.trim() ? "pointer" : "not-allowed", fontFamily: "inherit" }}>
                 Add Assignment
               </button>
             </div>

@@ -43,7 +43,7 @@ export function CategoryTabs({
                 className={[
                   "flex h-11 shrink-0 items-center gap-2.5 rounded-lg border px-3 text-left transition-all duration-200",
                   isActive
-                    ? "border-violet-600 bg-violet-950/30 shadow-[0_0_10px_rgba(124,58,237,0.12)]"
+                    ? "border-primary-600 bg-primary-950/30 shadow-[0_0_10px_rgba(5,150,105,0.12)]"
                     : "border-[#1F2937] bg-[#0D1422] hover:border-zinc-600 hover:bg-[#111827]",
                 ].join(" ")}
               >
@@ -51,8 +51,8 @@ export function CategoryTabs({
                   className={[
                     "grid size-7 shrink-0 place-items-center rounded-md transition",
                     isActive
-                      ? "bg-violet-600/20 text-violet-400"
-                      : "bg-[#111827] text-blue-400",
+                      ? "bg-primary-600/20 text-primary-400"
+                      : "bg-[#111827] text-primary-400",
                   ].join(" ")}
                 >
                   <Icon size={14} />
@@ -80,8 +80,8 @@ export function CategoryTabs({
         className={[
           "hidden size-8 shrink-0 place-items-center rounded-full border transition sm:grid",
           showAllCategories
-            ? "border-violet-500 bg-violet-950/30 text-white"
-            : "border-[#27272A] bg-[#111827] text-zinc-400 hover:border-violet-500 hover:text-white",
+            ? "border-primary-500 bg-primary-950/30 text-white"
+            : "border-[#27272A] bg-[#111827] text-zinc-400 hover:border-primary-500 hover:text-white",
         ].join(" ")}
       >
         <ChevronRight

@@ -16,7 +16,7 @@ export function HeaderPoints() {
       </div>
 
       <div className="w-10 h-10 rounded-full bg-[#1F2937] border border-[#27272A] flex items-center justify-center hover:bg-[#2A2A3A] transition cursor-pointer group">
-        <History size={20} className="text-gray-400 group-hover:text-[#3B82F6] transition" />
+        <History size={20} className="text-gray-400 group-hover:text-[#10b981] transition" />
       </div>
     </div>
   )

@@ -25,7 +25,7 @@ interface AIProfessor {
 
 const INITIAL_PROFESSORS: AIProfessor[] = [
   {
-    id: 1, name: "Prof. Lucas", avatar: "PL", avatarColor: "#6D5DFC",
+    id: 1, name: "Ustaz Ibrahim Malik", avatar: "IM", avatarColor: "#059669",
     voice: "Professional Male English", language: "English",
     personality: "Patient, encouraging, academic",
     teachingStyle: "Interactive, examples-first, structured",
@@ -34,7 +34,7 @@ const INITIAL_PROFESSORS: AIProfessor[] = [
     status: "active", courses: 3,
   },
   {
-    id: 2, name: "Prof. Ava", avatar: "PA", avatarColor: "#EC4899",
+    id: 2, name: "Ustaza Maryam Siddiqui", avatar: "MS", avatarColor: "#EC4899",
     voice: "Professional Female English", language: "English",
     personality: "Enthusiastic, detail-oriented, supportive",
     teachingStyle: "Problem-solving, step-by-step, visual",
@@ -49,7 +49,7 @@ const LANGUAGES = ["English", "Urdu", "Arabic", "French", "Spanish", "Chinese"];
 const PERSONALITIES = ["Patient, encouraging, academic", "Enthusiastic, detail-oriented, supportive", "Strict, precise, formal", "Friendly, casual, motivating", "Calm, methodical, thorough"];
 const TEACHING_STYLES = ["Interactive, examples-first, structured", "Problem-solving, step-by-step, visual", "Lecture-based, theory-first", "Socratic method, question-driven", "Project-based, hands-on"];
 const BEHAVIOURS = ["Explains concepts, checks understanding, answers questions", "Motivates students, provides hints, resumes lesson after Q&A", "Focuses on curriculum, minimal off-topic discussion", "Encourages participation, celebrates progress", "Strict pacing, covers all material systematically"];
-const AVATAR_COLORS_LIST = ["#6D5DFC", "#EC4899", "#3B82F6", "#22C55E", "#F59E0B", "#EF4444", "#8B5CF6", "#06B6D4"];
+const AVATAR_COLORS_LIST = ["#059669", "#EC4899", "#10b981", "#22C55E", "#F59E0B", "#EF4444", "#8B5CF6", "#06B6D4"];
 
 export function AIProfessorTab() {
   const [professors, setProfessors] = useState<AIProfessor[]>(INITIAL_PROFESSORS);
@@ -59,7 +59,7 @@ export function AIProfessorTab() {
 
   const [name, setName] = useState("");
   const [avatarInitials, setAvatarInitials] = useState("");
-  const [avatarColor, setAvatarColor] = useState("#6D5DFC");
+  const [avatarColor, setAvatarColor] = useState("#059669");
   const [voice, setVoice] = useState(VOICES[0]);
   const [language, setLanguage] = useState(LANGUAGES[0]);
   const [personality, setPersonality] = useState(PERSONALITIES[0]);
@@ -72,7 +72,7 @@ export function AIProfessorTab() {
   const labelStyle = { color: "#9CA3AF", fontSize: 11, display: "block" as const, marginBottom: 5 };
 
   const resetForm = () => {
-    setName(""); setAvatarInitials(""); setAvatarColor("#6D5DFC");
+    setName(""); setAvatarInitials(""); setAvatarColor("#059669");
     setVoice(VOICES[0]); setLanguage(LANGUAGES[0]);
     setPersonality(PERSONALITIES[0]); setTeachingStyle(TEACHING_STYLES[0]);
     setBehaviour(BEHAVIOURS[0]); setAvatarProviderId(""); setVoiceProviderId("");
@@ -113,11 +113,11 @@ export function AIProfessorTab() {
     <>
       <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 20 }}>
         <div>
-          <h1 style={{ color: "#fff", fontSize: 20, fontWeight: 800, margin: "0 0 2px 0" }}>AI Professor Management</h1>
-          <p style={{ color: "#6B7280", fontSize: 13, margin: 0 }}>Create and configure AI teaching identities for your courses.</p>
+          <h1 style={{ color: "#fff", fontSize: 20, fontWeight: 800, margin: "0 0 2px 0" }}>Scholar Management</h1>
+          <p style={{ color: "#6B7280", fontSize: 13, margin: 0 }}>Create and manage verified scholar profiles for your courses.</p>
         </div>
-        <button onClick={handleOpenCreate} style={{ display: "flex", alignItems: "center", gap: 6, background: "#6D5DFC", border: "none", borderRadius: 8, padding: "9px 16px", color: "#fff", fontSize: 13, fontWeight: 600, cursor: "pointer", fontFamily: "inherit" }}>
-          <Plus size={14} /> Create AI Professor
+        <button onClick={handleOpenCreate} style={{ display: "flex", alignItems: "center", gap: 6, background: "#059669", border: "none", borderRadius: 8, padding: "9px 16px", color: "#fff", fontSize: 13, fontWeight: 600, cursor: "pointer", fontFamily: "inherit" }}>
+          <Plus size={14} /> Add Scholar
         </button>
       </div>
 
@@ -158,7 +158,7 @@ export function AIProfessorTab() {
             </div>
 
             <div style={{ display: "flex", gap: 8 }}>
-              <button onClick={() => setSelectedProfessor(prof)} style={{ flex: 1, background: "rgba(109,93,252,0.1)", border: "1px solid rgba(109,93,252,0.25)", borderRadius: 8, padding: "7px", color: "#A78BFA", fontSize: 12, fontWeight: 600, cursor: "pointer", fontFamily: "inherit", display: "flex", alignItems: "center", justifyContent: "center", gap: 4 }}>
+              <button onClick={() => setSelectedProfessor(prof)} style={{ flex: 1, background: "rgba(5,150,105,0.1)", border: "1px solid rgba(5,150,105,0.25)", borderRadius: 8, padding: "7px", color: "#34d399", fontSize: 12, fontWeight: 600, cursor: "pointer", fontFamily: "inherit", display: "flex", alignItems: "center", justifyContent: "center", gap: 4 }}>
                 <Eye size={13} /> View
               </button>
               <button onClick={() => handleEdit(prof)} style={{ flex: 1, background: "#1F2937", border: "1px solid #374151", borderRadius: 8, padding: "7px", color: "#E4E4E7", fontSize: 12, fontWeight: 600, cursor: "pointer", fontFamily: "inherit", display: "flex", alignItems: "center", justifyContent: "center", gap: 4 }}>
@@ -174,12 +174,12 @@ export function AIProfessorTab() {
           </div>
         ))}
 
-        <div onClick={handleOpenCreate} style={{ background: "rgba(109,93,252,0.04)", border: "2px dashed rgba(109,93,252,0.2)", borderRadius: 14, padding: "20px", display: "flex", flexDirection: "column" as const, alignItems: "center", justifyContent: "center", gap: 10, cursor: "pointer", minHeight: 200, transition: "all 0.15s" }}>
-          <div style={{ width: 48, height: 48, borderRadius: "50%", background: "rgba(109,93,252,0.12)", display: "flex", alignItems: "center", justifyContent: "center" }}>
-            <Plus size={22} color="#6D5DFC" />
+        <div onClick={handleOpenCreate} style={{ background: "rgba(5,150,105,0.04)", border: "2px dashed rgba(5,150,105,0.2)", borderRadius: 14, padding: "20px", display: "flex", flexDirection: "column" as const, alignItems: "center", justifyContent: "center", gap: 10, cursor: "pointer", minHeight: 200, transition: "all 0.15s" }}>
+          <div style={{ width: 48, height: 48, borderRadius: "50%", background: "rgba(5,150,105,0.12)", display: "flex", alignItems: "center", justifyContent: "center" }}>
+            <Plus size={22} color="#059669" />
           </div>
-          <div style={{ color: "#6D5DFC", fontSize: 13, fontWeight: 600 }}>Create New AI Professor</div>
-          <div style={{ color: "#6B7280", fontSize: 11, textAlign: "center" as const }}>Configure name, voice, personality and teaching style</div>
+          <div style={{ color: "#059669", fontSize: 13, fontWeight: 600 }}>Add New Scholar</div>
+          <div style={{ color: "#6B7280", fontSize: 11, textAlign: "center" as const }}>Configure name, voice, personality and teaching style for this scholar</div>
         </div>
       </div>
 
@@ -188,10 +188,10 @@ export function AIProfessorTab() {
           <div onClick={(e) => e.stopPropagation()} style={{ background: "#111827", border: "1px solid #374151", borderRadius: 20, padding: 28, width: 560, maxHeight: "90vh", overflowY: "auto" as const }}>
             <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 20 }}>
               <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-                <div style={{ width: 36, height: 36, borderRadius: 8, background: "rgba(109,93,252,0.15)", display: "flex", alignItems: "center", justifyContent: "center" }}>
-                  <Bot size={18} color="#A78BFA" />
+                <div style={{ width: 36, height: 36, borderRadius: 8, background: "rgba(5,150,105,0.15)", display: "flex", alignItems: "center", justifyContent: "center" }}>
+                  <Bot size={18} color="#34d399" />
                 </div>
-                <span style={{ color: "#fff", fontSize: 16, fontWeight: 700 }}>{editingProfessor ? "Edit AI Professor" : "Create AI Professor"}</span>
+                <span style={{ color: "#fff", fontSize: 16, fontWeight: 700 }}>{editingProfessor ? "Edit Scholar" : "Add Scholar"}</span>
               </div>
               <button onClick={() => { setShowForm(false); resetForm(); }} style={{ background: "none", border: "none", color: "#6B7280", cursor: "pointer", fontSize: 20 }}>×</button>
             </div>
@@ -201,15 +201,15 @@ export function AIProfessorTab() {
                 {avatarInitials || (name ? name.split(" ").map((n) => n[0]).join("").toUpperCase().slice(0, 2) : "AI")}
               </div>
               <div>
-                <div style={{ color: "#fff", fontSize: 14, fontWeight: 700 }}>{name || "Professor Name"}</div>
+                <div style={{ color: "#fff", fontSize: 14, fontWeight: 700 }}>{name || "Scholar Name"}</div>
                 <div style={{ color: "#6B7280", fontSize: 11, marginTop: 2 }}>{language} • {voice}</div>
               </div>
             </div>
 
             <div style={{ display: "flex", flexDirection: "column" as const, gap: 14 }}>
               <div>
-                <label style={labelStyle}>Professor Name *</label>
-                <input value={name} onChange={(e) => setName(e.target.value)} placeholder="e.g. Dr. Sara" style={inputStyle} />
+                <label style={labelStyle}>Scholar Name *</label>
+                <input value={name} onChange={(e) => setName(e.target.value)} placeholder="e.g. Ustaz Ahmad" style={inputStyle} />
               </div>
 
               <div style={{ display: "flex", gap: 12 }}>
@@ -273,8 +273,8 @@ export function AIProfessorTab() {
                 </div>
               </div>
 
-              <button onClick={handleSave} disabled={!name.trim()} style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 8, background: name.trim() ? "#6D5DFC" : "rgba(109,93,252,0.3)", border: "none", borderRadius: 10, padding: 12, color: "#fff", fontSize: 14, fontWeight: 600, cursor: name.trim() ? "pointer" : "not-allowed", fontFamily: "inherit", marginTop: 4 }}>
-                <Save size={15} /> {editingProfessor ? "Save Changes" : "Create AI Professor"}
+              <button onClick={handleSave} disabled={!name.trim()} style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 8, background: name.trim() ? "#059669" : "rgba(5,150,105,0.3)", border: "none", borderRadius: 10, padding: 12, color: "#fff", fontSize: 14, fontWeight: 600, cursor: name.trim() ? "pointer" : "not-allowed", fontFamily: "inherit", marginTop: 4 }}>
+                <Save size={15} /> {editingProfessor ? "Save Changes" : "Add Scholar"}
               </button>
             </div>
           </div>
@@ -285,7 +285,7 @@ export function AIProfessorTab() {
         <div onClick={() => setSelectedProfessor(null)} style={{ position: "fixed" as const, inset: 0, zIndex: 100, background: "rgba(0,0,0,0.7)", backdropFilter: "blur(6px)", display: "flex", alignItems: "center", justifyContent: "center", padding: 24 }}>
           <div onClick={(e) => e.stopPropagation()} style={{ background: "#111827", border: `1px solid ${selectedProfessor.avatarColor}44`, borderRadius: 20, padding: 28, width: 480, maxHeight: "85vh", overflowY: "auto" as const }}>
             <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 20 }}>
-              <span style={{ color: "#fff", fontSize: 16, fontWeight: 700 }}>AI Professor Details</span>
+              <span style={{ color: "#fff", fontSize: 16, fontWeight: 700 }}>Scholar Details</span>
               <button onClick={() => setSelectedProfessor(null)} style={{ background: "none", border: "none", color: "#6B7280", cursor: "pointer", fontSize: 20 }}>×</button>
             </div>
 
@@ -322,8 +322,8 @@ export function AIProfessorTab() {
             </div>
 
             <div style={{ display: "flex", gap: 10 }}>
-              <button onClick={() => handleEdit(selectedProfessor)} style={{ flex: 1, background: "#6D5DFC", border: "none", borderRadius: 10, padding: "10px", color: "#fff", fontSize: 13, fontWeight: 600, cursor: "pointer", fontFamily: "inherit", display: "flex", alignItems: "center", justifyContent: "center", gap: 6 }}>
-                <Edit size={14} /> Edit Professor
+              <button onClick={() => handleEdit(selectedProfessor)} style={{ flex: 1, background: "#059669", border: "none", borderRadius: 10, padding: "10px", color: "#fff", fontSize: 13, fontWeight: 600, cursor: "pointer", fontFamily: "inherit", display: "flex", alignItems: "center", justifyContent: "center", gap: 6 }}>
+                <Edit size={14} /> Edit Scholar
               </button>
               <button onClick={() => handleDelete(selectedProfessor.id)} style={{ background: "rgba(239,68,68,0.1)", border: "1px solid rgba(239,68,68,0.3)", borderRadius: 10, padding: "10px 16px", color: "#EF4444", fontSize: 13, fontWeight: 600, cursor: "pointer", fontFamily: "inherit", display: "flex", alignItems: "center", gap: 6 }}>
                 <Trash2 size={14} /> Delete

@@ -57,7 +57,7 @@ export default function AdminCoursesPage() {
         </div>
         <button
           onClick={() => setIsCreating(true)}
-          className="rounded-lg bg-[#3B82F6] px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-blue-600"
+          className="rounded-lg bg-[#10b981] px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-primary-600"
         >
           + Add Course
         </button>

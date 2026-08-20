@@ -18,7 +18,7 @@ import { useTheme } from "../../lib/theme/ThemeContext";
 const YOUTUBE_ID = "ABcjJAavSxE"; // Replace with your actual YouTube video ID
 
 const CHAPTERS = [
-  { time: "0:00", label: "Introduction to Ranenla" },
+  { time: "0:00", label: "Introduction to Zufishan" },
   { time: "0:28", label: "Live AI Professor in Action" },
   { time: "1:02", label: "Real-Time Q&A Demo" },
   { time: "1:35", label: "Smart Notes & Attendance" },
@@ -96,13 +96,13 @@ export function DemoVideo() {
           <div
             style={{
               width: 7, height: 7, borderRadius: "50%",
-              background: "#6D5DFC",
-              boxShadow: pulse ? "0 0 8px 2px #6D5DFC" : "none",
+              background: "#059669",
+              boxShadow: pulse ? "0 0 8px 2px #059669" : "none",
               transition: "box-shadow 0.6s ease",
             }}
           />
           <span style={{
-            color: "#3B82F6", fontSize: 12, fontWeight: 600,
+            color: "#10b981", fontSize: 12, fontWeight: 600,
             letterSpacing: "0.05em", textTransform: "uppercase" as const,
           }}>
             Product Demo
@@ -125,10 +125,10 @@ export function DemoVideo() {
           letterSpacing: "-0.02em", margin: 0,
           transition: "color 0.3s ease",
         }}>
-          See Ranenla in action.
+          See Zufishan in action.
           <br />
           <span style={{
-            background: "linear-gradient(135deg, #6D5DFC, #A78BFA)",
+            background: "linear-gradient(135deg, #059669, #34d399)",
             WebkitBackgroundClip: "text",
             WebkitTextFillColor: "transparent",
             backgroundClip: "text",
@@ -142,7 +142,7 @@ export function DemoVideo() {
           marginLeft: "auto", marginRight: "auto",
           transition: "color 0.3s ease",
         }}>
-          Watch how Ranenla&apos;s AI Professor teaches a live class, answers student
+          Watch how Zufishan&apos;s AI Professor teaches a live class, answers student
           questions, and tracks attendance — all in real time.
         </p>
       </motion.div>
@@ -174,7 +174,7 @@ export function DemoVideo() {
               transition: "background-color 0.3s ease, border-color 0.3s ease",
             }}
           >
-            <Icon size={14} color="#A78BFA" />
+            <Icon size={14} color="#34d399" />
             <span style={{ color: textPrimary, fontSize: 13, fontWeight: 700, transition: "color 0.3s ease" }}>{value}</span>
             <span style={{ color: textSecondary, fontSize: 13, transition: "color 0.3s ease" }}>{label}</span>
           </motion.div>
@@ -192,7 +192,7 @@ export function DemoVideo() {
           <div style={{
             borderRadius: 16, overflow: "hidden",
             border: `1px solid ${borderColor}`,
-            boxShadow: "0 32px 80px rgba(0,0,0,0.6), 0 0 0 1px rgba(109,93,252,0.08)",
+            boxShadow: "0 32px 80px rgba(0,0,0,0.6), 0 0 0 1px rgba(5,150,105,0.08)",
             position: "relative" as const,
             background: "#000",
             aspectRatio: "16/9",
@@ -214,18 +214,18 @@ export function DemoVideo() {
                 {/* Decorative glow */}
                 <div style={{
                   position: "absolute" as const, inset: 0,
-                  background: "radial-gradient(ellipse at 50% 50%, rgba(109,93,252,0.15) 0%, transparent 70%)",
+                  background: "radial-gradient(ellipse at 50% 50%, rgba(5,150,105,0.15) 0%, transparent 70%)",
                   pointerEvents: "none",
                 }} />
 
                 {/* Play button */}
                 <div style={{
                   width: 80, height: 80, borderRadius: "50%",
-                  background: "rgba(109,93,252,0.9)",
+                  background: "rgba(5,150,105,0.9)",
                   backdropFilter: "blur(8px)",
-                  border: "2px solid rgba(167,139,250,0.5)",
+                  border: "2px solid rgba(52,211,153,0.5)",
                   display: "flex", alignItems: "center", justifyContent: "center",
-                  boxShadow: "0 0 50px rgba(109,93,252,0.6)",
+                  boxShadow: "0 0 50px rgba(5,150,105,0.6)",
                   zIndex: 2,
                 }}>
                   <Play size={34} color="#fff" fill="#fff" style={{ marginLeft: 5 }} />
@@ -249,7 +249,7 @@ export function DemoVideo() {
                   {[60, 80, 45, 90, 55, 70, 85, 40, 75, 65].map((h, i) => (
                     <div key={i} style={{
                       flex: 1, height: h * 0.4,
-                      background: `rgba(109,93,252,${0.2 + (h / 100) * 0.3})`,
+                      background: `rgba(5,150,105,${0.2 + (h / 100) * 0.3})`,
                       borderRadius: 3,
                     }} />
                   ))}
@@ -305,7 +305,7 @@ export function DemoVideo() {
                 transition: "background 0.15s",
               }}
               onMouseEnter={(e) => {
-                (e.currentTarget as HTMLButtonElement).style.background = "rgba(109,93,252,0.1)";
+                (e.currentTarget as HTMLButtonElement).style.background = "rgba(5,150,105,0.1)";
               }}
               onMouseLeave={(e) => {
                 (e.currentTarget as HTMLButtonElement).style.background = "none";
@@ -313,12 +313,12 @@ export function DemoVideo() {
             >
               <div style={{
                 width: 28, height: 28, borderRadius: "50%",
-                background: "rgba(109,93,252,0.15)",
-                border: "1px solid rgba(109,93,252,0.3)",
+                background: "rgba(5,150,105,0.15)",
+                border: "1px solid rgba(5,150,105,0.3)",
                 display: "flex", alignItems: "center", justifyContent: "center",
                 flexShrink: 0,
               }}>
-                <ChevronRight size={14} color="#A78BFA" />
+                <ChevronRight size={14} color="#34d399" />
               </div>
               <div style={{ minWidth: 0 }}>
                 <div style={{ color: textPrimary, fontSize: 11, fontWeight: 600, lineHeight: 1.3, transition: "color 0.3s ease" }}>
@@ -342,12 +342,12 @@ export function DemoVideo() {
           whileHover={{ scale: 1.03, translateY: -1 }}
           whileTap={{ scale: 0.98 }}
           style={{
-            background: "linear-gradient(135deg, #6D5DFC, #A78BFA)",
+            background: "linear-gradient(135deg, #059669, #34d399)",
             border: "none", borderRadius: 12,
             padding: "14px 36px",
             color: "#fff", fontSize: 15, fontWeight: 700,
             cursor: "pointer", fontFamily: "inherit",
-            boxShadow: "0 8px 32px rgba(109,93,252,0.35)",
+            boxShadow: "0 8px 32px rgba(5,150,105,0.35)",
             letterSpacing: "0.01em",
           }}
         >

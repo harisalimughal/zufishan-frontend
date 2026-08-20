@@ -19,15 +19,15 @@ const activityItems: ActivityItem[] = [
     id: "1",
     icon: <CheckCircle2 className="h-4 w-4 text-emerald-400" />,
     iconBg: "bg-emerald-500/20",
-    title: 'You completed "SQL Basics Quiz"',
+    title: 'You completed "Tajweed Basics Quiz"',
     time: "2 hours ago",
   },
   {
     id: "2",
-    icon: <FileUp className="h-4 w-4 text-[#3B82F6]" />,
-    iconBg: "bg-[#3B82F6]/20",
-    title: "Prof. Lucas uploaded new notes",
-    subtitle: "Database Normalization.pdf",
+    icon: <FileUp className="h-4 w-4 text-[#10b981]" />,
+    iconBg: "bg-[#10b981]/20",
+    title: "Ustaz Ibrahim Malik uploaded new notes",
+    subtitle: "Tajweed Rules Summary.pdf",
     time: "5 hours ago",
   },
   {
@@ -45,7 +45,7 @@ export function ActivityFeed() {
       {/* Header */}
       <div className="mb-4 flex items-center justify-between">
         <h3 className="text-sm font-semibold text-white">Activity Feed</h3>
-        <Link href="/achievements" className="text-xs font-medium text-[#3B82F6] transition-colors hover:text-[#60A5FA]">
+        <Link href="/achievements" className="text-xs font-medium text-[#10b981] transition-colors hover:text-[#60A5FA]">
           View all
         </Link>
       </div>

@@ -21,20 +21,20 @@ import { CourseSearch } from "./CourseSearch";
 import type { Course, CourseCategory, CourseCategoryName } from "./types";
 
 const defaultCourses: Course[] = [
-  { id: 1, title: "Database 101", subtitle: "From Basics to Advanced SQL", category: "Database", instructor: "Prof. Lucas (AI)", rating: 4.9, reviews: "1.2K", students: "8.5K", level: "Beginner", badge: "Bestseller", illustration: "database", slug: "database-101" },
-  { id: 2, title: "Python Programming", subtitle: "Master Python from Scratch", category: "Programming", instructor: "Prof. Ethan (AI)", rating: 4.8, reviews: "980", students: "7.2K", level: "Beginner", illustration: "python", slug: "python-programming" },
-  { id: 3, title: "AI & Machine Learning Basics", subtitle: "Build Intelligent Systems", category: "AI & ML", instructor: "Prof. Ava (AI)", rating: 4.9, reviews: "1.5K", students: "9.3K", level: "Intermediate", badge: "Bestseller", illustration: "ai", slug: "ai-machine-learning" },
-  { id: 4, title: "Data Structures & Algorithms", subtitle: "Ace Your Coding Interviews", category: "Programming", instructor: "Prof. Zoe (AI)", rating: 4.8, reviews: "821", students: "6.1K", level: "Intermediate", badge: "New", illustration: "code", slug: "data-structures-algorithms" },
-  { id: 5, title: "Data Analysis with Pandas", subtitle: "Analyze Data Like a Pro", category: "Data Science", instructor: "Prof. Noah (AI)", rating: 4.7, reviews: "732", students: "5.4K", level: "Beginner", illustration: "analytics", slug: "data-analysis-pandas" },
+  { id: 1, title: "Tajweed Foundations", subtitle: "From Makharij to Advanced Recitation Rules", category: "Qur'an & Tajweed", instructor: "Ustaz Ibrahim Malik", rating: 4.9, reviews: "1.2K", students: "8.5K", level: "Beginner", badge: "Bestseller", illustration: "database", slug: "database-101" },
+  { id: 2, title: "Qur'anic Arabic for Beginners", subtitle: "Read and Understand Qur'anic Arabic from Scratch", category: "Arabic Language", instructor: "Ustaz Yusuf Rahman", rating: 4.8, reviews: "980", students: "7.2K", level: "Beginner", illustration: "python", slug: "python-programming" },
+  { id: 3, title: "Hadith Sciences: An Introduction", subtitle: "Understanding Sanad, Matn and Authentication", category: "Hadith & Seerah", instructor: "Ustaza Maryam Siddiqui", rating: 4.9, reviews: "1.5K", students: "9.3K", level: "Intermediate", badge: "Bestseller", illustration: "ai", slug: "ai-machine-learning" },
+  { id: 4, title: "Fiqh of Worship: Salah & Purification", subtitle: "Master the Rulings of Salah From Wudu to Witr", category: "Fiqh & Aqeedah", instructor: "Ustaza Amina Yusuf", rating: 4.8, reviews: "821", students: "6.1K", level: "Intermediate", badge: "New", illustration: "code", slug: "data-structures-algorithms" },
+  { id: 5, title: "Seerah: The Life of the Prophet ﷺ", subtitle: "A Chronological Journey Through the Prophetic Biography", category: "Hadith & Seerah", instructor: "Ustaz Khalid Farooq", rating: 4.7, reviews: "732", students: "5.4K", level: "Beginner", illustration: "analytics", slug: "data-analysis-pandas" },
 ];
 
 const categoryMap: Record<string, CourseCategoryName> = {
-  programming: "Programming",
-  "data-science": "Data Science",
-  "ai-ml": "AI & ML",
-  database: "Database",
-  business: "Business",
-  "cloud-computing": "Cloud Computing",
+  programming: "Qur'an & Tajweed",
+  "data-science": "Hadith & Seerah",
+  "ai-ml": "Fiqh & Aqeedah",
+  database: "Arabic Language",
+  business: "Islamic Finance",
+  "cloud-computing": "Hifz Program",
 };
 
 type SortValue = "popular" | "rating" | "title";
@@ -55,8 +55,8 @@ export function CourseCatalog() {
             id: typeof c.id === "number" ? c.id : idx + 1,
             title: c.title,
             subtitle: c.description || "Interactive AI Course",
-            category: (c.category as CourseCategoryName) || "Programming",
-            instructor: c.instructorName || "Prof. Lucas (AI)",
+            category: (c.category as CourseCategoryName) || "Qur'an & Tajweed",
+            instructor: c.instructorName || "Ustaz Ibrahim Malik",
             rating: c.rating || 4.8,
             reviews: "500+",
             students: `${c.totalStudents || 0}`,
@@ -77,12 +77,12 @@ export function CourseCatalog() {
   const categories = useMemo<CourseCategory[]>(() => {
     return [
       { id: "all", label: "All Courses", courseCount: courseList.length, icon: Layers3 },
-      { id: "programming", label: "Programming", courseCount: courseList.filter((c) => c.category === "Programming").length, icon: Code2 },
-      { id: "data-science", label: "Data Science", courseCount: courseList.filter((c) => c.category === "Data Science").length, icon: BarChart3 },
-      { id: "ai-ml", label: "AI & ML", courseCount: courseList.filter((c) => c.category === "AI & ML").length, icon: BrainCircuit },
-      { id: "database", label: "Database", courseCount: courseList.filter((c) => c.category === "Database").length, icon: Database },
-      { id: "business", label: "Business", courseCount: courseList.filter((c) => c.category === "Business").length, icon: BriefcaseBusiness },
-      { id: "cloud-computing", label: "Cloud Computing", courseCount: courseList.filter((c) => c.category === "Cloud Computing").length, icon: Cloud },
+      { id: "programming", label: "Qur'an & Tajweed", courseCount: courseList.filter((c) => c.category === "Qur'an & Tajweed").length, icon: Code2 },
+      { id: "data-science", label: "Hadith & Seerah", courseCount: courseList.filter((c) => c.category === "Hadith & Seerah").length, icon: BarChart3 },
+      { id: "ai-ml", label: "Fiqh & Aqeedah", courseCount: courseList.filter((c) => c.category === "Fiqh & Aqeedah").length, icon: BrainCircuit },
+      { id: "database", label: "Arabic Language", courseCount: courseList.filter((c) => c.category === "Arabic Language").length, icon: Database },
+      { id: "business", label: "Islamic Finance", courseCount: courseList.filter((c) => c.category === "Islamic Finance").length, icon: BriefcaseBusiness },
+      { id: "cloud-computing", label: "Hifz Program", courseCount: courseList.filter((c) => c.category === "Hifz Program").length, icon: Cloud },
     ];
   }, [courseList]);
 
@@ -155,7 +155,7 @@ export function CourseCatalog() {
             <select
               value={sortValue}
               onChange={(e) => setSortValue(e.target.value as SortValue)}
-              className="h-10 rounded-lg border border-[#1F2937] bg-[#0D1422] px-3 text-xs font-medium text-zinc-300 outline-none transition focus:border-violet-500"
+              className="h-10 rounded-lg border border-[#1F2937] bg-[#0D1422] px-3 text-xs font-medium text-zinc-300 outline-none transition focus:border-primary-500"
             >
               <option value="popular">Popular</option>
               <option value="rating">Highest Rating</option>
@@ -170,7 +170,7 @@ export function CourseCatalog() {
                 className={[
                   "grid size-8 place-items-center rounded-md transition",
                   viewMode === "grid"
-                    ? "bg-violet-700 text-white"
+                    ? "bg-primary-700 text-white"
                     : "text-zinc-500 hover:text-white",
                 ].join(" ")}
               >
@@ -184,7 +184,7 @@ export function CourseCatalog() {
                 className={[
                   "grid size-8 place-items-center rounded-md transition",
                   viewMode === "list"
-                    ? "bg-violet-700 text-white"
+                    ? "bg-primary-700 text-white"
                     : "text-zinc-500 hover:text-white",
                 ].join(" ")}
               >

@@ -31,7 +31,7 @@ export async function POST(request: Request) {
 
   const apiKey = process.env.RESEND_API_KEY;
   const toEmail = process.env.WAITLIST_TO_EMAIL;
-  const fromEmail = process.env.WAITLIST_FROM_EMAIL || "Ranenla Waitlist <onboarding@resend.dev>";
+  const fromEmail = process.env.WAITLIST_FROM_EMAIL || "Zufishan Waitlist <onboarding@resend.dev>";
 
   if (!apiKey || !toEmail) {
     console.error("Waitlist route misconfigured: missing RESEND_API_KEY or WAITLIST_TO_EMAIL");
@@ -47,7 +47,7 @@ export async function POST(request: Request) {
     from: fromEmail,
     to: toEmail,
     replyTo: email,
-    subject: `Ranenla Waitlist: ${fullName}`,
+    subject: `Zufishan Waitlist: ${fullName}`,
     text: [
       `Name: ${fullName}`,
       `Email: ${email}`,

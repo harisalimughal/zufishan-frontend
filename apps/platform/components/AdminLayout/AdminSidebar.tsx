@@ -26,7 +26,7 @@ const navigationItems = [
   { href: "/admin/live-classes", label: "Live Classes", icon: Tv },
   { href: "/admin/analytics", label: "Analytics", icon: BarChart2 },
   { href: "/admin/announcements", label: "Announcements", icon: Bell },
-  { href: "/admin/ai-professor", label: "AI Professors", icon: Bot },
+  { href: "/admin/ai-professor", label: "Scholars", icon: Bot },
   { href: "/admin/reports", label: "Reports", icon: TrendingUp },
   { href: "/admin/settings", label: "Settings", icon: Settings },
 ];
@@ -39,7 +39,7 @@ export function AdminSidebar() {
     <aside className="flex h-screen w-64 flex-shrink-0 flex-col border-r border-[#27272A] bg-black">
       <div className="flex items-center gap-2 border-b border-[#27272A] px-6 py-5">
         <span className="text-xl">⚡</span>
-        <span className="text-lg font-bold text-white">Ranenla Admin</span>
+        <span className="text-lg font-bold text-white">Zufishan Admin</span>
       </div>
 
       <nav className="flex-1 p-4">
@@ -53,7 +53,7 @@ export function AdminSidebar() {
                   href={item.href}
                   className={`flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition-colors ${
                     isActive
-                      ? "bg-[#22066A] text-white"
+                      ? "bg-[#064e3b] text-white"
                       : "text-slate-300 hover:bg-[#1F2937] hover:text-white"
                   }`}
                 >
@@ -78,7 +78,7 @@ export function AdminSidebar() {
 
       <div className="border-t border-[#27272A] p-4">
         <div className="mb-2 flex items-center gap-3 rounded-lg bg-[#111827] px-3 py-2.5">
-          <div className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full bg-[#3B82F6] text-sm font-semibold text-white">
+          <div className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full bg-[#10b981] text-sm font-semibold text-white">
             {(user?.fullName || "A").charAt(0).toUpperCase()}
           </div>
           <div className="min-w-0 flex-1">

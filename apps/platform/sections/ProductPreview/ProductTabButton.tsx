@@ -34,7 +34,7 @@ export default function ProductTabButton({ label, isActive, onClick, icon: Icon 
     >
       <Icon
         size={16}
-        className={isActive ? "text-[#3B82F6]" : isDarkMode ? "text-[#A1A1AA]" : "text-zinc-500"}
+        className={isActive ? "text-[#10b981]" : isDarkMode ? "text-[#A1A1AA]" : "text-zinc-500"}
       />
       {label}
     </motion.button>

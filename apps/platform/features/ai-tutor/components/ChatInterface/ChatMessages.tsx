@@ -49,7 +49,7 @@ export function ChatMessages({ messages, isTyping, onSuggestionClick }: ChatMess
           >
             {msg.role === 'user' ? (
               <div className="flex justify-end">
-                <div className="bg-[#3B82F6] px-5 py-3 rounded-2xl max-w-lg flex items-start gap-3 shadow-lg shadow-blue-500/10">
+                <div className="bg-[#10b981] px-5 py-3 rounded-2xl max-w-lg flex items-start gap-3 shadow-lg shadow-primary-500/10">
                   <User size={18} className="mt-0.5 flex-shrink-0" />
                   <div>
                     <p className="text-white whitespace-pre-wrap text-sm">
@@ -77,7 +77,7 @@ export function ChatMessages({ messages, isTyping, onSuggestionClick }: ChatMess
                         if (line.startsWith('•')) {
                           return (
                             <div key={i} className="flex items-start gap-2 mt-1">
-                              <span className="text-[#3B82F6] mt-0.5">•</span>
+                              <span className="text-[#10b981] mt-0.5">•</span>
                               <span>{line.substring(1).trim()}</span>
                             </div>
                           )
@@ -137,9 +137,9 @@ export function ChatMessages({ messages, isTyping, onSuggestionClick }: ChatMess
               <div className="bg-[#1F2937] border border-[#27272A] rounded-2xl p-5 flex gap-4">
                 <Image src={renanlaLogo} alt="Renanla Tutor" width={20} height={20} className="w-5 h-5 rounded-full self-start flex-shrink-0 object-cover" />
                 <div className="flex items-center gap-1">
-                  <span className="w-2 h-2 bg-[#3B82F6] rounded-full animate-bounce" style={{ animationDelay: '0ms' }} />
-                  <span className="w-2 h-2 bg-[#3B82F6] rounded-full animate-bounce" style={{ animationDelay: '150ms' }} />
-                  <span className="w-2 h-2 bg-[#3B82F6] rounded-full animate-bounce" style={{ animationDelay: '300ms' }} />
+                  <span className="w-2 h-2 bg-[#10b981] rounded-full animate-bounce" style={{ animationDelay: '0ms' }} />
+                  <span className="w-2 h-2 bg-[#10b981] rounded-full animate-bounce" style={{ animationDelay: '150ms' }} />
+                  <span className="w-2 h-2 bg-[#10b981] rounded-full animate-bounce" style={{ animationDelay: '300ms' }} />
                 </div>
               </div>
             </motion.div>
@@ -153,7 +153,7 @@ export function ChatMessages({ messages, isTyping, onSuggestionClick }: ChatMess
           <button
             key={idx}
             onClick={() => onSuggestionClick(suggestion)}
-            className="px-3 py-1.5 rounded-full bg-[#220066] text-xs text-gray-300 hover:bg-[#3B82F6] hover:text-white transition-all duration-300 border border-transparent hover:border-[#3B82F6]"
+            className="px-3 py-1.5 rounded-full bg-[#220066] text-xs text-gray-300 hover:bg-[#10b981] hover:text-white transition-all duration-300 border border-transparent hover:border-[#10b981]"
           >
             {suggestion}
           </button>

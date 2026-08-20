@@ -11,7 +11,7 @@ export function AdminDashboard({ stats }: AdminDashboardProps) {
   const tutors = stats.totalUsers - stats.totalAdmins - stats.totalStudents;
 
   const statCards = [
-    { label: "Total Users", value: stats.totalUsers, color: "text-[#3B82F6]", icon: "👥" },
+    { label: "Total Users", value: stats.totalUsers, color: "text-[#10b981]", icon: "👥" },
     { label: "Students", value: stats.totalStudents, color: "text-purple-400", icon: "🎓" },
     { label: "Tutors", value: tutors, color: "text-yellow-400", icon: "🎯" },
     { label: "Admins", value: stats.totalAdmins, color: "text-red-400", icon: "⚙️" },
@@ -28,7 +28,7 @@ export function AdminDashboard({ stats }: AdminDashboardProps) {
         {statCards.map((card) => (
           <div
             key={card.label}
-            className="rounded-xl border border-[#27272A] bg-[#111827] p-6 transition-colors hover:border-[#3B82F6]/40"
+            className="rounded-xl border border-[#27272A] bg-[#111827] p-6 transition-colors hover:border-[#10b981]/40"
           >
             <div className="flex items-center justify-between">
               <div>
@@ -48,14 +48,14 @@ export function AdminDashboard({ stats }: AdminDashboardProps) {
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
           <Link
             href="/admin/users"
-            className="inline-block rounded-lg border border-[#27272A] p-4 transition-colors hover:border-[#3B82F6]/40 hover:bg-[#1F2937]"
+            className="inline-block rounded-lg border border-[#27272A] p-4 transition-colors hover:border-[#10b981]/40 hover:bg-[#1F2937]"
           >
             <span className="mb-2 block text-2xl">👥</span>
             <p className="font-semibold text-white">Manage Users</p>
           </Link>
           <Link
             href="/admin/courses"
-            className="inline-block rounded-lg border border-[#27272A] p-4 transition-colors hover:border-[#3B82F6]/40 hover:bg-[#1F2937]"
+            className="inline-block rounded-lg border border-[#27272A] p-4 transition-colors hover:border-[#10b981]/40 hover:bg-[#1F2937]"
           >
             <span className="mb-2 block text-2xl">📚</span>
             <p className="font-semibold text-white">Manage Courses</p>

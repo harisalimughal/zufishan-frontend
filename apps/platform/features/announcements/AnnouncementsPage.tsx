@@ -44,8 +44,8 @@ export function AnnouncementsPage() {
               isUnread: idx < 2,
               category: isImportant ? "important" : "general",
               icon: isImportant ? ShieldAlert : Info,
-              iconBg: isImportant ? "bg-rose-500/10 border-rose-500/20" : "bg-blue-500/10 border-blue-500/20",
-              iconColor: isImportant ? "text-rose-400" : "text-blue-400",
+              iconBg: isImportant ? "bg-rose-500/10 border-rose-500/20" : "bg-primary-500/10 border-primary-500/20",
+              iconColor: isImportant ? "text-rose-400" : "text-primary-400",
             };
           });
           setAnnouncements(mapped);
@@ -93,7 +93,7 @@ export function AnnouncementsPage() {
           onClick={() => setActiveTab("general")}
           className={`px-5 py-2 text-xs font-medium rounded-full transition-all flex items-center gap-2 ${
             activeTab === "general"
-              ? "bg-indigo-600 text-white border border-indigo-500 shadow-sm"
+              ? "bg-primary-600 text-white border border-primary-500 shadow-sm"
               : "bg-[#111827] text-zinc-400 border border-[#27272A] hover:text-white"
           }`}
         >
@@ -121,7 +121,7 @@ export function AnnouncementsPage() {
                 {/* CONTENT */}
                 <div className="flex-1 min-w-0 pr-4">
                   <div className="flex items-center gap-2">
-                    <h3 className="text-sm font-semibold text-white group-hover:text-indigo-400 transition-colors">
+                    <h3 className="text-sm font-semibold text-white group-hover:text-primary-400 transition-colors">
                       {item.title}
                     </h3>
                   </div>

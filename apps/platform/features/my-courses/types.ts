@@ -6,12 +6,12 @@ export type CourseLevel =
   | "Advanced";
 
 export type CourseCategoryName =
-  | "Programming"
-  | "Data Science"
-  | "AI & ML"
-  | "Database"
-  | "Business"
-  | "Cloud Computing";
+  | "Qur'an & Tajweed"
+  | "Hadith & Seerah"
+  | "Fiqh & Aqeedah"
+  | "Arabic Language"
+  | "Islamic Finance"
+  | "Hifz Program";
 
 export type CourseCategory = {
   id: string;

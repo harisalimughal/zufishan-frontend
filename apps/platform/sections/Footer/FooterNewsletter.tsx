@@ -38,7 +38,7 @@ export function FooterNewsletter() {
         Stay Updated
       </h4>
       <p className={`text-sm mb-4 leading-relaxed font-sans transition-colors duration-300 ${isDarkMode ? "text-gray-400" : "text-zinc-600"}`}>
-        Subscribe to our newsletter for product updates, study tips, and campus news.
+        Subscribe for platform updates, scholar Q&A highlights, and marketplace launches.
       </p>
 
       <AnimatePresence mode="wait">
@@ -50,7 +50,7 @@ export function FooterNewsletter() {
             className="flex items-center gap-2 p-3 bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 rounded-xl text-xs font-semibold"
           >
             <CheckCircle2 className="w-4 h-4 shrink-0" />
-            <span>Awesome! You have successfully subscribed to Ranenla. 🎉</span>
+            <span>Awesome! You have successfully subscribed to Zufishan. 🎉</span>
           </motion.div>
         ) : (
           <motion.form
@@ -71,7 +71,7 @@ export function FooterNewsletter() {
                   if (status === "error") setStatus("idle");
                 }}
                 disabled={status === "submitting"}
-                className={`w-full border focus:border-[#3B82F6] rounded-xl px-4 py-3 text-xs focus:outline-none transition-colors duration-300 disabled:opacity-50 ${
+                className={`w-full border focus:border-[#10b981] rounded-xl px-4 py-3 text-xs focus:outline-none transition-colors duration-300 disabled:opacity-50 ${
                   isDarkMode
                     ? "bg-[#09090B] border-[#27272A] hover:border-gray-700 text-white placeholder-gray-500"
                     : "bg-white border-zinc-300 hover:border-zinc-400 text-zinc-900 placeholder-zinc-400"
@@ -80,7 +80,7 @@ export function FooterNewsletter() {
               <button
                 type="submit"
                 disabled={status === "submitting" || !email.trim()}
-                className="absolute right-2 p-2 rounded-lg bg-gradient-to-r from-[#3B82F6] to-[#6D5DFC] text-white hover:opacity-90 transition-opacity cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+                className="absolute right-2 p-2 rounded-lg bg-gradient-to-r from-[#10b981] to-[#059669] text-white hover:opacity-90 transition-opacity cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
                 aria-label="Subscribe"
               >
                 {status === "submitting" ? (

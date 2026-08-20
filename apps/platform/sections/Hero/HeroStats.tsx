@@ -1,29 +1,29 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { User, Hand, BarChart3, GraduationCap } from "lucide-react";
+import { GraduationCap, Clock, ShoppingBag, ShieldCheck } from "lucide-react";
 import { useTheme } from "../../lib/theme/ThemeContext";
 
 const benefits = [
   {
-    icon: User,
-    title: "AI Professors",
-    description: "Learn from AI professors that teach, interact and adapt to you."
-  },
-  {
-    icon: Hand,
-    title: "Live Interaction",
-    description: "Raise your hand, ask questions, and get real time answers."
-  },
-  {
-    icon: BarChart3,
-    title: "Stay Accountable",
-    description: "Attendance, progress tracking and reminders keep you on track."
-  },
-  {
     icon: GraduationCap,
-    title: "Personal AI Tutor",
-    description: "Get personalized help anytime, even after class hours."
+    title: "Verified Scholars",
+    description: "Learn Qur'an, Hadith and Fiqh from Ulema whose credentials are reviewed before they teach."
+  },
+  {
+    icon: Clock,
+    title: "Daily Utilities",
+    description: "Prayer times, Qibla direction and a Zakat calculator — cached for offline, ready every day."
+  },
+  {
+    icon: ShoppingBag,
+    title: "Halal Marketplace",
+    description: "Shop verified vendors for Islamic goods, and book trusted services with confidence."
+  },
+  {
+    icon: ShieldCheck,
+    title: "Multi-Scholar Trust",
+    description: "Every Fatwa is reviewed and co-signed by at least three verified scholars before publishing."
   }
 ];
 
@@ -47,7 +47,7 @@ export function HeroStats() {
             className="flex flex-col items-start space-y-4 group"
           >
             {/* Icon Wrapper */}
-            <div className="flex items-center justify-center p-3 rounded-xl bg-[#6D5DFC]/10 border border-[#6D5DFC]/20 text-[#6D5DFC] group-hover:bg-[#6D5DFC]/20 group-hover:text-white shadow-[0_0_15px_rgba(109,93,252,0.15)] group-hover:shadow-[0_0_25px_rgba(109,93,252,0.4)] transition-all duration-150">
+            <div className="flex items-center justify-center p-3 rounded-xl bg-[#059669]/10 border border-[#059669]/20 text-[#059669] group-hover:bg-[#059669]/20 group-hover:text-white shadow-[0_0_15px_rgba(5,150,105,0.15)] group-hover:shadow-[0_0_25px_rgba(5,150,105,0.4)] transition-all duration-150">
               <Icon className="w-6 h-6" />
             </div>
 

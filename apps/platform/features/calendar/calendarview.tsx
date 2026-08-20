@@ -127,25 +127,25 @@ function buildInitialEvents(): CalendarEvent[] {
   const events: CalendarEvent[] = [];
 
   const templates = [
-    { title: "Database 101", subtitle: "Live Class", professor: "Prof. Lucas", type: "live" as const, color: "#6D5DFC", dayOffset: 0, sh: 8, sm: 0, eh: 9, em: 30 },
-    { title: "Python Programming", subtitle: "Lecture", professor: "Room 201", type: "lecture" as const, color: "#F59E0B", dayOffset: 0, sh: 10, sm: 0, eh: 11, em: 0 },
+    { title: "Tajweed Foundations", subtitle: "Live Class", professor: "Ustaz Ibrahim Malik", type: "live" as const, color: "#059669", dayOffset: 0, sh: 8, sm: 0, eh: 9, em: 30 },
+    { title: "Qur'anic Arabic for Beginners", subtitle: "Lecture", professor: "Room 201", type: "lecture" as const, color: "#F59E0B", dayOffset: 0, sh: 10, sm: 0, eh: 11, em: 0 },
     { title: "Math for CS", subtitle: "Tutorial", professor: "Room 102", type: "tutorial" as const, color: "#EC4899", dayOffset: 0, sh: 13, sm: 0, eh: 14, em: 0 },
-    { title: "DB Lab Session", subtitle: "Lab Practice", professor: "Lab 3", type: "lab" as const, color: "#6D5DFC", dayOffset: 0, sh: 18, sm: 0, eh: 19, em: 30 },
-    { title: "AI Engineering", subtitle: "Live Class", professor: "Prof. Ava", type: "live" as const, color: "#3B82F6", dayOffset: 1, sh: 8, sm: 0, eh: 9, em: 30 },
+    { title: "DB Lab Session", subtitle: "Lab Practice", professor: "Lab 3", type: "lab" as const, color: "#059669", dayOffset: 0, sh: 18, sm: 0, eh: 19, em: 30 },
+    { title: "Hadith Sciences: An Introduction", subtitle: "Live Class", professor: "Ustaza Maryam Siddiqui", type: "live" as const, color: "#10b981", dayOffset: 1, sh: 8, sm: 0, eh: 9, em: 30 },
     { title: "Data Structures", subtitle: "Lecture", professor: "Room 305", type: "lecture" as const, color: "#22C55E", dayOffset: 1, sh: 10, sm: 0, eh: 11, em: 0 },
-    { title: "Study Group", subtitle: "AI Engineering", professor: "Online", type: "study" as const, color: "#3B82F6", dayOffset: 1, sh: 20, sm: 0, eh: 21, em: 0, isOnline: true },
-    { title: "Database 101", subtitle: "Live Class", professor: "Prof. Lucas", type: "live" as const, color: "#6D5DFC", dayOffset: 2, sh: 8, sm: 0, eh: 9, em: 30 },
+    { title: "Study Group", subtitle: "Hadith Sciences: An Introduction", professor: "Online", type: "study" as const, color: "#10b981", dayOffset: 1, sh: 20, sm: 0, eh: 21, em: 0, isOnline: true },
+    { title: "Tajweed Foundations", subtitle: "Live Class", professor: "Ustaz Ibrahim Malik", type: "live" as const, color: "#059669", dayOffset: 2, sh: 8, sm: 0, eh: 9, em: 30 },
     { title: "Math for CS", subtitle: "Tutorial", professor: "Room 102", type: "tutorial" as const, color: "#EC4899", dayOffset: 2, sh: 13, sm: 0, eh: 14, em: 0 },
     { title: "AI Tutor Session", subtitle: "Ask doubts, get help", professor: "Online", type: "tutor" as const, color: "#8B5CF6", dayOffset: 2, sh: 14, sm: 30, eh: 15, em: 30, isOnline: true },
-    { title: "DB Lab Session", subtitle: "Lab Practice", professor: "Lab 3", type: "lab" as const, color: "#6D5DFC", dayOffset: 2, sh: 18, sm: 0, eh: 19, em: 30 },
-    { title: "AI Engineering", subtitle: "Live Class", professor: "Prof. Ava", type: "live" as const, color: "#3B82F6", dayOffset: 3, sh: 8, sm: 0, eh: 9, em: 30 },
-    { title: "Python Programming", subtitle: "Lecture", professor: "Room 201", type: "lecture" as const, color: "#F59E0B", dayOffset: 3, sh: 10, sm: 0, eh: 11, em: 0 },
+    { title: "DB Lab Session", subtitle: "Lab Practice", professor: "Lab 3", type: "lab" as const, color: "#059669", dayOffset: 2, sh: 18, sm: 0, eh: 19, em: 30 },
+    { title: "Hadith Sciences: An Introduction", subtitle: "Live Class", professor: "Ustaza Maryam Siddiqui", type: "live" as const, color: "#10b981", dayOffset: 3, sh: 8, sm: 0, eh: 9, em: 30 },
+    { title: "Qur'anic Arabic for Beginners", subtitle: "Lecture", professor: "Room 201", type: "lecture" as const, color: "#F59E0B", dayOffset: 3, sh: 10, sm: 0, eh: 11, em: 0 },
     { title: "Math for CS", subtitle: "Tutorial", professor: "Room 102", type: "tutorial" as const, color: "#EC4899", dayOffset: 3, sh: 13, sm: 0, eh: 14, em: 0 },
-    { title: "DB Lab Session", subtitle: "Lab Practice", professor: "Lab 3", type: "lab" as const, color: "#6D5DFC", dayOffset: 3, sh: 18, sm: 0, eh: 19, em: 30 },
-    { title: "Database 101", subtitle: "Live Class", professor: "Prof. Lucas", type: "live" as const, color: "#6D5DFC", dayOffset: 4, sh: 8, sm: 0, eh: 9, em: 30 },
+    { title: "DB Lab Session", subtitle: "Lab Practice", professor: "Lab 3", type: "lab" as const, color: "#059669", dayOffset: 3, sh: 18, sm: 0, eh: 19, em: 30 },
+    { title: "Tajweed Foundations", subtitle: "Live Class", professor: "Ustaz Ibrahim Malik", type: "live" as const, color: "#059669", dayOffset: 4, sh: 8, sm: 0, eh: 9, em: 30 },
     { title: "Data Structures", subtitle: "Lecture", professor: "Room 305", type: "lecture" as const, color: "#22C55E", dayOffset: 4, sh: 10, sm: 0, eh: 11, em: 0 },
     { title: "Math for CS", subtitle: "Tutorial", professor: "Room 102", type: "tutorial" as const, color: "#EC4899", dayOffset: 4, sh: 13, sm: 0, eh: 14, em: 0 },
-    { title: "DB Lab Session", subtitle: "Lab Practice", professor: "Lab 3", type: "lab" as const, color: "#6D5DFC", dayOffset: 4, sh: 18, sm: 0, eh: 19, em: 30 },
+    { title: "DB Lab Session", subtitle: "Lab Practice", professor: "Lab 3", type: "lab" as const, color: "#059669", dayOffset: 4, sh: 18, sm: 0, eh: 19, em: 30 },
   ];
 
   templates.forEach((t) => {
@@ -158,16 +158,16 @@ function buildInitialEvents(): CalendarEvent[] {
 
 function buildInitialTasks(): Task[] {
   return [
-    { id: 1, title: "Assignment: ER Diagram", course: "Database 101", dueDate: todayYMD(), completed: false },
-    { id: 2, title: "Quiz: Normalization", course: "Database 101", dueDate: toYMD(addDays(new Date(), 1)), completed: false },
-    { id: 3, title: "Project: Database Design", course: "Database 101", dueDate: toYMD(addDays(new Date(), 5)), completed: false },
+    { id: 1, title: "Assignment: ER Diagram", course: "Tajweed Foundations", dueDate: todayYMD(), completed: false },
+    { id: 2, title: "Quiz: Normalization", course: "Tajweed Foundations", dueDate: toYMD(addDays(new Date(), 1)), completed: false },
+    { id: 3, title: "Project: Database Design", course: "Tajweed Foundations", dueDate: toYMD(addDays(new Date(), 5)), completed: false },
   ];
 }
 
 const COURSE_COLORS: Record<string, string> = {
-  "Database 101": "#6D5DFC",
-  "AI Engineering": "#3B82F6",
-  "Python Programming": "#F59E0B",
+  "Tajweed Foundations": "#059669",
+  "Hadith Sciences: An Introduction": "#10b981",
+  "Qur'anic Arabic for Beginners": "#F59E0B",
   "Data Structures": "#22C55E",
   "Math for CS": "#EC4899",
 };
@@ -221,13 +221,13 @@ export function CalendarView() {
   const [newDate, setNewDate] = useState<string>(todayYMD());
   const [newStart, setNewStart] = useState<string>("09:00");
   const [newEnd, setNewEnd] = useState<string>("10:00");
-  const [newColor, setNewColor] = useState<string>("#6D5DFC");
+  const [newColor, setNewColor] = useState<string>("#059669");
   const [newProfessor, setNewProfessor] = useState<string>("");
   const [newIsOnline, setNewIsOnline] = useState<boolean>(false);
 
   // Add task form state
   const [newTaskTitle, setNewTaskTitle] = useState<string>("");
-  const [newTaskCourse, setNewTaskCourse] = useState<string>("Database 101");
+  const [newTaskCourse, setNewTaskCourse] = useState<string>("Tajweed Foundations");
   const [newTaskDate, setNewTaskDate] = useState<string>(todayYMD());
 
   // Live clock
@@ -264,7 +264,7 @@ export function CalendarView() {
               subtitle: e.type || "Event",
               professor: e.location || undefined,
               type: "custom" as const,
-              color: "#6D5DFC",
+              color: "#059669",
               date: toYMD(startD),
               startHour: startD.getHours(),
               startMin: startD.getMinutes(),
@@ -362,7 +362,7 @@ export function CalendarView() {
           <button style={{ display: "flex", alignItems: "center", gap: 5, background: "#1F2937", border: "1px solid #374151", borderRadius: 8, padding: "7px 12px", color: "#E4E4E7", fontSize: 12, cursor: "pointer", fontFamily: "inherit" }}>
             <RefreshCw size={13} /> Sync
           </button>
-          <button onClick={() => setShowAddModal(true)} style={{ display: "flex", alignItems: "center", gap: 5, background: "#6D5DFC", border: "none", borderRadius: 8, padding: "7px 14px", color: "#fff", fontSize: 12, fontWeight: 600, cursor: "pointer", fontFamily: "inherit" }}>
+          <button onClick={() => setShowAddModal(true)} style={{ display: "flex", alignItems: "center", gap: 5, background: "#059669", border: "none", borderRadius: 8, padding: "7px 14px", color: "#fff", fontSize: 12, fontWeight: 600, cursor: "pointer", fontFamily: "inherit" }}>
             <Plus size={13} /> Add Event
           </button>
         </div>
@@ -384,7 +384,7 @@ export function CalendarView() {
             <span style={{ color: "#fff", fontSize: 13, fontWeight: 600 }}>{weekLabel}</span>
             <div style={{ marginLeft: "auto", display: "flex", background: "#1F2937", borderRadius: 8, padding: 3 }}>
               {(["Week", "Month"] as const).map((v) => (
-                <button key={v} onClick={() => setView(v)} style={{ background: view === v ? "#6D5DFC" : "none", border: "none", borderRadius: 6, padding: "4px 12px", color: view === v ? "#fff" : "#6B7280", fontSize: 12, fontWeight: view === v ? 600 : 400, cursor: "pointer", fontFamily: "inherit", transition: "all 0.15s" }}>{v}</button>
+                <button key={v} onClick={() => setView(v)} style={{ background: view === v ? "#059669" : "none", border: "none", borderRadius: 6, padding: "4px 12px", color: view === v ? "#fff" : "#6B7280", fontSize: 12, fontWeight: view === v ? 600 : 400, cursor: "pointer", fontFamily: "inherit", transition: "all 0.15s" }}>{v}</button>
               ))}
             </div>
           </div>
@@ -397,7 +397,7 @@ export function CalendarView() {
               return (
                 <div key={i} style={{ flex: 1, textAlign: "center" as const, padding: "8px 4px", borderLeft: "1px solid #1F2937" }}>
                   <div style={{ color: "#6B7280", fontSize: 10, fontWeight: 500, marginBottom: 3 }}>{DAY_NAMES[i]}</div>
-                  <div style={{ width: 26, height: 26, borderRadius: "50%", background: isToday ? "#6D5DFC" : "none", display: "flex", alignItems: "center", justifyContent: "center", margin: "0 auto", color: isToday ? "#fff" : "#E4E4E7", fontSize: 12, fontWeight: isToday ? 700 : 400 }}>
+                  <div style={{ width: 26, height: 26, borderRadius: "50%", background: isToday ? "#059669" : "none", display: "flex", alignItems: "center", justifyContent: "center", margin: "0 auto", color: isToday ? "#fff" : "#E4E4E7", fontSize: 12, fontWeight: isToday ? 700 : 400 }}>
                     {date.getDate()}
                   </div>
                 </div>
@@ -420,7 +420,7 @@ export function CalendarView() {
                 const isToday = dateStr === todayStr;
                 const dayEvents = events.filter((e) => e.date === dateStr);
                 return (
-                  <div key={dayIdx} style={{ flex: 1, borderLeft: "1px solid #1F2937", position: "relative" as const, background: isToday ? "rgba(109,93,252,0.02)" : "none" }}>
+                  <div key={dayIdx} style={{ flex: 1, borderLeft: "1px solid #1F2937", position: "relative" as const, background: isToday ? "rgba(5,150,105,0.02)" : "none" }}>
                     {HOURS.map((h) => <div key={h} style={{ height: 60, borderBottom: "1px solid #1F293733" }} />)}
                     {isToday && currentTime.getHours() >= 6 && currentTime.getHours() <= 21 && (
                       <div style={{ position: "absolute" as const, top: currentTimeTop, left: 0, right: 0, zIndex: 5, display: "flex", alignItems: "center" }}>
@@ -483,11 +483,11 @@ export function CalendarView() {
                 const hasEvents = events.some((e) => e.date === dateStr);
                 return (
                   <div key={i} onClick={() => setWeekStart(getMondayOfWeek(d.date))}
-                    style={{ textAlign: "center" as const, fontSize: 10, padding: "3px 1px", borderRadius: 4, cursor: "pointer", position: "relative" as const, background: d.isToday ? "#6D5DFC" : isInWeek && !d.isToday ? "rgba(109,93,252,0.15)" : "none", color: d.isToday ? "#fff" : isInWeek ? "#A78BFA" : d.isCurrentMonth ? "#9CA3AF" : "#374151", fontWeight: d.isToday ? 700 : 400 }}
+                    style={{ textAlign: "center" as const, fontSize: 10, padding: "3px 1px", borderRadius: 4, cursor: "pointer", position: "relative" as const, background: d.isToday ? "#059669" : isInWeek && !d.isToday ? "rgba(5,150,105,0.15)" : "none", color: d.isToday ? "#fff" : isInWeek ? "#34d399" : d.isCurrentMonth ? "#9CA3AF" : "#374151", fontWeight: d.isToday ? 700 : 400 }}
                   >
                     {d.date.getDate()}
                     {hasEvents && !d.isToday && (
-                      <div style={{ width: 3, height: 3, borderRadius: "50%", background: "#6D5DFC", margin: "0 auto" }} />
+                      <div style={{ width: 3, height: 3, borderRadius: "50%", background: "#059669", margin: "0 auto" }} />
                     )}
                   </div>
                 );
@@ -529,7 +529,7 @@ export function CalendarView() {
           <div style={{ padding: "0 14px 14px", borderTop: "1px solid #1F2937" }}>
             <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "12px 0 8px" }}>
               <span style={{ color: "#fff", fontSize: 12, fontWeight: 700 }}>Tasks & Deadlines</span>
-              <button onClick={() => setShowAddTask(true)} style={{ background: "none", border: "none", color: "#6D5DFC", fontSize: 10, cursor: "pointer", fontFamily: "inherit", display: "flex", alignItems: "center", gap: 2 }}>
+              <button onClick={() => setShowAddTask(true)} style={{ background: "none", border: "none", color: "#059669", fontSize: 10, cursor: "pointer", fontFamily: "inherit", display: "flex", alignItems: "center", gap: 2 }}>
                 <Plus size={11} /> Add
               </button>
             </div>
@@ -542,7 +542,7 @@ export function CalendarView() {
                     return (
                       <div key={task.id} style={{ display: "flex", alignItems: "flex-start", gap: 8 }}>
                         <button onClick={() => toggleTask(task.id)} style={{ background: "none", border: "none", cursor: "pointer", padding: 0, marginTop: 1, flexShrink: 0 }}>
-                          <CheckSquare size={14} color={task.completed ? "#6D5DFC" : "#6B7280"} />
+                          <CheckSquare size={14} color={task.completed ? "#059669" : "#6B7280"} />
                         </button>
                         <div style={{ flex: 1, minWidth: 0 }}>
                           <div style={{ color: task.completed ? "#4B5563" : "#E4E4E7", fontSize: 11, fontWeight: 600, textDecoration: task.completed ? "line-through" : "none", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" as const }}>{task.title}</div>
@@ -641,21 +641,21 @@ export function CalendarView() {
               </div>
               <div>
                 <label style={labelStyle}>Location / Professor (optional)</label>
-                <input value={newProfessor} onChange={(e) => setNewProfessor(e.target.value)} placeholder="e.g. Room 201 or Prof. Lucas" style={inputStyle} />
+                <input value={newProfessor} onChange={(e) => setNewProfessor(e.target.value)} placeholder="e.g. Room 201 or Ustaz Ibrahim Malik" style={inputStyle} />
               </div>
               <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-                <input type="checkbox" id="online" checked={newIsOnline} onChange={(e) => setNewIsOnline(e.target.checked)} style={{ cursor: "pointer", accentColor: "#6D5DFC" }} />
+                <input type="checkbox" id="online" checked={newIsOnline} onChange={(e) => setNewIsOnline(e.target.checked)} style={{ cursor: "pointer", accentColor: "#059669" }} />
                 <label htmlFor="online" style={{ color: "#9CA3AF", fontSize: 12, cursor: "pointer" }}>Online event</label>
               </div>
               <div>
                 <label style={labelStyle}>Color</label>
                 <div style={{ display: "flex", gap: 8, flexWrap: "wrap" as const }}>
-                  {["#6D5DFC", "#3B82F6", "#F59E0B", "#22C55E", "#EC4899", "#EF4444", "#8B5CF6", "#06B6D4", "#F97316", "#10B981"].map((c) => (
+                  {["#059669", "#10b981", "#F59E0B", "#22C55E", "#EC4899", "#EF4444", "#8B5CF6", "#06B6D4", "#F97316", "#10B981"].map((c) => (
                     <div key={c} onClick={() => setNewColor(c)} style={{ width: 22, height: 22, borderRadius: "50%", background: c, cursor: "pointer", border: newColor === c ? "2px solid #fff" : "2px solid transparent", transition: "border 0.15s" }} />
                   ))}
                 </div>
               </div>
-              <button onClick={handleAddEvent} disabled={!newTitle.trim() || !newDate} style={{ background: newTitle.trim() ? "#6D5DFC" : "rgba(109,93,252,0.3)", border: "none", borderRadius: 10, padding: 11, color: "#fff", fontSize: 13, fontWeight: 600, cursor: newTitle.trim() ? "pointer" : "not-allowed", fontFamily: "inherit", marginTop: 4 }}>
+              <button onClick={handleAddEvent} disabled={!newTitle.trim() || !newDate} style={{ background: newTitle.trim() ? "#059669" : "rgba(5,150,105,0.3)", border: "none", borderRadius: 10, padding: 11, color: "#fff", fontSize: 13, fontWeight: 600, cursor: newTitle.trim() ? "pointer" : "not-allowed", fontFamily: "inherit", marginTop: 4 }}>
                 Add Event
               </button>
             </div>
@@ -678,13 +678,13 @@ export function CalendarView() {
               </div>
               <div>
                 <label style={labelStyle}>Course</label>
-                <input value={newTaskCourse} onChange={(e) => setNewTaskCourse(e.target.value)} placeholder="e.g. Database 101" style={inputStyle} />
+                <input value={newTaskCourse} onChange={(e) => setNewTaskCourse(e.target.value)} placeholder="e.g. Tajweed Foundations" style={inputStyle} />
               </div>
               <div>
                 <label style={labelStyle}>Due Date * (pick any date)</label>
                 <input type="date" value={newTaskDate} onChange={(e) => setNewTaskDate(e.target.value)} style={inputStyle} />
               </div>
-              <button onClick={handleAddTask} disabled={!newTaskTitle.trim()} style={{ background: newTaskTitle.trim() ? "#6D5DFC" : "rgba(109,93,252,0.3)", border: "none", borderRadius: 10, padding: 11, color: "#fff", fontSize: 13, fontWeight: 600, cursor: newTaskTitle.trim() ? "pointer" : "not-allowed", fontFamily: "inherit" }}>
+              <button onClick={handleAddTask} disabled={!newTaskTitle.trim()} style={{ background: newTaskTitle.trim() ? "#059669" : "rgba(5,150,105,0.3)", border: "none", borderRadius: 10, padding: 11, color: "#fff", fontSize: 13, fontWeight: 600, cursor: newTaskTitle.trim() ? "pointer" : "not-allowed", fontFamily: "inherit" }}>
                 Add Task
               </button>
             </div>

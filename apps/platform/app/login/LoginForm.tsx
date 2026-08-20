@@ -79,7 +79,7 @@ export default function LoginForm({
             py-1
             text-lg
             font-medium
-            text-[#3B82F6]
+            text-[#10b981]
           "
         >
           Welcome Back 👋
@@ -197,7 +197,7 @@ export default function LoginForm({
               type="button"
               className="
                 text-xs
-                text-[#3B82F6]
+                text-[#10b981]
                 hover:underline
               "
             >
@@ -289,7 +289,7 @@ export default function LoginForm({
             type="button"
             className="
               text-sm
-              text-[#3B82F6]
+              text-[#10b981]
               hover:underline
             "
           >
@@ -308,12 +308,12 @@ export default function LoginForm({
             justify-center
             gap-2
             rounded-xl
-            bg-[#3B82F6]
+            bg-[#10b981]
             py-3.5
             font-medium
             text-white
             transition
-            hover:bg-[#2563EB]
+            hover:bg-[#059669]
             disabled:opacity-60
             disabled:cursor-not-allowed
           "
@@ -377,7 +377,7 @@ export default function LoginForm({
           className="
             mt-2
             font-medium
-            text-[#3B82F6]
+            text-[#10b981]
             hover:underline
           "
         >

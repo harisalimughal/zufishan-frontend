@@ -118,7 +118,7 @@ export default function SignUpModal({
                 }
               `}
             >
-              Join Ranenla today
+              Join Zufishan today
             </p>
           </div>
 
@@ -344,11 +344,11 @@ export default function SignUpModal({
               justify-center
               gap-2
               rounded-xl
-              bg-[#3B82F6]
+              bg-[#10b981]
               py-3.5
               text-white
               font-medium
-              hover:bg-[#2563EB]
+              hover:bg-[#059669]
               transition
               disabled:opacity-60
             "

@@ -6,8 +6,8 @@ import { SplashScreen } from "../components/SplashScreen/SplashScreen";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Ranenla",
-  description: "Ranenla learning platform"
+  title: "Zufishan",
+  description: "Zufishan learning platform"
 };
 
 export const viewport: Viewport = {

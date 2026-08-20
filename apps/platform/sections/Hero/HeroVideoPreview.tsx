@@ -32,15 +32,15 @@ const initialMessages: ChatMessage[] = [
     id: "1",
     user: "Sarah",
     time: "08:15 AM",
-    text: "Professor, can you explain normalization with an example?",
+    text: "Ustaz, why does this ayah use 'kutiba' instead of a more direct command?",
     avatarColor: "bg-blue-500"
   },
   {
     id: "2",
-    user: "AI Professor Lucas",
+    user: "Ustaz Ibrahim Malik",
     time: "08:16 AM",
-    text: "Great question, Sarah! Let me show you a practical example using a Students table...",
-    avatarColor: "bg-[#6D5DFC]",
+    text: "Great question, Sarah! Let me show you the cross-references...",
+    avatarColor: "bg-[#059669]",
     isAI: true,
     diagram: true
   },
@@ -61,7 +61,7 @@ export function HeroVideoPreview() {
   const [isHandRaised, setIsHandRaised] = useState(false);
   const [inputValue, setInputValue] = useState("");
   const [professorSpeech, setProfessorSpeech] = useState(
-    "In Third Normal Form (3NF), all attributes must depend only on the primary key, eliminating transitive dependency."
+    "In ayah 2:183, the word 'kutiba' — meaning 'prescribed' — is the same term the Qur'an uses for the obligations placed on earlier nations."
   );
 
   const chatEndRef = useRef<HTMLDivElement>(null);
@@ -77,11 +77,11 @@ export function HeroVideoPreview() {
   // Periodic lecture speech changes to simulate a live class
   useEffect(() => {
     const speeches = [
-      "In Third Normal Form (3NF), all attributes must depend only on the primary key, eliminating transitive dependency.",
-      "Look at the database diagram in the chat. Note how the Enrollments table acts as a bridge.",
-      "If we have student_id determining major, and major determining major_advisor, that is transitive!",
-      "To resolve this, we decompose the table so that every non-key column depends solely on the key.",
-      "Ranenla's AI automatically compiles these diagrams and summaries in your 'Notes' tab in real time."
+      "In ayah 2:183, the word 'kutiba' — meaning 'prescribed' — is the same term the Qur'an uses for the obligations placed on earlier nations.",
+      "Look at the reference map in the chat. Notice how 2:183 connects forward to the rulings in 2:184 and 2:185.",
+      "This linguistic parallel is deliberate — it roots our practice in a shared prophetic tradition, not something invented anew.",
+      "Ibn Kathir and Al-Qurtubi both highlight this continuity in their tafsir, though they differ slightly on emphasis.",
+      "Zufishan's AI automatically compiles these cross-references and summaries into your 'Notes' tab in real time."
     ];
     let idx = 0;
     const interval = setInterval(() => {
@@ -100,7 +100,7 @@ export function HeroVideoPreview() {
       user: "You",
       time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
       text: inputValue,
-      avatarColor: "bg-[#3B82F6]"
+      avatarColor: "bg-[#10b981]"
     };
 
     setMessages((prev) => [...prev, userMsg]);
@@ -111,10 +111,10 @@ export function HeroVideoPreview() {
     setTimeout(() => {
       const aiResponse: ChatMessage = {
         id: (Date.now() + 1).toString(),
-        user: "AI Professor Lucas",
+        user: "Ustaz Ibrahim Malik",
         time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
-        text: `Regarding "${userQuestion}": In our schema, we ensure referential integrity by linking foreign keys directly. Let me add this to your notes.`,
-        avatarColor: "bg-[#6D5DFC]",
+        text: `Regarding "${userQuestion}": that's addressed in the tafsir cross-references — I've added a note on it to your 'Notes' tab.`,
+        avatarColor: "bg-[#059669]",
         isAI: true
       };
       setMessages((prev) => [...prev, aiResponse]);
@@ -134,10 +134,10 @@ export function HeroVideoPreview() {
       className="relative max-w-5xl mx-auto w-full px-4 mb-16 group"
     >
       {/* Background Glow Ring */}
-      <div className="absolute -inset-2 bg-gradient-to-r from-[#3B82F6]/40 via-[#6D5DFC]/30 to-[#A78BFA]/45 rounded-2xl blur-3xl opacity-75 pointer-events-none transition-opacity duration-300 group-hover:opacity-95" />
+      <div className="absolute -inset-2 bg-gradient-to-r from-[#10b981]/40 via-[#059669]/30 to-[#34d399]/45 rounded-2xl blur-3xl opacity-75 pointer-events-none transition-opacity duration-300 group-hover:opacity-95" />
 
       {/* Main Glassmorphic Panel */}
-      <div className="relative flex flex-col w-full rounded-2xl bg-[#09090B]/90 border border-[#27272A] shadow-[0_0_50px_rgba(0,0,0,0.85),_0_0_30px_rgba(59,130,246,0.15)] group-hover:shadow-[0_0_50px_rgba(0,0,0,0.85),_0_0_40px_rgba(109,93,252,0.25)] group-hover:border-[#3B82F6]/30 transition-all duration-500 overflow-hidden">
+      <div className="relative flex flex-col w-full rounded-2xl bg-[#09090B]/90 border border-[#27272A] shadow-[0_0_50px_rgba(0,0,0,0.85),_0_0_30px_rgba(16,185,129,0.15)] group-hover:shadow-[0_0_50px_rgba(0,0,0,0.85),_0_0_40px_rgba(5,150,105,0.25)] group-hover:border-[#10b981]/30 transition-all duration-500 overflow-hidden">
         {/* Card Top Header */}
         <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 px-5 py-4 bg-[#111827]/30 border-b border-[#27272A] backdrop-blur-md">
           <div className="flex items-center gap-3">
@@ -146,7 +146,7 @@ export function HeroVideoPreview() {
             </span>
             <div>
               <h4 className="text-sm sm:text-base font-bold text-white leading-none flex items-center gap-1.5">
-                Database 101
+                Tafsir: Surah Al-Baqarah
               </h4>
               <span className="text-[10.5px] text-gray-500">Today, 08:00 AM - 09:30 AM</span>
             </div>
@@ -174,7 +174,7 @@ export function HeroVideoPreview() {
             <div className="absolute inset-0 w-full h-full pointer-events-none select-none overflow-hidden z-0">
               <img
                 src="/professor.png"
-                alt="AI Professor Lucas lecturing"
+                alt="Ustaz Ibrahim Malik lecturing"
                 className="w-full h-full object-cover opacity-90 transition-transform duration-700 group-hover:scale-[1.02]"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-black/40" />
@@ -183,9 +183,9 @@ export function HeroVideoPreview() {
             {/* Top Indicator overlay */}
             <div className="relative z-10 flex justify-between w-full">
               <div className="px-3.5 py-1.5 bg-black/60 border border-white/10 rounded-full text-[11px] text-white font-semibold flex items-center gap-2 backdrop-blur-md">
-                <Sparkles className="w-3.5 h-3.5 text-[#3B82F6]" />
-                <span>AI Professor Lucas</span>
-                <span className="w-3.5 h-3.5 rounded-full bg-[#3B82F6]/20 border border-[#3B82F6]/30 flex items-center justify-center">
+                <Sparkles className="w-3.5 h-3.5 text-[#10b981]" />
+                <span>Ustaz Ibrahim Malik</span>
+                <span className="w-3.5 h-3.5 rounded-full bg-[#10b981]/20 border border-[#10b981]/30 flex items-center justify-center">
                   <Check className="w-2.5 h-2.5 text-white" />
                 </span>
               </div>
@@ -228,7 +228,7 @@ export function HeroVideoPreview() {
                   <button
                     onClick={() => setIsHandRaised(!isHandRaised)}
                     className={`flex items-center gap-2 px-4 py-2 rounded-lg border text-xs font-semibold transition-all duration-200 cursor-pointer ${isHandRaised
-                      ? "bg-[#6D5DFC] border-[#6D5DFC] text-white hover:opacity-90"
+                      ? "bg-[#059669] border-[#059669] text-white hover:opacity-90"
                       : "bg-white/5 border-white/10 text-gray-300 hover:bg-white/10"
                       }`}
                   >
@@ -239,7 +239,7 @@ export function HeroVideoPreview() {
                   <button
                     onClick={() => setActiveTab("Notes")}
                     className={`flex items-center gap-2 px-4 py-2 rounded-lg border text-xs font-semibold transition-all duration-200 cursor-pointer ${activeTab === "Notes"
-                      ? "bg-[#3B82F6] border-[#3B82F6] text-white hover:opacity-90"
+                      ? "bg-[#10b981] border-[#10b981] text-white hover:opacity-90"
                       : "bg-white/5 border-white/10 text-gray-300 hover:bg-white/10"
                       }`}
                   >
@@ -264,14 +264,14 @@ export function HeroVideoPreview() {
                 <button
                   key={tab}
                   onClick={() => setActiveTab(tab)}
-                  className={`flex-1 py-3 text-xs font-bold transition-all relative cursor-pointer ${activeTab === tab ? "text-[#3B82F6]" : "text-gray-500 hover:text-gray-300"
+                  className={`flex-1 py-3 text-xs font-bold transition-all relative cursor-pointer ${activeTab === tab ? "text-[#10b981]" : "text-gray-500 hover:text-gray-300"
                     }`}
                 >
                   {tab}
                   {activeTab === tab && (
                     <motion.div
                       layoutId="activeTabUnderline"
-                      className="absolute bottom-0 left-0 right-0 h-0.5 bg-[#3B82F6]"
+                      className="absolute bottom-0 left-0 right-0 h-0.5 bg-[#10b981]"
                     />
                   )}
                 </button>
@@ -292,8 +292,8 @@ export function HeroVideoPreview() {
                             </div>
                             <span className="text-[11px] font-bold text-gray-200">{msg.user}</span>
                             {msg.isAI && (
-                              <span className="px-1 py-0.5 rounded text-[8px] bg-[#6D5DFC]/10 border border-[#6D5DFC]/20 text-[#A78BFA] font-mono font-bold scale-90">
-                                PROFESSOR
+                              <span className="px-1 py-0.5 rounded text-[8px] bg-[#059669]/10 border border-[#059669]/20 text-[#34d399] font-mono font-bold scale-90">
+                                USTAZ
                               </span>
                             )}
                           </div>
@@ -301,7 +301,7 @@ export function HeroVideoPreview() {
                         </div>
 
                         <div className="pl-7 pr-2">
-                          <div className={`p-3 rounded-2xl text-xs leading-relaxed ${msg.isAI ? "bg-[#6D5DFC]/10 text-gray-200 border border-[#6D5DFC]/25" : "bg-white/5 text-gray-300"
+                          <div className={`p-3 rounded-2xl text-xs leading-relaxed ${msg.isAI ? "bg-[#059669]/10 text-gray-200 border border-[#059669]/25" : "bg-white/5 text-gray-300"
                             }`}>
                             <p>{msg.text}</p>
 
@@ -311,20 +311,20 @@ export function HeroVideoPreview() {
                                 <div className="grid grid-cols-3 gap-2 items-center text-center">
                                   {/* Table Students */}
                                   <div className="border border-white/10 rounded p-1 bg-white/5">
-                                    <div className="font-bold border-b border-white/10 pb-0.5 mb-1 text-blue-400">Students</div>
-                                    <div className="text-[8px] text-gray-400">id (PK)<br />name<br />email</div>
+                                    <div className="font-bold border-b border-white/10 pb-0.5 mb-1 text-blue-400">Ayah 2:183</div>
+                                    <div className="text-[8px] text-gray-400">kutiba<br />fasting<br />prescribed</div>
                                   </div>
 
                                   {/* Arrow */}
                                   <div className="flex flex-col items-center text-gray-600 font-bold">
                                     <span>→</span>
-                                    <span className="text-[7px]">1:N</span>
+                                    <span className="text-[7px]">refs</span>
                                   </div>
 
                                   {/* Table Enrollments */}
                                   <div className="border border-white/10 rounded p-1 bg-white/5">
-                                    <div className="font-bold border-b border-white/10 pb-0.5 mb-1 text-purple-400">Enrollments</div>
-                                    <div className="text-[8px] text-gray-400">student_id (FK)<br />course_id (FK)<br />grade</div>
+                                    <div className="font-bold border-b border-white/10 pb-0.5 mb-1 text-purple-400">Ayah 2:184</div>
+                                    <div className="text-[8px] text-gray-400">sick<br />traveler<br />exempt</div>
                                   </div>
                                 </div>
 
@@ -336,8 +336,8 @@ export function HeroVideoPreview() {
                                   <div className="col-span-2"></div>
                                   {/* Table Courses */}
                                   <div className="border border-white/10 rounded p-1 bg-white/5">
-                                    <div className="font-bold border-b border-white/10 pb-0.5 mb-1 text-emerald-400">Courses</div>
-                                    <div className="text-[8px] text-gray-400">id (PK)<br />credits</div>
+                                    <div className="font-bold border-b border-white/10 pb-0.5 mb-1 text-emerald-400">Tafsir Note</div>
+                                    <div className="text-[8px] text-gray-400">Ibn Kathir<br />cross-ref</div>
                                   </div>
                                 </div>
                               </div>
@@ -355,12 +355,12 @@ export function HeroVideoPreview() {
                 <div className="space-y-3 text-left">
                   <div className="text-[11px] font-bold text-gray-500 uppercase tracking-wider mb-2">Queue (Raised Hands)</div>
                   {isHandRaised ? (
-                    <div className="flex items-center justify-between p-2 rounded-lg bg-[#6D5DFC]/10 border border-[#6D5DFC]/20">
+                    <div className="flex items-center justify-between p-2 rounded-lg bg-[#059669]/10 border border-[#059669]/20">
                       <div className="flex items-center gap-2">
-                        <span className="w-5 h-5 rounded-full bg-[#3B82F6] flex items-center justify-center text-[10px] font-bold text-white">Y</span>
+                        <span className="w-5 h-5 rounded-full bg-[#10b981] flex items-center justify-center text-[10px] font-bold text-white">Y</span>
                         <span className="text-xs font-semibold text-gray-300">You</span>
                       </div>
-                      <span className="text-[10px] text-[#A78BFA] font-bold flex items-center gap-1">
+                      <span className="text-[10px] text-[#34d399] font-bold flex items-center gap-1">
                         <Hand className="w-3 h-3" /> Acknowledged
                       </span>
                     </div>
@@ -387,14 +387,14 @@ export function HeroVideoPreview() {
               {activeTab === "Notes" && (
                 <div className="space-y-3 text-left font-sans text-xs">
                   <div className="p-3.5 rounded-xl bg-white/5 border border-white/5 space-y-2">
-                    <h5 className="font-bold text-[#3B82F6]">Live AI Summary: Normalization</h5>
+                    <h5 className="font-bold text-[#10b981]">Live Summary: Surah Al-Baqarah 2:183</h5>
                     <p className="text-gray-400 leading-relaxed text-[11px]">
-                      The class is currently exploring normalization levels with a focus on Third Normal Form (3NF).
+                      The class is currently exploring the linguistic roots of fasting's obligation and its cross-references across the surah.
                     </p>
                     <ul className="list-disc list-inside text-gray-500 text-[10.5px] space-y-1 pt-1.5 border-t border-white/5">
-                      <li>First Normal Form (1NF): Atomic values</li>
-                      <li>Second Normal Form (2NF): Full functional dependency</li>
-                      <li>Third Normal Form (3NF): Non-transitive dependency</li>
+                      <li>Ayah 2:183: Establishes the obligation ('kutiba')</li>
+                      <li>Ayah 2:184: Exemptions for the sick and traveling</li>
+                      <li>Ayah 2:185: The month of Ramadan specified</li>
                     </ul>
                   </div>
 
@@ -427,7 +427,7 @@ export function HeroVideoPreview() {
                 disabled={!inputValue.trim()}
                 tabIndex={activeTab === "Chat" ? 0 : -1}
                 className={`p-2.5 rounded-xl transition-all duration-300 cursor-pointer ${inputValue.trim()
-                  ? "bg-[#3B82F6] text-white hover:opacity-90"
+                  ? "bg-[#10b981] text-white hover:opacity-90"
                   : "bg-white/5 text-gray-600 cursor-not-allowed"
                   }`}
               >

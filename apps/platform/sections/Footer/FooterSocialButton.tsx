@@ -21,7 +21,7 @@ export function FooterSocialButton({ href, icon: Icon, label }: FooterSocialButt
       aria-label={label}
       whileHover={{ scale: 1.1, rotate: 4 }}
       whileTap={{ scale: 0.95 }}
-      className={`inline-flex items-center justify-center w-10 h-10 rounded-full border hover:border-[#3B82F6]/50 hover:bg-[#3B82F6]/10 shadow-lg transition-colors duration-300 cursor-pointer ${
+      className={`inline-flex items-center justify-center w-10 h-10 rounded-full border hover:border-[#10b981]/50 hover:bg-[#10b981]/10 shadow-lg transition-colors duration-300 cursor-pointer ${
         isDarkMode
           ? "bg-[#111827] border-[#27272A] text-gray-400 hover:text-white"
           : "bg-zinc-100 border-zinc-200 text-zinc-500 hover:text-zinc-900"

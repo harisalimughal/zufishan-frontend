@@ -14,7 +14,7 @@ export function ChatActions() {
       {quickActions.map((action) => (
         <button
           key={action.label}
-          className="px-4 py-2 rounded-full bg-[#1F2937] text-xs text-gray-300 hover:bg-[#3B82F6] hover:text-white transition-all duration-300 flex items-center gap-2 border border-[#27272A] hover:border-[#3B82F6]"
+          className="px-4 py-2 rounded-full bg-[#1F2937] text-xs text-gray-300 hover:bg-[#10b981] hover:text-white transition-all duration-300 flex items-center gap-2 border border-[#27272A] hover:border-[#10b981]"
         >
           <action.icon size={14} />
           {action.label}

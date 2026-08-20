@@ -46,21 +46,21 @@ export default function LoginPage() {
           {/* TRUST BADGES */}
           <div className={`grid grid-cols-3 gap-4 border-t pt-7 text-center w-full transition-colors duration-300 ${isDarkMode ? "border-[#1C1C21]" : "border-gray-200"}`}>
             <div className="flex flex-col items-center">
-              <ShieldCheck size={26} className="text-[#6366F1] mb-1" />
+              <ShieldCheck size={26} className="text-[#10b981] mb-1" />
               <h5 className={`text-[11px] font-bold ${isDarkMode ? "text-gray-200" : "text-black"}`}>
                 Secure & Encrypted
               </h5>
               <p className="text-[10px] text-gray-500 mt-0.5">Your data is 100% safe</p>
             </div>
             <div className="flex flex-col items-center">
-              <Award size={26} className="text-[#6366F1] mb-1" />
+              <Award size={26} className="text-[#10b981] mb-1" />
               <h5 className={`text-[11px] font-bold ${isDarkMode ? "text-gray-200" : "text-black"}`}>
                 Trusted by Students
               </h5>
               <p className="text-[10px] text-gray-500 mt-0.5">Loved by 12k+ learners</p>
             </div>
             <div className="flex flex-col items-center">
-              <Headphones size={26} className="text-[#6366F1] mb-1" />
+              <Headphones size={26} className="text-[#10b981] mb-1" />
               <h5 className={`text-[11px] font-bold ${isDarkMode ? "text-gray-200" : "text-black"}`}>
                 24/7 Support
               </h5>

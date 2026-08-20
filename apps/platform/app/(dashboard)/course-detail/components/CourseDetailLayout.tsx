@@ -57,8 +57,8 @@ export function CourseDetailLayout({ course }: CourseDetailLayoutProps) {
           <div className="min-w-0 space-y-3">
             <section className="rounded-xl border border-[#172033] bg-[#08101d] p-3">
               <div className="grid gap-4 md:grid-cols-[220px_minmax(0,1fr)]">
-                <div className="relative flex min-h-[160px] items-center justify-center overflow-hidden rounded-lg border border-violet-500/10 bg-gradient-to-br from-violet-950 via-indigo-950 to-[#070b13]">
-                  <BookOpen size={70} className="text-violet-400" />
+                <div className="relative flex min-h-[160px] items-center justify-center overflow-hidden rounded-lg border border-primary-500/10 bg-gradient-to-br from-primary-950 via-primary-900 to-[#070b13]">
+                  <BookOpen size={70} className="text-primary-400" />
                   <button
                     type="button"
                     aria-label={`Preview ${course.title}`}
@@ -73,7 +73,7 @@ export function CourseDetailLayout({ course }: CourseDetailLayoutProps) {
 
                 <div>
                   {course.badge && (
-                    <span className="inline-flex rounded bg-violet-600 px-2 py-1 text-[8px] font-semibold">
+                    <span className="inline-flex rounded bg-primary-600 px-2 py-1 text-[8px] font-semibold">
                       {course.badge}
                     </span>
                   )}
@@ -113,7 +113,7 @@ export function CourseDetailLayout({ course }: CourseDetailLayoutProps) {
               <div className="mt-4 flex flex-wrap gap-2 border-t border-[#172033] pt-3">
                 <button
                   type="button"
-                  className="inline-flex h-9 items-center gap-2 rounded-md bg-violet-700 px-4 text-[9px]"
+                  className="inline-flex h-9 items-center gap-2 rounded-md bg-primary-700 px-4 text-[9px]"
                 >
                   <CalendarDays size={13} />
                   Join Next Class
@@ -159,7 +159,7 @@ export function CourseDetailLayout({ course }: CourseDetailLayoutProps) {
                   >
                     {tab}
                     {activeTab === tab && (
-                      <span className="absolute inset-x-2 bottom-0 h-0.5 bg-violet-500" />
+                      <span className="absolute inset-x-2 bottom-0 h-0.5 bg-primary-500" />
                     )}
                   </button>
                 ))}
@@ -180,7 +180,7 @@ export function CourseDetailLayout({ course }: CourseDetailLayoutProps) {
                             : course.curriculum.map((module) => module.id),
                         )
                       }
-                      className="text-[8px] text-violet-400"
+                      className="text-[8px] text-primary-400"
                     >
                       {openModules.length === course.curriculum.length
                         ? "Collapse All"
@@ -202,7 +202,7 @@ export function CourseDetailLayout({ course }: CourseDetailLayoutProps) {
                             onClick={() => toggleModule(module.id)}
                             className="flex w-full items-center gap-3 px-3 py-3 text-left"
                           >
-                            <span className="grid size-5 shrink-0 place-items-center rounded-full bg-violet-500/20 text-[8px] text-violet-300">
+                            <span className="grid size-5 shrink-0 place-items-center rounded-full bg-primary-500/20 text-[8px] text-primary-300">
                               {module.completed ? <Check size={11} /> : moduleIndex + 1}
                             </span>
 
@@ -229,7 +229,7 @@ export function CourseDetailLayout({ course }: CourseDetailLayoutProps) {
                                   key={`${module.id}-${lesson.id}`}
                                   className="flex items-center gap-3 px-2 py-2"
                                 >
-                                  <span className="grid size-4 shrink-0 place-items-center rounded-full bg-violet-600/25 text-violet-300">
+                                  <span className="grid size-4 shrink-0 place-items-center rounded-full bg-primary-600/25 text-primary-300">
                                     <Play size={7} fill="currentColor" />
                                   </span>
                                   <span className="min-w-0 flex-1 truncate text-[8px] text-zinc-300">
@@ -298,7 +298,7 @@ export function CourseDetailLayout({ course }: CourseDetailLayoutProps) {
                 <div
                   className="grid size-20 place-items-center rounded-full"
                   style={{
-                    background: `conic-gradient(#7c3aed ${
+                    background: `conic-gradient(#10b981 ${
                       course.progress * 3.6
                     }deg, #182237 0deg)`,
                   }}
@@ -323,7 +323,7 @@ export function CourseDetailLayout({ course }: CourseDetailLayoutProps) {
 
               <button
                 type="button"
-                className="mt-4 h-9 w-full rounded-md bg-violet-700 text-[9px]"
+                className="mt-4 h-9 w-full rounded-md bg-primary-700 text-[9px]"
               >
                 Continue Learning
               </button>

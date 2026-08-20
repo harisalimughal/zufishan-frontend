@@ -29,7 +29,7 @@ export function ChatInput({
             onKeyPress={(e) => e.key === 'Enter' && handleSend()}
             placeholder={isRecording ? 'Listening…' : 'Ask anything about your course...'}
             disabled={isRecording}
-            className="w-full bg-[#111827] border border-[#27272A] rounded-xl px-5 py-3 outline-none focus:border-[#3B82F6] transition text-white placeholder-gray-500 text-sm disabled:opacity-70"
+            className="w-full bg-[#111827] border border-[#27272A] rounded-xl px-5 py-3 outline-none focus:border-[#10b981] transition text-white placeholder-gray-500 text-sm disabled:opacity-70"
           />
           {isRecording && (
             <div className="absolute inset-y-0 right-4 flex items-center gap-[3px]">
@@ -56,7 +56,7 @@ export function ChatInput({
         </button>
         <button
           onClick={handleSend}
-          className="bg-[#3B82F6] px-6 rounded-xl hover:bg-blue-600 transition-all duration-300 flex items-center justify-center disabled:opacity-50 disabled:cursor-not-allowed shadow-lg shadow-blue-500/20 hover:shadow-blue-500/40 flex-shrink-0"
+          className="bg-[#10b981] px-6 rounded-xl hover:bg-primary-600 transition-all duration-300 flex items-center justify-center disabled:opacity-50 disabled:cursor-not-allowed shadow-lg shadow-primary-500/20 hover:shadow-primary-500/40 flex-shrink-0"
           disabled={!input?.trim() || isRecording}
         >
           <Send size={18} className="text-white" />

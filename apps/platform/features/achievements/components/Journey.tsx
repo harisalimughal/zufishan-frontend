@@ -20,7 +20,7 @@ function JourneyStatsComponent({ stats }: { stats: typeof journeyStats }) {
   return (
     <div className="grid grid-cols-2 gap-3 h-full">
       {statCards.map((stat, index) => (
-        <div key={index} className="bg-[#1F2937] rounded-xl p-4 border border-[#27272A] hover:border-[#3B82F6] transition flex flex-col justify-center">
+        <div key={index} className="bg-[#1F2937] rounded-xl p-4 border border-[#27272A] hover:border-[#10b981] transition flex flex-col justify-center">
           <p className="text-2xl font-bold text-white">{stat.value}</p>
           <p className="text-xs text-gray-400 mt-1">{stat.label}</p>
         </div>
@@ -36,7 +36,7 @@ function JourneyLevelInfo({ stats }: { stats: typeof journeyStats }) {
   const progressPercentage = (stats.currentXp / stats.nextLevelXp) * 100
 
   return (
-    <div className="bg-[#1F2937] rounded-xl p-4 border border-[#27272A] hover:border-[#3B82F6] transition h-full flex flex-col justify-center">
+    <div className="bg-[#1F2937] rounded-xl p-4 border border-[#27272A] hover:border-[#10b981] transition h-full flex flex-col justify-center">
       <div className="flex items-center justify-between">
         <span className="text-sm text-gray-400">Next Level</span>
         <span className="text-sm font-semibold text-white">Level {stats.nextLevel}</span>
@@ -47,14 +47,14 @@ function JourneyLevelInfo({ stats }: { stats: typeof journeyStats }) {
       </div>
       <div className="w-full h-2 bg-[#111827] rounded-full overflow-hidden mt-1.5">
         <div 
-          className="h-full rounded-full bg-gradient-to-r from-[#3B82F6] to-purple-500 transition-all duration-500" 
+          className="h-full rounded-full bg-gradient-to-r from-[#10b981] to-primary-700 transition-all duration-500"
           style={{ width: progressPercentage + '%' }} 
         />
       </div>
       <div className="flex items-center gap-1.5 mt-3 flex-wrap">
         <span className="text-sm flex-shrink-0">🔥</span>
         <span className="text-sm text-gray-400 flex-shrink-0">Keep going!</span>
-        <span className="text-sm text-[#3B82F6] font-medium truncate min-w-0 flex-1 text-right">
+        <span className="text-sm text-[#10b981] font-medium truncate min-w-0 flex-1 text-right">
           {stats.xpToNextLevel.toLocaleString()} XP to reach Level {stats.nextLevel}
         </span>
       </div>

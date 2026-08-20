@@ -48,7 +48,7 @@ export default function AdminUsersPage() {
           placeholder="Search by name or email..."
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
-          className="w-full rounded-lg border border-[#27272A] bg-black px-4 py-2 text-white placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-[#3B82F6]"
+          className="w-full rounded-lg border border-[#27272A] bg-black px-4 py-2 text-white placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-[#10b981]"
         />
       </div>
 

@@ -41,7 +41,7 @@ export default function AdminUserDetailPage() {
     return (
       <div className="py-12 text-center">
         <p className="mb-4 text-slate-400">{error || "User not found"}</p>
-        <Link href="/admin/users" className="text-[#3B82F6] hover:underline">
+        <Link href="/admin/users" className="text-[#10b981] hover:underline">
           Back to Users
         </Link>
       </div>
@@ -54,7 +54,7 @@ export default function AdminUserDetailPage() {
         <div>
           <Link
             href="/admin/users"
-            className="mb-2 inline-block text-sm text-[#3B82F6] hover:underline"
+            className="mb-2 inline-block text-sm text-[#10b981] hover:underline"
           >
             ← Back to Users
           </Link>

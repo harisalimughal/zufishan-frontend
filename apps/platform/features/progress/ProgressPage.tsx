@@ -55,12 +55,12 @@ export default function ProgressPage() {
             return {
               id: e.id || idx,
               title: e.course?.title || "Enrolled Course",
-              instructor: e.course?.instructorName || "Prof. Lucas (AI)",
+              instructor: e.course?.instructorName || "Ustaz Ibrahim Malik",
               badge: pct >= 80 ? "Almost Done" : pct >= 50 ? "In Progress" : "Getting Started",
-              badgeStyle: pct >= 80 ? "bg-emerald-900/30 text-emerald-400 border-emerald-800/40" : "bg-indigo-900/30 text-indigo-400 border-indigo-800/40",
+              badgeStyle: pct >= 80 ? "bg-emerald-900/30 text-emerald-400 border-emerald-800/40" : "bg-primary-900/30 text-primary-400 border-primary-800/40",
               progress: pct,
-              progressColor: pct >= 80 ? "bg-emerald-500" : "bg-indigo-500",
-              textColor: pct >= 80 ? "text-emerald-400" : "text-indigo-400",
+              progressColor: pct >= 80 ? "bg-emerald-500" : "bg-primary-500",
+              textColor: pct >= 80 ? "text-emerald-400" : "text-primary-400",
               icon: icons[idx % icons.length],
               iconBg: iconBgStyles[idx % iconBgStyles.length],
             };
@@ -69,8 +69,8 @@ export default function ProgressPage() {
         } else {
           // Default fallback courses
           setCoursesList([
-            { id: 1, title: "Database 101", instructor: "Dr. Maria Chen", badge: "3 Modules Left", badgeStyle: "bg-amber-900/30 text-amber-400 border-amber-800/40", progress: 85, progressColor: "bg-emerald-500", textColor: "text-emerald-400", icon: Database, iconBg: "bg-emerald-950/40 text-emerald-400 border-emerald-900/40" },
-            { id: 2, title: "AI Engineering", instructor: "Prof. James Kwon", badge: "In Progress", badgeStyle: "bg-indigo-900/30 text-indigo-400 border-indigo-800/40", progress: 62, progressColor: "bg-indigo-500", textColor: "text-indigo-400", icon: Bot, iconBg: "bg-indigo-950/40 text-indigo-400 border-indigo-900/40" },
+            { id: 1, title: "Tajweed Foundations", instructor: "Ustaz Ibrahim Malik", badge: "3 Modules Left", badgeStyle: "bg-amber-900/30 text-amber-400 border-amber-800/40", progress: 85, progressColor: "bg-emerald-500", textColor: "text-emerald-400", icon: Database, iconBg: "bg-emerald-950/40 text-emerald-400 border-emerald-900/40" },
+            { id: 2, title: "Hadith Sciences: An Introduction", instructor: "Ustaza Maryam Siddiqui", badge: "In Progress", badgeStyle: "bg-primary-900/30 text-primary-400 border-primary-800/40", progress: 62, progressColor: "bg-primary-500", textColor: "text-primary-400", icon: Bot, iconBg: "bg-indigo-950/40 text-indigo-400 border-indigo-900/40" },
           ]);
         }
 
@@ -127,7 +127,7 @@ export default function ProgressPage() {
           <div className="relative">
             <select className="appearance-none bg-[#111827] border border-[#27272A] text-xs text-zinc-300 rounded-xl px-4 py-2.5 pr-8 focus:outline-none focus:border-zinc-500 cursor-pointer">
               <option>All Courses</option>
-              <option>Database 101</option>
+              <option>Tajweed Foundations</option>
               <option>AI Engineering</option>
             </select>
             <ChevronDown size={14} className="absolute right-3 top-1/2 -translate-y-1/2 text-zinc-400 pointer-events-none" />
@@ -138,7 +138,7 @@ export default function ProgressPage() {
             <span>This Semester</span>
           </div>
 
-          <button className="flex items-center gap-2 bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-medium rounded-xl px-4 py-2.5 transition-colors shadow-lg shadow-indigo-600/20">
+          <button className="flex items-center gap-2 bg-primary-600 hover:bg-primary-500 text-white text-xs font-medium rounded-xl px-4 py-2.5 transition-colors shadow-lg shadow-primary-600/20">
             <Download size={14} />
             <span>Export Report</span>
           </button>
@@ -187,14 +187,14 @@ export default function ProgressPage() {
             <span className="text-[10px] font-semibold tracking-wider text-zinc-500 uppercase">
               CURRENT STREAK
             </span>
-            <TrendingUp size={18} className="text-blue-400" />
+            <TrendingUp size={18} className="text-primary-400" />
           </div>
           <div className="mt-2">
             <div className="text-2xl font-bold text-white">
               {streak.currentStreak} <span className="text-sm font-normal text-zinc-400">days</span>
             </div>
             <p className="text-xs text-zinc-400 mt-1">
-              Best: <span className="text-blue-400 font-medium">{streak.bestStreak} days</span>
+              Best: <span className="text-primary-400 font-medium">{streak.bestStreak} days</span>
             </p>
           </div>
         </div>
@@ -240,7 +240,7 @@ export default function ProgressPage() {
           <div>
             <div className="flex items-center justify-between mb-1">
               <h2 className="text-base font-semibold text-white">Course Completion Breakdown</h2>
-              <button className="text-xs text-indigo-400 hover:text-indigo-300 transition-colors">
+              <button className="text-xs text-primary-400 hover:text-primary-300 transition-colors">
                 View All
               </button>
             </div>
@@ -302,7 +302,7 @@ export default function ProgressPage() {
                   onClick={() => setChartMode("hours")}
                   className={`px-3 py-1 text-xs font-medium rounded-lg transition-all ${
                     chartMode === "hours"
-                      ? "bg-indigo-600 text-white shadow-md shadow-indigo-600/30"
+                      ? "bg-primary-600 text-white shadow-md shadow-primary-600/30"
                       : "text-zinc-400 hover:text-white"
                   }`}
                 >
@@ -312,7 +312,7 @@ export default function ProgressPage() {
                   onClick={() => setChartMode("lessons")}
                   className={`px-3 py-1 text-xs font-medium rounded-lg transition-all ${
                     chartMode === "lessons"
-                      ? "bg-indigo-600 text-white shadow-md shadow-indigo-600/30"
+                      ? "bg-primary-600 text-white shadow-md shadow-primary-600/30"
                       : "text-zinc-400 hover:text-white"
                   }`}
                 >
@@ -327,8 +327,8 @@ export default function ProgressPage() {
                 <AreaChart data={weeklyData} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
                   <defs>
                     <linearGradient id="purpleGradient" x1="0" y1="0" x2="0" y2="1">
-                      <stop offset="5%" stopColor="#6366F1" stopOpacity={0.4} />
-                      <stop offset="95%" stopColor="#6366F1" stopOpacity={0.0} />
+                      <stop offset="5%" stopColor="#10b981" stopOpacity={0.4} />
+                      <stop offset="95%" stopColor="#10b981" stopOpacity={0.0} />
                     </linearGradient>
                   </defs>
                   <XAxis
@@ -356,12 +356,12 @@ export default function ProgressPage() {
                   <Area
                     type="monotone"
                     dataKey={chartMode === "hours" ? "hours" : "lessons"}
-                    stroke="#6366F1"
+                    stroke="#10b981"
                     strokeWidth={3}
                     fillOpacity={1}
                     fill="url(#purpleGradient)"
-                    dot={{ fill: "#6366F1", r: 3 }}
-                    activeDot={{ r: 6, fill: "#818CF8" }}
+                    dot={{ fill: "#10b981", r: 3 }}
+                    activeDot={{ r: 6, fill: "#34d399" }}
                   />
                 </AreaChart>
               </ResponsiveContainer>

@@ -42,13 +42,13 @@ export function ProductPreview() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.3 }}
           transition={{ duration: 0.6 }}
-          className={`inline-flex items-center gap-2 px-4 py-2 rounded-full border text-xs font-semibold text-[#3B82F6] shadow-sm mb-6 tracking-wide uppercase select-none transition-colors duration-300 ${
+          className={`inline-flex items-center gap-2 px-4 py-2 rounded-full border text-xs font-semibold text-[#10b981] shadow-sm mb-6 tracking-wide uppercase select-none transition-colors duration-300 ${
             isDarkMode
               ? "border-[#27272A] bg-[#111827] hover:border-gray-700"
               : "border-zinc-200 bg-white hover:border-zinc-300"
           }`}
         >
-          <Monitor size={14} className="text-[#3B82F6]" />
+          <Monitor size={14} className="text-[#10b981]" />
           PRODUCT PREVIEW
         </motion.div>
 
@@ -62,7 +62,7 @@ export function ProductPreview() {
             isDarkMode ? "text-white" : "text-zinc-900"
           }`}
         >
-          A platform designed <br /> for <span className="text-[#3B82F6]">real learning outcomes.</span>
+          A platform designed <br /> for <span className="text-[#10b981]">everyday Deen.</span>
         </motion.h2>
 
         {/* Subtitle */}
@@ -75,8 +75,8 @@ export function ProductPreview() {
             isDarkMode ? "text-[#A1A1AA]" : "text-zinc-600"
           }`}
         >
-          Here's a glimpse of your AI University dashboard. <br />
-          Everything you need to learn, track, and grow — in one place.
+          Here's a glimpse of your Zufishan dashboard. <br />
+          Courses, prayer utilities, Hifz tracking and marketplace orders — all in one place.
         </motion.p>
 
         {/* Navigation Pills */}
@@ -124,8 +124,8 @@ export function ProductPreview() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.3 }}
           transition={{ duration: 0.6, delay: 0.4 }}
-          className={`mt-12 relative mx-auto max-w-5xl rounded-2xl border p-2 shadow-[0_0_50px_rgba(59,130,246,0.25)] backdrop-blur-sm transition-all duration-300 ${
-            isDarkMode ? "border-[#052E70] bg-[#111827]/40" : "border-blue-200 bg-blue-50/60"
+          className={`mt-12 relative mx-auto max-w-5xl rounded-2xl border p-2 shadow-[0_0_50px_rgba(16,185,129,0.25)] backdrop-blur-sm transition-all duration-300 ${
+            isDarkMode ? "border-[#064E3B] bg-[#111827]/40" : "border-primary-200 bg-primary-50/60"
           }`}
         >
           {activeTab === "live" ? (

@@ -54,7 +54,7 @@ const JOINING_NAMES = [
 ];
 
 const AVATAR_COLORS = [
-  "#6D5DFC", "#EC4899", "#F59E0B", "#22C55E", "#3B82F6",
+  "#059669", "#EC4899", "#F59E0B", "#22C55E", "#10b981",
   "#EF4444", "#8B5CF6", "#06B6D4", "#F97316", "#10B981",
 ];
 
@@ -64,19 +64,19 @@ const INITIAL_MESSAGES: ChatMessage[] = [
     name: "Sarah Khan",
     time: "08:12 AM",
     avatar: "SK",
-    avatarColor: "#6D5DFC",
-    message: "Professor, can you explain the difference between classification and regression with an example?",
+    avatarColor: "#059669",
+    message: "Ustaz, can you explain the difference between Sunnah Mu'akkadah and Ghair Mu'akkadah?",
     isAI: false,
   },
   {
     id: 2,
-    name: "AI Professor Lucas",
+    name: "Ustaz Ibrahim Malik",
     time: "08:13 AM",
     avatar: "L",
-    avatarColor: "#A78BFA",
+    avatarColor: "#34d399",
     message: "Great question, Sarah! Let me show you with a practical example.",
     isAI: true,
-    attachment: { name: "Supervised_Learning_Example.pdf", size: "1.2 MB" },
+    attachment: { name: "Sunnah_Prayers_Guide.pdf", size: "1.2 MB" },
   },
   {
     id: 3,
@@ -90,7 +90,7 @@ const INITIAL_MESSAGES: ChatMessage[] = [
 ];
 
 const BOTTOM_STUDENTS: Student[] = [
-  { id: "you", label: "You", color: "#6D5DFC" },
+  { id: "you", label: "You", color: "#059669" },
   { id: "sarah", label: "Sarah K.", color: "#EC4899" },
   { id: "michael", label: "Michael T.", color: "#F59E0B" },
   { id: "priya", label: "Priya M.", color: "#22C55E" },
@@ -99,9 +99,9 @@ const BOTTOM_STUDENTS: Student[] = [
 const TABS: TabType[] = ["Chat", "People", "Notes"];
 
 const NOTES_CONTENT = [
-  { title: "Labeled Data", body: "Every training example has a known correct output. The model learns to map inputs to these labels." },
-  { title: "Regression", body: "Predicts continuous values, such as a price or a temperature, from the input features." },
-  { title: "Classification", body: "Predicts a discrete category, such as spam or not spam, from the input features." },
+  { title: "Fard Prayers", body: "The five daily prayers are obligatory (fard) on every adult, sane Muslim." },
+  { title: "Sunnah Mu'akkadah", body: "Emphasized Sunnah prayers the Prophet ﷺ consistently performed, such as the two rak'ahs before Fajr." },
+  { title: "Witr Prayer", body: "An odd-numbered prayer performed after Isha — highly recommended, and obligatory in the Hanafi madhab." },
 ];
 
 const AI_REPLIES = [
@@ -223,13 +223,13 @@ export function ClassroomPreview() {
   const handleSend = () => {
     const text = chatInput.trim();
     if (!text || isLeft) return;
-    const userMsg: ChatMessage = { id: nextIdRef.current++, name: "You", time: getTime(), avatar: "Y", avatarColor: "#6D5DFC", message: text, isAI: false };
+    const userMsg: ChatMessage = { id: nextIdRef.current++, name: "You", time: getTime(), avatar: "Y", avatarColor: "#059669", message: text, isAI: false };
     setMessages((prev) => [...prev, userMsg]);
     setChatInput("");
     setIsTyping(true);
     setTimeout(() => {
       setIsTyping(false);
-      const aiMsg: ChatMessage = { id: nextIdRef.current++, name: "AI Professor Lucas", time: getTime(), avatar: "L", avatarColor: "#A78BFA", message: getRandomReply(), isAI: true };
+      const aiMsg: ChatMessage = { id: nextIdRef.current++, name: "Ustaz Ibrahim Malik", time: getTime(), avatar: "L", avatarColor: "#34d399", message: getRandomReply(), isAI: true };
       setMessages((prev) => [...prev, aiMsg]);
     }, 1800);
   };
@@ -244,8 +244,8 @@ export function ClassroomPreview() {
         <div style={{ textAlign: "center" as const }}>
           <div style={{ fontSize: 48, marginBottom: 16 }}>👋</div>
           <h3 style={{ color: isDarkMode ? "#fff" : "#18181B", fontSize: 24, fontWeight: 700, marginBottom: 8, transition: "color 0.3s ease" }}>You left the class</h3>
-          <p style={{ color: isDarkMode ? "#A1A1AA" : "#52525B", marginBottom: 24, transition: "color 0.3s ease" }}>Machine Learning 101 is still in session</p>
-          <button onClick={handleRejoin} style={{ background: "#6D5DFC", border: "none", borderRadius: 10, padding: "12px 28px", color: "#fff", fontSize: 14, fontWeight: 700, cursor: "pointer", fontFamily: "inherit" }}>Rejoin Class</button>
+          <p style={{ color: isDarkMode ? "#A1A1AA" : "#52525B", marginBottom: 24, transition: "color 0.3s ease" }}>Fiqh of Salah — Live Halaqa is still in session</p>
+          <button onClick={handleRejoin} style={{ background: "#059669", border: "none", borderRadius: 10, padding: "12px 28px", color: "#fff", fontSize: 14, fontWeight: 700, cursor: "pointer", fontFamily: "inherit" }}>Rejoin Class</button>
         </div>
       </section>
     );
@@ -273,8 +273,8 @@ export function ClassroomPreview() {
               transition: "background-color 0.3s ease, border-color 0.3s ease",
             }}
           >
-            <div style={{ width: 7, height: 7, borderRadius: "50%", background: "#6D5DFC", boxShadow: pulse ? "0 0 8px 2px #6D5DFC" : "none", transition: "box-shadow 0.6s ease" }} />
-            <span style={{ color: "#3B82F6", fontSize: 12, fontWeight: 600, letterSpacing: "0.05em", textTransform: "uppercase" as const }}>Live Classroom Preview</span>
+            <div style={{ width: 7, height: 7, borderRadius: "50%", background: "#059669", boxShadow: pulse ? "0 0 8px 2px #059669" : "none", transition: "box-shadow 0.6s ease" }} />
+            <span style={{ color: "#10b981", fontSize: 12, fontWeight: 600, letterSpacing: "0.05em", textTransform: "uppercase" as const }}>Live Classroom Preview</span>
           </div>
         </motion.div>
 
@@ -288,7 +288,7 @@ export function ClassroomPreview() {
         >
           <h2 style={{ color: isDarkMode ? "#FFFFFF" : "#18181B", fontSize: "clamp(1.75rem, 4vw, 2.75rem)", fontWeight: 800, letterSpacing: "-0.02em", margin: 0, transition: "color 0.3s ease" }}>
             Just like a{" "}
-            <span style={{ background: "linear-gradient(135deg, #6D5DFC, #A78BFA)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text" }}>real classroom.</span>
+            <span style={{ background: "linear-gradient(135deg, #059669, #34d399)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text" }}>real halaqa.</span>
           </h2>
         </motion.div>
 
@@ -319,7 +319,7 @@ export function ClassroomPreview() {
             )}
           </div>
 
-          <div style={{ background: "#111827", border: "1px solid #27272A", borderRadius: 16, overflow: "hidden", boxShadow: "0 32px 80px rgba(0,0,0,0.6), 0 0 0 1px rgba(109,93,252,0.08)" }}>
+          <div style={{ background: "#111827", border: "1px solid #27272A", borderRadius: 16, overflow: "hidden", boxShadow: "0 32px 80px rgba(0,0,0,0.6), 0 0 0 1px rgba(5,150,105,0.08)" }}>
 
             {/* Top Bar */}
             <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "10px 18px", borderBottom: "1px solid #27272A", background: "#0D1117" }}>
@@ -328,7 +328,7 @@ export function ClassroomPreview() {
                   <div style={{ width: 8, height: 8, borderRadius: "50%", background: "#22C55E", boxShadow: pulse ? "0 0 6px #22C55E" : "none", transition: "box-shadow 0.6s" }} />
                   <span style={{ color: "#22C55E", fontSize: 11, fontWeight: 700, letterSpacing: "0.1em" }}>LIVE</span>
                 </div>
-                <span style={{ color: "#FFFFFF", fontWeight: 700, fontSize: 14 }}>Machine Learning 101</span>
+                <span style={{ color: "#FFFFFF", fontWeight: 700, fontSize: 14 }}>Fiqh of Salah — Live Halaqa</span>
                 <span style={{ color: "#A1A1AA", fontSize: 12 }}>08:00 AM – 09:30 AM</span>
               </div>
               <div style={{ display: "flex", alignItems: "center", gap: 14 }}>
@@ -352,7 +352,7 @@ export function ClassroomPreview() {
                 <iframe
                   key={isVideoMuted ? "muted" : "unmuted"}
                   src={`https://player.cloudinary.com/embed/?cloud_name=lgyepgcr&public_id=Renanla-Tutor_uyw0sh&profile=cld-default&autoplay=true&muted=${isVideoMuted}&loop=true&controls=false`}
-                  title="Renanla Tutor live class preview"
+                  title="Zufishan Tutor live class preview"
                   style={{ position: "absolute" as const, top: 0, left: 0, width: "100%", height: "100%", border: "none", opacity: cameraActive ? 1 : 0, transition: "opacity 0.4s" }}
                   allow="autoplay; encrypted-media"
                   allowFullScreen
@@ -368,16 +368,16 @@ export function ClassroomPreview() {
                 </button>
                 {!cameraActive && (
                   <div style={{ position: "absolute" as const, inset: 0, background: "#0a0a14", display: "flex", flexDirection: "column" as const, alignItems: "center", justifyContent: "center", gap: 12 }}>
-                    <div style={{ width: 64, height: 64, borderRadius: "50%", background: "rgba(109,93,252,0.2)", display: "flex", alignItems: "center", justifyContent: "center" }}>
-                      <VideoOff size={28} color="#6D5DFC" />
+                    <div style={{ width: 64, height: 64, borderRadius: "50%", background: "rgba(5,150,105,0.2)", display: "flex", alignItems: "center", justifyContent: "center" }}>
+                      <VideoOff size={28} color="#059669" />
                     </div>
                     <span style={{ color: "#A1A1AA", fontSize: 13 }}>Camera is off</span>
                   </div>
                 )}
-                <div style={{ position: "absolute" as const, top: 12, left: 12, background: "rgba(109,93,252,0.85)", borderRadius: 6, padding: "3px 10px", fontSize: 10, fontWeight: 700, color: "#fff", letterSpacing: "0.08em", textTransform: "uppercase" as const, zIndex: 2, backdropFilter: "blur(4px)" }}>AI Professor</div>
+                <div style={{ position: "absolute" as const, top: 12, left: 12, background: "rgba(5,150,105,0.85)", borderRadius: 6, padding: "3px 10px", fontSize: 10, fontWeight: 700, color: "#fff", letterSpacing: "0.08em", textTransform: "uppercase" as const, zIndex: 2, backdropFilter: "blur(4px)" }}>Verified Ustaz</div>
                 <div style={{ position: "absolute" as const, bottom: 48, left: 12, zIndex: 2, background: "rgba(0,0,0,0.6)", backdropFilter: "blur(4px)", borderRadius: 8, padding: "6px 10px" }}>
-                  <div style={{ color: "#FFFFFF", fontWeight: 700, fontSize: 14, lineHeight: 1 }}>Lucas</div>
-                  <div style={{ color: "#A78BFA", fontSize: 11, marginTop: 2 }}>Machine Learning Expert</div>
+                  <div style={{ color: "#FFFFFF", fontWeight: 700, fontSize: 14, lineHeight: 1 }}>Ibrahim</div>
+                  <div style={{ color: "#34d399", fontSize: 11, marginTop: 2 }}>Verified Ustaz · Fiqh & Hadith</div>
                 </div>
                 {!micActive && (
                   <div style={{ position: "absolute" as const, top: 12, right: 12, background: "rgba(239,68,68,0.85)", borderRadius: 6, padding: "4px 8px", display: "flex", alignItems: "center", gap: 4, zIndex: 2 }}>
@@ -396,7 +396,7 @@ export function ClassroomPreview() {
                 <div style={{ display: "flex", borderBottom: "1px solid #27272A", padding: "0 12px" }}>
                   {TABS.map((tab) => (
                     <button key={tab} onClick={() => setActiveTab(tab)}
-                      style={{ background: "none", border: "none", borderBottom: activeTab === tab ? "2px solid #6D5DFC" : "2px solid transparent", padding: "10px 8px", marginBottom: -1, fontSize: 12, fontWeight: 600, color: activeTab === tab ? "#A78BFA" : "#A1A1AA", cursor: "pointer", transition: "color 0.2s", fontFamily: "inherit", whiteSpace: "nowrap" as const }}
+                      style={{ background: "none", border: "none", borderBottom: activeTab === tab ? "2px solid #059669" : "2px solid transparent", padding: "10px 8px", marginBottom: -1, fontSize: 12, fontWeight: 600, color: activeTab === tab ? "#34d399" : "#A1A1AA", cursor: "pointer", transition: "color 0.2s", fontFamily: "inherit", whiteSpace: "nowrap" as const }}
                     >
                       {tab}
                       {tab === "People" && <span style={{ marginLeft: 4, color: "#A1A1AA", fontWeight: 400 }}>({studentCount})</span>}
@@ -414,14 +414,14 @@ export function ClassroomPreview() {
                           <AvatarCircle initials={msg.avatar} color={msg.avatarColor} size={28} />
                           <div style={{ flex: 1, minWidth: 0 }}>
                             <div style={{ display: "flex", alignItems: "baseline", gap: 6, marginBottom: 3 }}>
-                              <span style={{ color: msg.isAI ? "#A78BFA" : "#FFFFFF", fontSize: 11, fontWeight: 700 }}>{msg.name}</span>
+                              <span style={{ color: msg.isAI ? "#34d399" : "#FFFFFF", fontSize: 11, fontWeight: 700 }}>{msg.name}</span>
                               <span style={{ color: "#3F3F46", fontSize: 10 }}>{msg.time}</span>
                             </div>
                             <div style={{ color: "#A1A1AA", fontSize: 11, lineHeight: 1.55 }}>{msg.message}</div>
                             {msg.attachment && (
-                              <div style={{ marginTop: 6, background: "rgba(109,93,252,0.12)", border: "1px solid rgba(109,93,252,0.25)", borderRadius: 6, padding: "5px 10px", display: "flex", alignItems: "center", gap: 6 }}>
-                                <File size={11} color="#A78BFA" />
-                                <span style={{ color: "#A78BFA", fontSize: 10, fontWeight: 600, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" as const }}>{msg.attachment.name}</span>
+                              <div style={{ marginTop: 6, background: "rgba(5,150,105,0.12)", border: "1px solid rgba(5,150,105,0.25)", borderRadius: 6, padding: "5px 10px", display: "flex", alignItems: "center", gap: 6 }}>
+                                <File size={11} color="#34d399" />
+                                <span style={{ color: "#34d399", fontSize: 10, fontWeight: 600, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" as const }}>{msg.attachment.name}</span>
                                 <span style={{ color: "#3F3F46", fontSize: 10, marginLeft: "auto", flexShrink: 0 }}>{msg.attachment.size}</span>
                               </div>
                             )}
@@ -430,10 +430,10 @@ export function ClassroomPreview() {
                       ))}
                       {isTyping && (
                         <div style={{ display: "flex", gap: 8, alignItems: "center" }}>
-                          <AvatarCircle initials="L" color="#A78BFA" size={28} />
+                          <AvatarCircle initials="L" color="#34d399" size={28} />
                           <div style={{ display: "flex", gap: 4, alignItems: "center" }}>
                             {[0, 1, 2].map((i) => (
-                              <div key={i} style={{ width: 6, height: 6, borderRadius: "50%", background: "#A78BFA", animation: `bounce 1s ease-in-out ${i * 0.15}s infinite`, opacity: 0.7 }} />
+                              <div key={i} style={{ width: 6, height: 6, borderRadius: "50%", background: "#34d399", animation: `bounce 1s ease-in-out ${i * 0.15}s infinite`, opacity: 0.7 }} />
                             ))}
                           </div>
                         </div>
@@ -447,12 +447,12 @@ export function ClassroomPreview() {
                     <>
                       {/* Professor always first */}
                       <div style={{ display: "flex", gap: 8, alignItems: "center" }}>
-                        <AvatarCircle initials="L" color="#A78BFA" size={28} />
+                        <AvatarCircle initials="L" color="#34d399" size={28} />
                         <div style={{ flex: 1, minWidth: 0 }}>
-                          <div style={{ color: "#A78BFA", fontSize: 12, fontWeight: 600 }}>AI Professor Lucas</div>
-                          <div style={{ color: "#A1A1AA", fontSize: 10 }}>Professor</div>
+                          <div style={{ color: "#34d399", fontSize: 12, fontWeight: 600 }}>Ustaz Ibrahim Malik</div>
+                          <div style={{ color: "#A1A1AA", fontSize: 10 }}>Verified Ustaz</div>
                         </div>
-                        <span style={{ background: "rgba(109,93,252,0.2)", color: "#A78BFA", fontSize: 9, fontWeight: 700, padding: "2px 6px", borderRadius: 4 }}>AI</span>
+                        <span style={{ background: "rgba(5,150,105,0.2)", color: "#34d399", fontSize: 9, fontWeight: 700, padding: "2px 6px", borderRadius: 4 }}>Ustaz</span>
                       </div>
                       {/* All present students dynamically */}
                       {presentStudents.map((name) => (
@@ -463,7 +463,7 @@ export function ClassroomPreview() {
                             <div style={{ color: "#A1A1AA", fontSize: 10 }}>Student</div>
                           </div>
                           {name === "You" && (
-                            <span style={{ background: "rgba(109,93,252,0.15)", color: "#A78BFA", fontSize: 9, fontWeight: 700, padding: "2px 6px", borderRadius: 4 }}>You</span>
+                            <span style={{ background: "rgba(5,150,105,0.15)", color: "#34d399", fontSize: 9, fontWeight: 700, padding: "2px 6px", borderRadius: 4 }}>You</span>
                           )}
                         </div>
                       ))}
@@ -473,9 +473,9 @@ export function ClassroomPreview() {
                   {/* NOTES TAB */}
                   {activeTab === "Notes" && (
                     <>
-                      <div style={{ color: "#A78BFA", fontSize: 11, fontWeight: 600, marginBottom: 4 }}>📝 Machine Learning 101 — Today&apos;s Notes</div>
+                      <div style={{ color: "#34d399", fontSize: 11, fontWeight: 600, marginBottom: 4 }}>📝 Fiqh of Salah — Live Halaqa — Today&apos;s Notes</div>
                       {NOTES_CONTENT.map((note) => (
-                        <div key={note.title} style={{ background: "rgba(109,93,252,0.08)", border: "1px solid rgba(109,93,252,0.2)", borderRadius: 8, padding: "10px 12px" }}>
+                        <div key={note.title} style={{ background: "rgba(5,150,105,0.08)", border: "1px solid rgba(5,150,105,0.2)", borderRadius: 8, padding: "10px 12px" }}>
                           <div style={{ color: "#FFFFFF", fontSize: 11, fontWeight: 700, marginBottom: 4 }}>{note.title}</div>
                           <div style={{ color: "#A1A1AA", fontSize: 10, lineHeight: 1.6 }}>{note.body}</div>
                         </div>
@@ -489,7 +489,7 @@ export function ClassroomPreview() {
                     <input value={chatInput} onChange={(e) => setChatInput(e.target.value)} onKeyDown={handleKeyDown} placeholder="Ask a question..."
                       style={{ flex: 1, background: "rgba(255,255,255,0.04)", border: "1px solid #27272A", borderRadius: 8, padding: "7px 10px", color: "#fff", fontSize: 11, outline: "none", fontFamily: "inherit", minWidth: 0 }} />
                     <button onClick={handleSend} disabled={!chatInput.trim()}
-                      style={{ background: chatInput.trim() ? "#6D5DFC" : "rgba(109,93,252,0.3)", border: "none", borderRadius: 8, width: 30, height: 30, display: "flex", alignItems: "center", justifyContent: "center", cursor: chatInput.trim() ? "pointer" : "not-allowed", flexShrink: 0, transition: "background 0.2s" }}>
+                      style={{ background: chatInput.trim() ? "#059669" : "rgba(5,150,105,0.3)", border: "none", borderRadius: 8, width: 30, height: 30, display: "flex", alignItems: "center", justifyContent: "center", cursor: chatInput.trim() ? "pointer" : "not-allowed", flexShrink: 0, transition: "background 0.2s" }}>
                       <Send size={13} color="#fff" />
                     </button>
                   </div>

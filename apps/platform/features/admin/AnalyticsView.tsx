@@ -34,7 +34,7 @@ export function AnalyticsView({ stats, courses, assignmentCount }: AnalyticsView
         {summaryCards.map((card) => (
           <div key={card.label} className="rounded-xl border border-[#27272A] bg-[#111827] p-6">
             <p className="text-xs font-medium uppercase tracking-wider text-slate-400">{card.label}</p>
-            <p className="mt-2 text-3xl font-bold text-[#3B82F6]">{card.value}</p>
+            <p className="mt-2 text-3xl font-bold text-[#10b981]">{card.value}</p>
           </div>
         ))}
       </div>
@@ -53,7 +53,7 @@ export function AnalyticsView({ stats, courses, assignmentCount }: AnalyticsView
                 </div>
                 <div className="h-2 w-full overflow-hidden rounded-full bg-black">
                   <div
-                    className="h-full rounded-full bg-[#3B82F6]"
+                    className="h-full rounded-full bg-[#10b981]"
                     style={{ width: `${(course.totalStudents / maxStudents) * 100}%` }}
                   />
                 </div>

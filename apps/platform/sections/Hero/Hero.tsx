@@ -11,8 +11,8 @@ import { HeroVideoPreview } from "./HeroVideoPreview";
 import { useTheme } from "../../lib/theme/ThemeContext";
 
 const TYPE_LINE_1 = "The World’s First";
-const TYPE_HIGHLIGHT = "AI-Powered";
-const TYPE_SUFFIX = " University";
+const TYPE_HIGHLIGHT = "Scholar-Verified";
+const TYPE_SUFFIX = " Islamic Platform";
 const TYPE_LINE_2 = TYPE_HIGHLIGHT + TYPE_SUFFIX;
 const TYPE_TOTAL = TYPE_LINE_1.length + TYPE_LINE_2.length;
 
@@ -72,7 +72,7 @@ export function Hero() {
 
       {/* Animated Ambient Aurora Background */}
       <motion.div
-        className="absolute top-0 left-1/2 w-[1200px] h-[500px] bg-gradient-to-b from-[#3B82F6]/20 via-[#6D5DFC]/10 to-transparent rounded-full blur-[140px] pointer-events-none"
+        className="absolute top-0 left-1/2 w-[1200px] h-[500px] bg-gradient-to-b from-[#10b981]/20 via-[#059669]/10 to-transparent rounded-full blur-[140px] pointer-events-none"
         initial={{ x: "-50%" }}
         animate={{
           x: ["-55%", "-45%", "-55%"],
@@ -81,7 +81,7 @@ export function Hero() {
         transition={{ duration: 14, repeat: Infinity, ease: "easeInOut" }}
       />
       <motion.div
-        className="absolute -top-[10%] left-[5%] w-[450px] h-[450px] bg-[#3B82F6]/10 rounded-full blur-[120px] pointer-events-none"
+        className="absolute -top-[10%] left-[5%] w-[450px] h-[450px] bg-[#10b981]/10 rounded-full blur-[120px] pointer-events-none"
         animate={{
           x: [0, 40, 0],
           y: [0, 30, 0],
@@ -90,7 +90,7 @@ export function Hero() {
         transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
       />
       <motion.div
-        className="absolute top-[30%] right-[5%] w-[400px] h-[400px] bg-[#6D5DFC]/10 rounded-full blur-[120px] pointer-events-none"
+        className="absolute top-[30%] right-[5%] w-[400px] h-[400px] bg-[#059669]/10 rounded-full blur-[120px] pointer-events-none"
         animate={{
           x: [0, -30, 0],
           y: [0, -40, 0],
@@ -99,7 +99,7 @@ export function Hero() {
         transition={{ duration: 12, repeat: Infinity, ease: "easeInOut", delay: 1 }}
       />
       <motion.div
-        className="absolute bottom-[5%] left-[35%] w-[350px] h-[350px] bg-[#A78BFA]/10 rounded-full blur-[120px] pointer-events-none"
+        className="absolute bottom-[5%] left-[35%] w-[350px] h-[350px] bg-[#34d399]/10 rounded-full blur-[120px] pointer-events-none"
         animate={{
           x: [0, 25, 0],
           y: [0, -20, 0],
@@ -134,9 +134,9 @@ export function Hero() {
               : "bg-white border-zinc-200 hover:border-zinc-300"
           }`}
         >
-          <Sparkles className="w-3.5 h-3.5 text-[#3B82F6]" />
-          <span className="text-xs font-semibold text-[#3B82F6] tracking-wide uppercase">
-            The Future of Education is Here
+          <Sparkles className="w-3.5 h-3.5 text-[#10b981]" />
+          <span className="text-xs font-semibold text-[#10b981] tracking-wide uppercase">
+            Learning, Worship & Marketplace — United
           </span>
         </motion.div>
 
@@ -158,7 +158,7 @@ export function Hero() {
             />
           )}
           <br />
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#3B82F6] via-[#6D5DFC] to-[#A78BFA]">
+          <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#10b981] via-[#059669] to-[#34d399]">
             {highlightTyped}
           </span>
           {suffixTyped}
@@ -180,8 +180,8 @@ export function Hero() {
             isDarkMode ? "text-gray-400" : "text-zinc-600"
           }`}
         >
-          Attend live classes taught by AI professors. Ask questions naturally. <br className="hidden sm:block" />
-          Stay accountable. Learn like you&apos;re in a real classroom.
+          Learn Qur'an, Hadith and Fiqh from verified scholars. Get prayer times, Zakat <br className="hidden sm:block" />
+          and Qibla in one tap. Shop a trusted halal marketplace — all under one roof.
         </motion.p>
 
         {/* Call to Actions (CTAs) */}
@@ -246,7 +246,7 @@ export function Hero() {
 
           {/* Caption text */}
           <span className={`text-xs font-sans ${isDarkMode ? "text-gray-400" : "text-zinc-600"}`}>
-            Join <span className="text-[#3B82F6] font-bold">2,847+</span> students on the waitlist
+            Join <span className="text-[#10b981] font-bold">2,847+</span> learners on the waitlist
           </span>
         </motion.div>
 
@@ -273,7 +273,7 @@ export function Hero() {
           }`}
         >
           <span className={`text-[10px] font-bold uppercase tracking-widest ${isDarkMode ? "text-gray-500" : "text-zinc-500"}`}>
-            Trusted by future students worldwide
+            Trusted by learners and scholars worldwide
           </span>
 
           {/* Logo grid */}

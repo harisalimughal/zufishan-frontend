@@ -76,7 +76,7 @@ export default function AdminLiveClassesPage() {
         <button
           onClick={() => setIsCreating(true)}
           disabled={courses.length === 0}
-          className="rounded-lg bg-[#3B82F6] px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-blue-600 disabled:opacity-60"
+          className="rounded-lg bg-[#10b981] px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-primary-600 disabled:opacity-60"
         >
           + Schedule Live Class
         </button>

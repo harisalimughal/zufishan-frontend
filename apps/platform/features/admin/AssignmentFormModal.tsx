@@ -73,7 +73,7 @@ export function AssignmentFormModal({ assignment, courses, onClose, onSubmit }: 
               disabled={!!assignment}
               value={form.courseId}
               onChange={(e) => setForm((prev) => ({ ...prev, courseId: e.target.value }))}
-              className="w-full rounded-lg border border-[#27272A] bg-black px-3 py-2 text-white focus:outline-none focus:ring-2 focus:ring-[#3B82F6] disabled:opacity-60"
+              className="w-full rounded-lg border border-[#27272A] bg-black px-3 py-2 text-white focus:outline-none focus:ring-2 focus:ring-[#10b981] disabled:opacity-60"
             >
               {courses.length === 0 && <option value="">No courses yet — add one first</option>}
               {courses.map((c) => (
@@ -90,7 +90,7 @@ export function AssignmentFormModal({ assignment, courses, onClose, onSubmit }: 
               required
               value={form.title}
               onChange={(e) => setForm((prev) => ({ ...prev, title: e.target.value }))}
-              className="w-full rounded-lg border border-[#27272A] bg-black px-3 py-2 text-white focus:outline-none focus:ring-2 focus:ring-[#3B82F6]"
+              className="w-full rounded-lg border border-[#27272A] bg-black px-3 py-2 text-white focus:outline-none focus:ring-2 focus:ring-[#10b981]"
             />
           </div>
 
@@ -101,7 +101,7 @@ export function AssignmentFormModal({ assignment, courses, onClose, onSubmit }: 
               rows={3}
               value={form.description}
               onChange={(e) => setForm((prev) => ({ ...prev, description: e.target.value }))}
-              className="w-full rounded-lg border border-[#27272A] bg-black px-3 py-2 text-white focus:outline-none focus:ring-2 focus:ring-[#3B82F6]"
+              className="w-full rounded-lg border border-[#27272A] bg-black px-3 py-2 text-white focus:outline-none focus:ring-2 focus:ring-[#10b981]"
             />
           </div>
 
@@ -113,7 +113,7 @@ export function AssignmentFormModal({ assignment, courses, onClose, onSubmit }: 
                 type="date"
                 value={form.dueDate}
                 onChange={(e) => setForm((prev) => ({ ...prev, dueDate: e.target.value }))}
-                className="w-full rounded-lg border border-[#27272A] bg-black px-3 py-2 text-white focus:outline-none focus:ring-2 focus:ring-[#3B82F6]"
+                className="w-full rounded-lg border border-[#27272A] bg-black px-3 py-2 text-white focus:outline-none focus:ring-2 focus:ring-[#10b981]"
               />
             </div>
             <div>
@@ -123,7 +123,7 @@ export function AssignmentFormModal({ assignment, courses, onClose, onSubmit }: 
                 min={1}
                 value={form.totalPoints}
                 onChange={(e) => setForm((prev) => ({ ...prev, totalPoints: Number(e.target.value) }))}
-                className="w-full rounded-lg border border-[#27272A] bg-black px-3 py-2 text-white focus:outline-none focus:ring-2 focus:ring-[#3B82F6]"
+                className="w-full rounded-lg border border-[#27272A] bg-black px-3 py-2 text-white focus:outline-none focus:ring-2 focus:ring-[#10b981]"
               />
             </div>
           </div>
@@ -139,7 +139,7 @@ export function AssignmentFormModal({ assignment, courses, onClose, onSubmit }: 
             <button
               type="submit"
               disabled={isSubmitting || !form.courseId}
-              className="rounded-lg bg-[#3B82F6] px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-blue-600 disabled:opacity-60"
+              className="rounded-lg bg-[#10b981] px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-primary-600 disabled:opacity-60"
             >
               {isSubmitting ? "Saving…" : assignment ? "Save Changes" : "Create Assignment"}
             </button>

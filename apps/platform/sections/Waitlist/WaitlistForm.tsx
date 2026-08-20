@@ -43,13 +43,13 @@ export default function WaitlistForm() {
     }
   };
 
-  const inputClasses = `w-full rounded-lg border pl-9 pr-4 py-2.5 text-sm transition-colors focus:border-[#3B82F6] focus:outline-none ${
+  const inputClasses = `w-full rounded-lg border pl-9 pr-4 py-2.5 text-sm transition-colors focus:border-[#10b981] focus:outline-none ${
     isDarkMode
       ? "border-[#27272A] bg-[#09090B] text-white placeholder-[#52525B]"
       : "border-zinc-300 bg-white text-zinc-900 placeholder-zinc-400"
   }`;
 
-  const selectClasses = `w-full appearance-none rounded-lg border pl-9 pr-8 py-2.5 text-sm transition-colors focus:border-[#3B82F6] focus:outline-none cursor-pointer ${
+  const selectClasses = `w-full appearance-none rounded-lg border pl-9 pr-8 py-2.5 text-sm transition-colors focus:border-[#10b981] focus:outline-none cursor-pointer ${
     isDarkMode
       ? "border-[#27272A] bg-[#09090B] text-white"
       : "border-zinc-300 bg-white text-zinc-900"
@@ -141,9 +141,9 @@ export default function WaitlistForm() {
               onChange={(e) => setFormData({ ...formData, userType: e.target.value })}
               className={selectClasses}
             >
-              <option value="student">Student</option>
-              <option value="educator">Educator</option>
-              <option value="professional">Professional</option>
+              <option value="student">Learner</option>
+              <option value="educator">Teacher / Scholar</option>
+              <option value="professional">Vendor / Business</option>
             </select>
             <span className={chevronClasses}>
               <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"/></svg>
@@ -167,10 +167,10 @@ export default function WaitlistForm() {
               className={selectClasses}
             >
               <option value="">Select your focus area</option>
-              <option value="programming">Programming & Dev</option>
-              <option value="ai">AI & Machine Learning</option>
-              <option value="data">Data Science</option>
-              <option value="business">Business</option>
+              <option value="learning">Qur'an, Hadith & Fiqh Courses</option>
+              <option value="utilities">Prayer, Zakat & Qibla Utilities</option>
+              <option value="marketplace">Halal Marketplace</option>
+              <option value="community">Community & Events</option>
             </select>
             <span className={chevronClasses}>
               <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"/></svg>
@@ -187,14 +187,14 @@ export default function WaitlistForm() {
             type="checkbox"
             checked={formData.agreeToUpdates}
             onChange={(e) => setFormData({ ...formData, agreeToUpdates: e.target.checked })}
-            className={`peer h-4 w-4 appearance-none rounded border checked:bg-[#513BF6] checked:border-[#3B82F6] focus:ring-0 focus:ring-offset-0 cursor-pointer transition-colors ${
+            className={`peer h-4 w-4 appearance-none rounded border checked:bg-[#10b981] checked:border-[#10b981] focus:ring-0 focus:ring-offset-0 cursor-pointer transition-colors ${
               isDarkMode ? "border-[#27272A] bg-[#09090B]" : "border-zinc-300 bg-white"
             }`}
           />
           <Check size={10} className="absolute left-0.5 text-white pointer-events-none opacity-0 peer-checked:opacity-100 transition-opacity" />
         </div>
         <label htmlFor="agreeToUpdates" className={`text-xs cursor-pointer select-none font-normal transition-colors duration-300 ${isDarkMode ? "text-[#A1A1AA]" : "text-zinc-600"}`}>
-          I agree to receive updates about AI University.
+          I agree to receive updates about Zufishan.
         </label>
       </div>
 
@@ -204,7 +204,7 @@ export default function WaitlistForm() {
         disabled={status === "submitting"}
         whileHover={{ scale: 1.03, translateY: -1 }}
         whileTap={{ scale: 0.98 }}
-        className="flex w-full items-center justify-center gap-2 rounded-lg bg-[#513BF6] px-4 py-3 text-sm font-bold text-white shadow-md transition-all hover:bg-[#432EE3] disabled:opacity-60 disabled:cursor-not-allowed"
+        className="flex w-full items-center justify-center gap-2 rounded-lg bg-[#10b981] px-4 py-3 text-sm font-bold text-white shadow-md transition-all hover:bg-[#059669] disabled:opacity-60 disabled:cursor-not-allowed"
       >
         {status === "submitting" ? "Joining..." : "Join the Waitlist"}
         {status !== "submitting" && <ArrowRight size={16} />}

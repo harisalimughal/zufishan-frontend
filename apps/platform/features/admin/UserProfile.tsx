@@ -11,7 +11,7 @@ function getRoleColor(role: string) {
     case "ADMIN":
       return "text-purple-400";
     case "TUTOR":
-      return "text-[#3B82F6]";
+      return "text-[#10b981]";
     case "STUDENT":
       return "text-emerald-400";
     default:

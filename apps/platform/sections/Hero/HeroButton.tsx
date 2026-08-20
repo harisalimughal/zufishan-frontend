@@ -27,7 +27,7 @@ export function HeroButton({
         whileHover={{ scale: 1.03, translateY: -1 }}
         whileTap={{ scale: 0.98 }}
         onClick={onClick}
-        className={`relative inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-full text-white text-base font-semibold bg-gradient-to-r from-[#3B82F6] to-[#6D5DFC] shadow-[0_0_24px_rgba(59,130,246,0.35)] hover:shadow-[0_0_36px_rgba(59,130,246,0.6),_0_0_16px_rgba(109,93,252,0.4)] transition-all duration-300 cursor-pointer ${className}`}
+        className={`relative inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-full text-white text-base font-semibold bg-gradient-to-r from-[#10b981] to-[#059669] shadow-[0_0_24px_rgba(16,185,129,0.35)] hover:shadow-[0_0_36px_rgba(16,185,129,0.6),_0_0_16px_rgba(5,150,105,0.4)] transition-all duration-300 cursor-pointer ${className}`}
       >
         {icon && <span className="inline-flex items-center justify-center">{icon}</span>}
         <span>{children}</span>

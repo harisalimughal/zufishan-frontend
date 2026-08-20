@@ -1,10 +1,10 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
+/* eslint-disable @next/next/no-img-element */
 import {
   Bot,
   BookOpen,
@@ -43,7 +43,7 @@ const iconMap: Record<string, LucideIcon> = {
   Settings
 };
 
-const EXPANDED_SECTIONS_KEY = "ranenla-sidebar-expanded-sections";
+const EXPANDED_SECTIONS_KEY = "zufishan-sidebar-expanded-sections";
 
 function getDefaultExpandedSections(): Record<string, boolean> {
   const labeledSections = sidebarSections.filter((s) => s.label);
@@ -88,13 +88,10 @@ export function Sidebar({ collapsed = false, onNavigate }: SidebarProps) {
       {/* Fixed header: logo */}
       {!collapsed && (
         <div className="flex flex-shrink-0 items-center px-6">
-          <Image
-            src="/Ranenla-logo-transparent-dark.png"
-            alt="Ranenla logo"
-            width={412}
-            height={142}
+          <img
+            src="/Zufishan-logo-transparent-dark.svg"
+            alt="Zufishan logo"
             className="h-12 w-auto object-contain"
-            priority
           />
         </div>
       )}
@@ -149,7 +146,7 @@ export function Sidebar({ collapsed = false, onNavigate }: SidebarProps) {
                                 collapsed ? "justify-center" : ""
                               } ${
                                 isActive
-                                  ? "bg-[#22066A] text-white"
+                                  ? "bg-[#064e3b] text-white"
                                   : "text-slate-300 hover:bg-[#1F2937] hover:text-white"
                               }`}
                             >

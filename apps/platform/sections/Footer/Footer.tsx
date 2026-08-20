@@ -24,7 +24,7 @@ const XIcon = (props: React.SVGProps<SVGSVGElement>) => (
 
 const productLinks = [
   { label: "Features", href: "#features" },
-  { label: "Classroom Live", href: "#classroom" },
+  { label: "Live Halaqa", href: "#classroom" },
   { label: "Demo Video", href: "#demo" },
   { label: "Waitlist", href: "#waitlist" },
   { label: "Pricing Model", href: "#pricing" }
@@ -55,8 +55,8 @@ export function Footer() {
       }`}
     >
       {/* Subtle Background Glows */}
-      <div className="absolute -bottom-48 left-1/4 w-[600px] h-[300px] bg-[#3B82F6]/5 rounded-full blur-[100px] pointer-events-none" />
-      <div className="absolute -bottom-48 right-1/4 w-[500px] h-[250px] bg-[#6D5DFC]/5 rounded-full blur-[100px] pointer-events-none" />
+      <div className="absolute -bottom-48 left-1/4 w-[600px] h-[300px] bg-[#10b981]/5 rounded-full blur-[100px] pointer-events-none" />
+      <div className="absolute -bottom-48 right-1/4 w-[500px] h-[250px] bg-[#059669]/5 rounded-full blur-[100px] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto w-full relative z-10">
 
@@ -73,14 +73,14 @@ export function Footer() {
           <div className="lg:col-span-2 flex flex-col items-start space-y-6 ">
             <div className="flex items-center gap-2.5">
               <img
-                src={isDarkMode ? "/Ranenla-logo-transparent-dark.png" : "/Ranenla-logo-transparent-light.png"}
-                alt="Ranenla Logo"
+                src={isDarkMode ? "/Zufishan-logo-transparent-dark.svg" : "/Zufishan-logo-transparent-light.svg"}
+                alt="Zufishan Logo"
                 className="h-16 w-auto select-none"
               />
             </div>
 
             <p className={`text-sm leading-relaxed font-sans max-w-sm text-left transition-colors duration-300 ${isDarkMode ? "text-gray-400" : "text-zinc-600"}`}>
-              Ranenla is the world&apos;s first AI-powered virtual university, delivering live-simulated classrooms, personalized academic mentorship, and automated smart notes for students globally.
+              Zufishan is the world&apos;s first scholar-verified Islamic platform — uniting live-taught courses, daily religious utilities, and a trusted halal marketplace for the global Ummah.
             </p>
 
             {/* Newsletter Subscription component */}
@@ -116,7 +116,7 @@ export function Footer() {
 
           {/* Copyright Statement */}
           <p className={`text-xs font-sans transition-colors duration-300 ${isDarkMode ? "text-gray-500" : "text-zinc-500"}`}>
-            &copy; {new Date().getFullYear()} Ranenla Technologies Inc. All rights reserved.
+            &copy; {new Date().getFullYear()} Zufishan Technologies Inc. All rights reserved.
           </p>
 
           {/* Social Network Icon Grid */}

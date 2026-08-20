@@ -75,19 +75,19 @@ export function CourseFormModal({ course, onClose, onSubmit }: CourseFormModalPr
               required
               value={form.title}
               onChange={handleChange("title")}
-              className="w-full rounded-lg border border-[#27272A] bg-black px-3 py-2 text-white focus:outline-none focus:ring-2 focus:ring-[#3B82F6]"
+              className="w-full rounded-lg border border-[#27272A] bg-black px-3 py-2 text-white focus:outline-none focus:ring-2 focus:ring-[#10b981]"
             />
           </div>
 
           <div>
             <label className="mb-1 block text-sm font-medium text-slate-300">
-              Slug <span className="text-slate-500">(URL identifier, e.g. database-101)</span>
+              Slug <span className="text-slate-500">(URL identifier, e.g. tajweed-foundations)</span>
             </label>
             <input
               required
               value={form.detailSlug}
               onChange={handleChange("detailSlug")}
-              className="w-full rounded-lg border border-[#27272A] bg-black px-3 py-2 text-white focus:outline-none focus:ring-2 focus:ring-[#3B82F6]"
+              className="w-full rounded-lg border border-[#27272A] bg-black px-3 py-2 text-white focus:outline-none focus:ring-2 focus:ring-[#10b981]"
             />
           </div>
 
@@ -98,19 +98,19 @@ export function CourseFormModal({ course, onClose, onSubmit }: CourseFormModalPr
               rows={3}
               value={form.description}
               onChange={handleChange("description")}
-              className="w-full rounded-lg border border-[#27272A] bg-black px-3 py-2 text-white focus:outline-none focus:ring-2 focus:ring-[#3B82F6]"
+              className="w-full rounded-lg border border-[#27272A] bg-black px-3 py-2 text-white focus:outline-none focus:ring-2 focus:ring-[#10b981]"
             />
           </div>
 
           <div>
             <label className="mb-1 block text-sm font-medium text-slate-300">
-              Professor / Instructor <span className="text-slate-500">(e.g. &quot;Prof. Lucas (AI)&quot;)</span>
+              Professor / Instructor <span className="text-slate-500">(e.g. &quot;Ustaz Ibrahim Malik&quot;)</span>
             </label>
             <input
               required
               value={form.instructorName}
               onChange={handleChange("instructorName")}
-              className="w-full rounded-lg border border-[#27272A] bg-black px-3 py-2 text-white focus:outline-none focus:ring-2 focus:ring-[#3B82F6]"
+              className="w-full rounded-lg border border-[#27272A] bg-black px-3 py-2 text-white focus:outline-none focus:ring-2 focus:ring-[#10b981]"
             />
           </div>
 
@@ -121,7 +121,7 @@ export function CourseFormModal({ course, onClose, onSubmit }: CourseFormModalPr
                 required
                 value={form.category}
                 onChange={handleChange("category")}
-                className="w-full rounded-lg border border-[#27272A] bg-black px-3 py-2 text-white focus:outline-none focus:ring-2 focus:ring-[#3B82F6]"
+                className="w-full rounded-lg border border-[#27272A] bg-black px-3 py-2 text-white focus:outline-none focus:ring-2 focus:ring-[#10b981]"
               />
             </div>
             <div>
@@ -129,7 +129,7 @@ export function CourseFormModal({ course, onClose, onSubmit }: CourseFormModalPr
               <input
                 value={form.level}
                 onChange={handleChange("level")}
-                className="w-full rounded-lg border border-[#27272A] bg-black px-3 py-2 text-white focus:outline-none focus:ring-2 focus:ring-[#3B82F6]"
+                className="w-full rounded-lg border border-[#27272A] bg-black px-3 py-2 text-white focus:outline-none focus:ring-2 focus:ring-[#10b981]"
               />
             </div>
           </div>
@@ -145,7 +145,7 @@ export function CourseFormModal({ course, onClose, onSubmit }: CourseFormModalPr
             <button
               type="submit"
               disabled={isSubmitting}
-              className="rounded-lg bg-[#3B82F6] px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-blue-600 disabled:opacity-60"
+              className="rounded-lg bg-[#10b981] px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-primary-600 disabled:opacity-60"
             >
               {isSubmitting ? "Saving…" : course ? "Save Changes" : "Create Course"}
             </button>

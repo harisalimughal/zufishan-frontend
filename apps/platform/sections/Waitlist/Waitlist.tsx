@@ -28,13 +28,13 @@ export function Waitlist() {
         >
           {/* Badge */}
           <div
-            className={`inline-flex items-center gap-2 px-4 py-2 rounded-full border text-xs font-semibold text-[#3B82F6] shadow-sm mb-6 tracking-wide uppercase select-none transition-colors duration-300 ${
+            className={`inline-flex items-center gap-2 px-4 py-2 rounded-full border text-xs font-semibold text-[#10b981] shadow-sm mb-6 tracking-wide uppercase select-none transition-colors duration-300 ${
               isDarkMode
                 ? "border-[#27272A] bg-[#111827] hover:border-gray-700"
                 : "border-zinc-200 bg-white hover:border-zinc-300"
             }`}
           >
-            <Sparkle size={12} className="text-[#3B82F6]" />
+            <Sparkle size={12} className="text-[#10b981]" />
             JOIN THE WAITLIST
           </div>
 
@@ -45,7 +45,7 @@ export function Waitlist() {
             }`}
           >
             Be among the first to <br />
-            experience <span className="text-[#3B82F6]">AI University.</span>
+            experience <span className="text-[#10b981]">Zufishan.</span>
           </h2>
 
           {/* Subtitle */}
@@ -89,8 +89,8 @@ export function Waitlist() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.3 }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className={`mt-8 grid grid-cols-1 lg:grid-cols-5 gap-8 max-w-5xl mx-auto text-left rounded-2xl border p-6 sm:p-8 shadow-[0_0_50px_rgba(59,130,246,0.25)] backdrop-blur-sm transition-colors duration-300 ${
-            isDarkMode ? "border-[#052E70] bg-[#111827]/40" : "border-blue-200 bg-blue-50/50"
+          className={`mt-8 grid grid-cols-1 lg:grid-cols-5 gap-8 max-w-5xl mx-auto text-left rounded-2xl border p-6 sm:p-8 shadow-[0_0_50px_rgba(16,185,129,0.25)] backdrop-blur-sm transition-colors duration-300 ${
+            isDarkMode ? "border-[#064E3B] bg-[#111827]/40" : "border-primary-200 bg-primary-50/50"
           }`}
         >
 
@@ -129,10 +129,10 @@ export function Waitlist() {
                   src="https://images.unsplash.com/photo-1544723795-3fb6469f5b39?auto=format&fit=crop&w=100&q=80"
                   alt="Waitlist member"
                 />
-                <div className={`inline-block h-7 w-7 rounded-full ring-2 bg-[#3B82F6]/20 text-[#3B82F6] text-[9px] font-bold flex items-center justify-center ${isDarkMode ? "ring-[#111827]" : "ring-white"}`}>2K+</div>
+                <div className={`inline-block h-7 w-7 rounded-full ring-2 bg-[#10b981]/20 text-[#10b981] text-[9px] font-bold flex items-center justify-center ${isDarkMode ? "ring-[#111827]" : "ring-white"}`}>2K+</div>
               </div>
               <p className={`text-xs font-normal transition-colors duration-300 ${isDarkMode ? "text-[#A1A1AA]" : "text-zinc-600"}`}>
-                Over <span className="text-blue-500 font-bold">2,847+</span> future students already joined
+                Over <span className="text-primary-500 font-bold">2,847+</span> future students already joined
               </p>
             </div>
           </div>
@@ -143,7 +143,7 @@ export function Waitlist() {
               <h4 className={`text-sm font-medium tracking-wide transition-colors duration-300 ${isDarkMode ? "text-white" : "text-zinc-900"}`}>What happens next?</h4>
 
               <div className="flex gap-3">
-                <div className="text-[#3B82F6] mt-0.5"><Mail size={16} /></div>
+                <div className="text-[#10b981] mt-0.5"><Mail size={16} /></div>
                 <div>
                   <h5 className={`text-xs font-bold transition-colors duration-300 ${isDarkMode ? "text-zinc-200" : "text-zinc-800"}`}>Confirm your email</h5>
                   <p className={`text-[11px] font-normal mt-0.5 leading-relaxed transition-colors duration-300 ${isDarkMode ? "text-[#A1A1AA]" : "text-zinc-600"}`}>We'll send you a confirmation email with all the details.</p>
@@ -151,7 +151,7 @@ export function Waitlist() {
               </div>
 
               <div className="flex gap-3">
-                <div className="text-[#3B82F6] mt-0.5"><ArrowUpRight size={16} /></div>
+                <div className="text-[#10b981] mt-0.5"><ArrowUpRight size={16} /></div>
                 <div>
                   <h5 className={`text-xs font-bold transition-colors duration-300 ${isDarkMode ? "text-zinc-200" : "text-zinc-800"}`}>Get early access</h5>
                   <p className={`text-[11px] font-normal mt-0.5 leading-relaxed transition-colors duration-300 ${isDarkMode ? "text-[#A1A1AA]" : "text-zinc-600"}`}>Be the first to explore the platform before the official launch.</p>
@@ -159,7 +159,7 @@ export function Waitlist() {
               </div>
 
               <div className="flex gap-3">
-                <div className="text-[#3B82F6] mt-0.5"><Star size={16} /></div>
+                <div className="text-[#10b981] mt-0.5"><Star size={16} /></div>
                 <div>
                   <h5 className={`text-xs font-bold transition-colors duration-300 ${isDarkMode ? "text-zinc-200" : "text-zinc-800"}`}>Shape the future</h5>
                   <p className={`text-[11px] font-normal mt-0.5 leading-relaxed transition-colors duration-300 ${isDarkMode ? "text-[#A1A1AA]" : "text-zinc-600"}`}>Share your feedback and help us build the best learning experience.</p>
@@ -170,15 +170,15 @@ export function Waitlist() {
             {/* Testimonial */}
             <div className={`rounded-xl border p-4 space-y-3 transition-colors duration-300 ${isDarkMode ? "bg-[#09090B]/60 border-[#27272A]" : "bg-white border-zinc-200"}`}>
               <p className={`text-xs font-normal italic leading-relaxed transition-colors duration-300 ${isDarkMode ? "text-[#A1A1AA]" : "text-zinc-600"}`}>
-                "AI University is going to change the way we learn forever. I can't wait!"
+                "Zufishan is exactly what our community has needed — scholarship, utilities and trust, all in one place."
               </p>
               <div className="flex items-center gap-2">
-                <div className="h-6 w-6 rounded-full bg-[#3B82F6]/10 border border-[#3B82F6]/20 text-[#3B82F6] flex items-center justify-center">
+                <div className="h-6 w-6 rounded-full bg-[#10b981]/10 border border-[#10b981]/20 text-[#10b981] flex items-center justify-center">
                   <GraduationCap size={12} />
                 </div>
                 <div>
                   <h5 className={`text-[11px] font-bold transition-colors duration-300 ${isDarkMode ? "text-zinc-200" : "text-zinc-800"}`}>Sarah Khan</h5>
-                  <p className={`text-[9px] font-normal transition-colors duration-300 ${isDarkMode ? "text-[#A1A1AA]" : "text-zinc-600"}`}>Computer Science Student</p>
+                  <p className={`text-[9px] font-normal transition-colors duration-300 ${isDarkMode ? "text-[#A1A1AA]" : "text-zinc-600"}`}>Early Waitlist Member</p>
                 </div>
               </div>
             </div>
@@ -189,7 +189,7 @@ export function Waitlist() {
         {/* Privacy Note */}
         <p className={`mt-8 text-xs font-normal inline-flex items-center gap-1.5 justify-center select-none transition-colors duration-300 ${isDarkMode ? "text-zinc-300" : "text-zinc-600"}`}>
           <Shield size={12} className={isDarkMode ? "text-zinc-300" : "text-zinc-600"} />
-          We respect your <span className="text-[#3B82F6] cursor-pointer hover:underline font-medium">privacy</span>. Unsubscribe at any time.
+          We respect your <span className="text-[#10b981] cursor-pointer hover:underline font-medium">privacy</span>. Unsubscribe at any time.
         </p>
       </div>
     </section>

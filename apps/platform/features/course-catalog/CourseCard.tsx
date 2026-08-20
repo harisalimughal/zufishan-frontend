@@ -111,7 +111,7 @@ export function CourseCard({ course, index = 0 }: CourseCardProps) {
               onClick={handleBookmark}
               className={[
                 "rounded-md p-1.5 transition hover:bg-[#1F2937]",
-                isBookmarked ? "text-blue-400" : "text-zinc-500 hover:text-white",
+                isBookmarked ? "text-primary-400" : "text-zinc-500 hover:text-white",
               ].join(" ")}
             >
               <Bookmark size={14} fill={isBookmarked ? "currentColor" : "none"} />
@@ -121,7 +121,7 @@ export function CourseCard({ course, index = 0 }: CourseCardProps) {
           <div className="mt-4 grid grid-cols-2 gap-2.5">
             <Link
               href={`/course-detail/${course.slug}`}
-              className="inline-flex h-9 items-center justify-center gap-1.5 rounded-lg border border-[#2B3547] bg-[#111827] px-2.5 text-xs font-medium text-zinc-300 transition hover:border-violet-500/60 hover:text-white"
+              className="inline-flex h-9 items-center justify-center gap-1.5 rounded-lg border border-[#2B3547] bg-[#111827] px-2.5 text-xs font-medium text-zinc-300 transition hover:border-primary-500/60 hover:text-white"
             >
               <BookOpen size={14} />
               Details
@@ -135,7 +135,7 @@ export function CourseCard({ course, index = 0 }: CourseCardProps) {
                 "inline-flex h-9 items-center justify-center gap-1.5 rounded-lg px-2.5 text-xs font-semibold transition",
                 registered
                   ? "cursor-default border border-emerald-500/30 bg-emerald-500/10 text-emerald-300"
-                  : "bg-violet-600 text-white hover:bg-violet-500",
+                  : "bg-primary-600 text-white hover:bg-primary-500",
               ].join(" ")}
             >
               {registered ? (

@@ -13,16 +13,16 @@ export default function AdminSettingsPage() {
             <label className="mb-2 block text-sm font-medium text-slate-300">Platform Name</label>
             <input
               type="text"
-              defaultValue="Ranenla"
-              className="w-full rounded-lg border border-[#27272A] bg-black px-4 py-2 text-white focus:outline-none focus:ring-2 focus:ring-[#3B82F6]"
+              defaultValue="Zufishan"
+              className="w-full rounded-lg border border-[#27272A] bg-black px-4 py-2 text-white focus:outline-none focus:ring-2 focus:ring-[#10b981]"
             />
           </div>
           <div>
             <label className="mb-2 block text-sm font-medium text-slate-300">Support Email</label>
             <input
               type="email"
-              defaultValue="support@ranenla.com"
-              className="w-full rounded-lg border border-[#27272A] bg-black px-4 py-2 text-white focus:outline-none focus:ring-2 focus:ring-[#3B82F6]"
+              defaultValue="support@zufishan.com"
+              className="w-full rounded-lg border border-[#27272A] bg-black px-4 py-2 text-white focus:outline-none focus:ring-2 focus:ring-[#10b981]"
             />
           </div>
         </div>

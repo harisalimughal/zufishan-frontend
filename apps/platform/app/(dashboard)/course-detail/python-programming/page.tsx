@@ -1,12 +1,12 @@
 import { CourseDetailLayout } from "../components/CourseDetailLayout";
 
 const pythonCourse = {
-  title: "Python Programming",
-  subtitle: "Master Python from Scratch",
-  description: "Learn Python syntax, control flow, functions, object-oriented programming, files, APIs and practical development.",
-  category: "Programming",
-  instructor: "Prof. Ethan (AI)",
-  instructorRole: "Python Software Engineer",
+  title: "Qur'anic Arabic for Beginners",
+  subtitle: "Read and Understand Qur'anic Arabic from Scratch",
+  description: "Learn Arabic grammar (Nahw) and morphology (Sarf) built specifically around understanding the Qur'an's vocabulary and sentence structure.",
+  category: "Arabic Language",
+  instructor: "Ustaz Yusuf Rahman",
+  instructorRole: "Arabic Language Instructor",
   rating: 4.8,
   ratings: "980 ratings",
   students: "7.2K",
@@ -22,55 +22,55 @@ const pythonCourse = {
   attendedClasses: 8,
   submittedAssignments: 4,
   outcomes: [
-    "Write clean Python programs",
-    "Use functions and modules",
-    "Apply object-oriented programming",
-    "Work with files and APIs",
-    "Build complete Python projects"
+    "Recognise core Qur'anic vocabulary roots",
+    "Understand basic Arabic sentence structure",
+    "Identify verb forms and conjugation patterns",
+    "Translate simple ayat without a dictionary",
+    "Read unvocalised Qur'anic text with confidence"
   ],
   curriculum: [
     {
       id: 1,
-      title: "Introduction to Python",
+      title: "The Arabic Alphabet",
       duration: "45 min",
       completed: true,
       lessons: [
-        { id: 1, title: "Python Overview", duration: "13:15", completed: true },
-        { id: 2, title: "Installing Python", duration: "18:15", completed: true },
-        { id: 3, title: "Your First Python Program", duration: "23:15", completed: true }
+        { id: 1, title: "Alphabet Overview", duration: "13:15", completed: true },
+        { id: 2, title: "Letter Forms & Joining", duration: "18:15", completed: true },
+        { id: 3, title: "Reading Your First Words", duration: "23:15", completed: true }
       ],
     },
     {
       id: 2,
-      title: "Variables and Data Types",
+      title: "Nouns & Root Letters",
       duration: "1h",
       completed: true,
       lessons: [
-        { id: 1, title: "Variables and Assignment", duration: "13:15", completed: true },
-        { id: 2, title: "Strings and Numbers", duration: "18:15", completed: true },
-        { id: 3, title: "Lists, Tuples and Dictionaries", duration: "23:15", completed: true }
+        { id: 1, title: "The Three-Letter Root System", duration: "13:15", completed: true },
+        { id: 2, title: "Definite & Indefinite Nouns", duration: "18:15", completed: true },
+        { id: 3, title: "Singular, Dual & Plural", duration: "23:15", completed: true }
       ],
     },
     {
       id: 3,
-      title: "Control Flow",
+      title: "Verbs & Tenses",
       duration: "1h 15m",
       completed: false,
       lessons: [
-        { id: 1, title: "Conditional Statements", duration: "13:15" },
-        { id: 2, title: "For Loops", duration: "18:15" },
-        { id: 3, title: "While Loops", duration: "23:15" }
+        { id: 1, title: "Past Tense Verbs", duration: "13:15" },
+        { id: 2, title: "Present Tense Verbs", duration: "18:15" },
+        { id: 3, title: "Command Form Verbs", duration: "23:15" }
       ],
     },
     {
       id: 4,
-      title: "Functions and Modules",
+      title: "Sentence Structure",
       duration: "1h 20m",
       completed: false,
       lessons: [
-        { id: 1, title: "Creating Functions", duration: "13:15" },
-        { id: 2, title: "Arguments and Return Values", duration: "18:15" },
-        { id: 3, title: "Using Python Modules", duration: "23:15" }
+        { id: 1, title: "Verbal Sentences", duration: "13:15" },
+        { id: 2, title: "Nominal Sentences", duration: "18:15" },
+        { id: 3, title: "Reading Qur'anic Verses", duration: "23:15" }
       ],
     }
   ],

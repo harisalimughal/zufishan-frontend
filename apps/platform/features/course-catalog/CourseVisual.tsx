@@ -29,7 +29,7 @@ export const categoryStyles: Record<
   CourseCategoryName,
   CategoryStyle
 > = {
-  Programming: {
+  "Qur'an & Tajweed": {
     badge: "bg-violet-500/15 text-violet-300",
     background:
       "from-[#190B3F] via-[#120A2D] to-[#09090B]",
@@ -37,7 +37,7 @@ export const categoryStyles: Record<
     secondary: "text-violet-500/40",
     border: "border-violet-500/20",
   },
-  "Data Science": {
+  "Hadith & Seerah": {
     badge: "bg-cyan-500/15 text-cyan-300",
     background:
       "from-[#07333A] via-[#08272E] to-[#09090B]",
@@ -45,7 +45,7 @@ export const categoryStyles: Record<
     secondary: "text-cyan-500/40",
     border: "border-cyan-500/20",
   },
-  "AI & ML": {
+  "Fiqh & Aqeedah": {
     badge: "bg-blue-500/15 text-blue-300",
     background:
       "from-[#062B68] via-[#071D46] to-[#09090B]",
@@ -53,7 +53,7 @@ export const categoryStyles: Record<
     secondary: "text-blue-500/40",
     border: "border-blue-500/20",
   },
-  Database: {
+  "Arabic Language": {
     badge: "bg-purple-500/15 text-purple-300",
     background:
       "from-[#31116B] via-[#1E0A4A] to-[#09090B]",
@@ -61,7 +61,7 @@ export const categoryStyles: Record<
     secondary: "text-purple-500/40",
     border: "border-purple-500/20",
   },
-  Business: {
+  "Islamic Finance": {
     badge: "bg-cyan-500/15 text-cyan-300",
     background:
       "from-[#05384B] via-[#08242F] to-[#09090B]",
@@ -69,7 +69,7 @@ export const categoryStyles: Record<
     secondary: "text-cyan-500/40",
     border: "border-cyan-500/20",
   },
-  "Cloud Computing": {
+  "Hifz Program": {
     badge: "bg-indigo-500/15 text-indigo-300",
     background:
       "from-[#082454] via-[#071A3D] to-[#09090B]",
@@ -83,12 +83,12 @@ export const categoryIconMap: Record<
   CourseCategoryName,
   LucideIcon
 > = {
-  Programming: Code2,
-  "Data Science": BarChart3,
-  "AI & ML": BrainCircuit,
-  Database,
-  Business: BriefcaseBusiness,
-  "Cloud Computing": Cloud,
+  "Qur'an & Tajweed": Code2,
+  "Hadith & Seerah": BarChart3,
+  "Fiqh & Aqeedah": BrainCircuit,
+  "Arabic Language": Database,
+  "Islamic Finance": BriefcaseBusiness,
+  "Hifz Program": Cloud,
 };
 
 const illustrationIconMap: Record<
@@ -112,7 +112,7 @@ export function CourseIllustration({
   course: Course;
   iconSize?: number;
 }) {
-  const styles = categoryStyles[course.category] || categoryStyles.Programming;
+  const styles = categoryStyles[course.category] || categoryStyles["Qur'an & Tajweed"];
   const IllustrationIcon =
     illustrationIconMap[course.illustration] || Code2;
 
@@ -151,7 +151,7 @@ export function CourseVisualHeader({
   heightClassName?: string;
   registered?: boolean;
 }) {
-  const styles = categoryStyles[course.category] || categoryStyles.Programming;
+  const styles = categoryStyles[course.category] || categoryStyles["Qur'an & Tajweed"];
   const CategoryIcon = categoryIconMap[course.category] || Code2;
 
   return (

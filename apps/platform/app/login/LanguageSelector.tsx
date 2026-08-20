@@ -50,7 +50,7 @@ export default function LanguageSelector({
         <span>{selectedLanguage}</span>
         <ChevronDown
     size={20}
-    className={`text-[#3B82F6] transition-transform ${
+    className={`text-[#10b981] transition-transform ${
       isOpen ? "rotate-180" : ""
     }`}
   />

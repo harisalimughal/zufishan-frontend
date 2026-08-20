@@ -1,8 +1,8 @@
 "use client";
 
 import { useEffect, useState } from "react";
+/* eslint-disable @next/next/no-img-element */
 import { AnimatePresence, motion } from "framer-motion";
-import Image from "next/image";
 
 export function SplashScreen() {
   const [visible, setVisible] = useState(true);
@@ -27,13 +27,10 @@ export function SplashScreen() {
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.3 }}
           >
-            <Image
-              src="/icon.png"
-              alt="Ranenla"
-              width={64}
-              height={64}
+            <img
+              src="/Zufishan-mark.svg"
+              alt="Zufishan"
               className="h-16 w-16 rounded-full"
-              priority
             />
           </motion.div>
         </motion.div>

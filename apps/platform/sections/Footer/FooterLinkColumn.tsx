@@ -26,7 +26,7 @@ export function FooterLinkColumn({ title, links }: FooterLinkColumnProps) {
           <li key={link.label}>
             <Link
               href={link.href}
-              className={`inline-block text-sm hover:text-[#3B82F6] hover:translate-x-1.5 transition-all duration-300 ease-out ${
+              className={`inline-block text-sm hover:text-[#10b981] hover:translate-x-1.5 transition-all duration-300 ease-out ${
                 isDarkMode ? "text-gray-400" : "text-zinc-600"
               }`}
             >
