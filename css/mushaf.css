@@ -1,0 +1,69 @@
+/* =========================================================
+   MUSHAF — Qur'an reader: surah nav, tajweed text, translation, audio
+   ========================================================= */
+
+.mushaf-head{display:flex; justify-content:space-between; align-items:flex-end; gap:24px; margin-bottom:22px; flex-wrap:wrap;}
+.mushaf-head h1{font-size:1.6rem; font-weight:700;}
+.mushaf-head p{color:rgba(36,26,16,0.6); font-size:0.88rem; max-width:460px; margin-top:6px;}
+
+.mushaf-layout{display:grid; grid-template-columns:230px 1fr; gap:22px; align-items:start;}
+
+.surah-list{background:#fff; border:1px solid var(--line); border-radius:10px; padding:10px; max-height:640px; overflow-y:auto;}
+.surah-item{display:flex; align-items:center; gap:10px; padding:10px 10px; border-radius:7px; cursor:pointer; transition:background .15s;}
+.surah-item:hover{background:var(--bg);}
+.surah-item.active{background:var(--navy); color:#fff;}
+.surah-num{width:26px; height:26px; border-radius:50%; border:1px solid var(--line); display:flex; align-items:center; justify-content:center; font-family:'JetBrains Mono',monospace; font-size:0.65rem; flex-shrink:0;}
+.surah-item.active .surah-num{border-color:rgba(255,255,255,0.4);}
+.surah-name-en{font-size:0.86rem; font-weight:700;}
+.surah-name-meta{font-size:0.68rem; opacity:0.6;}
+
+.reader-card{background:#fff; border:1px solid var(--line); border-radius:12px; padding:0; overflow:hidden;}
+.reader-toolbar{display:flex; align-items:center; justify-content:space-between; gap:14px; padding:16px 22px; border-bottom:1px solid var(--line); flex-wrap:wrap;}
+.reader-toolbar .surah-title{font-family:'Bricolage Grotesque',sans-serif; font-weight:700; font-size:1.1rem;}
+.reader-toolbar .surah-sub{font-size:0.72rem; color:rgba(36,26,16,0.5); font-family:'JetBrains Mono',monospace;}
+.toolbar-controls{display:flex; align-items:center; gap:10px; flex-wrap:wrap;}
+.select-pill{border:1.5px solid var(--line); border-radius:6px; padding:8px 10px; font-family:inherit; font-size:0.78rem; background:var(--bg); color:var(--ink); cursor:pointer;}
+.toggle-pill{display:flex; align-items:center; gap:7px; font-size:0.78rem; font-weight:600; color:rgba(36,26,16,0.7); cursor:pointer; user-select:none;}
+.toggle-pill input{accent-color:var(--azure);}
+
+.play-bar{display:flex; align-items:center; gap:12px; padding:14px 22px; background:var(--navy); color:#fff;}
+.play-btn{width:38px; height:38px; border-radius:50%; background:var(--azure); border:none; color:#fff; font-size:1rem; cursor:pointer; display:flex; align-items:center; justify-content:center; flex-shrink:0;}
+.play-status{font-size:0.78rem; font-family:'JetBrains Mono',monospace; opacity:0.85;}
+.play-note{margin-left:auto; font-size:0.68rem; opacity:0.55; text-align:right;}
+
+.ayah-list{padding:8px 22px 26px;}
+.ayah-row{padding:22px 0; border-bottom:1px solid var(--line);}
+.ayah-row:last-child{border-bottom:none;}
+.ayah-top{display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;}
+.ayah-badge{width:24px; height:24px; border-radius:50%; background:var(--bg); border:1px solid var(--line); display:flex; align-items:center; justify-content:center; font-family:'JetBrains Mono',monospace; font-size:0.62rem; font-weight:700; color:var(--navy);}
+.ayah-tools{display:flex; gap:14px;}
+.ayah-tool{background:none; border:none; cursor:pointer; font-size:0.72rem; color:rgba(36,26,16,0.45); font-weight:600; display:flex; align-items:center; gap:5px;}
+.ayah-tool:hover{color:var(--azure);}
+.ayah-tool.on{color:var(--azure);}
+
+.arabic-line{font-family:'Noto Nastaliq Urdu', serif; font-size:2rem; line-height:2.6; direction:rtl; text-align:right; margin-bottom:12px;}
+.arabic-line span.word{cursor:pointer; padding:0 2px; border-radius:4px; transition:background .12s;}
+.arabic-line span.word:hover{background:rgba(217,165,33,0.15);}
+.arabic-line span.word.playing{background:rgba(217,165,33,0.35);}
+.tw-madd{color:#B23A2E;}
+.tw-ghunnah{color:#2F6F5B;}
+.tw-qalqalah{color:#2E5FA3;}
+
+.word-gloss-row{display:none; direction:rtl; flex-wrap:wrap; gap:16px; margin-bottom:12px; padding:10px 14px; background:var(--bg); border-radius:8px;}
+.word-gloss-row.on{display:flex;}
+.gloss-item{text-align:center; min-width:44px;}
+.gloss-item .ar{font-family:'Noto Nastaliq Urdu', serif; font-size:1.15rem;}
+.gloss-item .en{font-size:0.62rem; color:rgba(36,26,16,0.55); font-family:'Plus Jakarta Sans',sans-serif; margin-top:3px;}
+
+.translit-line{font-size:0.82rem; color:rgba(36,26,16,0.55); font-style:italic; margin-bottom:8px;}
+.translation-line{font-size:0.92rem; line-height:1.6; color:var(--ink);}
+
+.tajweed-legend{display:flex; gap:16px; flex-wrap:wrap; padding:14px 22px; border-top:1px solid var(--line); font-size:0.72rem; color:rgba(36,26,16,0.6);}
+.tajweed-legend span{display:inline-flex; align-items:center; gap:6px;}
+.tajweed-legend i{width:9px; height:9px; border-radius:50%; display:inline-block;}
+
+@media(max-width:900px){
+  .mushaf-layout{grid-template-columns:1fr;}
+  .surah-list{max-height:220px;}
+  .arabic-line{font-size:1.6rem; line-height:2.3;}
+}

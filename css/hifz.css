@@ -1,0 +1,46 @@
+/* =========================================================
+   HIFZ TRACKER — memorization progress, streaks, revision queue
+   ========================================================= */
+
+.hifz-head{display:flex; justify-content:space-between; align-items:flex-end; gap:24px; margin-bottom:24px; flex-wrap:wrap;}
+.hifz-head p{color:rgba(36,26,16,0.6); font-size:0.88rem; max-width:460px; margin-top:6px;}
+
+.stat-row{display:grid; grid-template-columns:repeat(4,1fr); gap:16px; margin-bottom:26px;}
+.stat-card{background:#fff; border:1px solid var(--line); border-radius:10px; padding:20px;}
+.stat-card .eyebrow{margin-bottom:8px;}
+.stat-card .big{font-family:'Bricolage Grotesque',sans-serif; font-weight:800; font-size:1.9rem; color:var(--navy);}
+.stat-card .sub{font-size:0.76rem; color:rgba(36,26,16,0.5); margin-top:4px;}
+.stat-card.streak{background:linear-gradient(160deg,var(--navy),#1A1108); color:#fff;}
+.stat-card.streak .eyebrow{color:var(--dusk);} .stat-card.streak .big{color:#fff;} .stat-card.streak .sub{color:rgba(255,255,255,0.65);}
+
+.hifz-layout{display:grid; grid-template-columns:1.5fr 1fr; gap:20px; align-items:start;}
+
+.hifz-panel{background:#fff; border:1px solid var(--line); border-radius:10px; padding:24px;}
+.hifz-panel .panel-head{display:flex; justify-content:space-between; align-items:center; margin-bottom:18px;}
+.hifz-panel h2{font-size:1.05rem; font-weight:700;}
+
+.surah-progress-grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(150px,1fr)); gap:10px;}
+.sp-chip{border:1px solid var(--line); border-radius:8px; padding:12px; cursor:pointer; transition:transform .15s;}
+.sp-chip:hover{transform:translateY(-2px);}
+.sp-chip .sp-num{font-family:'JetBrains Mono',monospace; font-size:0.62rem; color:rgba(36,26,16,0.45);}
+.sp-chip .sp-name{font-weight:700; font-size:0.85rem; margin:4px 0 8px;}
+.sp-bar{height:5px; border-radius:3px; background:var(--bg); overflow:hidden;}
+.sp-bar i{display:block; height:100%; background:var(--azure);}
+.sp-chip.done{border-color:rgba(47,111,91,0.4); background:rgba(47,111,91,0.06);}
+.sp-chip.done .sp-bar i{background:#2F6F5B;}
+.sp-chip.due .sp-bar i{background:#B23A2E;}
+.sp-status{font-size:0.66rem; margin-top:6px; color:rgba(36,26,16,0.5); font-family:'JetBrains Mono',monospace;}
+
+.revision-item{display:flex; justify-content:space-between; align-items:center; padding:12px 0; border-bottom:1px solid var(--line); gap:12px;}
+.revision-item:last-child{border-bottom:none;}
+.revision-item .ri-name{font-weight:700; font-size:0.88rem;}
+.revision-item .ri-meta{font-size:0.72rem; color:rgba(36,26,16,0.5); margin-top:2px;}
+.revision-item.overdue .ri-meta{color:#B23A2E;}
+
+.log-form{display:flex; flex-direction:column; gap:10px; margin-top:10px;}
+.log-form select, .log-form input{padding:10px 12px; border:1px solid var(--line); border-radius:6px; font-family:inherit; font-size:0.85rem; background:var(--bg);}
+
+@media(max-width:960px){
+  .stat-row{grid-template-columns:repeat(2,1fr);}
+  .hifz-layout{grid-template-columns:1fr;}
+}

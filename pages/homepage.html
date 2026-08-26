@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zulfishan — Knowledge you can trace back to who taught it</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Noto+Nastaliq+Urdu:wght@500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/base.css">
+<link rel="stylesheet" href="../css/home.css">
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <div class="brand"><img src="../assets/img/logo-mark.png" alt="Zulfishan" class="brand-logo">Zulfishan</div>
+    <div class="navlinks">
+      <a href="#learn" data-i18n="navLearn">Learn</a>
+      <a href="#practice" data-i18n="navDailyPractice">Daily Practice</a>
+      <a href="#market" data-i18n="navMarketplace">Marketplace</a>
+      <a href="#trust" data-i18n="navVerification">Verification</a>
+    </div>
+    <div class="nav-actions">
+      <button class="lang-toggle" onclick="toggleLang()">اردو / EN</button>
+      <a href="login.html"><button class="btn btn-primary" data-i18n="btnStartLearning">Start Learning</button></a>
+    </div>
+  </div>
+</nav>
+
+<section class="hero">
+  <svg class="pattern-bg" viewBox="0 0 200 200">
+    <g fill="none" stroke="#3B2A17" stroke-width="1">
+      <path d="M0,50 L50,0 L100,50 L50,100 Z"/>
+      <path d="M100,50 L150,0 L200,50 L150,100 Z"/>
+      <path d="M0,150 L50,100 L100,150 L50,200 Z"/>
+      <path d="M100,150 L150,100 L200,150 L150,200 Z"/>
+      <circle cx="50" cy="50" r="14"/><circle cx="150" cy="50" r="14"/>
+      <circle cx="50" cy="150" r="14"/><circle cx="150" cy="150" r="14"/>
+    </g>
+  </svg>
+  <div class="wrap">
+    <div>
+      <div class="eyebrow"><span class="tilemark"><i></i><i></i><i></i><i></i></span><span data-i18n="heroEyebrow">SCHOLAR-VERIFIED · SINCE THE FIRST LESSON</span></div>
+      <h1 data-i18n-html="heroHeading">Knowledge you can trace back to <span class="hl">who taught it.</span></h1>
+      <p class="lede" data-i18n="heroLede">Qur'an, Hadith and Fiqh from Ulema Karam whose credentials are reviewed before their first class goes live — alongside the prayer times, Zakat and Qibla you reach for every day.</p>
+      <div class="hero-actions">
+        <button class="btn btn-primary" data-i18n="btnBrowse">Browse Courses →</button>
+        <button class="btn btn-ghost" data-i18n="btnHowVerify">How verification works</button>
+      </div>
+      <div class="trust-strip">
+        <span><span class="sq"></span><span data-i18n="trust1">412 Verified Ustaz</span></span>
+        <span><span class="sq"></span><span data-i18n="trust2">Multi-scholar Fatwa sign-off</span></span>
+        <span><span class="sq"></span><span data-i18n="trust3">Wafaq-accredited certificates</span></span>
+      </div>
+    </div>
+
+    <div class="mosaic-card">
+      <div class="mosaic-strip">
+        <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+      </div>
+      <div class="body">
+        <div class="row">
+          <div class="scholar">
+            <div class="avatar"></div>
+            <div><div class="name" data-i18n="scholarName">Mufti Abdul Rahman</div><div class="role" data-i18n="scholarRole">Hanafi Fiqh · Verified Ustaz</div></div>
+          </div>
+          <div class="tile-badge"><i></i><i></i><i></i><i></i></div>
+        </div>
+        <div class="divider"></div>
+        <div style="font-size:0.85rem; color:rgba(24,36,55,0.65); margin-bottom:10px;" data-i18n="credReviewed">Credentials reviewed by the Scholar Advisory Board</div>
+        <div class="signoffs">
+          <span class="chip" data-i18n="chipSanad">Sanad Verified</span>
+          <span class="chip" data-i18n="chipMadrasa">Madrasa Confirmed</span>
+          <span class="chip" data-i18n="chipBoard">Board Approved</span>
+        </div>
+        <div class="prayer-mini">
+          <div class="p"><div class="lbl" data-i18n="fajr">Fajr</div><div class="t">4:52</div></div>
+          <div class="p active"><div class="lbl" data-i18n="zuhr">Zuhr</div><div class="t">12:31</div></div>
+          <div class="p"><div class="lbl" data-i18n="asr">Asr</div><div class="t">16:48</div></div>
+          <div class="p"><div class="lbl" data-i18n="maghrib">Maghrib</div><div class="t">19:02</div></div>
+          <div class="p"><div class="lbl" data-i18n="isha">Isha</div><div class="t">20:24</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="wrap"><div class="divider-strip"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div></div>
+
+<section id="learn">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow" data-i18n="threeThingsEyebrow">THREE THINGS, ONE PLATFORM</div>
+      <h2 data-i18n="threeThingsHeading">Built for the reason people open the app at 4:50am — and the reason they stay till the marketplace.</h2>
+    </div>
+    <div class="pillars reveal">
+      <div class="pillar">
+        <span class="tag"><i></i><i></i><i></i><i></i></span>
+        <h3 data-i18n="pillarLearnTitle">Learn</h3>
+        <p data-i18n="pillarLearnBody">Live and recorded classes from verified scholars, with tajweed-coloured Mushaf and Hifz tracking.</p>
+        <ul><li data-i18n="pillarLearnLi1">Qur'an, Hadith, Fiqh, Seerah, Arabic</li><li data-i18n="pillarLearnLi2">Teacher-approved Sabaq logging</li><li data-i18n="pillarLearnLi3">Certificates, some Wafaq-stamped</li></ul>
+      </div>
+      <div class="pillar">
+        <span class="tag"><i></i><i></i><i></i><i></i></span>
+        <h3 data-i18n="pillarPracticeTitle">Practice</h3>
+        <p data-i18n="pillarPracticeBody">The offline-first tools people actually check five times a day, tied back to real scholarship.</p>
+        <ul><li data-i18n="pillarPracticeLi1">Namaz timings &amp; Qibla, offline-cached</li><li data-i18n="pillarPracticeLi2">Zakat calculator, live nisab rates</li><li data-i18n="pillarPracticeLi3">Fatwa Q&amp;A, three-scholar sign-off</li></ul>
+      </div>
+      <div class="pillar">
+        <span class="tag"><i></i><i></i><i></i><i></i></span>
+        <h3 data-i18n="pillarMarketTitle">Marketplace</h3>
+        <p data-i18n="pillarMarketBody">A moderated marketplace, with extra verification on ritual-sensitive categories.</p>
+        <ul><li data-i18n="pillarMarketLi1">Verified-vendor badge, separate from scholar badge</li><li data-i18n="pillarMarketLi2">Qurbani &amp; Nikah service booking</li><li data-i18n="pillarMarketLi3">Extra review on Ehram &amp; Kafan listings</li></ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="trust">
+  <div class="wrap">
+    <div class="fatwa-band reveal">
+      <div>
+        <div class="eyebrow" data-i18n="trustEyebrow">SECTION 3.5 · TRUST LAYER</div>
+        <h2 data-i18n="trustHeading">No fatwa is "Authentic" on a single opinion.</h2>
+        <p data-i18n="trustBody">An answer only carries the badge once the original scholar and two independent reviewers sign off — three names, shown publicly, every time. Until then, it reads "Under Review," not silence.</p>
+        <div class="madhab-note"><span class="sq"></span><span data-i18n="madhabNote">Where scholars differ by madhab, answers are labelled by school of thought — Zulfishan does not take an official position on disputed rulings.</span></div>
+      </div>
+      <div class="fatwa-card">
+        <div class="q" data-i18n="fatwaQ">"Is Zakat due on jewellery worn daily, or only on stored gold?"</div>
+        <div class="stack"><div class="a"></div><div class="a"></div><div class="a"></div></div>
+        <div style="font-size:0.8rem; color:rgba(255,255,255,0.55); margin-bottom:14px;" data-i18n="fatwaAnswered">Answered by Mufti Rahman · co-signed by 2 independent scholars</div>
+        <span class="status-badge"><span class="sq"></span><span data-i18n="authenticFatwa">Authentic Fatwa</span></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow" data-i18n="fromCatalogueEyebrow">FROM THE COURSE CATALOGUE</div>
+      <h2 data-i18n="fromCatalogueHeading">Every teacher, one badge away from a name you can check.</h2>
+    </div>
+    <div class="course-row reveal">
+      <div class="course-card">
+        <div class="course-thumb"><span class="badge"><span class="tilemark"><i></i><i></i><i></i><i></i></span><span data-i18n="verifiedUstaz">Verified Ustaz</span></span></div>
+        <div class="course-body"><div class="subj">Tajweed</div><h3>Qur'an Recitation for Beginners</h3><div class="teacher">Ustadha Fatima Zahra</div></div>
+      </div>
+      <div class="course-card">
+        <div class="course-thumb b"><span class="badge"><span class="tilemark"><i></i><i></i><i></i><i></i></span><span data-i18n="verifiedUstaz">Verified Ustaz</span></span></div>
+        <div class="course-body"><div class="subj">Fiqh</div><h3>Hanafi Fiqh of Worship</h3><div class="teacher">Mufti Abdul Rahman</div></div>
+      </div>
+      <div class="course-card">
+        <div class="course-thumb c"><span class="badge"><span class="tilemark"><i></i><i></i><i></i><i></i></span><span data-i18n="verifiedUstaz">Verified Ustaz</span></span></div>
+        <div class="course-body"><div class="subj">Arabic · Nahw</div><h3>Classical Arabic Grammar I</h3><div class="teacher">Shaykh Imran Yusuf</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="brand" style="font-size:1.05rem;"><img src="../assets/img/logo-mark.png" alt="Zulfishan" class="brand-logo">Zulfishan</div>
+    <div class="foot-note">SAN JUAN · SWIRL · NEPAL · BOSTON BLUE</div>
+  </div>
+</footer>
+
+<script src="../js/i18n-home.js"></script>
+<script src="../js/i18n.js"></script>
+<script src="../js/common.js"></script>
+<script src="../js/home.js"></script>
+</body>
+</html>

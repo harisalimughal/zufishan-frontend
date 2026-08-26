@@ -1,0 +1,37 @@
+/* =========================================================
+   CATALOGUE — course browsing page, on top of base.css + app-shell.css
+   ========================================================= */
+
+.cat-head{display:flex; justify-content:space-between; align-items:flex-end; gap:30px; margin-bottom:26px; flex-wrap:wrap;}
+.cat-head h1{font-size:1.7rem; font-weight:700; margin-bottom:8px;}
+.cat-head p{color:rgba(36,26,16,0.62); font-size:0.92rem; max-width:480px;}
+.search-box input{width:280px; padding:11px 14px; border:1.5px solid var(--line); border-radius:6px; font-family:inherit; font-size:0.88rem; background:#fff;}
+.search-box input:focus{outline:none; border-color:var(--azure);}
+
+.filter-row{display:flex; gap:8px; flex-wrap:wrap; align-items:center; margin-bottom:28px;}
+.filter-chip{border:1.5px solid var(--line); background:#fff; border-radius:20px; padding:7px 15px; font-size:0.8rem; font-weight:600; cursor:pointer; color:rgba(36,26,16,0.65); transition:all .18s;}
+.filter-chip.active{background:var(--navy); border-color:var(--navy); color:#fff;}
+.filter-chip:hover:not(.active){border-color:var(--azure); color:var(--azure);}
+.filter-divider{width:1px; height:20px; background:var(--line); margin:0 4px;}
+.no-results{text-align:center; padding:60px 20px; color:rgba(36,26,16,0.5); font-size:0.92rem;}
+
+.grid-courses{display:grid; grid-template-columns:repeat(3,1fr); gap:20px;}
+.course-card-lg{border:1px solid var(--line); border-radius:8px; overflow:hidden; background:#fff; transition:transform .2s ease, box-shadow .2s ease;}
+.course-card-lg:hover{transform:translateY(-4px); box-shadow:0 18px 40px -18px rgba(53,36,20,0.28);}
+.course-card-lg .thumb{height:120px; position:relative;}
+.thumb.navy{background:var(--navy);} .thumb.azure{background:var(--azure);} .thumb.dusk{background:var(--dusk);} .thumb.putty-thumb{background:var(--putty);}
+.course-card-lg .badge{position:absolute; top:12px; left:12px; background:#fff; font-family:'JetBrains Mono',monospace; font-size:0.6rem; padding:5px 9px; border-radius:4px; display:flex; align-items:center; gap:5px; font-weight:600; color:var(--navy);}
+.course-card-lg .format-tag{position:absolute; bottom:12px; left:12px; font-family:'JetBrains Mono',monospace; font-size:0.6rem; color:rgba(255,255,255,0.85); background:rgba(0,0,0,0.18); padding:4px 8px; border-radius:4px;}
+.cbody{padding:18px;}
+.cbody .subj{font-family:'JetBrains Mono',monospace; font-size:0.63rem; color:var(--azure); text-transform:uppercase; letter-spacing:0.08em; font-weight:600;}
+.cbody h3{font-size:1.02rem; margin:7px 0 12px; font-weight:700;}
+.teacher-row{display:flex; align-items:center; gap:9px; margin-bottom:16px;}
+.mini-av{width:28px; height:28px; border-radius:5px; background:linear-gradient(135deg,var(--navy),var(--azure)); flex-shrink:0;}
+.tname{font-size:0.82rem; font-weight:700;}
+.tmeta{font-size:0.7rem; color:rgba(36,26,16,0.5);}
+.cfoot{display:flex; justify-content:space-between; align-items:center; padding-top:14px; border-top:1px solid var(--line);}
+.lang-pill{font-family:'JetBrains Mono',monospace; font-size:0.66rem; color:rgba(36,26,16,0.55); background:var(--bg); padding:4px 8px; border-radius:4px;}
+.btn.sm{padding:8px 14px; font-size:0.78rem;}
+
+@media(max-width:1100px){ .grid-courses{grid-template-columns:repeat(2,1fr);} }
+@media(max-width:700px){ .grid-courses{grid-template-columns:1fr;} .cat-head{flex-direction:column; align-items:stretch;} .search-box input{width:100%;} }

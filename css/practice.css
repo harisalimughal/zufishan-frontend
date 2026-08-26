@@ -1,0 +1,53 @@
+/* =========================================================
+   PRACTICE HUB — Namaz, Qibla, Tasbih, Fatwa teaser
+   ========================================================= */
+
+.offline-pill{display:flex; align-items:center; gap:7px; font-family:'JetBrains Mono',monospace; font-size:0.68rem; color:rgba(36,26,16,0.5);}
+.offline-pill .sq{width:6px; height:6px; background:var(--dusk);}
+
+.practice-grid{display:grid; grid-template-columns:1fr 1fr; gap:18px;}
+.pcard{background:#fff; border:1px solid var(--line); border-radius:10px; padding:24px;}
+.pcard.span2{grid-column:span 2;}
+.pcard h2{font-size:1.15rem; margin-top:4px; font-weight:700;}
+.pcard-head{display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:18px;}
+.pcard-note{font-size:0.82rem; color:rgba(36,26,16,0.55); line-height:1.55; margin-top:10px;}
+.btn.sm{padding:9px 16px; font-size:0.8rem;}
+
+.prayer-row{display:grid; grid-template-columns:repeat(5,1fr); gap:10px;}
+.prayer-cell{text-align:center; padding:16px 8px; border-radius:8px; background:var(--bg); position:relative;}
+.prayer-cell.active{background:var(--navy); color:#fff;}
+.prayer-cell .lbl{font-family:'JetBrains Mono',monospace; font-size:0.65rem; text-transform:uppercase; opacity:0.55; letter-spacing:0.06em;}
+.prayer-cell .time{font-family:'Bricolage Grotesque',sans-serif; font-weight:700; font-size:1.05rem; margin-top:6px;}
+.prayer-cell .next-tag{position:absolute; top:-9px; right:8px; background:var(--azure); color:#fff; font-size:0.58rem; font-family:'JetBrains Mono',monospace; padding:2px 7px; border-radius:8px; font-weight:700;}
+.pcard-foot{display:flex; justify-content:space-between; align-items:center; margin-top:18px; padding-top:16px; border-top:1px solid var(--line); flex-wrap:wrap; gap:10px;}
+.check{display:flex; align-items:center; gap:8px; font-size:0.82rem; color:rgba(36,26,16,0.65);}
+.method-tag{font-family:'JetBrains Mono',monospace; font-size:0.66rem; color:rgba(36,26,16,0.45);}
+
+.qibla-dial{width:140px; height:140px; margin:10px auto 14px; position:relative;}
+.dial-ring{position:absolute; inset:0; border:3px solid var(--line); border-radius:50%;}
+.dial-needle{position:absolute; top:50%; left:50%; width:3px; height:56px; background:linear-gradient(var(--azure),transparent); transform-origin:bottom center; transform:translate(-50%,-100%) rotate(278deg); border-radius:2px;}
+.dial-kaaba{position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); width:22px; height:22px; display:grid; grid-template-columns:1fr 1fr; gap:1px; border-radius:4px; overflow:hidden; box-shadow:0 0 0 4px var(--bg);}
+.qibla-deg{text-align:center; font-family:'JetBrains Mono',monospace; font-weight:700; color:var(--navy); font-size:0.95rem;}
+
+.tasbih-count{font-family:'Bricolage Grotesque',sans-serif; font-size:2.6rem; font-weight:800; color:var(--navy); text-align:center; margin-top:6px;}
+.tasbih-label{text-align:center; color:rgba(36,26,16,0.55); font-size:0.85rem; margin-bottom:4px;}
+.reset-link{display:block; margin:10px auto 0; background:none; border:none; color:rgba(36,26,16,0.45); font-size:0.78rem; cursor:pointer; text-decoration:underline;}
+
+.fatwa-mini{display:flex; flex-direction:column; gap:10px;}
+.fq-row{display:flex; justify-content:space-between; align-items:center; gap:16px; padding:12px 14px; background:var(--bg); border-radius:8px;}
+.fq-text{font-size:0.86rem; font-weight:600;}
+.status-badge{display:inline-flex; align-items:center; gap:6px; font-family:'JetBrains Mono',monospace; font-size:0.62rem; background:rgba(200,134,46,0.12); color:var(--navy); padding:6px 10px; border-radius:4px; font-weight:700; white-space:nowrap;}
+.status-badge .sq{width:5px; height:5px; background:var(--azure); border-radius:50%;}
+.status-badge.pending{background:rgba(47,111,91,0.2); color:rgba(36,26,16,0.55);}
+.madhab-note-inline{display:flex; align-items:flex-start; gap:8px; font-size:0.76rem; color:rgba(36,26,16,0.5); line-height:1.5; margin-top:16px;}
+.madhab-note-inline .sq{width:6px; height:6px; background:var(--dusk); margin-top:5px; flex-shrink:0;}
+
+.zakat-teaser{background:linear-gradient(160deg,var(--navy),#1A1108); color:#fff;}
+.zakat-teaser .eyebrow{color:var(--dusk);}
+.zakat-teaser .pcard-note{color:rgba(255,255,255,0.65);}
+
+@media(max-width:860px){
+  .practice-grid{grid-template-columns:1fr;}
+  .pcard.span2{grid-column:span 1;}
+  .prayer-row{grid-template-columns:repeat(3,1fr);}
+}
