@@ -3,6 +3,7 @@ import type { ReactNode } from "react";
 import { ThemeProvider } from "../lib/theme/ThemeContext";
 import { AuthProvider } from "../context/AuthContext";
 import { SplashScreen } from "../components/SplashScreen/SplashScreen";
+import { ReactQueryProvider } from "../components/ReactQueryProvider";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -24,9 +25,11 @@ export default function RootLayout({
     <html lang="en" data-scroll-behavior="smooth">
       <body>
         <SplashScreen />
-        <AuthProvider>
-          <ThemeProvider>{children}</ThemeProvider>
-        </AuthProvider>
+        <ReactQueryProvider>
+          <AuthProvider>
+            <ThemeProvider>{children}</ThemeProvider>
+          </AuthProvider>
+        </ReactQueryProvider>
       </body>
     </html>
   );
