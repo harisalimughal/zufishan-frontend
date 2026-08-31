@@ -1,0 +1,44 @@
+/* =========================================================
+   ZAKAT CALCULATOR
+   ========================================================= */
+
+.content.narrow{max-width:560px; margin:0 auto; padding-top:40px;}
+.nisab-pill{display:flex; align-items:center; gap:7px; font-family:'JetBrains Mono',monospace; font-size:0.68rem; color:rgba(36,26,16,0.55);}
+.nisab-pill .sq{width:6px; height:6px; background:var(--azure);}
+
+.zk-card{background:#fff; border:1px solid var(--line); border-radius:12px; padding:32px;}
+
+.zk-step-track{display:flex; gap:8px; margin-bottom:28px;}
+.zk-step-track .d{flex:1; height:4px; border-radius:2px; background:var(--line);}
+.zk-step-track .d.done, .zk-step-track .d.current{background:var(--azure);}
+
+.zk-step{display:none;}
+.zk-step.active{display:block;}
+.zk-step h2{font-size:1.35rem; font-weight:700; margin-bottom:8px;}
+.zk-sub{font-size:0.86rem; color:rgba(36,26,16,0.6); margin-bottom:24px; line-height:1.55;}
+
+.zk-field{margin-bottom:16px;}
+.zk-field label{font-size:0.82rem; font-weight:600; margin-bottom:6px; display:block;}
+.input-prefix{display:flex; align-items:stretch; border:1.5px solid var(--line); border-radius:6px; overflow:hidden;}
+.input-prefix span{background:var(--bg); padding:12px 12px; font-family:'JetBrains Mono',monospace; font-size:0.78rem; color:rgba(36,26,16,0.55); display:flex; align-items:center;}
+.input-prefix input{flex:1; border:none; padding:12px 14px; font-family:inherit; font-size:0.92rem; min-width:0;}
+.input-prefix input:focus{outline:none;}
+.input-prefix:focus-within{border-color:var(--azure);}
+
+.zk-note{display:flex; gap:8px; align-items:flex-start; font-size:0.78rem; color:rgba(36,26,16,0.55); line-height:1.5; margin:6px 0 22px; background:var(--bg); padding:12px 14px; border-radius:6px;}
+.zk-note .sq{width:6px; height:6px; background:var(--dusk); margin-top:5px; flex-shrink:0;}
+
+.btn-row{display:flex; gap:10px;}
+.btn-secondary{background:transparent; border:1.5px solid var(--line); color:var(--ink); flex:0 0 110px;}
+
+.zk-result{text-align:center;}
+.zk-result .eyebrow{justify-content:center; margin-bottom:10px;}
+.result-figure{font-family:'Bricolage Grotesque',sans-serif; font-size:2.1rem; font-weight:800; color:var(--navy); margin-bottom:14px;}
+.nisab-check{display:inline-flex; align-items:center; gap:8px; font-size:0.82rem; font-weight:600; background:var(--bg); padding:9px 16px; border-radius:20px; margin-bottom:22px;}
+.nisab-check .sq{width:7px; height:7px; border-radius:50%; background:var(--azure);}
+.due-box{background:var(--navy); color:#fff; border-radius:10px; padding:22px; margin-bottom:20px;}
+.due-label{font-family:'JetBrains Mono',monospace; font-size:0.68rem; text-transform:uppercase; letter-spacing:0.08em; color:var(--dusk); margin-bottom:8px;}
+.due-figure{font-family:'Bricolage Grotesque',sans-serif; font-size:2rem; font-weight:800;}
+.zk-breakdown{text-align:left; font-size:0.82rem; color:rgba(36,26,16,0.6); margin-bottom:20px; display:flex; flex-direction:column; gap:6px;}
+.zk-breakdown .row{display:flex; justify-content:space-between; padding:4px 0;}
+.zk-breakdown .row.total{border-top:1px solid var(--line); padding-top:10px; font-weight:700; color:var(--ink);}

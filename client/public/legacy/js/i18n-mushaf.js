@@ -1,0 +1,52 @@
+window.translations = {
+  en: {
+    navLearn: "Learn", navCourses: "Courses", navMushaf: "Qur'an", navHifz: "My Hifz Tracker",
+    navPractice: "Practice", navDailyPractice: "Daily Practice", navFatwa: "Fatwa Q&A",
+    navDuas: "Dua & Azkar", navHijri: "Hijri Calendar", navZakat: "Zakat Calculator",
+    navMore: "More", navMarketplace: "Marketplace", navCommunity: "Community",
+    navAccount: "Account", navProfile: "Profile",
+    userName: "Ahmad Raza", userRole: "Learner",
+
+    pageTitle: "Qur'an",
+    pageIntro: "Read, listen, and study the Mus'haf with word-by-word meanings and simplified tajweed colour-coding.",
+    ayahsWord: "ayahs",
+    reciterLabel: "Reciter",
+    wordByWordLabel: "Word-by-word",
+    reciting: "Reciting…",
+    pausedStatus: "Paused",
+    previewFor: "Preview pace set to",
+    playNoteDefault: "Illustrative pacing — full multi-qari audio arrives with the backend.",
+    bookmark: "Bookmark",
+    markMemorized: "Mark memorized",
+    legendTitle: "Simplified tajweed key:",
+    legendMadd: "Madd (elongation)",
+    legendGhunnah: "Ghunnah (nasal sound)",
+    legendQalqalah: "Qalqalah (echoing stop)",
+    legendDisclaimer: "Illustrative only — always confirm tajweed rulings with a qualified teacher."
+  },
+  ur: {
+    navLearn: "تعلیم", navCourses: "کورسز", navMushaf: "قرآن", navHifz: "میرا حفظ ٹریکر",
+    navPractice: "مشق", navDailyPractice: "روزمرہ مشق", navFatwa: "فتویٰ سوال و جواب",
+    navDuas: "دعا و اذکار", navHijri: "ہجری کیلنڈر", navZakat: "زکوٰۃ کیلکولیٹر",
+    navMore: "مزید", navMarketplace: "مارکیٹ پلیس", navCommunity: "کمیونٹی",
+    navAccount: "اکاؤنٹ", navProfile: "پروفائل",
+    userName: "احمد رضا", userRole: "طالب علم",
+
+    pageTitle: "قرآن",
+    pageIntro: "مصحف پڑھیں، سنیں اور لفظی ترجمہ و سادہ تجوید رنگ کاری کے ساتھ سیکھیں۔",
+    ayahsWord: "آیات",
+    reciterLabel: "قاری",
+    wordByWordLabel: "لفظی ترجمہ",
+    reciting: "تلاوت ہو رہی ہے…",
+    pausedStatus: "روکا گیا",
+    previewFor: "رفتار مقرر کی گئی:",
+    playNoteDefault: "یہ محض عملی نمونہ ہے — مکمل کثیر قاری آڈیو بیک اینڈ کے ساتھ شامل ہوگا۔",
+    bookmark: "نشان لگائیں",
+    markMemorized: "حفظ شدہ نشان لگائیں",
+    legendTitle: "سادہ تجوید کلید:",
+    legendMadd: "مد (کھینچاؤ)",
+    legendGhunnah: "غنہ (ناک کی آواز)",
+    legendQalqalah: "قلقلہ (گونجتا وقفہ)",
+    legendDisclaimer: "صرف مثال کے طور پر — تجوید کے مسائل کے لیے ہمیشہ مستند استاد سے رجوع کریں۔"
+  }
+};

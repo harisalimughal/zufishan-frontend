@@ -1,0 +1,37 @@
+/* =========================================================
+   HIJRI CALENDAR — month grid + Islamic-event reminders
+   ========================================================= */
+
+.hijri-head{display:flex; justify-content:space-between; align-items:flex-end; gap:24px; margin-bottom:22px; flex-wrap:wrap;}
+.hijri-head p{color:rgba(36,26,16,0.6); font-size:0.88rem; max-width:480px; margin-top:6px;}
+
+.hijri-layout{display:grid; grid-template-columns:1fr 300px; gap:20px; align-items:start;}
+
+.cal-card{background:#fff; border:1px solid var(--line); border-radius:10px; padding:22px;}
+.cal-nav{display:flex; justify-content:space-between; align-items:center; margin-bottom:18px;}
+.cal-nav h2{font-family:'Bricolage Grotesque',sans-serif; font-weight:700; font-size:1.15rem;}
+.cal-nav .greg-sub{font-size:0.72rem; color:rgba(36,26,16,0.5); font-family:'JetBrains Mono',monospace; margin-top:2px;}
+.cal-nav-btn{width:32px; height:32px; border-radius:50%; border:1px solid var(--line); background:var(--bg); cursor:pointer; font-size:0.9rem; color:var(--navy);}
+
+.cal-grid{display:grid; grid-template-columns:repeat(7,1fr); gap:6px;}
+.cal-dow{text-align:center; font-family:'JetBrains Mono',monospace; font-size:0.62rem; text-transform:uppercase; color:rgba(36,26,16,0.4); padding-bottom:6px;}
+.cal-day{aspect-ratio:1; border-radius:8px; background:var(--bg); display:flex; flex-direction:column; align-items:center; justify-content:center; font-size:0.85rem; font-weight:600; position:relative; cursor:default;}
+.cal-day.empty{background:transparent;}
+.cal-day .greg{font-size:0.58rem; color:rgba(36,26,16,0.4); font-weight:500; margin-top:2px;}
+.cal-day.today{background:var(--navy); color:#fff;}
+.cal-day.today .greg{color:rgba(255,255,255,0.6);}
+.cal-day.event{border:1.5px solid var(--azure);}
+.cal-day .dot-mark{position:absolute; top:5px; right:5px; width:5px; height:5px; border-radius:50%; background:var(--azure);}
+
+.event-panel{background:#fff; border:1px solid var(--line); border-radius:10px; padding:20px;}
+.event-panel h3{font-size:0.95rem; font-weight:700; margin-bottom:14px;}
+.event-item{display:flex; gap:12px; padding:12px 0; border-bottom:1px solid var(--line);}
+.event-item:last-child{border-bottom:none;}
+.event-date-chip{width:44px; height:44px; border-radius:8px; background:var(--bg); display:flex; flex-direction:column; align-items:center; justify-content:center; flex-shrink:0;}
+.event-date-chip .d{font-family:'Bricolage Grotesque',sans-serif; font-weight:800; font-size:0.95rem; line-height:1;}
+.event-date-chip .m{font-family:'JetBrains Mono',monospace; font-size:0.55rem; text-transform:uppercase; color:rgba(36,26,16,0.5);}
+.event-name{font-weight:700; font-size:0.85rem;}
+.event-sync{font-size:0.7rem; color:rgba(36,26,16,0.5); margin-top:2px;}
+.sync-btn{background:none; border:none; color:var(--azure); font-size:0.72rem; font-weight:700; cursor:pointer; margin-top:4px;}
+
+@media(max-width:900px){ .hijri-layout{grid-template-columns:1fr;} }

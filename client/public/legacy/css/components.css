@@ -1,0 +1,32 @@
+/* =========================================================
+   SHARED COMPONENTS — modals, toasts, empty states.
+   Included by any page that needs them on top of base + app-shell.
+   ========================================================= */
+
+.modal-overlay{position:fixed; inset:0; background:rgba(36,26,16,0.55); display:none; align-items:center; justify-content:center; z-index:100; padding:20px;}
+.modal-overlay.open{display:flex;}
+.modal-box{background:#fff; border-radius:12px; padding:26px; width:100%; max-width:420px; box-shadow:0 30px 60px rgba(0,0,0,0.25);}
+.modal-head{display:flex; align-items:center; justify-content:space-between; margin-bottom:14px;}
+.modal-head h3{font-family:'Bricolage Grotesque',sans-serif; font-size:1.1rem; font-weight:700;}
+.modal-close{background:none; border:none; font-size:1.4rem; line-height:1; cursor:pointer; color:rgba(36,26,16,0.5); padding:0 4px;}
+.modal-close:hover{color:var(--ink);}
+
+.city-list{display:flex; flex-direction:column; gap:8px; margin-top:6px;}
+.city-opt{text-align:left; padding:12px 14px; border-radius:8px; border:1px solid var(--line); background:var(--bg); font-weight:600; font-size:0.9rem; cursor:pointer; transition:background .15s, border-color .15s;}
+.city-opt:hover{background:#fff; border-color:var(--azure);}
+html[dir="rtl"] .city-opt{text-align:right;}
+
+.fatwa-textarea{width:100%; min-height:110px; margin-top:12px; padding:12px 14px; border:1px solid var(--line); border-radius:8px; font-family:inherit; font-size:0.9rem; resize:vertical; background:var(--bg);}
+.fatwa-textarea:focus{outline:none; border-color:var(--azure);}
+
+.see-all-link{font-family:'JetBrains Mono',monospace; font-size:0.72rem; color:var(--navy); font-weight:700; text-decoration:none;}
+.see-all-link:hover{color:var(--azure);}
+
+/* generic empty state used by new sections (marketplace, community filters, etc.) */
+.empty-state{text-align:center; padding:48px 20px; color:rgba(36,26,16,0.5);}
+.empty-state h3{font-family:'Bricolage Grotesque',sans-serif; color:var(--ink); margin-bottom:8px;}
+
+/* toast confirmation, used after actions like posting or ordering */
+.toast{position:fixed; bottom:26px; left:50%; transform:translateX(-50%) translateY(20px); background:var(--navy); color:#fff; padding:12px 20px; border-radius:8px; font-size:0.85rem; font-weight:600; opacity:0; pointer-events:none; transition:opacity .25s, transform .25s; z-index:200; display:flex; align-items:center; gap:8px;}
+.toast.show{opacity:1; transform:translateX(-50%) translateY(0);}
+.toast .sq{width:6px; height:6px; background:var(--azure); border-radius:50%; flex-shrink:0;}

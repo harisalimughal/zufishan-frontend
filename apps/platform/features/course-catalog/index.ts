@@ -1,1 +1,0 @@
-export { CourseCatalog } from "./CourseCatalog";

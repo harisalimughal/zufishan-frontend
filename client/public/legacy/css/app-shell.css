@@ -1,0 +1,77 @@
+/* =========================================================
+   APP SHELL — topbar + side menu used by every page inside the
+   logged-in product (course catalogue, practice hub, etc.)
+   The sidebar is a push drawer: opening it shrinks/pushes the main
+   content over by its width; closing it lets the content expand back
+   to full width. Toggled with the hamburger button, at every screen size.
+   ========================================================= */
+
+.app{min-height:100vh; overflow-x:hidden;}
+
+body.sidebar-lock{overflow:hidden;}
+
+:root{ --sidebar-w: 248px; }
+
+.sidebar{
+  background:var(--navy); color:#fff; padding:26px 18px;
+  display:flex; flex-direction:column; justify-content:space-between;
+  position:fixed; top:0; left:0; z-index:110;
+  width:var(--sidebar-w); height:100vh; height:100dvh;
+  overflow-y:auto; -webkit-overflow-scrolling:touch;
+  scrollbar-width:none; -ms-overflow-style:none; /* scrolls, but no visible scrollbar (Firefox/IE) */
+  transform:translateX(-100%);
+  box-shadow:none;
+}
+.sidebar::-webkit-scrollbar{ display:none; width:0; height:0; } /* Chrome/Safari */
+[dir="rtl"] .sidebar{left:auto; right:0; transform:translateX(100%);}
+.app.sidebar-open .sidebar{transform:translateX(0); box-shadow:0 0 40px rgba(0,0,0,0.25);}
+
+.sidebar .brand{color:#fff; padding:0 10px; margin-bottom:34px;}
+.sidebar nav{display:flex; flex-direction:column; gap:2px;}
+.sidebar nav a{display:flex; align-items:center; gap:12px; padding:11px 12px; border-radius:6px; font-size:0.88rem; font-weight:600; color:rgba(255,255,255,0.68); transition:background .18s, color .18s;}
+.sidebar nav a:hover{background:rgba(255,255,255,0.06); color:#fff;}
+.sidebar nav a.active{background:rgba(255,255,255,0.1); color:#fff;}
+.sidebar nav a .dot{width:6px; height:6px; border-radius:50%; background:var(--dusk); flex-shrink:0;}
+.sidebar nav a.active .dot{background:var(--azure);}
+.nav-group-label{font-family:'JetBrains Mono',monospace; font-size:0.62rem; text-transform:uppercase; letter-spacing:0.1em; color:rgba(255,255,255,0.35); padding:16px 12px 6px;}
+.sidebar-foot{padding:0 10px;}
+.user-chip{display:flex; align-items:center; gap:10px; padding-top:16px; border-top:1px solid rgba(255,255,255,0.12); border-radius:6px; transition:background .18s;}
+.user-chip.link{cursor:pointer;}
+.user-chip.link:hover{background:rgba(255,255,255,0.06);}
+.user-chip .av{width:32px; height:32px; border-radius:6px; background:linear-gradient(135deg,var(--azure),var(--dusk)); flex-shrink:0;}
+.user-chip .name{font-size:0.82rem; font-weight:700;}
+.user-chip .role{font-size:0.7rem; color:rgba(255,255,255,0.5); font-family:'JetBrains Mono',monospace;}
+
+/* the overlay element is still in the markup on every page for backward
+   compatibility, but the push layout below no longer needs a backdrop —
+   the content moves out from under the sidebar instead of being covered. */
+.sidebar-overlay{ display:none; }
+
+.main{
+  overflow-x:hidden;
+  margin-inline-start:0;
+}
+.app.sidebar-open .main{ margin-inline-start:var(--sidebar-w); }
+.topbar-inner{position:sticky; top:0; z-index:20; background:#F7F5F0; border-bottom:1px solid var(--line); display:flex; align-items:center; justify-content:space-between; padding:18px 32px;}
+.topbar-inner .page-title-group{display:flex; align-items:center; gap:14px; min-width:0;}
+.page-title{font-size:1.15rem; font-weight:700; font-family:'Bricolage Grotesque',sans-serif;}
+.topbar-actions{display:flex; align-items:center; gap:14px;}
+
+.content{padding:32px;}
+
+.menu-toggle{
+  display:flex; align-items:center; justify-content:center;
+  width:36px; height:36px; flex-shrink:0;
+  border:1.5px solid var(--line); border-radius:6px;
+  background:#fff; cursor:pointer; padding:0;
+}
+.menu-toggle:hover{background:var(--navy);}
+.menu-toggle:hover span, .menu-toggle:hover span::before, .menu-toggle:hover span::after{background:#fff;}
+.menu-toggle span{display:block; width:15px; height:2px; background:var(--navy); position:relative; border-radius:2px;}
+.menu-toggle span::before, .menu-toggle span::after{content:""; position:absolute; left:0; width:15px; height:2px; background:var(--navy); border-radius:2px;}
+.menu-toggle span::before{top:-5px;}
+.menu-toggle span::after{top:5px;}
+
+@media(max-width:520px){
+  :root{ --sidebar-w: min(82vw, 280px); }
+}

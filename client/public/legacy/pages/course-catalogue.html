@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zulfishan — Course Catalogue</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Noto+Nastaliq+Urdu:wght@500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/base.css">
+<link rel="stylesheet" href="../css/app-shell.css">
+<link rel="stylesheet" href="../css/catalogue.css">
+</head>
+<body>
+
+<div class="app sidebar-open">
+  <aside class="sidebar">
+    <div>
+      <div class="brand"><img src="../assets/img/logo-mark.png" alt="Zulfishan" class="brand-logo">Zulfishan</div>
+      <nav>
+        <div class="nav-group-label" data-i18n="navLearn">Learn</div>
+        <a href="course-catalogue.html" class="active"><span class="dot"></span><span data-i18n="navCourses">Courses</span></a>
+        <a href="mushaf.html"><span class="dot"></span><span data-i18n="navMushaf">Qur'an</span></a>
+        <a href="hifz-tracker.html"><span class="dot"></span><span data-i18n="navHifz">My Hifz Tracker</span></a>
+        <div class="nav-group-label" data-i18n="navPractice">Practice</div>
+        <a href="practice-hub.html"><span class="dot"></span><span data-i18n="navDailyPractice">Daily Practice</span></a>
+        <a href="fatwa.html"><span class="dot"></span><span data-i18n="navFatwa">Fatwa Q&A</span></a>
+        <a href="duas.html"><span class="dot"></span><span data-i18n="navDuas">Dua &amp; Azkar</span></a>
+        <a href="hijri-calendar.html"><span class="dot"></span><span data-i18n="navHijri">Hijri Calendar</span></a>
+        <a href="zakat-calculator.html"><span class="dot"></span><span data-i18n="navZakat">Zakat Calculator</span></a>
+        <div class="nav-group-label" data-i18n="navMore">More</div>
+        <a href="marketplace.html"><span class="dot"></span><span data-i18n="navMarketplace">Marketplace</span></a>
+        <a href="community.html"><span class="dot"></span><span data-i18n="navCommunity">Community</span></a>
+        <div class="nav-group-label" data-i18n="navAccount">Account</div>
+        <a href="profile.html"><span class="dot"></span><span data-i18n="navProfile">Profile</span></a>
+      </nav>
+    </div>
+    <div class="sidebar-foot">
+      <button class="lang-toggle" onclick="toggleLang()" style="width:100%; color:#fff; border-color:rgba(255,255,255,0.3); margin-bottom:14px;">اردو / EN</button>
+      <a href="profile.html" style="text-decoration:none; color:inherit;">
+      <div class="user-chip link">
+        <div class="av"></div>
+        <div><div class="name" data-i18n="userName">Ahmad Raza</div><div class="role" data-i18n="userRole">Learner</div></div>
+      </div>
+      </a>
+    </div>
+  </aside>
+
+  <div class="sidebar-overlay"></div>
+
+  <div class="main">
+    <div class="topbar-inner">
+      <div class="page-title-group"><button class="menu-toggle" id="sidebarToggle" aria-label="Toggle menu"><span></span></button><div class="page-title" data-i18n="pageTitle">Course Catalogue</div></div>
+      <div class="topbar-actions">
+        <button class="btn btn-ghost" style="padding:9px 16px; font-size:0.82rem;" data-i18n="btnEnrollments">My Enrollments</button>
+      </div>
+    </div>
+
+    <div class="content">
+      <div class="cat-head">
+        <div>
+          <h1 data-i18n="heroHeading">Learn from a scholar you can verify.</h1>
+          <p data-i18n="heroSub">Every teacher listed here has cleared credential review by the Scholar Advisory Board.</p>
+        </div>
+        <div class="search-box">
+          <input type="text" placeholder="Search courses, teachers, subjects…" data-i18n-placeholder="searchPlaceholder">
+        </div>
+      </div>
+
+      <div class="filter-row">
+        <button class="filter-chip active" data-group="subject" data-value="all" data-i18n="filterAll">All Subjects</button>
+        <button class="filter-chip" data-group="subject" data-value="quran" data-i18n="filterQuran">Qur'an &amp; Tajweed</button>
+        <button class="filter-chip" data-group="subject" data-value="hadith" data-i18n="filterHadith">Hadith</button>
+        <button class="filter-chip" data-group="subject" data-value="fiqh" data-i18n="filterFiqh">Fiqh</button>
+        <button class="filter-chip" data-group="subject" data-value="seerah" data-i18n="filterSeerah">Seerah</button>
+        <button class="filter-chip" data-group="subject" data-value="arabic" data-i18n="filterArabic">Arabic</button>
+        <span class="filter-divider"></span>
+        <button class="filter-chip" data-group="extra" data-value="free" data-i18n="filterFree">Free Preview</button>
+        <button class="filter-chip" data-group="extra" data-value="live" data-i18n="filterLive">Live Classes</button>
+        <button class="filter-chip" data-group="extra" data-value="urdu" data-i18n="filterUrdu">Urdu</button>
+      </div>
+
+      <div class="grid-courses" id="courseGrid">
+
+        <div class="course-card-lg" data-subject="quran" data-live="true" data-free="true" data-urdu="true">
+          <div class="thumb navy">
+            <span class="badge"><span class="tilemark"><i></i><i></i><i></i><i></i></span><span data-i18n="verifiedBadge">Verified Ustaz</span></span>
+            <span class="format-tag" data-i18n="liveRecorded">Live + Recorded</span>
+          </div>
+          <div class="cbody">
+            <div class="subj" data-i18n="subjTajweed">Tajweed</div>
+            <h3 data-i18n="courseTajweed">Qur'an Recitation for Beginners</h3>
+            <div class="teacher-row">
+              <div class="mini-av"></div>
+              <div><div class="tname" data-i18n="teacherFatima">Ustadha Fatima Zahra</div><div class="tmeta" data-i18n="studentsFatima">Verified · 1,204 students</div></div>
+            </div>
+            <div class="cfoot">
+              <span class="lang-pill">EN / UR</span>
+              <a href="lesson-player.html"><button class="btn btn-primary sm" data-i18n="viewCourse">View Course</button></a>
+            </div>
+          </div>
+        </div>
+
+        <div class="course-card-lg" data-subject="fiqh" data-live="false" data-free="false" data-urdu="true">
+          <div class="thumb azure">
+            <span class="badge"><span class="tilemark"><i></i><i></i><i></i><i></i></span><span data-i18n="verifiedBadge">Verified Ustaz</span></span>
+            <span class="format-tag" data-i18n="recorded">Recorded</span>
+          </div>
+          <div class="cbody">
+            <div class="subj" data-i18n="subjFiqh">Fiqh</div>
+            <h3 data-i18n="courseFiqh">Hanafi Fiqh of Worship</h3>
+            <div class="teacher-row">
+              <div class="mini-av"></div>
+              <div><div class="tname" data-i18n="teacherRahman">Mufti Abdul Rahman</div><div class="tmeta" data-i18n="studentsRahman">Verified · 3,850 students</div></div>
+            </div>
+            <div class="cfoot">
+              <span class="lang-pill">UR / AR</span>
+              <a href="lesson-player.html"><button class="btn btn-primary sm" data-i18n="viewCourse">View Course</button></a>
+            </div>
+          </div>
+        </div>
+
+        <div class="course-card-lg" data-subject="arabic" data-live="true" data-free="false" data-urdu="false">
+          <div class="thumb dusk">
+            <span class="badge"><span class="tilemark"><i></i><i></i><i></i><i></i></span><span data-i18n="verifiedBadge">Verified Ustaz</span></span>
+            <span class="format-tag" data-i18n="live">Live</span>
+          </div>
+          <div class="cbody">
+            <div class="subj" data-i18n="subjArabic">Arabic · Nahw</div>
+            <h3 data-i18n="courseArabic">Classical Arabic Grammar I</h3>
+            <div class="teacher-row">
+              <div class="mini-av"></div>
+              <div><div class="tname" data-i18n="teacherImran">Shaykh Imran Yusuf</div><div class="tmeta" data-i18n="studentsImran">Verified · 642 students</div></div>
+            </div>
+            <div class="cfoot">
+              <span class="lang-pill">EN / AR</span>
+              <a href="lesson-player.html"><button class="btn btn-primary sm" data-i18n="viewCourse">View Course</button></a>
+            </div>
+          </div>
+        </div>
+
+        <div class="course-card-lg" data-subject="hadith" data-live="false" data-free="true" data-urdu="true">
+          <div class="thumb putty-thumb">
+            <span class="badge"><span class="tilemark"><i></i><i></i><i></i><i></i></span><span data-i18n="verifiedBadge">Verified Ustaz</span></span>
+            <span class="format-tag" data-i18n="recorded">Recorded</span>
+          </div>
+          <div class="cbody">
+            <div class="subj" data-i18n="subjHadith">Hadith</div>
+            <h3 data-i18n="courseHadith">Introduction to Sahih Bukhari</h3>
+            <div class="teacher-row">
+              <div class="mini-av"></div>
+              <div><div class="tname" data-i18n="teacherAisha">Dr. Aisha Siddiqui</div><div class="tmeta" data-i18n="studentsAisha">Verified · 2,110 students</div></div>
+            </div>
+            <div class="cfoot">
+              <span class="lang-pill">EN / UR</span>
+              <a href="lesson-player.html"><button class="btn btn-primary sm" data-i18n="viewCourse">View Course</button></a>
+            </div>
+          </div>
+        </div>
+
+        <div class="course-card-lg" data-subject="seerah" data-live="true" data-free="false" data-urdu="false">
+          <div class="thumb navy">
+            <span class="badge"><span class="tilemark"><i></i><i></i><i></i><i></i></span><span data-i18n="verifiedBadge">Verified Ustaz</span></span>
+            <span class="format-tag" data-i18n="liveRecorded">Live + Recorded</span>
+          </div>
+          <div class="cbody">
+            <div class="subj" data-i18n="subjSeerah">Seerah</div>
+            <h3 data-i18n="courseSeerah">The Life of the Prophet ﷺ</h3>
+            <div class="teacher-row">
+              <div class="mini-av"></div>
+              <div><div class="tname" data-i18n="teacherBilal">Shaykh Bilal Khan</div><div class="tmeta" data-i18n="studentsBilal">Verified · 5,320 students</div></div>
+            </div>
+            <div class="cfoot">
+              <span class="lang-pill">EN</span>
+              <a href="lesson-player.html"><button class="btn btn-primary sm" data-i18n="viewCourse">View Course</button></a>
+            </div>
+          </div>
+        </div>
+
+        <div class="course-card-lg" data-subject="quran" data-live="false" data-free="false" data-urdu="true">
+          <div class="thumb azure">
+            <span class="badge"><span class="tilemark"><i></i><i></i><i></i><i></i></span><span data-i18n="verifiedBadge">Verified Ustaz</span></span>
+            <span class="format-tag" data-i18n="recorded">Recorded</span>
+          </div>
+          <div class="cbody">
+            <div class="subj" data-i18n="subjHifz">Qur'an · Hifz</div>
+            <h3 data-i18n="courseHifz">Hifz Companion — Juz Amma</h3>
+            <div class="teacher-row">
+              <div class="mini-av"></div>
+              <div><div class="tname" data-i18n="teacherYusuf">Qari Yusuf Islam</div><div class="tmeta" data-i18n="studentsYusuf">Verified · 980 students</div></div>
+            </div>
+            <div class="cfoot">
+              <span class="lang-pill">AR / UR</span>
+              <a href="lesson-player.html"><button class="btn btn-primary sm" data-i18n="viewCourse">View Course</button></a>
+            </div>
+          </div>
+        </div>
+
+      <p class="no-results" id="noResults" style="display:none;" data-i18n="noResults">No courses match these filters.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="../js/i18n-catalogue.js"></script>
+<script src="../js/i18n.js"></script>
+<script src="../js/app-shell.js"></script>
+<script src="../js/catalogue.js"></script>
+</body>
+</html>

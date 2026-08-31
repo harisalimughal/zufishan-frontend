@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zulfishan — My Hifz Tracker</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Noto+Nastaliq+Urdu:wght@500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/base.css">
+<link rel="stylesheet" href="../css/app-shell.css">
+<link rel="stylesheet" href="../css/hifz.css">
+<link rel="stylesheet" href="../css/components.css">
+</head>
+<body>
+
+<div class="app sidebar-open">
+  <aside class="sidebar">
+    <div>
+      <div class="brand"><img src="../assets/img/logo-mark.png" alt="Zulfishan" class="brand-logo">Zulfishan</div>
+      <nav>
+        <div class="nav-group-label" data-i18n="navLearn">Learn</div>
+        <a href="course-catalogue.html"><span class="dot"></span><span data-i18n="navCourses">Courses</span></a>
+        <a href="mushaf.html"><span class="dot"></span><span data-i18n="navMushaf">Qur'an</span></a>
+        <a href="hifz-tracker.html" class="active"><span class="dot"></span><span data-i18n="navHifz">My Hifz Tracker</span></a>
+        <div class="nav-group-label" data-i18n="navPractice">Practice</div>
+        <a href="practice-hub.html"><span class="dot"></span><span data-i18n="navDailyPractice">Daily Practice</span></a>
+        <a href="fatwa.html"><span class="dot"></span><span data-i18n="navFatwa">Fatwa Q&A</span></a>
+        <a href="duas.html"><span class="dot"></span><span data-i18n="navDuas">Dua &amp; Azkar</span></a>
+        <a href="hijri-calendar.html"><span class="dot"></span><span data-i18n="navHijri">Hijri Calendar</span></a>
+        <a href="zakat-calculator.html"><span class="dot"></span><span data-i18n="navZakat">Zakat Calculator</span></a>
+        <div class="nav-group-label" data-i18n="navMore">More</div>
+        <a href="marketplace.html"><span class="dot"></span><span data-i18n="navMarketplace">Marketplace</span></a>
+        <a href="community.html"><span class="dot"></span><span data-i18n="navCommunity">Community</span></a>
+        <div class="nav-group-label" data-i18n="navAccount">Account</div>
+        <a href="profile.html"><span class="dot"></span><span data-i18n="navProfile">Profile</span></a>
+      </nav>
+    </div>
+    <div class="sidebar-foot">
+      <button class="lang-toggle" onclick="toggleLang()" style="width:100%; color:#fff; border-color:rgba(255,255,255,0.3); margin-bottom:14px;">اردو / EN</button>
+      <a href="profile.html" style="text-decoration:none; color:inherit;">
+      <div class="user-chip link">
+        <div class="av"></div>
+        <div><div class="name" data-i18n="userName">Ahmad Raza</div><div class="role" data-i18n="userRole">Learner</div></div>
+      </div>
+      </a>
+    </div>
+  </aside>
+
+  <div class="sidebar-overlay"></div>
+
+  <div class="main">
+    <div class="topbar-inner">
+      <div class="page-title-group"><button class="menu-toggle" id="sidebarToggle" aria-label="Toggle menu"><span></span></button><div class="page-title" data-i18n="pageTitle">My Hifz Tracker</div></div>
+    </div>
+
+    <div class="content">
+
+      <div class="hifz-head">
+        <p data-i18n="pageIntro">Track what you've memorized, keep your streak alive, and stay ahead of revision.</p>
+      </div>
+
+      <div class="stat-row">
+        <div class="stat-card streak">
+          <div class="eyebrow" data-i18n="streakEyebrow">STREAK</div>
+          <div class="big" id="statStreak">12</div>
+          <div class="sub" data-i18n="streakSub">days in a row</div>
+        </div>
+        <div class="stat-card">
+          <div class="eyebrow" data-i18n="surahsEyebrow">SURAHS</div>
+          <div class="big" id="statSurahs">5</div>
+          <div class="sub" data-i18n="surahsSub">fully memorized</div>
+        </div>
+        <div class="stat-card">
+          <div class="eyebrow" data-i18n="ayahsEyebrow">AYAHS</div>
+          <div class="big" id="statAyahs">23</div>
+          <div class="sub" data-i18n="ayahsSub">memorized so far</div>
+        </div>
+        <div class="stat-card">
+          <div class="eyebrow" data-i18n="dueEyebrow">DUE FOR REVISION</div>
+          <div class="big" id="statDue">2</div>
+          <div class="sub" data-i18n="dueSub">surahs need a revisit</div>
+        </div>
+      </div>
+
+      <div class="hifz-layout">
+        <div class="hifz-panel">
+          <div class="panel-head"><h2 data-i18n="progressHeading">Juz 'Amma Progress</h2></div>
+          <div class="surah-progress-grid" id="surahGrid"></div>
+        </div>
+
+        <div>
+          <div class="hifz-panel" style="margin-bottom:20px;">
+            <div class="panel-head"><h2 data-i18n="revisionHeading">Revision Queue</h2></div>
+            <div id="revisionList"></div>
+          </div>
+
+          <div class="hifz-panel">
+            <div class="panel-head"><h2 data-i18n="logHeading">Log Today's Session</h2></div>
+            <div class="log-form">
+              <label class="lbl-sm" data-i18n="logSurahLabel" style="font-size:0.78rem; font-weight:600; color:rgba(36,26,16,0.6);">Surah</label>
+              <select id="logSurahSelect"></select>
+              <label class="lbl-sm" data-i18n="logPercentLabel" style="font-size:0.78rem; font-weight:600; color:rgba(36,26,16,0.6); margin-top:6px;">How much is memorized?</label>
+              <div style="display:flex; align-items:center; gap:10px;">
+                <input type="range" id="logPercent" min="0" max="100" step="10" value="50" style="flex:1;">
+                <span style="font-family:'JetBrains Mono',monospace; font-size:0.8rem; min-width:38px;">50%</span>
+              </div>
+              <button class="btn btn-primary" id="saveLogBtn" data-i18n="saveLog" style="margin-top:6px;">Save progress</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script src="../js/i18n-hifz.js"></script>
+<script src="../js/i18n.js"></script>
+<script src="../js/app-shell.js"></script>
+<script src="../js/hifz.js"></script>
+</body>
+</html>

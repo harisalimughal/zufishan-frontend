@@ -1,47 +1,9 @@
 {
-  "name": "nexora",
-  "version": "0.1.0",
+  "name": "zulfishan",
   "private": true,
-  "workspaces": [
-    "apps/*",
-    "packages/*"
-  ],
   "scripts": {
-    "dev": "npm run dev -w @nexora/platform",
-    "dev:landing": "npm run dev -w @nexora/landing",
-    "dev:platform": "npm run dev -w @nexora/platform",
-    "build": "npm run build --workspaces --if-present",
-    "build:landing": "npm run build -w @nexora/landing",
-    "build:platform": "npm run build -w @nexora/platform",
-    "lint": "npm run lint --workspaces --if-present",
-    "lint:landing": "npm run lint -w @nexora/landing",
-    "lint:platform": "npm run lint -w @nexora/platform",
-    "typecheck": "npm run typecheck --workspaces --if-present",
-    "typecheck:landing": "npm run typecheck -w @nexora/landing",
-    "typecheck:platform": "npm run typecheck -w @nexora/platform",
-    "format": "prettier --write ."
-  },
-  "dependencies": {
-    "@radix-ui/react-slot": "^1.3.0",
-    "class-variance-authority": "^0.7.1",
-    "clsx": "^2.1.1",
-    "framer-motion": "^12.40.0",
-    "lucide-react": "^0.468.0",
-    "tailwind-merge": "^2.6.1"
-  },
-  "devDependencies": {
-    "@eslint/eslintrc": "^3.3.1",
-    "@tailwindcss/postcss": "^4.1.8",
-    "@types/node": "^22.15.29",
-    "@types/react": "^19.1.6",
-    "@types/react-dom": "^19.1.5",
-    "concurrently": "^9.1.2",
-    "eslint": "^9.28.0",
-    "eslint-config-next": "^15.3.3",
-    "next": "^16.2.10",
-    "postcss": "^8.5.6",
-    "prettier": "^3.5.3",
-    "tailwindcss": "^4.1.8",
-    "typescript": "^5.8.3"
+    "dev": "npm --prefix client run dev",
+    "build": "npm --prefix client run build",
+    "start": "npm --prefix server run start"
   }
 }

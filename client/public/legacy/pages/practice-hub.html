@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zulfishan — Daily Practice</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Noto+Nastaliq+Urdu:wght@500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/base.css">
+<link rel="stylesheet" href="../css/app-shell.css">
+<link rel="stylesheet" href="../css/practice.css">
+<link rel="stylesheet" href="../css/components.css">
+</head>
+<body>
+
+<div class="app sidebar-open">
+  <aside class="sidebar">
+    <div>
+      <div class="brand"><img src="../assets/img/logo-mark.png" alt="Zulfishan" class="brand-logo">Zulfishan</div>
+      <nav>
+        <div class="nav-group-label" data-i18n="navLearn">Learn</div>
+        <a href="course-catalogue.html"><span class="dot"></span><span data-i18n="navCourses">Courses</span></a>
+        <a href="mushaf.html"><span class="dot"></span><span data-i18n="navMushaf">Qur'an</span></a>
+        <a href="hifz-tracker.html"><span class="dot"></span><span data-i18n="navHifz">My Hifz Tracker</span></a>
+        <div class="nav-group-label" data-i18n="navPractice">Practice</div>
+        <a href="practice-hub.html" class="active"><span class="dot"></span><span data-i18n="navDailyPractice">Daily Practice</span></a>
+        <a href="fatwa.html"><span class="dot"></span><span data-i18n="navFatwa">Fatwa Q&A</span></a>
+        <a href="duas.html"><span class="dot"></span><span data-i18n="navDuas">Dua &amp; Azkar</span></a>
+        <a href="hijri-calendar.html"><span class="dot"></span><span data-i18n="navHijri">Hijri Calendar</span></a>
+        <a href="zakat-calculator.html"><span class="dot"></span><span data-i18n="navZakat">Zakat Calculator</span></a>
+        <div class="nav-group-label" data-i18n="navMore">More</div>
+        <a href="marketplace.html"><span class="dot"></span><span data-i18n="navMarketplace">Marketplace</span></a>
+        <a href="community.html"><span class="dot"></span><span data-i18n="navCommunity">Community</span></a>
+        <div class="nav-group-label" data-i18n="navAccount">Account</div>
+        <a href="profile.html"><span class="dot"></span><span data-i18n="navProfile">Profile</span></a>
+      </nav>
+    </div>
+    <div class="sidebar-foot">
+      <button class="lang-toggle" onclick="toggleLang()" style="width:100%; color:#fff; border-color:rgba(255,255,255,0.3); margin-bottom:14px;">اردو / EN</button>
+      <a href="profile.html" style="text-decoration:none; color:inherit;">
+      <div class="user-chip link">
+        <div class="av"></div>
+        <div><div class="name" data-i18n="userName">Ahmad Raza</div><div class="role" data-i18n="userRole">Learner</div></div>
+      </div>
+      </a>
+    </div>
+  </aside>
+
+  <div class="sidebar-overlay"></div>
+
+  <div class="main">
+    <div class="topbar-inner">
+      <div class="page-title-group"><button class="menu-toggle" id="sidebarToggle" aria-label="Toggle menu"><span></span></button><div class="page-title" data-i18n="pageTitle">Daily Practice</div></div>
+      <div class="topbar-actions">
+        <span class="offline-pill"><span class="sq"></span><span data-i18n="offlinePill">Cached for offline use</span></span>
+      </div>
+    </div>
+
+    <div class="content">
+
+      <div class="practice-grid">
+
+        <!-- Prayer times card -->
+        <div class="pcard span2">
+          <div class="pcard-head">
+            <div><div class="eyebrow"><span data-i18n="prayerEyebrowPrefix">TODAY ·</span> <span id="prayerCityLabel">Peshawar</span></div><h2 data-i18n="prayerHeading">Namaz Timings</h2></div>
+            <button id="changeLocationBtn" class="btn btn-ghost sm" data-i18n="changeLocation">Change location</button>
+          </div>
+          <div class="prayer-row">
+            <div class="prayer-cell" id="cell-fajr"><div class="lbl" data-i18n="lblFajr">Fajr</div><div class="time" id="time-fajr">4:52 AM</div></div>
+            <div class="prayer-cell active" id="cell-zuhr"><div class="lbl" data-i18n="lblZuhr">Zuhr</div><div class="time" id="time-zuhr">12:31 PM</div><div class="next-tag" data-i18n="nextTag">Next</div></div>
+            <div class="prayer-cell" id="cell-asr"><div class="lbl" data-i18n="lblAsr">Asr</div><div class="time" id="time-asr">4:48 PM</div></div>
+            <div class="prayer-cell" id="cell-maghrib"><div class="lbl" data-i18n="lblMaghrib">Maghrib</div><div class="time" id="time-maghrib">7:02 PM</div></div>
+            <div class="prayer-cell" id="cell-isha"><div class="lbl" data-i18n="lblIsha">Isha</div><div class="time" id="time-isha">8:24 PM</div></div>
+          </div>
+          <div class="pcard-foot">
+            <label class="check"><input type="checkbox" id="notifyToggle" checked> <span data-i18n="notifyCheck">Notify me 10 minutes before each prayer</span></label>
+            <span class="method-tag" data-i18n="methodTag">Method: University of Islamic Sciences, Karachi</span>
+          </div>
+        </div>
+
+        <!-- Qibla -->
+        <div class="pcard">
+          <div class="pcard-head">
+            <div><div class="eyebrow" data-i18n="qiblaEyebrow">DIRECTION</div><h2 data-i18n="qiblaHeading">Qibla</h2></div>
+            <button id="qiblaLocateBtn" class="btn btn-ghost sm" data-i18n="useMyLocation">Use my location</button>
+          </div>
+          <div class="qibla-dial">
+            <div class="dial-ring"></div>
+            <div class="dial-needle" id="dialNeedle"></div>
+            <div class="dial-kaaba"><span class="tilemark"><i></i><i></i><i></i><i></i></span></div>
+          </div>
+          <div class="qibla-deg" id="qiblaDegLabel">259° WSW</div>
+          <p class="pcard-note" data-i18n="qiblaNote">Hold your phone flat. Calibrate compass if the needle drifts.</p>
+        </div>
+
+        <!-- Tasbih -->
+        <div class="pcard">
+          <div class="eyebrow" data-i18n="dhikrEyebrow">DHIKR</div>
+          <h2 data-i18n="tasbihHeading">Digital Tasbih</h2>
+          <div class="tasbih-count" id="tasbihCount">0</div>
+          <div class="tasbih-label" id="tasbihLabel">SubhanAllah</div>
+          <button id="tasbihBtn" class="btn btn-primary" style="margin-top:16px; width:100%;" data-i18n="tapToCount">Tap to Count</button>
+          <button id="tasbihResetBtn" class="reset-link" data-i18n="reset">Reset</button>
+        </div>
+
+        <!-- Fatwa Q&A -->
+        <div class="pcard span2">
+          <div class="pcard-head">
+            <div><div class="eyebrow" data-i18n="fatwaEyebrow">ASK A SCHOLAR</div><h2 data-i18n="fatwaHeading">Fatwa Q&A</h2></div>
+            <button id="askQuestionBtn" class="btn btn-primary sm" data-i18n="askQuestion">Ask a Question</button>
+          </div>
+          <div class="fatwa-mini" id="fatwaMini">
+            <div class="fq-row" data-seeded="1">
+              <div class="fq-text" data-i18n="fq1">Is Zakat due on jewellery worn daily, or only on stored gold?</div>
+              <span class="status-badge"><span class="sq"></span><span data-i18n="authentic">Authentic Fatwa</span></span>
+            </div>
+            <div class="fq-row" data-seeded="1">
+              <div class="fq-text" data-i18n="fq2">Can Taraweeh be shortened due to illness?</div>
+              <span class="status-badge pending"><span class="sq"></span><span data-i18n="underReview">Under Review</span></span>
+            </div>
+          </div>
+          <div class="pcard-foot" style="border-top:none; margin-top:14px; padding-top:0;">
+            <a href="fatwa.html" class="see-all-link" data-i18n="seeAllQuestions">See all questions →</a>
+          </div>
+          <div class="madhab-note-inline"><span class="sq"></span><span data-i18n="madhabNote">Answers are labelled by school of thought where scholars differ — Zulfishan takes no official position on disputed rulings.</span></div>
+        </div>
+
+        <!-- Zakat teaser -->
+        <div class="pcard zakat-teaser">
+          <div class="eyebrow" data-i18n="calcEyebrow">CALCULATE</div>
+          <h2 data-i18n="zakatHeading">Zakat Calculator</h2>
+          <p class="pcard-note" data-i18n="zakatNote">Work out what's due across cash, gold, and business assets using this year's nisab rate.</p>
+          <a href="zakat-calculator.html"><button class="btn btn-primary" style="width:100%; margin-top:6px;" data-i18n="openCalculator">Open Calculator</button></a>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- Change location modal -->
+<div class="modal-overlay" id="locationModal">
+  <div class="modal-box">
+    <div class="modal-head">
+      <h3 data-i18n="chooseCity">Choose your city</h3>
+      <button class="modal-close" id="locationModalClose">&times;</button>
+    </div>
+    <div class="city-list">
+      <button class="city-opt" data-city="peshawar">Peshawar</button>
+      <button class="city-opt" data-city="karachi">Karachi</button>
+      <button class="city-opt" data-city="lahore">Lahore</button>
+      <button class="city-opt" data-city="islamabad">Islamabad</button>
+      <button class="city-opt" data-city="dubai">Dubai</button>
+    </div>
+  </div>
+</div>
+
+<!-- Ask a question modal -->
+<div class="modal-overlay" id="fatwaModal">
+  <div class="modal-box">
+    <div class="modal-head">
+      <h3 data-i18n="askQuestion">Ask a Question</h3>
+      <button class="modal-close" id="fatwaModalClose">&times;</button>
+    </div>
+    <p class="pcard-note" data-i18n="fatwaModalNote">Your question is sent to verified scholars and shown here once it's answered or under review.</p>
+    <textarea id="fatwaInput" class="fatwa-textarea" data-i18n-placeholder="fatwaPlaceholder" placeholder="Type your question here…"></textarea>
+    <button id="fatwaSubmitBtn" class="btn btn-primary" style="width:100%; margin-top:12px;" data-i18n="submitQuestion">Submit Question</button>
+  </div>
+</div>
+
+<script src="../js/i18n-practice.js"></script>
+<script src="../js/i18n.js"></script>
+<script src="../js/app-shell.js"></script>
+<script src="../js/practice.js"></script>
+</body>
+</html>
