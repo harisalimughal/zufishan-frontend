@@ -137,6 +137,7 @@ export interface HijriDateData {
     regionNote?: string
   }
   currentEvent: IslamicEvent | null
+  monthEvents?: IslamicEvent[]
   nearbyEvents: IslamicEvent[]
 }
 

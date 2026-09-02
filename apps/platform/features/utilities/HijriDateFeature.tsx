@@ -202,6 +202,11 @@ export function HijriDateFeature() {
   const eventByDay = useCallback(() => {
     const map: Record<number, IslamicEvent> = {}
     if (!data) return map
+    if (data.monthEvents && data.monthEvents.length > 0) {
+      for (const evt of data.monthEvents) {
+        map[evt.hijriDay] = evt
+      }
+    }
     for (const evt of data.nearbyEvents) {
       if (evt.hijriMonthNumber === data.hijri.month.number) {
         map[evt.hijriDay] = evt
@@ -218,6 +223,11 @@ export function HijriDateFeature() {
   const hijriMonth = data?.hijri.month.number ?? 1
   const hijriYear = data?.hijri.year ?? 1448
   const isRamadanMonth = hijriMonth === 9
+
+  // Month events array
+  const displayedMonthEvents = data?.monthEvents && data.monthEvents.length > 0
+    ? data.monthEvents
+    : Object.values(eventMap)
 
   // Approximate days in this hijri month (29 or 30)
   const monthDays = (hijriMonth % 2 === 1 && hijriMonth !== 11) ? 30 : 29
@@ -367,11 +377,37 @@ export function HijriDateFeature() {
             )}
           </AnimatePresence>
 
+          {/* Events in this month */}
+          {displayedMonthEvents.length > 0 && (
+            <div className="space-y-2">
+              <p className="text-xs font-semibold uppercase tracking-wider text-gray-400">
+                Events in {HIJRI_MONTHS[hijriMonth - 1]}
+              </p>
+              {displayedMonthEvents.map((evt, i) => (
+                <motion.div key={evt.name + i}
+                  initial={{ opacity: 0, x: -8 }} animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: i * 0.04 }}
+                  className="flex items-center gap-3 rounded-xl border border-[#27272A] bg-[#111827] px-4 py-2.5"
+                >
+                  <span className="h-2.5 w-2.5 rounded-full shrink-0" style={{ background: categoryColor(evt.category) }} />
+                  <div className="min-w-0 flex-1">
+                    <p className="text-xs font-semibold text-white truncate">{evt.name}</p>
+                    {evt.nameAr && <p className="text-[10px] text-emerald-400 font-serif">{evt.nameAr}</p>}
+                    <p className="text-[10px] text-gray-500">{evt.hijriFormatted}</p>
+                  </div>
+                  <span className="text-[10px] font-bold text-[#10b981] bg-[#10b981]/10 px-2 py-0.5 rounded-md">
+                    {evt.hijriDay} {HIJRI_MONTHS[hijriMonth - 1]}
+                  </span>
+                </motion.div>
+              ))}
+            </div>
+          )}
+
           {/* Upcoming events strip */}
           {data.nearbyEvents.length > 0 && (
-            <div className="space-y-2">
-              <p className="text-xs font-semibold uppercase tracking-wider text-gray-400">Upcoming Events</p>
-              {data.nearbyEvents.slice(0, 5).map((evt, i) => (
+            <div className="space-y-2 pt-2">
+              <p className="text-xs font-semibold uppercase tracking-wider text-gray-400">Upcoming Observances</p>
+              {data.nearbyEvents.slice(0, 6).map((evt, i) => (
                 <motion.div key={evt.name + i}
                   initial={{ opacity: 0, x: -8 }} animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: i * 0.04 }}
@@ -383,7 +419,7 @@ export function HijriDateFeature() {
                     <p className="text-[10px] text-gray-500">{evt.hijriFormatted}</p>
                   </div>
                   <span className="text-[10px] font-bold text-emerald-400 shrink-0 bg-emerald-500/10 border border-emerald-500/20 px-2 py-0.5 rounded-full">
-                    {evt.daysRemaining === 0 ? 'Today' : `${evt.daysRemaining}d`}
+                    {evt.daysRemaining === 0 ? 'Today' : `In ${evt.daysRemaining}d`}
                   </span>
                 </motion.div>
               ))}
