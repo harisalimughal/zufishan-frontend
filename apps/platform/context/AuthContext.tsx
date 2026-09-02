@@ -38,7 +38,17 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const fetchUserSession = async () => {
     if (AUTH_DISABLED) {
       const stored = typeof window !== "undefined" ? localStorage.getItem(MOCK_USER_KEY) : null;
-      setUser(stored ? JSON.parse(stored) : null);
+      const defaultUser: UserProfile = {
+        id: "mock-user-id",
+        email: "demo@zufishan.com",
+        fullName: "Demo Student",
+        role: "STUDENT"
+      };
+      const activeUser = stored ? JSON.parse(stored) : defaultUser;
+      if (!stored && typeof window !== "undefined") {
+        localStorage.setItem(MOCK_USER_KEY, JSON.stringify(defaultUser));
+      }
+      setUser(activeUser);
       setIsLoading(false);
       return;
     }
@@ -67,6 +77,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     fetchUserSession();
 
     const handleUnauthorized = () => {
+      if (AUTH_DISABLED) return;
       setUser(null);
       router.push("/login");
     };

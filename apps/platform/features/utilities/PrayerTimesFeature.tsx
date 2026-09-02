@@ -308,6 +308,7 @@ function LoadingSkeleton() {
 
 export function PrayerTimesFeature() {
   const [coords, setCoords] = useState<{ lat: number; lng: number } | null>(null)
+  const [cityName, setCityName] = useState<string>('')
   const [geoError, setGeoError] = useState<'denied' | 'unavailable' | null>(null)
   const [isOffline, setIsOffline] = useState(false)
   const [method, setMethod] = useState('Karachi')
@@ -326,7 +327,7 @@ export function PrayerTimesFeature() {
     }
   }, [])
 
-  // ── Request geolocation ───────────────────────────────────────────────────
+  // ── Request geolocation & Reverse Geocode City Name ──────────────────────
   const requestLocation = () => {
     setGeoError(null)
     if (!navigator.geolocation) {
@@ -334,7 +335,29 @@ export function PrayerTimesFeature() {
       return
     }
     navigator.geolocation.getCurrentPosition(
-      (pos) => setCoords({ lat: pos.coords.latitude, lng: pos.coords.longitude }),
+      (pos) => {
+        const lat = pos.coords.latitude
+        const lng = pos.coords.longitude
+        setCoords({ lat, lng })
+
+        // Reverse geocode to get city name
+        fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lng}`)
+          ? fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lng}`)
+              .then((res) => res.json())
+              .then((geoData) => {
+                const city =
+                  geoData.address?.city ||
+                  geoData.address?.town ||
+                  geoData.address?.village ||
+                  geoData.address?.state_district ||
+                  geoData.address?.country ||
+                  ''
+                const country = geoData.address?.country || ''
+                if (city) setCityName(country ? `${city}, ${country}` : city)
+              })
+              .catch(() => {})
+          : null
+      },
       (err) => {
         if (err.code === err.PERMISSION_DENIED) setGeoError('denied')
         else setGeoError('unavailable')
@@ -409,25 +432,19 @@ export function PrayerTimesFeature() {
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          className="flex items-center gap-2 rounded-lg border border-[#27272A] bg-[#111827] px-3 py-2"
+          className="flex items-center gap-2 rounded-lg border border-[#27272A] bg-[#111827] px-3.5 py-2.5"
         >
-          <MapPin className="h-3.5 w-3.5 text-[#10b981] shrink-0" />
+          <MapPin className="h-4 w-4 text-[#10b981] shrink-0" />
           <p className="text-xs text-gray-400">
-            {coords.lat.toFixed(4)}°N, {coords.lng.toFixed(4)}°E
+            {cityName && <span className="font-semibold text-white mr-2">{cityName} &bull;</span>}
+            <span className="tabular-nums">{coords.lat.toFixed(4)}°N, {coords.lng.toFixed(4)}°E</span>
             {data?.meta.timezone && (
-              <> &bull; <span className="text-white">{data.meta.timezone}</span></>
+              <> &bull; <span className="text-gray-300">{data.meta.timezone}</span></>
             )}
           </p>
         </motion.div>
       )}
 
-      {/* Settings accordion */}
-      <SettingsPanel
-        method={method}
-        asrMethod={asrMethod}
-        onMethodChange={setMethod}
-        onAsrMethodChange={setAsrMethod}
-      />
 
       {/* Content area */}
       {isOffline ? (

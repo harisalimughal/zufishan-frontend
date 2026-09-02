@@ -3,9 +3,9 @@
  *
  * Thin wrapper over apiClient that maps to:
  *   GET /v1/utilities/prayer-times
+ *   GET /v1/utilities/qibla
  *
- * Keeps the frontend in sync with the backend's response shape
- * (defined in prayerTimes.service.ts → PrayerTimesResult).
+ * Keeps the frontend in sync with the backend's response shapes.
  */
 
 import { apiClient } from '../lib/apiClient'
@@ -67,6 +67,92 @@ export interface PrayerTimesParams {
   date?:      string   // YYYY-MM-DD, omit for today
 }
 
+// ─── Types (mirror backend QiblaResult) ───────────────────────────────────────
+
+export interface QiblaData {
+  bearing:  number   // 0–360 degrees clockwise from true North
+  cardinal: string   // e.g. "NW", "SE"
+  location: { latitude: number; longitude: number }
+  kaaba:    { latitude: number; longitude: number }
+}
+
+export interface QiblaResponse {
+  success: boolean
+  message: string
+  data:    QiblaData
+}
+
+export interface QiblaParams {
+  lat: number
+  lng: number
+}
+
+// ─── Types (mirror backend HijriDateResponseData) ───────────────────────────────
+
+export interface GregorianDetails {
+  date: string
+  day: number
+  month: number
+  year: number
+  weekday: string
+  formatted: string
+}
+
+export interface HijriMonthDetails {
+  number: number
+  en: string
+  ar: string
+}
+
+export interface HijriDetails {
+  day: number
+  month: HijriMonthDetails
+  year: number
+  designation: string
+  formatted: string
+  provider: string
+  effectiveAdjustment: number
+}
+
+export interface IslamicEvent {
+  name: string
+  nameAr?: string
+  hijriDay: number
+  hijriMonthNumber: number
+  hijriMonthName: string
+  hijriYear: number
+  hijriFormatted: string
+  daysRemaining: number
+  category: string
+  description: string
+}
+
+export interface HijriDateData {
+  gregorian: GregorianDetails
+  hijri: HijriDetails
+  location?: {
+    latitude?: number
+    longitude?: number
+    adjustment: number
+    regionNote?: string
+  }
+  currentEvent: IslamicEvent | null
+  nearbyEvents: IslamicEvent[]
+}
+
+export interface HijriDateResponse {
+  success: boolean
+  message: string
+  data: HijriDateData
+}
+
+export interface HijriDateParams {
+  date?: string
+  lat?: number
+  lng?: number
+  adjustment?: number
+}
+
 // ─── Service ──────────────────────────────────────────────────────────────────
 
 export const utilityService = {
@@ -86,4 +172,35 @@ export const utilityService = {
     const response = await apiClient.get<PrayerTimesResponse>(endpoint)
     return response.data
   },
+
+  /**
+   * Fetch Qibla direction bearing from the backend.
+   * Pure math — no external API, instant response.
+   */
+  getQiblaDirection: async (params: QiblaParams): Promise<QiblaData> => {
+    const searchParams = new URLSearchParams()
+    searchParams.set('lat', String(params.lat))
+    searchParams.set('lng', String(params.lng))
+
+    const endpoint = `/v1/utilities/qibla?${searchParams.toString()}`
+    const response = await apiClient.get<QiblaResponse>(endpoint)
+    return response.data
+  },
+
+  /**
+   * Fetch converted Hijri date and nearby Islamic events from the backend.
+   * Supports location tracing and day adjustments.
+   */
+  getHijriDate: async (params?: HijriDateParams): Promise<HijriDateData> => {
+    const searchParams = new URLSearchParams()
+    if (params?.date) searchParams.set('date', params.date)
+    if (params?.lat !== undefined) searchParams.set('lat', String(params.lat))
+    if (params?.lng !== undefined) searchParams.set('lng', String(params.lng))
+    if (params?.adjustment !== undefined) searchParams.set('adjustment', String(params.adjustment))
+
+    const endpoint = `/v1/utilities/hijri-date?${searchParams.toString()}`
+    const response = await apiClient.get<HijriDateResponse>(endpoint)
+    return response.data
+  },
 }
+
