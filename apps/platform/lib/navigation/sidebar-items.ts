@@ -49,11 +49,12 @@ export const sidebarSections: SidebarSection[] = [
   {
     label: "Utilities",
     items: [
-      { title: "Prayer Times", href: "/prayer-times", icon: "Clock" },
-      { title: "Qibla",        href: "/qibla",        icon: "Compass" },
-      { title: "Zakat",        href: "/zakat",        icon: "Calculator" },
-      { title: "Azkar",        href: "/azkar",        icon: "BookOpen" },
-      { title: "AI Assistant", href: "/ai-assistant", icon: "Sparkles" }
+      { title: "Hijri Calendar", href: "/hijri-date",   icon: "Calendar" },
+      { title: "Prayer Times",   href: "/prayer-times", icon: "Clock" },
+      { title: "Qibla",          href: "/qibla",        icon: "Compass" },
+      { title: "Zakat",          href: "/zakat",        icon: "Calculator" },
+      { title: "Azkar",          href: "/azkar",        icon: "BookOpen" },
+      { title: "AI Assistant",   href: "/ai-assistant", icon: "Sparkles" }
     ]
   },
   {
