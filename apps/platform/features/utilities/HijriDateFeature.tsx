@@ -179,11 +179,14 @@ export function HijriDateFeature() {
     }, () => {}, { timeout: 8000 })
   }, [])
 
-  // Compute target Gregorian date from monthOffset
+  // Target Gregorian date calculation (using mid-month 28th anchor to guarantee 1-to-1 Hijri month sequence)
   const targetDate = useCallback(() => {
-    const d = new Date()
-    d.setMonth(d.getMonth() + monthOffset)
-    return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-01`
+    if (monthOffset === 0) return ''
+
+    // Base date anchored at 28th July 2026 (mid-Safar 1448 AH)
+    const d = new Date(Date.UTC(2026, 6, 28))
+    d.setUTCMonth(d.getUTCMonth() + monthOffset)
+    return `${d.getUTCFullYear()}-${String(d.getUTCMonth() + 1).padStart(2, '0')}-28`
   }, [monthOffset])
 
   const { data, isLoading, isError, error, refetch } = useQuery<HijriDateData, Error>({
