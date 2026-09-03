@@ -203,5 +203,68 @@ export const utilityService = {
     const response = await apiClient.get<HijriDateResponse>(endpoint)
     return response.data
   },
+
+  /**
+   * Fetch Zakat Nisab rates for a given currency and methodology.
+   * currency defaults to the user's local currency (auto-detected by the frontend).
+   * methodology defaults to SOUTH_ASIAN (7.5 tola = 87.48g — Darul Uloom Deoband).
+   */
+  getNisabRate: async (params?: NisabRateParams): Promise<NisabRateData> => {
+    const searchParams = new URLSearchParams()
+    if (params?.currency)    searchParams.set('currency',    params.currency)
+    if (params?.methodology) searchParams.set('methodology', params.methodology)
+
+    const endpoint = `/v1/utilities/zakat/nisab-rate?${searchParams.toString()}`
+    const response = await apiClient.get<NisabRateResponse>(endpoint)
+    return response.data
+  },
 }
+
+
+// ─── Zakat Nisab Types ────────────────────────────────────────────────────────
+
+export type NisabMethodology = 'SOUTH_ASIAN' | 'AAOIFI'
+
+export interface NisabRateParams {
+  /** ISO 4217 currency code — auto-detected from location by frontend */
+  currency?: string
+  /**
+   * SOUTH_ASIAN: 7.5 tola = 87.48g gold, 52.5 tola = 612.36g silver
+   *              (Darul Uloom Deoband — default for Pakistan / India)
+   * AAOIFI:      85g gold, 595g silver (international standard)
+   */
+  methodology?: NisabMethodology
+}
+
+export interface NisabMetalDetail {
+  pricePerGram:     number
+  nisabWeightGrams: number
+  nisabWeightTola:  number
+  nisabValue:       number
+}
+
+export interface NisabRateData {
+  currency:          string
+  gold:              NisabMetalDetail
+  silver:            NisabMetalDetail
+  lowerNisabValue:   number
+  methodology:       NisabMethodology
+  methodologyDetails: {
+    name:        string
+    description: string
+    reference:   string
+  }
+  effectiveDate: string
+  source:        string
+  fetchedAt:     string
+  isStale:       boolean
+  staleDays?:    number
+}
+
+export interface NisabRateResponse {
+  success: boolean
+  message: string
+  data:    NisabRateData
+}
+
 
