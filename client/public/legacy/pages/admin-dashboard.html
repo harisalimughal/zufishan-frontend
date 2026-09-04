@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zulfishan — Board &amp; Admin Dashboard</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Noto+Nastaliq+Urdu:wght@500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/base.css">
+<link rel="stylesheet" href="../css/app-shell.css">
+<link rel="stylesheet" href="../css/components.css">
+<link rel="stylesheet" href="../css/teacher-dashboard.css">
+</head>
+<body>
+
+<div class="app sidebar-open">
+  <aside class="sidebar">
+    <div>
+      <a href="homepage.html" class="brand brand-link"><img src="../assets/img/logo-mark.png" alt="Zulfishan" class="brand-logo">Zulfishan</a>
+      <nav>
+        <div class="nav-group-label" data-i18n="navGovernance">Governance</div>
+        <a href="#scholars" class="active"><span class="dot"></span><span data-i18n="navScholarReview">Scholar Verification</span></a>
+        <a href="#vendors"><span class="dot"></span><span data-i18n="navVendorReview">Vendor Verification</span></a>
+        <a href="#moderation"><span class="dot"></span><span data-i18n="navModeration">Content Moderation</span></a>
+        <a href="#fatwa-oversight"><span class="dot"></span><span data-i18n="navFatwaOversight">Fatwa Oversight</span></a>
+        <div class="nav-group-label" data-i18n="navPlatform">Platform</div>
+        <a href="#reports"><span class="dot"></span><span data-i18n="navReports">User Reports</span></a>
+        <div class="nav-group-label" data-i18n="navAccount">Account</div>
+        <a href="admin-profile.html"><span class="dot"></span><span data-i18n="navProfile">Profile</span></a>
+      </nav>
+    </div>
+    <div class="sidebar-foot">
+      <button class="lang-toggle" onclick="toggleLang()" style="width:100%; color:#fff; border-color:rgba(255,255,255,0.3);">اردو / EN</button>
+      <a href="admin-profile.html" style="text-decoration:none; color:inherit;">
+      <div class="user-chip link">
+        <div class="av"></div>
+        <div><div class="name" data-i18n="userName" data-session="name">Dr. Imran Siddiqui</div><div class="role" data-i18n="userRole" data-session="role">Advisory Board · Admin</div></div>
+      </div>
+      </a>
+    </div>
+  </aside>
+
+  <div class="sidebar-overlay"></div>
+
+  <div class="main">
+    <div class="topbar-inner">
+      <div class="page-title-group"><button class="menu-toggle" id="sidebarToggle" aria-label="Toggle menu"><span></span></button><div class="page-title" data-i18n="pageTitle">Board &amp; Admin Dashboard</div></div>
+      <div class="topbar-actions">
+        <a href="login.html" onclick="window.zfSession && window.zfSession.clear();"><button class="btn btn-ghost sm" data-i18n="signOut">Sign Out</button></a>
+      </div>
+    </div>
+
+    <div class="content">
+
+      <div class="td-head">
+        <div class="td-head-copy">
+          <h1 data-i18n="greeting" data-session="greeting">Assalamu Alaikum, Dr. Imran Siddiqui</h1>
+          <div class="td-cred-row">
+            <span class="chip"><span class="tilemark"><i></i><i></i><i></i><i></i></span><span data-i18n="restrictedPortal">Restricted Portal</span></span>
+            <span class="chip" data-i18n="chipLogged">All Activity Logged</span>
+          </div>
+          <div class="td-verified-note" data-i18n="verifiedNote">Scholar Advisory Board · Governance &amp; moderation session</div>
+        </div>
+      </div>
+
+      <!-- Quick stats -->
+      <div class="td-stat-row">
+        <div class="td-stat-card">
+          <div class="eyebrow" data-i18n="statScholarsEyebrow">SCHOLAR APPLICATIONS</div>
+          <div class="big" id="statScholars">3</div>
+          <div class="sub" data-i18n="statScholarsSub">awaiting credential review</div>
+        </div>
+        <div class="td-stat-card">
+          <div class="eyebrow" data-i18n="statVendorsEyebrow">VENDOR APPLICATIONS</div>
+          <div class="big" id="statVendors">2</div>
+          <div class="sub" data-i18n="statVendorsSub">awaiting document review</div>
+        </div>
+        <div class="td-stat-card">
+          <div class="eyebrow" data-i18n="statModerationEyebrow">MODERATION QUEUE</div>
+          <div class="big" id="statModeration">4</div>
+          <div class="sub" data-i18n="statModerationSub">courses, posts &amp; listings</div>
+        </div>
+        <div class="td-stat-card">
+          <div class="eyebrow" data-i18n="statReportsEyebrow">OPEN REPORTS</div>
+          <div class="big" id="statReports">2</div>
+          <div class="sub" data-i18n="statReportsSub">flagged by users</div>
+        </div>
+      </div>
+
+      <div class="td-layout">
+        <!-- LEFT COLUMN -->
+        <div class="td-col">
+
+          <div class="td-panel" id="scholars">
+            <div class="panel-head">
+              <div><h2 data-i18n="scholarsHeading">Scholar Verification Queue</h2><p data-i18n="scholarsSub">Review credential submissions before granting a "Verified Ustaz" badge.</p></div>
+            </div>
+            <div id="scholarList"></div>
+          </div>
+
+          <div class="td-panel" id="vendors">
+            <div class="panel-head">
+              <div><h2 data-i18n="vendorsHeading">Vendor Verification Queue</h2><p data-i18n="vendorsSub">Ehram / Kafan listings need an extra fabric &amp; material compliance check.</p></div>
+            </div>
+            <div id="vendorList"></div>
+          </div>
+
+          <div class="td-panel" id="moderation">
+            <div class="panel-head">
+              <div><h2 data-i18n="moderationHeading">Content Moderation</h2><p data-i18n="moderationSub">Courses, forum posts and marketplace listings before they go public.</p></div>
+            </div>
+            <div id="moderationList"></div>
+          </div>
+
+        </div>
+
+        <!-- RIGHT COLUMN -->
+        <div class="td-col">
+
+          <div class="td-panel" id="fatwa-oversight">
+            <div class="panel-head">
+              <div><h2 data-i18n="fatwaOversightHeading">Fatwa Sign-off Overview</h2><p data-i18n="fatwaOversightSub">Needs 3 independent scholar sign-offs before "Authentic Fatwa."</p></div>
+            </div>
+            <div id="fatwaOversightList"></div>
+          </div>
+
+          <div class="td-panel" id="reports">
+            <div class="panel-head">
+              <div><h2 data-i18n="reportsHeading">User Reports</h2></div>
+            </div>
+            <div id="reportsList"></div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script src="../js/i18n-admin-dashboard.js"></script>
+<script src="../js/i18n.js"></script>
+<script src="../js/app-shell.js"></script>
+<script src="../js/admin-dashboard.js"></script>
+<script src="../js/session.js"></script>
+</body>
+</html>

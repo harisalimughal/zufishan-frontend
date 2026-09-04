@@ -3,7 +3,7 @@
 // (js/i18n-signup.js, keys flow<Role>Title/Sub/SideH/SideB) so it can
 // switch language along with everything else on the page.
 
-const flowSteps = { learner: 3, teacher: 3, vendor: 3, admin: 1 };
+const flowSteps = { learner: 2, teacher: 2, vendor: 3, admin: 1 };
 
 let currentRole = null;
 let currentStep = 1;
@@ -27,6 +27,17 @@ function getFlowCopy(role){
 document.querySelectorAll('#roleGrid .role-btn').forEach(btn => {
   btn.addEventListener('click', () => startFlow(btn.dataset.role));
 });
+
+// If someone arrived via a role-specific link (e.g. the login page's
+// "Create a learner account"), skip the "which role?" picker entirely —
+// they already told us which one they want.
+(function skipPickerIfRoleKnown(){
+  const params = new URLSearchParams(window.location.search);
+  const requestedRole = params.get('role');
+  if (requestedRole && flowSteps.hasOwnProperty(requestedRole)) {
+    startFlow(requestedRole);
+  }
+})();
 
 function startFlow(role){
   currentRole = role;
@@ -86,9 +97,29 @@ function renderStep(){
   document.getElementById('backNote').style.display = currentStep === 1 ? 'block' : 'none';
 }
 
+const DASHBOARD_ROUTES = { learner: '/profile', teacher: '/teacher-dashboard' };
+
 function nextStep(){ currentStep++; renderStep(); }
 function prevStep(){ currentStep--; renderStep(); }
-function finishFlow(role){ currentStep = flowSteps[role]; renderStep(); }
+function finishFlow(role){
+  if (window.zfSession) {
+    const nameInput = document.getElementById(role + 'Name');
+    const emailInput = document.getElementById(role + 'Email');
+    const name = nameInput ? nameInput.value.trim() : '';
+    const identifier = emailInput ? emailInput.value.trim() : '';
+    window.zfSession.save(role, identifier, name);
+  }
+  // Learner and Ustaz accounts are usable immediately, so skip the extra
+  // "you're all set, now click through" confirmation screen and land
+  // straight on their dashboard.
+  const dashboard = DASHBOARD_ROUTES[role];
+  if (dashboard) {
+    window.location.href = dashboard;
+    return;
+  }
+  currentStep = flowSteps[role];
+  renderStep();
+}
 
 function isValidEmail(v){
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);

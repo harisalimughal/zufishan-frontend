@@ -68,8 +68,10 @@ function renderGrid(){
   grid.querySelectorAll('.sp-chip').forEach(chip=>{
     chip.addEventListener('click', ()=>{
       document.getElementById('logSurahSelect').value = chip.getAttribute('data-num');
-      document.getElementById('logPercent').value = HIFZ_SURAHS.find(s=>s.num==chip.getAttribute('data-num')).pct;
-      document.getElementById('logPercent').nextElementSibling.textContent = document.getElementById('logPercent').value + '%';
+      const range = document.getElementById('logPercent');
+      range.value = HIFZ_SURAHS.find(s=>s.num==chip.getAttribute('data-num')).pct;
+      range.nextElementSibling.textContent = range.value + '%';
+      range.style.setProperty('--range-progress', range.value + '%');
     });
   });
 }
@@ -138,6 +140,10 @@ window.onLanguageChange = renderAll;
 document.addEventListener('DOMContentLoaded', () => {
   renderAll();
   const range = document.getElementById('logPercent');
-  range.addEventListener('input', ()=>{ range.nextElementSibling.textContent = range.value + '%'; });
+  range.style.setProperty('--range-progress', range.value + '%');
+  range.addEventListener('input', ()=>{
+    range.nextElementSibling.textContent = range.value + '%';
+    range.style.setProperty('--range-progress', range.value + '%');
+  });
   document.getElementById('saveLogBtn').addEventListener('click', saveLog);
 });

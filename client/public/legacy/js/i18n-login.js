@@ -43,7 +43,7 @@ window.roleTranslations = {
       note: "",
       banner: null,
       submit: "Sign in as Learner",
-      signup: 'New to Zulfishan? <a href="signup.html">Create a learner account</a>',
+      signup: 'New to Zulfishan? <a href="/signup?role=learner">Create a learner account</a>',
       sideHeadline: "Every role enters through the door built for what they need.",
       sideBody: "Learners track Hifz and ask a verified scholar. Teachers publish once the Advisory Board confirms their credentials. Vendors list once their documents clear review."
     },
@@ -54,7 +54,7 @@ window.roleTranslations = {
       note: "Not verified yet? You can still sign in — your dashboard will show credential review status.",
       banner: "Sanad and madrasa credentials are required before your first course goes live.",
       submit: "Sign in as Ustaz",
-      signup: 'Applying to teach? <a href="signup.html">Submit your credentials</a>',
+      signup: 'Applying to teach? <a href="/signup?role=teacher">Submit your credentials</a>',
       sideHeadline: "Your name goes on every lesson you publish.",
       sideBody: "The Advisory Board reviews your sanad and madrasa record before your first class goes live — every published lecture carries your verified name and credentials."
     },
@@ -65,7 +65,7 @@ window.roleTranslations = {
       note: "Ehram, Kafan and other ritual-sensitive listings require an additional verification step reviewed by the Advisory Board.",
       banner: "Vendor verification status is shown right after you sign in.",
       submit: "Sign in as Vendor",
-      signup: 'Want to sell on Zulfishan? <a href="signup.html">Start vendor onboarding</a>',
+      signup: 'Want to sell on Zulfishan? <a href="/signup?role=vendor">Start vendor onboarding</a>',
       sideHeadline: "Trust here is separate from — and as strict as — scholar verification.",
       sideBody: "Every vendor clears document review before listing. Ritual-sensitive categories like Ehram and Kafan carry an extra compliance check."
     },
@@ -89,7 +89,7 @@ window.roleTranslations = {
       note: "",
       banner: null,
       submit: "بطور طالب علم سائن ان کریں",
-      signup: 'زلفشاں پر نئے ہیں؟ <a href="signup.html">طالب علم اکاؤنٹ بنائیں</a>',
+      signup: 'زلفشاں پر نئے ہیں؟ <a href="/signup?role=learner">طالب علم اکاؤنٹ بنائیں</a>',
       sideHeadline: "ہر کردار کے لیے اُس کی ضرورت کے مطابق ایک الگ دروازہ۔",
       sideBody: "طالب علم اپنا حفظ ٹریک کرتے ہیں اور تصدیق شدہ عالم سے سوال پوچھتے ہیں۔ اساتذہ ایڈوائزری بورڈ کی تصدیق کے بعد پبلش کرتے ہیں۔ وینڈرز دستاویزات کی جانچ مکمل ہونے کے بعد فہرست بناتے ہیں۔"
     },
@@ -100,7 +100,7 @@ window.roleTranslations = {
       note: "ابھی تصدیق نہیں ہوئی؟ آپ پھر بھی سائن ان کر سکتے ہیں — آپ کا ڈیش بورڈ اسناد کے جائزے کی صورتحال دکھائے گا۔",
       banner: "پہلا کورس شائع ہونے سے پہلے سند اور مدرسے کی اسناد درکار ہیں۔",
       submit: "بطور استاذ سائن ان کریں",
-      signup: 'پڑھانے کے لیے درخواست دینا چاہتے ہیں؟ <a href="signup.html">اپنی اسناد جمع کروائیں</a>',
+      signup: 'پڑھانے کے لیے درخواست دینا چاہتے ہیں؟ <a href="/signup?role=teacher">اپنی اسناد جمع کروائیں</a>',
       sideHeadline: "آپ کا نام ہر اُس سبق پر ہوتا ہے جو آپ شائع کرتے ہیں۔",
       sideBody: "ایڈوائزری بورڈ آپ کی سند اور مدرسے کا ریکارڈ جانچتا ہے اس سے پہلے کہ آپ کی پہلی کلاس شائع ہو — ہر شائع شدہ لیکچر آپ کے تصدیق شدہ نام اور اسناد کے ساتھ ہوتا ہے۔"
     },
@@ -111,7 +111,7 @@ window.roleTranslations = {
       note: "احرام، کفن اور دیگر مذہبی لحاظ سے حساس مصنوعات کے لیے ایڈوائزری بورڈ کی اضافی تصدیق درکار ہے۔",
       banner: "وینڈر تصدیق کی صورتحال سائن ان کرنے کے فوراً بعد دکھائی جاتی ہے۔",
       submit: "بطور وینڈر سائن ان کریں",
-      signup: 'زلفشاں پر فروخت کرنا چاہتے ہیں؟ <a href="signup.html">وینڈر آن بورڈنگ شروع کریں</a>',
+      signup: 'زلفشاں پر فروخت کرنا چاہتے ہیں؟ <a href="/signup?role=vendor">وینڈر آن بورڈنگ شروع کریں</a>',
       sideHeadline: "یہاں اعتماد، عالم کی تصدیق سے الگ — مگر اتنا ہی سخت ہے۔",
       sideBody: "ہر وینڈر فہرست بنانے سے پہلے دستاویزات کی جانچ سے گزرتا ہے۔ احرام اور کفن جیسی حساس اقسام میں اضافی تعمیل چیک ہوتا ہے۔"
     },

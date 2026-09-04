@@ -26,6 +26,31 @@ html[dir="rtl"] .city-opt{text-align:right;}
 .empty-state{text-align:center; padding:48px 20px; color:rgba(36,26,16,0.5);}
 .empty-state h3{font-family:'Bricolage Grotesque',sans-serif; color:var(--ink); margin-bottom:8px;}
 
+/* custom range slider (e.g. Hifz "how much is memorized?") — replaces the
+   raw browser control, which renders as an unstyled grey/blue track+thumb
+   that clashes with the rest of the design. */
+input[type="range"]{
+  -webkit-appearance:none; appearance:none;
+  width:100%; height:6px; border-radius:3px;
+  background:linear-gradient(90deg, var(--azure) 0%, var(--azure) var(--range-progress, 50%), var(--line) var(--range-progress, 50%), var(--line) 100%);
+  outline:none; cursor:pointer; margin:4px 0;
+}
+input[type="range"]::-webkit-slider-thumb{
+  -webkit-appearance:none; appearance:none;
+  width:18px; height:18px; border-radius:50%;
+  background:var(--azure); border:3px solid #fff;
+  box-shadow:0 0 0 1.5px var(--azure), 0 2px 6px rgba(36,26,16,0.25);
+  cursor:pointer; transition:transform .15s;
+}
+input[type="range"]::-webkit-slider-thumb:hover{transform:scale(1.1);}
+input[type="range"]::-moz-range-track{height:6px; border-radius:3px; background:var(--line);}
+input[type="range"]::-moz-range-progress{height:6px; border-radius:3px; background:var(--azure);}
+input[type="range"]::-moz-range-thumb{
+  width:16px; height:16px; border-radius:50%; border:3px solid #fff;
+  background:var(--azure); box-shadow:0 0 0 1.5px var(--azure), 0 2px 6px rgba(36,26,16,0.25);
+  cursor:pointer;
+}
+
 /* toast confirmation, used after actions like posting or ordering */
 .toast{position:fixed; bottom:26px; left:50%; transform:translateX(-50%) translateY(20px); background:var(--navy); color:#fff; padding:12px 20px; border-radius:8px; font-size:0.85rem; font-weight:600; opacity:0; pointer-events:none; transition:opacity .25s, transform .25s; z-index:200; display:flex; align-items:center; gap:8px;}
 .toast.show{opacity:1; transform:translateX(-50%) translateY(0);}

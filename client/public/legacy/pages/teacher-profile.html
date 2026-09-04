@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zulfishan — My Profile (Ustaz)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Noto+Nastaliq+Urdu:wght@500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/base.css">
+<link rel="stylesheet" href="../css/app-shell.css">
+<link rel="stylesheet" href="../css/profile.css">
+<link rel="stylesheet" href="../css/teacher-profile.css">
+</head>
+<body>
+
+<div class="app sidebar-open">
+  <aside class="sidebar">
+    <div>
+      <a href="homepage.html" class="brand brand-link"><img src="../assets/img/logo-mark.png" alt="Zulfishan" class="brand-logo">Zulfishan</a>
+      <nav>
+        <div class="nav-group-label" data-i18n="navTeaching">Teaching</div>
+        <a href="teacher-dashboard.html#courses"><span class="dot"></span><span data-i18n="navMyCourses">My Courses</span></a>
+        <a href="teacher-dashboard.html#content"><span class="dot"></span><span data-i18n="navContent">Content &amp; Lectures</span></a>
+        <a href="teacher-dashboard.html#live"><span class="dot"></span><span data-i18n="navLiveClasses">Live Classes</span></a>
+        <div class="nav-group-label" data-i18n="navTrust">Trust &amp; Governance</div>
+        <a href="teacher-dashboard.html#hifz-review"><span class="dot"></span><span data-i18n="navHifzReview">Hifz Review Queue</span></a>
+        <a href="teacher-dashboard.html#fatwa-queue"><span class="dot"></span><span data-i18n="navFatwaQueue">Fatwa Sign-off</span></a>
+        <div class="nav-group-label" data-i18n="navEarnings">Earnings</div>
+        <a href="teacher-dashboard.html#payouts"><span class="dot"></span><span data-i18n="navPayouts">Payouts</span></a>
+        <div class="nav-group-label" data-i18n="navAccount">Account</div>
+        <a href="teacher-profile.html" class="active"><span class="dot"></span><span data-i18n="navProfile">Profile</span></a>
+      </nav>
+    </div>
+    <div class="sidebar-foot">
+      <button class="lang-toggle" onclick="toggleLang()" style="width:100%; color:#fff; border-color:rgba(255,255,255,0.3);">اردو / EN</button>
+      <a href="teacher-profile.html" style="text-decoration:none; color:inherit;">
+      <div class="user-chip link">
+        <div class="av"></div>
+        <div><div class="name" data-i18n="userName" data-session="name">Mufti Abdul Rahman</div><div class="role" data-i18n="userRole" data-session="role">Verified Ustaz</div></div>
+      </div>
+      </a>
+    </div>
+  </aside>
+
+  <div class="sidebar-overlay"></div>
+
+  <div class="main">
+    <div class="topbar-inner">
+      <div class="page-title-group"><button class="menu-toggle" id="sidebarToggle" aria-label="Toggle menu"><span></span></button><div class="page-title" data-i18n="pageTitle">My Profile</div></div>
+      <div class="topbar-actions">
+        <a href="login.html" onclick="window.zfSession && window.zfSession.clear();"><button class="btn btn-ghost sm" data-i18n="signOut">Sign Out</button></a>
+      </div>
+    </div>
+
+    <div class="content narrow">
+
+      <!-- Identity header -->
+      <div class="profile-header">
+        <div class="ph-avatar"></div>
+        <div class="ph-info">
+          <h1 data-session="name">Mufti Abdul Rahman</h1>
+          <div class="ph-role"><span class="tilemark"><i></i><i></i><i></i><i></i></span><span data-i18n="roleTag">Verified Ustaz · Hanafi Fiqh · Joined Feb 2026</span></div>
+        </div>
+        <button class="btn btn-primary sm" data-i18n="editProfile">Edit Profile</button>
+      </div>
+
+      <!-- Quick stats -->
+      <div class="stat-row">
+        <div class="stat-card">
+          <div class="stat-num">4</div>
+          <div class="stat-label" data-i18n="statCourses">Active Courses</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">312</div>
+          <div class="stat-label" data-i18n="statStudents">Students Taught</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">Rs 84,300</div>
+          <div class="stat-label" data-i18n="statEarnings">This Month</div>
+        </div>
+      </div>
+
+      <!-- Tabs -->
+      <div class="tab-row">
+        <button class="tab-btn active" data-tab="account" data-i18n="tabAccount">Account Info</button>
+        <button class="tab-btn" data-tab="credentials" data-i18n="tabCredentials">Credentials &amp; Verification</button>
+        <button class="tab-btn" data-tab="payout" data-i18n="tabPayout">Payout Details</button>
+        <button class="tab-btn" data-tab="security" data-i18n="tabSecurity">Security</button>
+      </div>
+
+      <!-- Account Info tab -->
+      <div class="tab-panel active" data-panel="account">
+        <div class="panel-card">
+          <div class="field-row">
+            <div class="field"><label data-i18n="fullName">Full name</label><input type="text" value="Mufti Abdul Rahman" data-session="name"></div>
+            <div class="field"><label data-i18n="email">Email</label><input type="text" value="abdul.rahman@example.com" data-session="email"></div>
+          </div>
+          <div class="field-row">
+            <div class="field"><label data-i18n="phone">Phone</label><input type="text" value="+92 300 7654321"></div>
+            <div class="field"><label data-i18n="city">City</label><input type="text" value="Peshawar"></div>
+          </div>
+          <div class="field">
+            <label data-i18n="bio">Short bio</label>
+            <textarea class="fatwa-textarea" style="min-height:80px;" data-i18n-placeholder="bioPlaceholder" placeholder="A line or two about your teaching background, shown on your public scholar profile.">Graduate of Darul Uloom Karachi, teaching Tafsir and Hadith for 12 years. Hanafi fiqh, with a focus on Tajweed and Qur'an memorization support.</textarea>
+          </div>
+          <button class="btn btn-primary" data-i18n="saveChanges">Save Changes</button>
+        </div>
+      </div>
+
+      <!-- Credentials tab -->
+      <div class="tab-panel" data-panel="credentials">
+        <div class="panel-card">
+          <div class="cred-row">
+            <span class="cred-chip"><span class="sq"></span><span data-i18n="credVerified">Verified Ustaz</span></span>
+            <span class="cred-chip" data-i18n="credSanad">Sanad Verified</span>
+            <span class="cred-chip" data-i18n="credMadrasa">Madrasa Confirmed</span>
+            <span class="cred-chip" data-i18n="credBoard">Board Approved</span>
+          </div>
+          <p class="cred-note" data-i18n="credNote">Verified 14 Feb 2026 by the Scholar Advisory Board. Credential documents on file below — submit updated copies any time your affiliation or sanad changes.</p>
+
+          <div class="cred-doc-row">
+            <div><div class="cred-doc-name" data-i18n="docMadrasa">Madrasa Certificate</div><div class="cred-doc-sub" data-i18n="docMadrasaSub">Darul Uloom Karachi · submitted 2 Jan 2026</div></div>
+            <span class="cred-doc-status verified" data-i18n="statusVerified">Verified</span>
+          </div>
+          <div class="cred-doc-row">
+            <div><div class="cred-doc-name" data-i18n="docSanad">Sanad / Ijazah Record</div><div class="cred-doc-sub" data-i18n="docSanadSub">Hadith &amp; Fiqh sanad chain · submitted 2 Jan 2026</div></div>
+            <span class="cred-doc-status verified" data-i18n="statusVerified">Verified</span>
+          </div>
+          <div class="cred-doc-row">
+            <div><div class="cred-doc-name" data-i18n="docId">Government ID</div><div class="cred-doc-sub" data-i18n="docIdSub">For payout verification · submitted 2 Jan 2026</div></div>
+            <span class="cred-doc-status pending" data-i18n="statusPending">Pending Review</span>
+          </div>
+
+          <button class="btn btn-ghost" style="margin-top:18px;" data-i18n="uploadNewDoc">Submit Updated Document</button>
+        </div>
+      </div>
+
+      <!-- Payout tab -->
+      <div class="tab-panel" data-panel="payout">
+        <div class="panel-card">
+          <div class="payout-summary">
+            <div><div class="lbl" data-i18n="payoutNextLabel">Next payout · 5 Sept 2026</div><div class="amt">Rs 84,300</div></div>
+          </div>
+          <div class="field-row">
+            <div class="field"><label data-i18n="bankName">Bank name</label><input type="text" value="Meezan Bank"></div>
+            <div class="field"><label data-i18n="accountTitle">Account title</label><input type="text" value="Abdul Rahman" data-session="name"></div>
+          </div>
+          <div class="field"><label data-i18n="accountNumber">Account / IBAN number</label><input type="text" value="PK00 MEZN 0000 0012 3456 7890"></div>
+          <button class="btn btn-primary" data-i18n="savePayout">Save Payout Details</button>
+          <div class="divider-line" style="margin:20px 0;"></div>
+          <p class="cred-note" data-i18n="payoutShareNote" style="margin-bottom:0;">Revenue share is 70% to you, 30% to the platform. Marketplace and other commissions are billed separately.</p>
+        </div>
+      </div>
+
+      <!-- Security tab -->
+      <div class="tab-panel" data-panel="security">
+        <div class="panel-card">
+          <div class="pref-row">
+            <div>
+              <div class="pref-title" data-i18n="prefLangTitle">Preferred Language</div>
+              <div class="pref-sub" data-i18n="prefLangSub">Content and layout follow this choice, including RTL.</div>
+            </div>
+            <div class="lang-chips">
+              <div class="lang-chip active" onclick="selectChip(this)" data-i18n="langEnglish">English</div>
+              <div class="lang-chip" onclick="selectChip(this)" data-i18n="langUrdu">Urdu</div>
+              <div class="lang-chip" onclick="selectChip(this)" data-i18n="langArabic">Arabic</div>
+            </div>
+          </div>
+          <div class="divider-line"></div>
+          <div class="field"><label data-i18n="currentPassword">Current password</label><input type="password" placeholder="••••••••"></div>
+          <div class="field-row">
+            <div class="field"><label data-i18n="newPassword">New password</label><input type="password" placeholder="••••••••"></div>
+            <div class="field"><label data-i18n="confirmPassword">Confirm new password</label><input type="password" placeholder="••••••••"></div>
+          </div>
+          <button class="btn btn-primary" data-i18n="updatePassword">Update Password</button>
+          <div class="divider-line"></div>
+          <div class="pref-row">
+            <div>
+              <div class="pref-title" data-i18n="deleteAccountTitle">Deactivate Ustaz Account</div>
+              <div class="pref-sub" data-i18n="deleteAccountSub">This unpublishes your courses and removes your Verified Ustaz badge pending board review.</div>
+            </div>
+            <button class="btn btn-danger" data-i18n="deleteAccountBtn">Deactivate Account</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script src="../js/i18n-teacher-profile.js"></script>
+<script src="../js/i18n.js"></script>
+<script src="../js/app-shell.js"></script>
+<script src="../js/profile.js"></script>
+<script src="../js/session.js"></script>
+</body>
+</html>

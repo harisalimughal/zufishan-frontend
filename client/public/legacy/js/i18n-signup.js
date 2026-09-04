@@ -11,7 +11,7 @@ window.translations = {
     roleTeacher: "Ustaz / Teacher", roleTeacherDesc: "Teach after credential review",
     roleVendor: "Vendor", roleVendorDesc: "Sell on the marketplace",
     roleAdmin: "Board / Admin", roleAdminDesc: "Invite-only access",
-    alreadyHave: 'Already have an account? <a href="login.html">Sign in</a>',
+    alreadyHave: 'Already have an account? <a href="/login">Sign in</a>',
 
     fullName: "Full name",
     namePlaceholder: "Your name",
@@ -33,7 +33,7 @@ window.translations = {
 
     learnerDoneHeading: "You're all set",
     learnerDoneBody: "Your account is ready — no review needed to start. Jump into a course, log today's Sabaq, or ask a verified scholar a question.",
-    startLearning: "Start Learning",
+    startLearning: "Go to My Dashboard",
 
     teacherBanner: "The Advisory Board reviews this before your first course can go live.",
     madrasa: "Madrasa / institution",
@@ -45,8 +45,9 @@ window.translations = {
     uploadCredentialSub: "PDF or image, reviewed by the Advisory Board",
     submitReview: "Submit for review",
     teacherDoneHeading: "Your credentials are under review",
-    teacherDoneBody: "The Scholar Advisory Board reviews sanad and madrasa records before granting the Verified Ustaz badge. You can sign in now — your dashboard will show review status.",
+    teacherDoneBody: "The Scholar Advisory Board reviews sanad and madrasa records before granting the Verified Ustaz badge. Head to your dashboard now — it'll show your review status there.",
     goToSignIn: "Go to sign in",
+    goToDashboard: "Go to My Dashboard",
 
     vendorBanner: "Ehram, Kafan and other ritual-sensitive categories need an extra compliance check after this.",
     businessName: "Business name",
@@ -99,7 +100,7 @@ window.translations = {
     roleTeacher: "استاذ / ٹیچر", roleTeacherDesc: "اسناد کی جانچ کے بعد پڑھائیں",
     roleVendor: "وینڈر", roleVendorDesc: "مارکیٹ پلیس پر فروخت کریں",
     roleAdmin: "بورڈ / ایڈمن", roleAdminDesc: "صرف دعوت نامے کے ذریعے رسائی",
-    alreadyHave: 'پہلے سے اکاؤنٹ ہے؟ <a href="login.html">سائن ان کریں</a>',
+    alreadyHave: 'پہلے سے اکاؤنٹ ہے؟ <a href="/login">سائن ان کریں</a>',
 
     fullName: "پورا نام",
     namePlaceholder: "آپ کا نام",
@@ -121,7 +122,7 @@ window.translations = {
 
     learnerDoneHeading: "آپ کا اکاؤنٹ تیار ہے",
     learnerDoneBody: "آپ کا اکاؤنٹ تیار ہے — شروع کرنے کے لیے کسی جائزے کی ضرورت نہیں۔ کسی کورس میں شامل ہوں، آج کا سبق لاگ کریں، یا تصدیق شدہ عالم سے سوال پوچھیں۔",
-    startLearning: "سیکھنا شروع کریں",
+    startLearning: "اپنے ڈیش بورڈ پر جائیں",
 
     teacherBanner: "آپ کا پہلا کورس شائع ہونے سے پہلے ایڈوائزری بورڈ اس کا جائزہ لیتا ہے۔",
     madrasa: "مدرسہ / ادارہ",
@@ -133,8 +134,9 @@ window.translations = {
     uploadCredentialSub: "پی ڈی ایف یا تصویر، ایڈوائزری بورڈ کے ذریعے جانچی جائے گی",
     submitReview: "جائزے کے لیے جمع کروائیں",
     teacherDoneHeading: "آپ کی اسناد کا جائزہ لیا جا رہا ہے",
-    teacherDoneBody: "اسکالر ایڈوائزری بورڈ تصدیق شدہ استاذ بیج دینے سے پہلے سند اور مدرسے کے ریکارڈ کا جائزہ لیتا ہے۔ آپ ابھی سائن ان کر سکتے ہیں — آپ کا ڈیش بورڈ جائزے کی صورتحال دکھائے گا۔",
+    teacherDoneBody: "اسکالر ایڈوائزری بورڈ تصدیق شدہ استاذ بیج دینے سے پہلے سند اور مدرسے کے ریکارڈ کا جائزہ لیتا ہے۔ ابھی اپنے ڈیش بورڈ پر جائیں — وہاں جائزے کی صورتحال دکھائی دے گی۔",
     goToSignIn: "سائن ان کی طرف جائیں",
+    goToDashboard: "اپنے ڈیش بورڈ پر جائیں",
 
     vendorBanner: "احرام، کفن اور دیگر مذہبی لحاظ سے حساس اقسام کو اس کے بعد ایک اضافی تعمیل چیک درکار ہے۔",
     businessName: "کاروبار کا نام",

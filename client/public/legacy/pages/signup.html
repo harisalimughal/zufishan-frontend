@@ -13,7 +13,7 @@
 <body>
 
 <div class="topbar">
-  <div class="brand"><img src="../assets/img/logo-mark.png" alt="Zulfishan" class="brand-logo">Zulfishan</div>
+  <a href="homepage.html" class="brand brand-link"><img src="../assets/img/logo-mark.png" alt="Zulfishan" class="brand-logo">Zulfishan</a>
   <button class="lang-toggle" onclick="toggleLang()">اردو / EN</button>
 </div>
 
@@ -70,7 +70,7 @@
             </button>
           </div>
         </div>
-        <div class="signup-note" data-i18n-html="alreadyHave">Already have an account? <a href="login.html">Sign in</a></div>
+        <div class="signup-note" data-i18n-html="alreadyHave">Already have an account? <a href="/login">Sign in</a></div>
       </div>
 
       <!-- FLOW VIEW (shown once a role is picked) -->
@@ -85,7 +85,7 @@
 
         <!-- LEARNER -->
         <div class="step" data-flow="learner" data-step="1">
-          <div class="field"><label data-i18n="fullName">Full name</label><input type="text" placeholder="Your name" data-i18n-placeholder="namePlaceholder"></div>
+          <div class="field"><label data-i18n="fullName">Full name</label><input type="text" id="learnerName" placeholder="Your name" data-i18n-placeholder="namePlaceholder"></div>
           <div class="field">
             <label data-i18n="emailOrPhone">Email or phone</label>
             <input type="text" id="learnerEmail" placeholder="you@example.com">
@@ -93,7 +93,7 @@
           </div>
           <div class="field">
             <label data-i18n="password">Password</label>
-            <input type="password" id="learnerPassword" placeholder="••••••••">
+            <div class="password-field"><input type="password" id="learnerPassword" placeholder="••••••••"><button type="button" class="password-toggle" aria-label="Show password" onclick="togglePasswordVisibility(this)"><svg class="eye" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2 12C3.6 7.5 7.5 4.5 12 4.5C16.5 4.5 20.4 7.5 22 12C20.4 16.5 16.5 19.5 12 19.5C7.5 19.5 3.6 16.5 2 12Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="1.5"/></svg><svg class="eye-off" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 3L21 21" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M10.6 5.1C11.06 5.03 11.53 5 12 5C16.5 5 20.4 8 22 12C21.4 13.5 20.5 14.8 19.4 15.9M6.7 6.7C4.6 8 3 9.8 2 12C3.6 16 7.5 19 12 19C13.5 19 14.9 18.7 16.1 18.1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M9.9 9.9C9.3 10.5 9 11.2 9 12C9 13.7 10.3 15 12 15C12.8 15 13.5 14.7 14.1 14.1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button></div>
             <div class="field-error" id="learnerPasswordError" data-i18n="passwordError">Password must be at least 8 characters.</div>
           </div>
           <label class="check"><input type="checkbox"> <span data-i18n-html="agreeTerms">I agree to the <a href="#">Terms</a> and <a href="#">Privacy Policy</a></span></label>
@@ -114,18 +114,10 @@
             <button class="btn btn-primary" onclick="finishFlow('learner')" data-i18n="createAccountBtn">Create account</button>
           </div>
         </div>
-        <div class="step" data-flow="learner" data-step="3">
-          <div class="confirm">
-            <div class="badge"><i></i><i></i><i></i><i></i></div>
-            <h2 data-i18n="learnerDoneHeading">You're all set</h2>
-            <p data-i18n="learnerDoneBody">Your account is ready — no review needed to start. Jump into a course, log today's Sabaq, or ask a verified scholar a question.</p>
-            <a href="course-catalogue.html"><button class="btn btn-primary" data-i18n="startLearning">Start Learning</button></a>
-          </div>
-        </div>
 
         <!-- TEACHER -->
         <div class="step" data-flow="teacher" data-step="1">
-          <div class="field"><label data-i18n="fullName">Full name</label><input type="text" placeholder="Your name" data-i18n-placeholder="namePlaceholder"></div>
+          <div class="field"><label data-i18n="fullName">Full name</label><input type="text" id="teacherName" placeholder="Your name" data-i18n-placeholder="namePlaceholder"></div>
           <div class="field">
             <label data-i18n="email">Email</label>
             <input type="text" id="teacherEmail" placeholder="you@example.com">
@@ -133,7 +125,7 @@
           </div>
           <div class="field">
             <label data-i18n="password">Password</label>
-            <input type="password" id="teacherPassword" placeholder="••••••••">
+            <div class="password-field"><input type="password" id="teacherPassword" placeholder="••••••••"><button type="button" class="password-toggle" aria-label="Show password" onclick="togglePasswordVisibility(this)"><svg class="eye" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2 12C3.6 7.5 7.5 4.5 12 4.5C16.5 4.5 20.4 7.5 22 12C20.4 16.5 16.5 19.5 12 19.5C7.5 19.5 3.6 16.5 2 12Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="1.5"/></svg><svg class="eye-off" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 3L21 21" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M10.6 5.1C11.06 5.03 11.53 5 12 5C16.5 5 20.4 8 22 12C21.4 13.5 20.5 14.8 19.4 15.9M6.7 6.7C4.6 8 3 9.8 2 12C3.6 16 7.5 19 12 19C13.5 19 14.9 18.7 16.1 18.1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M9.9 9.9C9.3 10.5 9 11.2 9 12C9 13.7 10.3 15 12 15C12.8 15 13.5 14.7 14.1 14.1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button></div>
             <div class="field-error" id="teacherPasswordError" data-i18n="passwordError">Password must be at least 8 characters.</div>
           </div>
           <label class="check"><input type="checkbox"> <span data-i18n-html="agreeTerms">I agree to the <a href="#">Terms</a> and <a href="#">Privacy Policy</a></span></label>
@@ -155,15 +147,7 @@
           </div>
           <div class="btn-row">
             <button class="btn btn-secondary" onclick="prevStep()" data-i18n="backBtn">Back</button>
-            <button class="btn btn-primary" onclick="nextStep()" data-i18n="submitReview">Submit for review</button>
-          </div>
-        </div>
-        <div class="step" data-flow="teacher" data-step="3">
-          <div class="confirm">
-            <div class="badge"><i></i><i></i><i></i><i></i></div>
-            <h2 data-i18n="teacherDoneHeading">Your credentials are under review</h2>
-            <p data-i18n="teacherDoneBody">The Scholar Advisory Board reviews sanad and madrasa records before granting the Verified Ustaz badge. You can sign in now — your dashboard will show review status.</p>
-            <a href="login.html"><button class="btn btn-primary" data-i18n="goToSignIn">Go to sign in</button></a>
+            <button class="btn btn-primary" onclick="finishFlow('teacher')" data-i18n="submitReview">Submit for review</button>
           </div>
         </div>
 
@@ -177,7 +161,7 @@
           </div>
           <div class="field">
             <label data-i18n="password">Password</label>
-            <input type="password" id="vendorPassword" placeholder="••••••••">
+            <div class="password-field"><input type="password" id="vendorPassword" placeholder="••••••••"><button type="button" class="password-toggle" aria-label="Show password" onclick="togglePasswordVisibility(this)"><svg class="eye" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2 12C3.6 7.5 7.5 4.5 12 4.5C16.5 4.5 20.4 7.5 22 12C20.4 16.5 16.5 19.5 12 19.5C7.5 19.5 3.6 16.5 2 12Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="1.5"/></svg><svg class="eye-off" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 3L21 21" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M10.6 5.1C11.06 5.03 11.53 5 12 5C16.5 5 20.4 8 22 12C21.4 13.5 20.5 14.8 19.4 15.9M6.7 6.7C4.6 8 3 9.8 2 12C3.6 16 7.5 19 12 19C13.5 19 14.9 18.7 16.1 18.1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M9.9 9.9C9.3 10.5 9 11.2 9 12C9 13.7 10.3 15 12 15C12.8 15 13.5 14.7 14.1 14.1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button></div>
             <div class="field-error" id="vendorPasswordError" data-i18n="passwordError">Password must be at least 8 characters.</div>
           </div>
           <label class="check"><input type="checkbox"> <span data-i18n-html="agreeTerms">I agree to the <a href="#">Terms</a> and <a href="#">Privacy Policy</a></span></label>
@@ -232,6 +216,8 @@
 
 <script src="../js/i18n-signup.js"></script>
 <script src="../js/i18n.js"></script>
+<script src="../js/password-toggle.js"></script>
 <script src="../js/signup.js"></script>
+<script src="../js/session.js"></script>
 </body>
 </html>

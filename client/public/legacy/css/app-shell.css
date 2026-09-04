@@ -27,14 +27,15 @@ body.sidebar-lock{overflow:hidden;}
 .app.sidebar-open .sidebar{transform:translateX(0); box-shadow:0 0 40px rgba(0,0,0,0.25);}
 
 .sidebar .brand{color:#fff; padding:0 10px; margin-bottom:34px;}
-.sidebar nav{display:flex; flex-direction:column; gap:2px;}
+.sidebar nav{display:flex; flex-direction:column; gap:2px; margin-bottom:22px;}
 .sidebar nav a{display:flex; align-items:center; gap:12px; padding:11px 12px; border-radius:6px; font-size:0.88rem; font-weight:600; color:rgba(255,255,255,0.68); transition:background .18s, color .18s;}
 .sidebar nav a:hover{background:rgba(255,255,255,0.06); color:#fff;}
 .sidebar nav a.active{background:rgba(255,255,255,0.1); color:#fff;}
 .sidebar nav a .dot{width:6px; height:6px; border-radius:50%; background:var(--dusk); flex-shrink:0;}
 .sidebar nav a.active .dot{background:var(--azure);}
 .nav-group-label{font-family:'JetBrains Mono',monospace; font-size:0.62rem; text-transform:uppercase; letter-spacing:0.1em; color:rgba(255,255,255,0.35); padding:16px 12px 6px;}
-.sidebar-foot{padding:0 10px;}
+.sidebar-foot{padding:0 10px; margin-top:22px;}
+.sidebar-foot .lang-toggle{margin-bottom:20px;}
 .user-chip{display:flex; align-items:center; gap:10px; padding-top:16px; border-top:1px solid rgba(255,255,255,0.12); border-radius:6px; transition:background .18s;}
 .user-chip.link{cursor:pointer;}
 .user-chip.link:hover{background:rgba(255,255,255,0.06);}

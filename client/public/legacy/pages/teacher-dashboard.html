@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zulfishan — Teacher Dashboard</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Noto+Nastaliq+Urdu:wght@500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/base.css">
+<link rel="stylesheet" href="../css/app-shell.css">
+<link rel="stylesheet" href="../css/components.css">
+<link rel="stylesheet" href="../css/teacher-dashboard.css">
+</head>
+<body>
+
+<div class="app sidebar-open">
+  <aside class="sidebar">
+    <div>
+      <a href="homepage.html" class="brand brand-link"><img src="../assets/img/logo-mark.png" alt="Zulfishan" class="brand-logo">Zulfishan</a>
+      <nav>
+        <div class="nav-group-label" data-i18n="navTeaching">Teaching</div>
+        <a href="#courses" class="active"><span class="dot"></span><span data-i18n="navMyCourses">My Courses</span></a>
+        <a href="#content"><span class="dot"></span><span data-i18n="navContent">Content &amp; Lectures</span></a>
+        <a href="#live"><span class="dot"></span><span data-i18n="navLiveClasses">Live Classes</span></a>
+        <div class="nav-group-label" data-i18n="navTrust">Trust &amp; Governance</div>
+        <a href="#hifz-review"><span class="dot"></span><span data-i18n="navHifzReview">Hifz Review Queue</span></a>
+        <a href="#fatwa-queue"><span class="dot"></span><span data-i18n="navFatwaQueue">Fatwa Sign-off</span></a>
+        <div class="nav-group-label" data-i18n="navEarnings">Earnings</div>
+        <a href="#payouts"><span class="dot"></span><span data-i18n="navPayouts">Payouts</span></a>
+        <div class="nav-group-label" data-i18n="navAccount">Account</div>
+        <a href="teacher-profile.html"><span class="dot"></span><span data-i18n="navProfile">Profile</span></a>
+      </nav>
+    </div>
+    <div class="sidebar-foot">
+      <button class="lang-toggle" onclick="toggleLang()" style="width:100%; color:#fff; border-color:rgba(255,255,255,0.3);">اردو / EN</button>
+      <a href="teacher-profile.html" style="text-decoration:none; color:inherit;">
+      <div class="user-chip link">
+        <div class="av"></div>
+        <div><div class="name" data-i18n="userName" data-session="name">Mufti Abdul Rahman</div><div class="role" data-i18n="userRole" data-session="role">Verified Ustaz</div></div>
+      </div>
+      </a>
+    </div>
+  </aside>
+
+  <div class="sidebar-overlay"></div>
+
+  <div class="main">
+    <div class="topbar-inner">
+      <div class="page-title-group"><button class="menu-toggle" id="sidebarToggle" aria-label="Toggle menu"><span></span></button><div class="page-title" data-i18n="pageTitle">Teacher Dashboard</div></div>
+      <div class="topbar-actions">
+        <a href="login.html" onclick="window.zfSession && window.zfSession.clear();"><button class="btn btn-ghost sm" data-i18n="signOut">Sign Out</button></a>
+      </div>
+    </div>
+
+    <div class="content">
+
+      <!-- Credibility header -->
+      <div class="td-head">
+        <div class="td-head-copy">
+          <h1 data-i18n="greeting" data-session="greeting">Assalamu Alaikum, Mufti Abdul Rahman</h1>
+          <div class="td-cred-row">
+            <span class="chip"><span class="tilemark"><i></i><i></i><i></i><i></i></span><span data-i18n="verifiedUstaz">Verified Ustaz</span></span>
+            <span class="chip" data-i18n="chipSanad">Sanad Verified</span>
+            <span class="chip" data-i18n="chipMadrasa">Madrasa Confirmed</span>
+            <span class="chip" data-i18n="chipBoard">Board Approved</span>
+          </div>
+          <div class="td-verified-note" data-i18n="verifiedNote">Verified 14 Feb 2026 by the Scholar Advisory Board · Hanafi Fiqh</div>
+        </div>
+        <div class="td-head-actions">
+          <button class="btn btn-ghost" id="uploadLectureBtn" data-i18n="btnUploadLecture">Upload Lecture</button>
+          <button class="btn btn-primary" id="scheduleLiveBtn" data-i18n="btnScheduleLive">Schedule Live Class</button>
+        </div>
+      </div>
+
+      <!-- Quick stats -->
+      <div class="td-stat-row">
+        <div class="td-stat-card">
+          <div class="eyebrow" data-i18n="statCoursesEyebrow">ACTIVE COURSES</div>
+          <div class="big" id="statCourses">4</div>
+          <div class="sub" data-i18n="statCoursesSub">published &amp; enrolling</div>
+        </div>
+        <div class="td-stat-card">
+          <div class="eyebrow" data-i18n="statStudentsEyebrow">STUDENTS</div>
+          <div class="big" id="statStudents">312</div>
+          <div class="sub" data-i18n="statStudentsSub">across all courses</div>
+        </div>
+        <div class="td-stat-card">
+          <div class="eyebrow" data-i18n="statEarningsEyebrow">THIS MONTH</div>
+          <div class="big" id="statEarnings">Rs 84,300</div>
+          <div class="sub" data-i18n="statEarningsSub">your 70% share</div>
+        </div>
+        <div class="td-stat-card">
+          <div class="eyebrow" data-i18n="statPendingEyebrow">PENDING REVIEWS</div>
+          <div class="big" id="statPending">5</div>
+          <div class="sub" data-i18n="statPendingSub">Hifz logs &amp; Fatwa sign-offs</div>
+        </div>
+      </div>
+
+      <div class="td-layout">
+        <!-- LEFT COLUMN -->
+        <div class="td-col">
+
+          <div class="td-panel" id="courses">
+            <div class="panel-head">
+              <div><h2 data-i18n="myCoursesHeading">My Courses</h2><p data-i18n="myCoursesSub">Manage what's published, in review, or still a draft.</p></div>
+              <span class="see-all-link" data-i18n="newCourse">+ New Course</span>
+            </div>
+            <div id="courseList"></div>
+          </div>
+
+          <div class="td-panel" id="content">
+            <div class="panel-head">
+              <div><h2 data-i18n="contentHeading">Content &amp; Lecture Repository</h2><p data-i18n="contentSub">Uploaded and live-recorded lectures, one pipeline.</p></div>
+            </div>
+            <p class="td-pipeline-note" data-i18n="contentNote">Both your direct uploads and auto-captured live-class recordings pass through transcoding → transcription → moderation review before joining the searchable course archive.</p>
+            <div id="contentList"></div>
+          </div>
+
+          <div class="td-panel" id="live">
+            <div class="panel-head">
+              <div><h2 data-i18n="liveHeading">Upcoming Live Classes</h2><p data-i18n="liveSub">Auto-records and publishes to your course archive when it ends.</p></div>
+            </div>
+            <div id="liveList"></div>
+          </div>
+
+        </div>
+
+        <!-- RIGHT COLUMN -->
+        <div class="td-col">
+
+          <div class="td-panel" id="hifz-review">
+            <div class="panel-head">
+              <div><h2 data-i18n="hifzReviewHeading">Hifz Review Queue</h2><p data-i18n="hifzReviewSub">Approve today's Sabaq, or flag it for revision.</p></div>
+            </div>
+            <div id="hifzQueueList"></div>
+          </div>
+
+          <div class="td-panel" id="fatwa-queue">
+            <div class="panel-head">
+              <div><h2 data-i18n="fatwaQueueHeading">Fatwa Sign-off Queue</h2><p data-i18n="fatwaQueueSub">Needs 3 independent sign-offs before it's "Authentic Fatwa."</p></div>
+            </div>
+            <div id="fatwaQueueList"></div>
+          </div>
+
+          <div class="td-panel" id="payouts">
+            <div class="panel-head">
+              <div><h2 data-i18n="payoutsHeading">Payouts</h2></div>
+            </div>
+            <div class="td-payout-total">
+              <div><div class="lbl" data-i18n="payoutNextLabel">Next payout · 5 Sept 2026</div><div class="amt" id="payoutTotal">Rs 84,300</div></div>
+            </div>
+            <div id="payoutBreakdown"></div>
+            <div class="td-payout-note" data-i18n="payoutNote">Revenue share is 70% to you, 30% to the platform. Marketplace and other commissions are billed separately.</div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- Schedule Live Class modal -->
+<div class="modal-overlay" id="scheduleModal">
+  <div class="modal-box">
+    <div class="modal-head">
+      <h3 data-i18n="scheduleModalTitle">Schedule a Live Class</h3>
+      <button class="modal-close" id="scheduleModalClose">&times;</button>
+    </div>
+    <div class="td-form-field">
+      <label data-i18n="fieldClassTitle">Class title</label>
+      <input type="text" id="scheduleTitle" placeholder="Tajweed Rules — Noon Sakinah">
+    </div>
+    <div class="td-form-field">
+      <label data-i18n="fieldCourse">Course</label>
+      <select id="scheduleCourse"></select>
+    </div>
+    <div class="td-form-row">
+      <div class="td-form-field">
+        <label data-i18n="fieldDate">Date</label>
+        <input type="date" id="scheduleDate">
+      </div>
+      <div class="td-form-field">
+        <label data-i18n="fieldTime">Time</label>
+        <input type="time" id="scheduleTime">
+      </div>
+    </div>
+    <button class="btn btn-primary" id="scheduleSubmitBtn" style="width:100%;" data-i18n="scheduleSubmit">Schedule Class</button>
+  </div>
+</div>
+
+<!-- Upload Lecture modal -->
+<div class="modal-overlay" id="uploadModal">
+  <div class="modal-box">
+    <div class="modal-head">
+      <h3 data-i18n="uploadModalTitle">Upload a Lecture</h3>
+      <button class="modal-close" id="uploadModalClose">&times;</button>
+    </div>
+    <div class="td-form-field">
+      <label data-i18n="fieldLectureTitle">Lecture title</label>
+      <input type="text" id="uploadTitle" placeholder="Surah Al-Baqarah — Ayah 1-20 Tafsir">
+    </div>
+    <div class="td-form-field">
+      <label data-i18n="fieldCourse">Course</label>
+      <select id="uploadCourse"></select>
+    </div>
+    <div class="td-form-field">
+      <label data-i18n="fieldFile">Audio / video file</label>
+      <input type="file" id="uploadFile" accept="audio/*,video/*">
+    </div>
+    <button class="btn btn-primary" id="uploadSubmitBtn" style="width:100%;" data-i18n="uploadSubmit">Submit for Review</button>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script src="../js/i18n-teacher-dashboard.js"></script>
+<script src="../js/i18n.js"></script>
+<script src="../js/app-shell.js"></script>
+<script src="../js/teacher-dashboard.js"></script>
+<script src="../js/session.js"></script>
+</body>
+</html>

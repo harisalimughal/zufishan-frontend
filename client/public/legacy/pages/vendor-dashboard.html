@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zulfishan — Vendor Dashboard</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Noto+Nastaliq+Urdu:wght@500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/base.css">
+<link rel="stylesheet" href="../css/app-shell.css">
+<link rel="stylesheet" href="../css/components.css">
+<link rel="stylesheet" href="../css/teacher-dashboard.css">
+</head>
+<body>
+
+<div class="app sidebar-open">
+  <aside class="sidebar">
+    <div>
+      <a href="homepage.html" class="brand brand-link"><img src="../assets/img/logo-mark.png" alt="Zulfishan" class="brand-logo">Zulfishan</a>
+      <nav>
+        <div class="nav-group-label" data-i18n="navStore">Storefront</div>
+        <a href="#products" class="active"><span class="dot"></span><span data-i18n="navProducts">Products &amp; Inventory</span></a>
+        <a href="#orders"><span class="dot"></span><span data-i18n="navOrders">Orders &amp; Bookings</span></a>
+        <div class="nav-group-label" data-i18n="navTrust">Verification</div>
+        <a href="#verification"><span class="dot"></span><span data-i18n="navVerification">Vendor Status</span></a>
+        <div class="nav-group-label" data-i18n="navEarnings">Earnings</div>
+        <a href="#payouts"><span class="dot"></span><span data-i18n="navPayouts">Payouts</span></a>
+        <div class="nav-group-label" data-i18n="navAccount">Account</div>
+        <a href="vendor-profile.html"><span class="dot"></span><span data-i18n="navProfile">Profile</span></a>
+      </nav>
+    </div>
+    <div class="sidebar-foot">
+      <button class="lang-toggle" onclick="toggleLang()" style="width:100%; color:#fff; border-color:rgba(255,255,255,0.3);">اردو / EN</button>
+      <a href="vendor-profile.html" style="text-decoration:none; color:inherit;">
+      <div class="user-chip link">
+        <div class="av"></div>
+        <div><div class="name" data-i18n="userName" data-session="name">Zainab Traders</div><div class="role" data-i18n="userRole" data-session="role">Verified Vendor</div></div>
+      </div>
+      </a>
+    </div>
+  </aside>
+
+  <div class="sidebar-overlay"></div>
+
+  <div class="main">
+    <div class="topbar-inner">
+      <div class="page-title-group"><button class="menu-toggle" id="sidebarToggle" aria-label="Toggle menu"><span></span></button><div class="page-title" data-i18n="pageTitle">Vendor Dashboard</div></div>
+      <div class="topbar-actions">
+        <a href="login.html" onclick="window.zfSession && window.zfSession.clear();"><button class="btn btn-ghost sm" data-i18n="signOut">Sign Out</button></a>
+      </div>
+    </div>
+
+    <div class="content">
+
+      <!-- Storefront header -->
+      <div class="td-head">
+        <div class="td-head-copy">
+          <h1 data-i18n="greeting" data-session="greeting">Assalamu Alaikum, Zainab Traders</h1>
+          <div class="td-cred-row">
+            <span class="chip"><span class="tilemark"><i></i><i></i><i></i><i></i></span><span data-i18n="verifiedVendor">Verified Vendor</span></span>
+            <span class="chip" data-i18n="chipDocs">Documents Confirmed</span>
+            <span class="chip" data-i18n="chipBoard">Board Approved</span>
+          </div>
+          <div class="td-verified-note" data-i18n="verifiedNote">Verified 2 Mar 2026 · Goods vendor, general Islamic-lifestyle catalogue</div>
+        </div>
+        <div class="td-head-actions">
+          <button class="btn btn-ghost" id="addProductBtn" data-i18n="btnAddProduct">Add Product</button>
+        </div>
+      </div>
+
+      <!-- Quick stats -->
+      <div class="td-stat-row">
+        <div class="td-stat-card">
+          <div class="eyebrow" data-i18n="statListingsEyebrow">ACTIVE LISTINGS</div>
+          <div class="big" id="statListings">4</div>
+          <div class="sub" data-i18n="statListingsSub">live in the marketplace</div>
+        </div>
+        <div class="td-stat-card">
+          <div class="eyebrow" data-i18n="statOrdersEyebrow">OPEN ORDERS</div>
+          <div class="big" id="statOrders">3</div>
+          <div class="sub" data-i18n="statOrdersSub">awaiting fulfilment</div>
+        </div>
+        <div class="td-stat-card">
+          <div class="eyebrow" data-i18n="statEarningsEyebrow">THIS MONTH</div>
+          <div class="big" id="statEarnings">Rs 96,400</div>
+          <div class="sub" data-i18n="statEarningsSub">before platform commission</div>
+        </div>
+        <div class="td-stat-card">
+          <div class="eyebrow" data-i18n="statRatingEyebrow">BUYER RATING</div>
+          <div class="big" id="statRating">4.8</div>
+          <div class="sub" data-i18n="statRatingSub">from 96 reviews</div>
+        </div>
+      </div>
+
+      <div class="td-layout">
+        <!-- LEFT COLUMN -->
+        <div class="td-col">
+
+          <div class="td-panel" id="products">
+            <div class="panel-head">
+              <div><h2 data-i18n="productsHeading">Products &amp; Inventory</h2><p data-i18n="productsSub">What's live, what needs extra verification, and what's out of stock.</p></div>
+              <span class="see-all-link" id="addProductLink" data-i18n="newProduct">+ New Product</span>
+            </div>
+            <div id="productList"></div>
+          </div>
+
+          <div class="td-panel" id="orders">
+            <div class="panel-head">
+              <div><h2 data-i18n="ordersHeading">Orders &amp; Bookings</h2><p data-i18n="ordersSub">Goods are cart-based; services are booking/calendar based.</p></div>
+            </div>
+            <div id="orderList"></div>
+          </div>
+
+        </div>
+
+        <!-- RIGHT COLUMN -->
+        <div class="td-col">
+
+          <div class="td-panel" id="verification">
+            <div class="panel-head">
+              <div><h2 data-i18n="verificationHeading">Vendor Verification</h2></div>
+            </div>
+            <p class="td-pipeline-note" data-i18n="verificationNote">Ritual-sensitive categories like Ehram and Kafan carry an extra layer of Advisory Board review beyond standard document checks.</p>
+            <div id="verificationList"></div>
+          </div>
+
+          <div class="td-panel" id="payouts">
+            <div class="panel-head">
+              <div><h2 data-i18n="payoutsHeading">Payouts</h2></div>
+            </div>
+            <div class="td-payout-total">
+              <div><div class="lbl" data-i18n="payoutNextLabel">Next payout · 5 Sept 2026</div><div class="amt" id="payoutTotal">Rs 96,400</div></div>
+            </div>
+            <div id="payoutBreakdown"></div>
+            <div class="td-payout-note" data-i18n="payoutNote">Platform commission is 12% on goods and 15% on booked services, deducted before payout.</div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- Add Product modal -->
+<div class="modal-overlay" id="addProductModal">
+  <div class="modal-box">
+    <div class="modal-head">
+      <h3 data-i18n="addProductModalTitle">Add a Product</h3>
+      <button class="modal-close" id="addProductModalClose">&times;</button>
+    </div>
+    <div class="td-form-field">
+      <label data-i18n="fieldProductName">Product name</label>
+      <input type="text" id="productName" placeholder="Premium Ihram Set — 2 piece">
+    </div>
+    <div class="td-form-row">
+      <div class="td-form-field">
+        <label data-i18n="fieldCategory">Category</label>
+        <select id="productCategory">
+          <option value="general" data-i18n="catGeneral">General goods</option>
+          <option value="sensitive" data-i18n="catSensitive">Ehram / Kafan (extra verification)</option>
+        </select>
+      </div>
+      <div class="td-form-field">
+        <label data-i18n="fieldPrice">Price (Rs)</label>
+        <input type="number" id="productPrice" placeholder="4500">
+      </div>
+    </div>
+    <button class="btn btn-primary" id="addProductSubmitBtn" style="width:100%;" data-i18n="addProductSubmit">Submit Listing</button>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script src="../js/i18n-vendor-dashboard.js"></script>
+<script src="../js/i18n.js"></script>
+<script src="../js/app-shell.js"></script>
+<script src="../js/vendor-dashboard.js"></script>
+<script src="../js/session.js"></script>
+</body>
+</html>

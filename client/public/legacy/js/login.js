@@ -55,7 +55,7 @@ function handleSubmit(){
 
   let valid = true;
 
-  const ok = currentActiveRole === 'learner'
+  const ok = (currentActiveRole === 'learner')
     ? (isValidEmail(val) || isValidPhone(val))
     : isValidEmail(val);
 
@@ -79,8 +79,16 @@ function handleSubmit(){
 
   if (!valid) return false;
 
+  if (window.zfSession) window.zfSession.save(currentActiveRole, val);
+
   if (currentActiveRole === 'learner') {
-    window.location.href = '/courses';
+    window.location.href = '/profile';
+  } else if (currentActiveRole === 'teacher') {
+    window.location.href = '/teacher-dashboard';
+  } else if (currentActiveRole === 'vendor') {
+    window.location.href = '/vendor-dashboard';
+  } else if (currentActiveRole === 'admin') {
+    window.location.href = '/admin-dashboard';
   }
   return false;
 }

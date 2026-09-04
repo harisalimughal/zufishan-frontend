@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zulfishan — My Profile (Vendor)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Noto+Nastaliq+Urdu:wght@500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/base.css">
+<link rel="stylesheet" href="../css/app-shell.css">
+<link rel="stylesheet" href="../css/profile.css">
+<link rel="stylesheet" href="../css/teacher-profile.css">
+</head>
+<body>
+
+<div class="app sidebar-open">
+  <aside class="sidebar">
+    <div>
+      <a href="homepage.html" class="brand brand-link"><img src="../assets/img/logo-mark.png" alt="Zulfishan" class="brand-logo">Zulfishan</a>
+      <nav>
+        <div class="nav-group-label" data-i18n="navStore">Storefront</div>
+        <a href="vendor-dashboard.html#products"><span class="dot"></span><span data-i18n="navProducts">Products &amp; Inventory</span></a>
+        <a href="vendor-dashboard.html#orders"><span class="dot"></span><span data-i18n="navOrders">Orders &amp; Bookings</span></a>
+        <div class="nav-group-label" data-i18n="navTrust">Verification</div>
+        <a href="vendor-dashboard.html#verification"><span class="dot"></span><span data-i18n="navVerification">Vendor Status</span></a>
+        <div class="nav-group-label" data-i18n="navEarnings">Earnings</div>
+        <a href="vendor-dashboard.html#payouts"><span class="dot"></span><span data-i18n="navPayouts">Payouts</span></a>
+        <div class="nav-group-label" data-i18n="navAccount">Account</div>
+        <a href="vendor-profile.html" class="active"><span class="dot"></span><span data-i18n="navProfile">Profile</span></a>
+      </nav>
+    </div>
+    <div class="sidebar-foot">
+      <button class="lang-toggle" onclick="toggleLang()" style="width:100%; color:#fff; border-color:rgba(255,255,255,0.3);">اردو / EN</button>
+      <a href="vendor-profile.html" style="text-decoration:none; color:inherit;">
+      <div class="user-chip link">
+        <div class="av"></div>
+        <div><div class="name" data-i18n="userName" data-session="name">Zainab Traders</div><div class="role" data-i18n="userRole" data-session="role">Verified Vendor</div></div>
+      </div>
+      </a>
+    </div>
+  </aside>
+
+  <div class="sidebar-overlay"></div>
+
+  <div class="main">
+    <div class="topbar-inner">
+      <div class="page-title-group"><button class="menu-toggle" id="sidebarToggle" aria-label="Toggle menu"><span></span></button><div class="page-title" data-i18n="pageTitle">My Profile</div></div>
+      <div class="topbar-actions">
+        <a href="login.html" onclick="window.zfSession && window.zfSession.clear();"><button class="btn btn-ghost sm" data-i18n="signOut">Sign Out</button></a>
+      </div>
+    </div>
+
+    <div class="content narrow">
+
+      <!-- Identity header -->
+      <div class="profile-header">
+        <div class="ph-avatar"></div>
+        <div class="ph-info">
+          <h1 data-session="name">Zainab Traders</h1>
+          <div class="ph-role"><span class="tilemark"><i></i><i></i><i></i><i></i></span><span data-i18n="roleTag">Verified Vendor · Goods &amp; Ritual Items · Joined Mar 2026</span></div>
+        </div>
+        <button class="btn btn-primary sm" data-i18n="editProfile">Edit Profile</button>
+      </div>
+
+      <!-- Quick stats -->
+      <div class="stat-row">
+        <div class="stat-card">
+          <div class="stat-num">4</div>
+          <div class="stat-label" data-i18n="statListings">Active Listings</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">4.8</div>
+          <div class="stat-label" data-i18n="statRating">Buyer Rating</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">Rs 96,400</div>
+          <div class="stat-label" data-i18n="statEarnings">This Month</div>
+        </div>
+      </div>
+
+      <!-- Tabs -->
+      <div class="tab-row">
+        <button class="tab-btn active" data-tab="account" data-i18n="tabAccount">Account Info</button>
+        <button class="tab-btn" data-tab="credentials" data-i18n="tabCredentials">Verification Documents</button>
+        <button class="tab-btn" data-tab="payout" data-i18n="tabPayout">Payout Details</button>
+        <button class="tab-btn" data-tab="security" data-i18n="tabSecurity">Security</button>
+      </div>
+
+      <!-- Account Info tab -->
+      <div class="tab-panel active" data-panel="account">
+        <div class="panel-card">
+          <div class="field-row">
+            <div class="field"><label data-i18n="businessName">Business name</label><input type="text" value="Zainab Traders" data-session="name"></div>
+            <div class="field"><label data-i18n="email">Business email</label><input type="text" value="zainab.traders@example.com" data-session="email"></div>
+          </div>
+          <div class="field-row">
+            <div class="field"><label data-i18n="phone">Phone</label><input type="text" value="+92 321 4567890"></div>
+            <div class="field"><label data-i18n="city">City</label><input type="text" value="Lahore"></div>
+          </div>
+          <div class="field">
+            <label data-i18n="bio">Storefront description</label>
+            <textarea class="fatwa-textarea" style="min-height:80px;" data-i18n-placeholder="bioPlaceholder" placeholder="A line or two about your storefront, shown on your public vendor page.">Family-run supplier of Ihram sets, Kafan cloth and prayer accessories since 2014. All ritual-sensitive items are fabric-tested before listing.</textarea>
+          </div>
+          <button class="btn btn-primary" data-i18n="saveChanges">Save Changes</button>
+        </div>
+      </div>
+
+      <!-- Verification tab -->
+      <div class="tab-panel" data-panel="credentials">
+        <div class="panel-card">
+          <div class="cred-row">
+            <span class="cred-chip"><span class="sq"></span><span data-i18n="credVerified">Verified Vendor</span></span>
+            <span class="cred-chip" data-i18n="credDocs">Documents Confirmed</span>
+            <span class="cred-chip" data-i18n="credBoard">Board Approved</span>
+          </div>
+          <p class="cred-note" data-i18n="credNote">Verified 2 Mar 2026 by the Advisory Board. Ehram and Kafan listings carry an additional fabric/material compliance check — submit updated documents any time your registration or listings change.</p>
+
+          <div class="cred-doc-row">
+            <div><div class="cred-doc-name" data-i18n="docBusinessReg">Business Registration</div><div class="cred-doc-sub" data-i18n="docBusinessRegSub">Punjab Trade License · submitted 20 Feb 2026</div></div>
+            <span class="cred-doc-status verified" data-i18n="statusVerified">Verified</span>
+          </div>
+          <div class="cred-doc-row">
+            <div><div class="cred-doc-name" data-i18n="docTaxCert">Tax Certificate</div><div class="cred-doc-sub" data-i18n="docTaxCertSub">FBR registration · submitted 20 Feb 2026</div></div>
+            <span class="cred-doc-status verified" data-i18n="statusVerified">Verified</span>
+          </div>
+          <div class="cred-doc-row">
+            <div><div class="cred-doc-name" data-i18n="docCompliance">Fabric / Material Compliance</div><div class="cred-doc-sub" data-i18n="docComplianceSub">Ehram &amp; Kafan fiqhi compliance · submitted 24 Feb 2026</div></div>
+            <span class="cred-doc-status pending" data-i18n="statusPending">Pending Review</span>
+          </div>
+
+          <button class="btn btn-ghost" style="margin-top:18px;" data-i18n="uploadNewDoc">Submit Updated Document</button>
+        </div>
+      </div>
+
+      <!-- Payout tab -->
+      <div class="tab-panel" data-panel="payout">
+        <div class="panel-card">
+          <div class="payout-summary">
+            <div><div class="lbl" data-i18n="payoutNextLabel">Next payout · 5 Sept 2026</div><div class="amt">Rs 96,400</div></div>
+          </div>
+          <div class="field-row">
+            <div class="field"><label data-i18n="bankName">Bank name</label><input type="text" value="Habib Bank Limited"></div>
+            <div class="field"><label data-i18n="accountTitle">Account title</label><input type="text" value="Zainab Traders" data-session="name"></div>
+          </div>
+          <div class="field"><label data-i18n="accountNumber">Account / IBAN number</label><input type="text" value="PK00 HABB 0000 0098 7654 3210"></div>
+          <button class="btn btn-primary" data-i18n="savePayout">Save Payout Details</button>
+          <div class="divider-line" style="margin:20px 0;"></div>
+          <p class="cred-note" data-i18n="payoutShareNote" style="margin-bottom:0;">Platform commission is 12% on goods and 15% on booked services, deducted before payout.</p>
+        </div>
+      </div>
+
+      <!-- Security tab -->
+      <div class="tab-panel" data-panel="security">
+        <div class="panel-card">
+          <div class="pref-row">
+            <div>
+              <div class="pref-title" data-i18n="prefLangTitle">Preferred Language</div>
+              <div class="pref-sub" data-i18n="prefLangSub">Content and layout follow this choice, including RTL.</div>
+            </div>
+            <div class="lang-chips">
+              <div class="lang-chip active" onclick="selectChip(this)" data-i18n="langEnglish">English</div>
+              <div class="lang-chip" onclick="selectChip(this)" data-i18n="langUrdu">Urdu</div>
+              <div class="lang-chip" onclick="selectChip(this)" data-i18n="langArabic">Arabic</div>
+            </div>
+          </div>
+          <div class="divider-line"></div>
+          <div class="field"><label data-i18n="currentPassword">Current password</label><input type="password" placeholder="••••••••"></div>
+          <div class="field-row">
+            <div class="field"><label data-i18n="newPassword">New password</label><input type="password" placeholder="••••••••"></div>
+            <div class="field"><label data-i18n="confirmPassword">Confirm new password</label><input type="password" placeholder="••••••••"></div>
+          </div>
+          <button class="btn btn-primary" data-i18n="updatePassword">Update Password</button>
+          <div class="divider-line"></div>
+          <div class="pref-row">
+            <div>
+              <div class="pref-title" data-i18n="deleteAccountTitle">Deactivate Vendor Account</div>
+              <div class="pref-sub" data-i18n="deleteAccountSub">This unpublishes your listings and removes your Verified Vendor badge pending board review.</div>
+            </div>
+            <button class="btn btn-danger" data-i18n="deleteAccountBtn">Deactivate Account</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script src="../js/i18n-vendor-profile.js"></script>
+<script src="../js/i18n.js"></script>
+<script src="../js/app-shell.js"></script>
+<script src="../js/profile.js"></script>
+<script src="../js/session.js"></script>
+</body>
+</html>

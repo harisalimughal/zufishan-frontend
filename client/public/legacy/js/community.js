@@ -68,7 +68,7 @@ function renderThreads(){
       <div class="thread-body">${escapeHtml(th.body)}</div>
       <div class="thread-actions">
         <button class="thread-action like-btn ${th.liked?'liked':''}" data-id="${th.id}">${th.liked?'♥':'♡'} <span class="like-count">${th.likes}</span></button>
-        <button class="thread-action">💬 ${th.replies} ${t('replies')}</button>
+        <button class="thread-action"><svg class="reply-icon" viewBox="0 0 20 20" width="15" height="15" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 4.5C3 3.67157 3.67157 3 4.5 3H15.5C16.3284 3 17 3.67157 17 4.5V11.5C17 12.3284 16.3284 13 15.5 13H9.5L5.5 16.3V13H4.5C3.67157 13 3 12.3284 3 11.5V4.5Z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></svg> ${th.replies} ${t('replies')}</button>
       </div>
     </div>`).join('');
 

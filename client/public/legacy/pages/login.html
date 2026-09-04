@@ -12,7 +12,7 @@
 <body>
 
 <div class="topbar">
-  <div class="brand"><img src="../assets/img/logo-mark.png" alt="Zulfishan" class="brand-logo">Zulfishan</div>
+  <a href="homepage.html" class="brand brand-link"><img src="../assets/img/logo-mark.png" alt="Zulfishan" class="brand-logo">Zulfishan</a>
   <button class="lang-toggle" onclick="toggleLang()">اردو / EN</button>
 </div>
 
@@ -80,7 +80,13 @@
         </div>
         <div class="field">
           <label for="password">Password</label>
-          <input type="password" id="password" placeholder="••••••••">
+          <div class="password-field">
+            <input type="password" id="password" placeholder="••••••••">
+            <button type="button" class="password-toggle" aria-label="Show password" onclick="togglePasswordVisibility(this)">
+              <svg class="eye" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2 12C3.6 7.5 7.5 4.5 12 4.5C16.5 4.5 20.4 7.5 22 12C20.4 16.5 16.5 19.5 12 19.5C7.5 19.5 3.6 16.5 2 12Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="1.5"/></svg>
+              <svg class="eye-off" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 3L21 21" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M10.6 5.1C11.06 5.03 11.53 5 12 5C16.5 5 20.4 8 22 12C21.4 13.5 20.5 14.8 19.4 15.9M6.7 6.7C4.6 8 3 9.8 2 12C3.6 16 7.5 19 12 19C13.5 19 14.9 18.7 16.1 18.1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M9.9 9.9C9.3 10.5 9 11.2 9 12C9 13.7 10.3 15 12 15C12.8 15 13.5 14.7 14.1 14.1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+          </div>
           <div class="field-note" id="fieldNote"></div>
           <div class="field-error" id="passwordError" data-i18n="passwordError">Password must be at least 8 characters.</div>
         </div>
@@ -94,13 +100,15 @@
       <div class="divider-row" data-i18n="or">or</div>
       <button class="btn" style="background:#fff; border:1.5px solid var(--line); color:var(--ink);" data-i18n="google">Continue with Google</button>
 
-      <div class="signup-note" id="signupNote">New to Zulfishan? <a href="signup.html">Create an account</a></div>
+      <div class="signup-note" id="signupNote">New to Zulfishan? <a href="/signup">Create an account</a></div>
     </div>
   </div>
 </div>
 
 <script src="../js/i18n-login.js"></script>
 <script src="../js/i18n.js"></script>
+<script src="../js/password-toggle.js"></script>
 <script src="../js/login.js"></script>
+<script src="../js/session.js"></script>
 </body>
 </html>

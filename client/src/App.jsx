@@ -8,7 +8,10 @@ const routes = {
   '/hifz': 'hifz-tracker.html', '/hijri': 'hijri-calendar.html', '/lesson': 'lesson-player.html',
   '/login': 'login.html', '/marketplace': 'marketplace.html', '/mushaf': 'mushaf.html',
   '/practice': 'practice-hub.html', '/profile': 'profile.html', '/signup': 'signup.html',
-  '/zakat': 'zakat-calculator.html',
+  '/zakat': 'zakat-calculator.html', '/teacher-dashboard': 'teacher-dashboard.html',
+  '/teacher-profile': 'teacher-profile.html', '/vendor-dashboard': 'vendor-dashboard.html',
+  '/admin-dashboard': 'admin-dashboard.html', '/vendor-profile': 'vendor-profile.html',
+  '/admin-profile': 'admin-profile.html',
 }
 
 function App() {

@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zulfishan — My Profile (Board / Admin)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Noto+Nastaliq+Urdu:wght@500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/base.css">
+<link rel="stylesheet" href="../css/app-shell.css">
+<link rel="stylesheet" href="../css/profile.css">
+<link rel="stylesheet" href="../css/teacher-profile.css">
+</head>
+<body>
+
+<div class="app sidebar-open">
+  <aside class="sidebar">
+    <div>
+      <a href="homepage.html" class="brand brand-link"><img src="../assets/img/logo-mark.png" alt="Zulfishan" class="brand-logo">Zulfishan</a>
+      <nav>
+        <div class="nav-group-label" data-i18n="navGovernance">Governance</div>
+        <a href="admin-dashboard.html#scholars"><span class="dot"></span><span data-i18n="navScholarReview">Scholar Verification</span></a>
+        <a href="admin-dashboard.html#vendors"><span class="dot"></span><span data-i18n="navVendorReview">Vendor Verification</span></a>
+        <a href="admin-dashboard.html#moderation"><span class="dot"></span><span data-i18n="navModeration">Content Moderation</span></a>
+        <a href="admin-dashboard.html#fatwa-oversight"><span class="dot"></span><span data-i18n="navFatwaOversight">Fatwa Oversight</span></a>
+        <div class="nav-group-label" data-i18n="navPlatform">Platform</div>
+        <a href="admin-dashboard.html#reports"><span class="dot"></span><span data-i18n="navReports">User Reports</span></a>
+        <div class="nav-group-label" data-i18n="navAccount">Account</div>
+        <a href="admin-profile.html" class="active"><span class="dot"></span><span data-i18n="navProfile">Profile</span></a>
+      </nav>
+    </div>
+    <div class="sidebar-foot">
+      <button class="lang-toggle" onclick="toggleLang()" style="width:100%; color:#fff; border-color:rgba(255,255,255,0.3);">اردو / EN</button>
+      <a href="admin-profile.html" style="text-decoration:none; color:inherit;">
+      <div class="user-chip link">
+        <div class="av"></div>
+        <div><div class="name" data-i18n="userName" data-session="name">Dr. Imran Siddiqui</div><div class="role" data-i18n="userRole" data-session="role">Advisory Board · Admin</div></div>
+      </div>
+      </a>
+    </div>
+  </aside>
+
+  <div class="sidebar-overlay"></div>
+
+  <div class="main">
+    <div class="topbar-inner">
+      <div class="page-title-group"><button class="menu-toggle" id="sidebarToggle" aria-label="Toggle menu"><span></span></button><div class="page-title" data-i18n="pageTitle">My Profile</div></div>
+      <div class="topbar-actions">
+        <a href="login.html" onclick="window.zfSession && window.zfSession.clear();"><button class="btn btn-ghost sm" data-i18n="signOut">Sign Out</button></a>
+      </div>
+    </div>
+
+    <div class="content narrow">
+
+      <!-- Identity header -->
+      <div class="profile-header">
+        <div class="ph-avatar"></div>
+        <div class="ph-info">
+          <h1 data-session="name">Dr. Imran Siddiqui</h1>
+          <div class="ph-role"><span class="tilemark"><i></i><i></i><i></i><i></i></span><span data-i18n="roleTag">Scholar Advisory Board · Super Admin · Joined Jan 2026</span></div>
+        </div>
+        <button class="btn btn-primary sm" data-i18n="editProfile">Edit Profile</button>
+      </div>
+
+      <!-- Quick stats -->
+      <div class="stat-row">
+        <div class="stat-card">
+          <div class="stat-num">27</div>
+          <div class="stat-label" data-i18n="statReviewed">Reviewed This Month</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">9</div>
+          <div class="stat-label" data-i18n="statFatwaSignoffs">Fatwa Sign-offs</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">5</div>
+          <div class="stat-label" data-i18n="statReportsResolved">Reports Resolved</div>
+        </div>
+      </div>
+
+      <!-- Tabs -->
+      <div class="tab-row">
+        <button class="tab-btn active" data-tab="account" data-i18n="tabAccount">Account Info</button>
+        <button class="tab-btn" data-tab="credentials" data-i18n="tabPermissions">Role &amp; Permissions</button>
+        <button class="tab-btn" data-tab="security" data-i18n="tabSecurity">Security</button>
+      </div>
+
+      <!-- Account Info tab -->
+      <div class="tab-panel active" data-panel="account">
+        <div class="panel-card">
+          <div class="field-row">
+            <div class="field"><label data-i18n="fullName">Full name</label><input type="text" value="Dr. Imran Siddiqui" data-session="name"></div>
+            <div class="field"><label data-i18n="email">Internal email</label><input type="text" value="imran.siddiqui@example.com" data-session="email"></div>
+          </div>
+          <div class="field-row">
+            <div class="field"><label data-i18n="phone">Phone</label><input type="text" value="+92 300 1122334"></div>
+            <div class="field"><label data-i18n="city">City</label><input type="text" value="Islamabad"></div>
+          </div>
+          <div class="field">
+            <label data-i18n="bio">Short bio</label>
+            <textarea class="fatwa-textarea" style="min-height:80px;" data-i18n-placeholder="bioPlaceholder" placeholder="A line or two about your role on the Advisory Board, for internal reference only.">Founding member of the Scholar Advisory Board. Oversees credential review policy and chairs the Fatwa sign-off process. Not publicly listed.</textarea>
+          </div>
+          <button class="btn btn-primary" data-i18n="saveChanges">Save Changes</button>
+        </div>
+      </div>
+
+      <!-- Role & Permissions tab -->
+      <div class="tab-panel" data-panel="credentials">
+        <div class="panel-card">
+          <div class="cred-row">
+            <span class="cred-chip"><span class="sq"></span><span data-i18n="credBoardMember">Advisory Board Member</span></span>
+            <span class="cred-chip" data-i18n="credSuperAdmin">Super Admin</span>
+            <span class="cred-chip" data-i18n="credLogged">Session Logged</span>
+          </div>
+          <p class="cred-note" data-i18n="credNote">This portal is restricted to Moderators, Advisory Board members and Super Admins. Every action taken here — approvals, rejections, sign-offs and escalations — is logged for periodic governance review.</p>
+
+          <div class="cred-doc-row">
+            <div><div class="cred-doc-name" data-i18n="permScholar">Scholar Credential Review</div><div class="cred-doc-sub" data-i18n="permScholarSub">Approve, reject, or request more information on Ustaz applications</div></div>
+            <span class="cred-doc-status verified" data-i18n="statusGranted">Granted</span>
+          </div>
+          <div class="cred-doc-row">
+            <div><div class="cred-doc-name" data-i18n="permVendor">Vendor Verification</div><div class="cred-doc-sub" data-i18n="permVendorSub">Including Ehram / Kafan extra-compliance approval</div></div>
+            <span class="cred-doc-status verified" data-i18n="statusGranted">Granted</span>
+          </div>
+          <div class="cred-doc-row">
+            <div><div class="cred-doc-name" data-i18n="permFatwa">Fatwa Sign-off</div><div class="cred-doc-sub" data-i18n="permFatwaSub">One of three required independent sign-offs for "Authentic Fatwa"</div></div>
+            <span class="cred-doc-status verified" data-i18n="statusGranted">Granted</span>
+          </div>
+          <div class="cred-doc-row">
+            <div><div class="cred-doc-name" data-i18n="permSuperAdmin">Platform Configuration</div><div class="cred-doc-sub" data-i18n="permSuperAdminSub">Super Admin only — user roles, platform-wide settings</div></div>
+            <span class="cred-doc-status verified" data-i18n="statusGranted">Granted</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Security tab -->
+      <div class="tab-panel" data-panel="security">
+        <div class="panel-card">
+          <div class="pref-row">
+            <div>
+              <div class="pref-title" data-i18n="prefLangTitle">Preferred Language</div>
+              <div class="pref-sub" data-i18n="prefLangSub">Content and layout follow this choice, including RTL.</div>
+            </div>
+            <div class="lang-chips">
+              <div class="lang-chip active" onclick="selectChip(this)" data-i18n="langEnglish">English</div>
+              <div class="lang-chip" onclick="selectChip(this)" data-i18n="langUrdu">Urdu</div>
+              <div class="lang-chip" onclick="selectChip(this)" data-i18n="langArabic">Arabic</div>
+            </div>
+          </div>
+          <div class="divider-line"></div>
+          <div class="field"><label data-i18n="currentPassword">Current password</label><input type="password" placeholder="••••••••"></div>
+          <div class="field-row">
+            <div class="field"><label data-i18n="newPassword">New password</label><input type="password" placeholder="••••••••"></div>
+            <div class="field"><label data-i18n="confirmPassword">Confirm new password</label><input type="password" placeholder="••••••••"></div>
+          </div>
+          <button class="btn btn-primary" data-i18n="updatePassword">Update Password</button>
+          <div class="divider-line"></div>
+          <div class="pref-row">
+            <div>
+              <div class="pref-title" data-i18n="twoFactorTitle">Two-Factor Confirmation</div>
+              <div class="pref-sub" data-i18n="twoFactorSub">Required for every sign-in to this restricted portal.</div>
+            </div>
+            <div class="lang-chips">
+              <div class="lang-chip active" data-i18n="twoFactorOn">Enabled</div>
+            </div>
+          </div>
+          <div class="divider-line"></div>
+          <div class="pref-row">
+            <div>
+              <div class="pref-title" data-i18n="deleteAccountTitle">Revoke My Access</div>
+              <div class="pref-sub" data-i18n="deleteAccountSub">Removes your board/admin permissions. Requires a second Super Admin to confirm.</div>
+            </div>
+            <button class="btn btn-danger" data-i18n="deleteAccountBtn">Request Revocation</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script src="../js/i18n-admin-profile.js"></script>
+<script src="../js/i18n.js"></script>
+<script src="../js/app-shell.js"></script>
+<script src="../js/profile.js"></script>
+<script src="../js/session.js"></script>
+</body>
+</html>

@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 
-const routes = { 'homepage.html': '/', 'course-catalogue.html': '/courses', 'community.html': '/community', 'duas.html': '/duas', 'fatwa.html': '/fatwa', 'hifz-tracker.html': '/hifz', 'hijri-calendar.html': '/hijri', 'lesson-player.html': '/lesson', 'login.html': '/login', 'marketplace.html': '/marketplace', 'mushaf.html': '/mushaf', 'practice-hub.html': '/practice', 'profile.html': '/profile', 'signup.html': '/signup', 'zakat-calculator.html': '/zakat' }
+const routes = { 'homepage.html': '/', 'course-catalogue.html': '/courses', 'community.html': '/community', 'duas.html': '/duas', 'fatwa.html': '/fatwa', 'hifz-tracker.html': '/hifz', 'hijri-calendar.html': '/hijri', 'lesson-player.html': '/lesson', 'login.html': '/login', 'marketplace.html': '/marketplace', 'mushaf.html': '/mushaf', 'practice-hub.html': '/practice', 'profile.html': '/profile', 'signup.html': '/signup', 'zakat-calculator.html': '/zakat', 'teacher-dashboard.html': '/teacher-dashboard', 'teacher-profile.html': '/teacher-profile', 'vendor-dashboard.html': '/vendor-dashboard', 'admin-dashboard.html': '/admin-dashboard', 'vendor-profile.html': '/vendor-profile', 'admin-profile.html': '/admin-profile' }
 
 function publicUrl(value, base) {
   if (!value || value.startsWith('#') || /^(https?:|mailto:|tel:|data:)/.test(value)) return value
@@ -29,6 +29,29 @@ async function runScript(src) {
   if (!response.ok) throw new Error(`Could not load ${src}`)
   const code = await response.text()
   indirectEval(`${code}\n//# sourceURL=${src}`)
+}
+
+// Mirrors session.js's applySessionToPage(), but operates on the parsed
+// `doc` BEFORE it's handed to setHtml/painted. Without this, the static
+// demo name baked into the fetched markup (e.g. "Ahmad Raza") paints for
+// one frame on every navigation, and only gets swapped to the real
+// signed-in name once session.js's own DOMContentLoaded handler runs
+// afterwards — that gap is the name-flash on navigation. Applying it here
+// means the wrong name is never painted in the first place.
+function applySessionToDoc(doc) {
+  let session = null
+  try { session = JSON.parse(localStorage.getItem('zf_session') || 'null') } catch (e) { /* storage unavailable */ }
+  if (!session) return
+  doc.querySelectorAll('[data-session="name"]').forEach((el) => {
+    if ('value' in el) el.value = session.name; else el.textContent = session.name
+  })
+  doc.querySelectorAll('[data-session="role"]').forEach((el) => { el.textContent = session.roleLabel })
+  doc.querySelectorAll('[data-session="email"]').forEach((el) => {
+    if ('value' in el) el.value = session.email; else el.textContent = session.email
+  })
+  doc.querySelectorAll('[data-session="greeting"]').forEach((el) => {
+    el.textContent = el.textContent.replace(/Ahmad Raza|Mufti Abdul Rahman|Zainab Traders|Dr\. Imran Siddiqui|احمد رضا|مفتی عبدالرحمٰن|زینب ٹریڈرز|ڈاکٹر عمران صدیقی/, session.name)
+  })
 }
 
 // Stylesheets are shared across pages (base.css, app-shell.css, etc). Keep a
@@ -89,6 +112,7 @@ export default function StaticPage({ page, onNavigate }) {
       if (!active) return
       doc.body.querySelectorAll('[src]').forEach((node) => node.setAttribute('src', publicUrl(node.getAttribute('src'), source)))
       doc.body.querySelectorAll('[href]').forEach((node) => node.setAttribute('href', publicUrl(node.getAttribute('href'), source)))
+      applySessionToDoc(doc)
       const pageScripts = [...doc.body.querySelectorAll('script[src]')]
       pageScripts.forEach((script) => script.remove())
       setHtml(doc.body.innerHTML)
