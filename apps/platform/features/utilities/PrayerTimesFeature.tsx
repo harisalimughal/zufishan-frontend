@@ -342,9 +342,8 @@ export function PrayerTimesFeature() {
 
         // Reverse geocode to get city name
         fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lng}`)
-          ? fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lng}`)
-              .then((res) => res.json())
-              .then((geoData) => {
+          .then((res) => res.json())
+          .then((geoData) => {
                 const city =
                   geoData.address?.city ||
                   geoData.address?.town ||
@@ -356,7 +355,6 @@ export function PrayerTimesFeature() {
                 if (city) setCityName(country ? `${city}, ${country}` : city)
               })
               .catch(() => {})
-          : null
       },
       (err) => {
         if (err.code === err.PERMISSION_DENIED) setGeoError('denied')

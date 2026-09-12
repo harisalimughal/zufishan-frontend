@@ -8,10 +8,13 @@ import { AnimatePresence, motion } from "framer-motion";
 import {
   Bot,
   BookOpen,
+  Calendar,
   CalendarDays,
+  Calculator,
   ChevronDown,
   ClipboardCheck,
   ClipboardList,
+  Clock,
   Compass,
   GraduationCap,
   LayoutDashboard,
@@ -21,6 +24,7 @@ import {
   Trophy,
   Users,
   Video,
+  Sparkles,
   type LucideIcon
 } from "lucide-react";
 import { sidebarSections } from "../../../lib/navigation/sidebar-items";
@@ -29,13 +33,17 @@ import { UserProfileCard } from "../UserProfileCard";
 const iconMap: Record<string, LucideIcon> = {
   LayoutDashboard,
   BookOpen,
+  Calendar,
+  CalendarDays,
+  Calculator,
+  Clock,
   Compass,
   GraduationCap,
   Video,
-  CalendarDays,
   ClipboardCheck,
   ClipboardList,
   Bot,
+  Sparkles,
   TrendingUp,
   Trophy,
   Megaphone,

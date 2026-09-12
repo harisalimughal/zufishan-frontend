@@ -336,7 +336,7 @@ export function QiblaFeature() {
 
   // ── Compass permission button ─────────────────────────────────────────────
   const compassAvailable = 'DeviceOrientationEvent' in (typeof window !== 'undefined' ? window : {})
-  const needsPermission = orientState.status === 'idle' || orientState.status === 'denied' || orientState.status === 'unsupported'
+  const needsPermission = orientState.status === 'idle' || orientState.status === 'denied' || orientState.status === 'unsupported' || orientState.status === 'requesting'
 
   // ─────────────────────────────────────────────────────────────────────────
 
