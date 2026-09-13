@@ -150,4 +150,17 @@ document.addEventListener('DOMContentLoaded', () => {
     viewMonth++; if(viewMonth > 12){ viewMonth = 1; viewYear++; }
     renderCalendar();
   });
+
+  if (window.zfApi) {
+    const todayStr = new Date().toISOString().slice(0, 10);
+    window.zfApi.get('/v1/utilities/hijri-date', { date: todayStr }).then(res => {
+      const data = res.ok && (res.data?.data || res.data);
+      if (data && data.month && data.year) {
+        viewMonth = parseInt(data.month.number || data.month, 10) || viewMonth;
+        viewYear = parseInt(data.year, 10) || viewYear;
+        renderCalendar();
+        renderEventList();
+      }
+    }).catch(() => {});
+  }
 });

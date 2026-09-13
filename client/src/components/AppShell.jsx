@@ -12,6 +12,7 @@ const NAV = [
   ]},
   { group: 'navPractice', items: [
     { to: '/practice', key: 'navDailyPractice' },
+    { to: '/ai-assistant', key: 'navAiAssistant' },
     { to: '/fatwa', key: 'navFatwa' },
     { to: '/duas', key: 'navDuas' },
     { to: '/hijri', key: 'navHijri' },

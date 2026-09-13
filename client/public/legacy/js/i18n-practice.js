@@ -56,7 +56,15 @@ window.translations = {
     calcEyebrow: "CALCULATE",
     zakatHeading: "Zakat Calculator",
     zakatNote: "Work out what's due across cash, gold, and business assets using this year's nisab rate.",
-    openCalculator: "Open Calculator"
+    openCalculator: "Open Calculator",
+
+    navAiAssistant: "AI Assistant",
+    aiEyebrow: "INSTANT GUIDANCE · AUTHENTIC SOURCES",
+    aiHeading: "Ask Zulfishan AI",
+    openAiChat: "Open Full Chat →",
+    aiNote: "Instant answers grounded in authentic Islamic sources. Fiqhi disputes are routed to verified scholars.",
+    aiPlaceholder: "Ask anything about Quran, Hadith, or daily practice…",
+    aiAskBtn: "Ask AI"
   },
   ur: {
     navLearn: "تعلیم",
@@ -115,6 +123,14 @@ window.translations = {
     calcEyebrow: "حساب لگائیں",
     zakatHeading: "زکوٰۃ کیلکولیٹر",
     zakatNote: "اس سال کی نصاب کی شرح استعمال کرتے ہوئے نقدی، سونے اور کاروباری اثاثوں پر واجب الادا رقم معلوم کریں۔",
-    openCalculator: "کیلکولیٹر کھولیں"
+    openCalculator: "کیلکولیٹر کھولیں",
+
+    navAiAssistant: "اے آئی معاون",
+    aiEyebrow: "فوری رہنمائی · مستند مآخذ",
+    aiHeading: "ذوفشاں اے آئی سے پوچھیں",
+    openAiChat: "مکمل گفتگو کھولیں ←",
+    aiNote: "قرآن و سنت کی روشنی میں فوری جوابات۔ فقہی مسائل مستند مفتیانِ کرام کی جانب منتقل کیے جاتے ہیں۔",
+    aiPlaceholder: "قرآن، حدیث، یا روزمرہ مسائل سے متعلق کچھ بھی پوچھیں…",
+    aiAskBtn: "پوچھیں"
   }
 };

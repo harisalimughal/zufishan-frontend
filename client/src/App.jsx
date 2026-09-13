@@ -11,7 +11,7 @@ const routes = {
   '/zakat': 'zakat-calculator.html', '/teacher-dashboard': 'teacher-dashboard.html',
   '/teacher-profile': 'teacher-profile.html', '/vendor-dashboard': 'vendor-dashboard.html',
   '/admin-dashboard': 'admin-dashboard.html', '/vendor-profile': 'vendor-profile.html',
-  '/admin-profile': 'admin-profile.html',
+  '/admin-profile': 'admin-profile.html', '/ai-assistant': 'ai-assistant.html',
 }
 
 function App() {

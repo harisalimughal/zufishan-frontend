@@ -63,6 +63,31 @@
 
   function clearSession() {
     try { localStorage.removeItem(SESSION_KEY); } catch (e) { /* storage unavailable */ }
+    if (window.zfApi && window.zfApi.clearToken) {
+      window.zfApi.clearToken();
+    }
+  }
+
+  async function syncBackendSession() {
+    if (!window.zfApi || !window.zfApi.getToken()) return;
+    try {
+      const res = await window.zfApi.get('/auth/me');
+      if (res.ok && res.data && (res.data.data || res.data.user)) {
+        const user = res.data.data || res.data.user;
+        const current = getSession() || {};
+        const fullName = [user.firstName, user.lastName].filter(Boolean).join(' ') || user.name || current.name;
+        const updated = {
+          ...current,
+          name: fullName || current.name,
+          email: user.email || current.email,
+          role: user.role ? user.role.toLowerCase() : current.role,
+        };
+        try { localStorage.setItem(SESSION_KEY, JSON.stringify(updated)); } catch (e) {}
+        applySessionToPage();
+      }
+    } catch (e) {
+      // offline / quiet fallback
+    }
   }
 
   function applySessionToPage() {
@@ -95,7 +120,10 @@
     applySessionToPage();
   };
 
-  window.zfSession = { save: saveSession, get: getSession, clear: clearSession, apply: applySessionToPage };
+  window.zfSession = { save: saveSession, get: getSession, clear: clearSession, apply: applySessionToPage, sync: syncBackendSession };
 
-  document.addEventListener('DOMContentLoaded', applySessionToPage);
+  document.addEventListener('DOMContentLoaded', () => {
+    applySessionToPage();
+    syncBackendSession();
+  });
 })();
