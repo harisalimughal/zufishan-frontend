@@ -53,7 +53,7 @@ async function request<T>(endpoint: string, options: RequestOptions = {}): Promi
   const cleanEndpoint = endpoint.startsWith("/") ? endpoint : `/${endpoint}`;
   const response = await fetch(`${API_BASE_URL}${cleanEndpoint}`, config);
 
-  if (response.status === 401) {
+  if (response.status === 401 && token !== "mock-token") {
     if (typeof window !== "undefined") {
       setAuthToken(null);
       window.dispatchEvent(new CustomEvent("unauthorized_session"));
