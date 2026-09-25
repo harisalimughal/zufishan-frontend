@@ -71,7 +71,7 @@ export default function Header() {
           </button>
 
           <Link
-            href="/login"
+            href="/dashboard"
             className={`text-sm font-medium transition ${
               isDarkMode ? "text-gray-300 hover:text-white" : "text-zinc-600 hover:text-black"
             }`}

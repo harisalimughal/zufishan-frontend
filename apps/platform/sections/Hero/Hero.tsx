@@ -191,7 +191,7 @@ export function Hero() {
           transition={{ duration: 0.8, delay: 0.3 }}
           className="flex flex-col sm:flex-row gap-4 mb-8 w-full sm:w-auto px-4 justify-center"
         >
-          <Link href="/login">
+          <Link href="/dashboard">
             <HeroButton
               variant="primary"
               icon={<Play className="w-4 h-4 fill-white" />}

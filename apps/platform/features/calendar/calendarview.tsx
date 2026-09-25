@@ -2,9 +2,10 @@
 
 import { useState, useEffect } from "react";
 import { calendarService } from "@/services/calendarService";
+import { utilityService } from "@/services/utilityService";
 import {
   ChevronLeft, ChevronRight, Plus, RefreshCw,
-  Monitor, MapPin, Wifi, Clock, CheckSquare, Trash2,
+  Monitor, MapPin, Wifi, Clock, CheckSquare, Trash2, Sparkles
 } from "lucide-react";
 
 // ─── Types ───────────────────────────────────────────────────────────────────
@@ -254,11 +255,12 @@ export function CalendarView() {
     async function loadBackendEvents() {
       try {
         const live = await calendarService.getAllEvents();
+        const mapped: CalendarEvent[] = [];
         if (live && live.length > 0) {
-          const mapped: CalendarEvent[] = live.map((e: any, idx: number) => {
+          live.forEach((e: any, idx: number) => {
             const startD = new Date(e.startTime);
             const endD = new Date(e.endTime);
-            return {
+            mapped.push({
               id: typeof e.id === "number" ? e.id : idx + 1000,
               title: e.title,
               subtitle: e.type || "Event",
@@ -271,8 +273,39 @@ export function CalendarView() {
               endHour: endD.getHours(),
               endMin: endD.getMinutes(),
               isOnline: e.isLive || false,
-            };
+            });
           });
+        }
+
+        // Fetch Islamic Events to display on Academic Calendar as well
+        try {
+          const hijriRes = await utilityService.getHijriDate({});
+          const islamicEvts = [...(hijriRes.monthEvents || []), ...(hijriRes.nearbyEvents || [])];
+          const today = new Date();
+
+          islamicEvts.forEach((evt, idx) => {
+            // Estimate Gregorian date offset from daysRemaining
+            const eventDate = new Date(today);
+            eventDate.setDate(today.getDate() + (evt.daysRemaining || 0));
+
+            mapped.push({
+              id: 9000 + idx,
+              title: `☪️ ${evt.name}`,
+              subtitle: evt.nameAr ? `${evt.nameAr} (${evt.category})` : evt.category,
+              professor: evt.description,
+              type: "custom" as const,
+              color: evt.category === 'Holiday' ? '#F59E0B' : '#10b981',
+              date: toYMD(eventDate),
+              startHour: 6,
+              startMin: 0,
+              endHour: 7,
+              endMin: 0,
+              isOnline: false,
+            });
+          });
+        } catch (_) {}
+
+        if (mapped.length > 0) {
           setEvents((prev) => [...prev, ...mapped]);
         }
       } catch (err) {
