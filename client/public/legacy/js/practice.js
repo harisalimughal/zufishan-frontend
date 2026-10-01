@@ -55,6 +55,14 @@ function tapTasbih(){
   tasbihCount++;
   const cell = DHIKR_SET[dhikrIndex];
   if(tasbihCount >= cell.target){
+    if (window.zfApi && window.zfApi.getToken()) {
+      window.zfApi.post('/v1/utilities/tasbih/sessions', {
+        phrase: cell.en,
+        count: cell.target,
+        target: cell.target,
+        sessionDate: new Date().toISOString(),
+      }).catch(() => {});
+    }
     dhikrIndex = (dhikrIndex + 1) % DHIKR_SET.length;
     tasbihCount = 0;
     if(navigator.vibrate) navigator.vibrate(30);
@@ -179,9 +187,25 @@ function setLocation(loc, save){
   renderQibla();
 }
 
-// ---- Qibla dial (driven by currentLocation, recalculated live) ----
+// ---- Qibla dial (driven by currentLocation, recalculated live + API sync) ----
 function renderQibla(){
   const deg = Math.round(bearingToKaaba(currentLocation.lat, currentLocation.lng));
+  applyQiblaDeg(deg);
+
+  if (window.zfApi) {
+    window.zfApi.get('/v1/utilities/qibla', {
+      latitude: currentLocation.lat,
+      longitude: currentLocation.lng,
+    }).then(res => {
+      if (res.ok && res.data && (res.data.data?.direction !== undefined || res.data.direction !== undefined)) {
+        const liveDeg = Math.round(res.data.data?.direction ?? res.data.direction);
+        applyQiblaDeg(liveDeg);
+      }
+    }).catch(() => {});
+  }
+}
+
+function applyQiblaDeg(deg){
   const needle = document.getElementById('dialNeedle');
   if(needle) needle.style.transform = `translate(-50%,-100%) rotate(${deg}deg)`;
   const label = document.getElementById('qiblaDegLabel');
@@ -257,6 +281,31 @@ function renderPrayerTimes(){
       cell.appendChild(tag);
     }
   });
+
+  // Live sync with backend prayer times API if reachable
+  if (window.zfApi) {
+    const todayStr = new Date().toISOString().slice(0, 10);
+    window.zfApi.get('/v1/utilities/prayer-times', {
+      latitude: loc.lat,
+      longitude: loc.lng,
+      method: 'Karachi',
+      asrMethod: 1,
+      date: todayStr,
+    }).then(res => {
+      const timings = res.ok && (res.data?.data?.timings || res.data?.timings);
+      if (timings) {
+        const apiMap = { fajr: timings.Fajr, dhuhr: timings.Dhuhr, asr: timings.Asr, maghrib: timings.Maghrib, isha: timings.Isha };
+        order.forEach(k => {
+          if (apiMap[k]) {
+            const parts = apiMap[k].split(':');
+            const h = parseInt(parts[0], 10) + parseInt(parts[1], 10) / 60;
+            const el = document.getElementById('time-' + domKey[k]);
+            if (el) el.textContent = hoursToClock(h, lang);
+          }
+        });
+      }
+    }).catch(() => {});
+  }
 }
 
 function openLocationModal(){ document.getElementById('locationModal').classList.add('open'); }
@@ -359,5 +408,22 @@ document.addEventListener('DOMContentLoaded', () => {
     overlay.addEventListener('click', (e) => {
       if(e.target === overlay) overlay.classList.remove('open');
     });
+  });
+
+  const dAiInput = document.getElementById('dashboardAiInput');
+  const dAiBtn = document.getElementById('dashboardAiBtn');
+  function submitDashboardAi() {
+    const q = dAiInput?.value.trim();
+    if (q) {
+      sessionStorage.setItem('zf_initial_ai_query', q);
+      window.location.href = '/ai-assistant';
+    }
+  }
+  dAiBtn?.addEventListener('click', submitDashboardAi);
+  dAiInput?.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      submitDashboardAi();
+    }
   });
 });

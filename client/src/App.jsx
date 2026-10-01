@@ -11,7 +11,9 @@ const routes = {
   '/zakat': 'zakat-calculator.html', '/teacher-dashboard': 'teacher-dashboard.html',
   '/teacher-profile': 'teacher-profile.html', '/vendor-dashboard': 'vendor-dashboard.html',
   '/admin-dashboard': 'admin-dashboard.html', '/vendor-profile': 'vendor-profile.html',
-  '/admin-profile': 'admin-profile.html',
+  '/admin-profile': 'admin-profile.html', '/ai-assistant': 'ai-assistant.html',
+  '/sharia-audit-advisory': 'sharia-audit-advisory.html', '/zakat-management': 'zakat-management.html',
+  '/corporate-trainings': 'corporate-trainings.html', '/enquiry': 'service-enquiry.html',
 }
 
 function App() {

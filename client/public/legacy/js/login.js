@@ -79,17 +79,42 @@ function handleSubmit(){
 
   if (!valid) return false;
 
-  if (window.zfSession) window.zfSession.save(currentActiveRole, val);
+  async function performLogin() {
+    let token = null;
+    let explicitName = null;
+    if (window.zfApi && isValidEmail(val)) {
+      try {
+        const res = await window.zfApi.post('/auth/login', {
+          email: val,
+          password: passInput.value,
+        });
+        if (res.ok && res.data) {
+          const resData = res.data.data || res.data;
+          token = resData.token || resData.accessToken;
+          if (token) window.zfApi.setToken(token);
+          if (resData.user) {
+            explicitName = [resData.user.firstName, resData.user.lastName].filter(Boolean).join(' ') || resData.user.name;
+          }
+        }
+      } catch (e) {
+        // Fall back gracefully to local session
+      }
+    }
 
-  if (currentActiveRole === 'learner') {
-    window.location.href = '/profile';
-  } else if (currentActiveRole === 'teacher') {
-    window.location.href = '/teacher-dashboard';
-  } else if (currentActiveRole === 'vendor') {
-    window.location.href = '/vendor-dashboard';
-  } else if (currentActiveRole === 'admin') {
-    window.location.href = '/admin-dashboard';
+    if (window.zfSession) window.zfSession.save(currentActiveRole, val, explicitName);
+
+    if (currentActiveRole === 'learner') {
+      window.location.href = '/profile';
+    } else if (currentActiveRole === 'teacher') {
+      window.location.href = '/teacher-dashboard';
+    } else if (currentActiveRole === 'vendor') {
+      window.location.href = '/vendor-dashboard';
+    } else if (currentActiveRole === 'admin') {
+      window.location.href = '/admin-dashboard';
+    }
   }
+
+  performLogin();
   return false;
 }
 

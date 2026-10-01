@@ -1,4 +1,17 @@
-const NISAB_GOLD = 322450; // PKR, illustrative — would be fetched live in production
+let NISAB_GOLD = 322450; // PKR, fallback value
+
+// Fetch live Nisab rate from backend if available
+if (window.zfApi) {
+  window.zfApi.get('/v1/utilities/zakat/nisab-rate', { currency: 'PKR', methodology: 'SOUTH_ASIAN' })
+    .then(res => {
+      const data = res.ok && (res.data?.data || res.data);
+      if (data && (data.silverNisabValue || data.goldNisabValue)) {
+        NISAB_GOLD = data.goldNisabValue || data.silverNisabValue || NISAB_GOLD;
+        const nisabEl = document.querySelector('.nisab-pill, [data-session="nisab"]');
+        if (nisabEl) nisabEl.textContent = 'PKR ' + NISAB_GOLD.toLocaleString();
+      }
+    }).catch(() => {});
+}
 
 let zCurrentStep = 1;
 const zTotalSteps = 3;
@@ -29,9 +42,13 @@ function num(id){
 
 function calcTotal(){ /* live total could be shown inline; kept simple for now */ }
 
-function calcResult(){
-  const assets = num('zCash') + num('zGold') + num('zBusiness') + num('zInvest');
+async function calcResult(){
+  const cash = num('zCash');
+  const gold = num('zGold');
+  const business = num('zBusiness');
+  const invest = num('zInvest');
   const debts = num('zDebt');
+  const assets = cash + gold + business + invest;
   const net = Math.max(assets - debts, 0);
   const t = (window.translations && window.translations[window.currentLang || 'en']) || {};
 
@@ -42,11 +59,34 @@ function calcResult(){
   const dueFigure = document.getElementById('dueFigure');
   const breakdown = document.getElementById('breakdown');
 
-  if(net >= NISAB_GOLD){
+  // Backend calculate API sync
+  let calculatedDue = net * 0.025;
+  let isAbove = net >= NISAB_GOLD;
+
+  if (window.zfApi) {
+    try {
+      const res = await window.zfApi.post('/v1/utilities/zakat/calculate', {
+        currency: 'PKR',
+        cash,
+        gold,
+        silver: 0,
+        investments: invest,
+        businessAssets: business,
+        liabilities: debts,
+      });
+      if (res.ok && res.data && (res.data.data || res.data)) {
+        const d = res.data.data || res.data;
+        if (d.zakatDue !== undefined) calculatedDue = d.zakatDue;
+        if (d.isEligible !== undefined) isAbove = d.isEligible;
+        else if (d.isAboveNisab !== undefined) isAbove = d.isAboveNisab;
+      }
+    } catch (e) {}
+  }
+
+  if(isAbove){
     nisabText.textContent = t.aboveNisab || 'Above nisab — Zakat is due';
     dueBox.style.display = 'block';
-    const due = net * 0.025;
-    dueFigure.textContent = 'PKR ' + due.toLocaleString(undefined, {maximumFractionDigits:0});
+    dueFigure.textContent = 'PKR ' + calculatedDue.toLocaleString(undefined, {maximumFractionDigits:0});
   } else {
     nisabText.textContent = t.belowNisab || 'Below nisab — Zakat is not obligatory this year';
     dueBox.style.display = 'none';

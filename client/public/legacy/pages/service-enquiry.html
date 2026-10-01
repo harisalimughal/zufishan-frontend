@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zulfishan — Send an Enquiry</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Noto+Nastaliq+Urdu:wght@500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/base.css">
+<link rel="stylesheet" href="../css/services.css">
+</head>
+<body>
+
+<div class="sv-public">
+<header class="sv-nav">
+  <div class="wrap">
+    <a href="homepage.html" class="brand brand-link"><img src="../assets/img/logo-mark.png" alt="Zulfishan" class="brand-logo">Zulfishan</a>
+    <div class="sv-navlinks">
+      <a href="homepage.html" data-i18n="pubNavHome">Home</a>
+      <a href="sharia-audit-advisory.html" data-i18n="navShariaAudit">Sharia Audit Advisory</a>
+      <a href="zakat-management.html" data-i18n="navZakatMgmt">Zakat Management</a>
+      <a href="corporate-trainings.html" data-i18n="navTraining">Corporate Trainings</a>
+    </div>
+    <div class="nav-actions">
+      <button class="lang-toggle" onclick="toggleLang()">اردو / EN</button>
+      <a href="service-enquiry.html" class="btn btn-primary sm" data-i18n="btnEnquire">Send an enquiry</a>
+    </div>
+  </div>
+</header>
+
+<main class="wrap sv-main">
+      <div class="sv">
+        <div class="sv-enq">
+          <div>
+            <div id="enqHead">
+              <h1 class="sv-h2" style="font-size:2rem; margin-bottom:12px;" data-i18n="enq_h">Tell us what you need</h1>
+              <p class="sv-intro" data-i18n="enq_intro">Share a few details about your organisation and the service you are interested in. A member of our advisory team will reply by email to arrange a short introductory conversation.</p>
+            </div>
+
+            <form class="sv-form" id="enqForm" novalidate>
+              <fieldset class="sv-group" id="grpService">
+                <legend class="sv-q" data-i18n="enq_q_service">Which service is this about?</legend>
+                <div class="sv-choice">
+                  <input type="radio" name="service" id="svAudit" value="audit"><label for="svAudit" data-i18n="enq_svc_audit">Sharia Audit Advisory</label>
+                  <input type="radio" name="service" id="svZakat" value="zakat"><label for="svZakat" data-i18n="enq_svc_zakat">Zakat Management</label>
+                  <input type="radio" name="service" id="svTraining" value="training"><label for="svTraining" data-i18n="enq_svc_training">Corporate Trainings</label>
+                  <input type="radio" name="service" id="svOther" value="other"><label for="svOther" data-i18n="enq_svc_other">Something else</label>
+                </div>
+                <div class="sv-err" data-err="service" data-i18n="err_service">Choose a service.</div>
+              </fieldset>
+
+              <div class="sv-row">
+                <div class="sv-field"><label for="enqName" data-i18n="enq_name">Full name</label><input id="enqName" name="name" type="text" autocomplete="name"><div class="sv-err" data-i18n="err_name">Enter your name.</div></div>
+                <div class="sv-field"><label for="enqEmail" data-i18n="enq_email">Work email</label><input id="enqEmail" name="email" type="email" autocomplete="email"><div class="sv-err" data-i18n="err_email">Enter a valid email address.</div></div>
+              </div>
+              <div class="sv-row">
+                <div class="sv-field"><label for="enqOrg" data-i18n="enq_org">Organisation</label><input id="enqOrg" name="org" type="text" autocomplete="organization"><div class="sv-err" data-i18n="err_org">Enter your organisation’s name.</div></div>
+                <div class="sv-field"><label for="enqPhone"><span data-i18n="enq_phone">Phone</span> <span class="opt" data-i18n="enq_optional">(optional)</span></label><input id="enqPhone" name="phone" type="tel" autocomplete="tel"></div>
+              </div>
+              <div class="sv-field">
+                <label for="enqType" data-i18n="enq_orgtype">Type of organisation</label>
+                <select id="enqType" name="orgtype">
+                  <option value="" data-i18n="enq_ot_pick">Select one</option>
+                  <option value="bank" data-i18n="enq_ot_bank">Bank or financial institution</option>
+                  <option value="fund" data-i18n="enq_ot_fund">Asset manager or fund</option>
+                  <option value="charity" data-i18n="enq_ot_charity">Charity, trust or foundation</option>
+                  <option value="company" data-i18n="enq_ot_company">Company</option>
+                  <option value="other" data-i18n="enq_ot_other">Other</option>
+                </select>
+              </div>
+              <div class="sv-field">
+                <label for="enqMsg" data-i18n="enq_msg">How can we help?</label>
+                <textarea id="enqMsg" name="message" data-i18n-placeholder="enq_msg_ph" placeholder="For example: what you offer, what you want reviewed or taught, and any dates that matter."></textarea>
+                <div class="sv-err" data-i18n="err_msg">Tell us a little about what you need (at least 10 characters).</div>
+              </div>
+              <button type="submit" class="btn btn-primary sv-submit" data-i18n="enq_submit">Send enquiry</button>
+              <p class="sv-fine" data-i18n="enq_fine">We use these details only to reply to your enquiry.</p>
+            </form>
+
+            <div class="sv-form sv-done" id="enqDone" hidden aria-live="polite">
+              <span class="tilemark" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+              <h2 data-i18n="done_h">Enquiry sent</h2>
+              <p data-i18n="done_p">Thank you. A member of our team will reply to the email address you gave.</p>
+              <div class="sv-ref"><span data-i18n="done_ref">Reference</span>: <span id="enqRef"></span></div>
+              <div><button type="button" class="btn btn-primary" id="enqAgain" data-i18n="done_again">Send another enquiry</button></div>
+            </div>
+          </div>
+
+          <aside class="sv-next">
+            <h2 data-i18n="next_h">What happens next</h2>
+            <ol>
+              <li data-i18n="next1">We read your enquiry and pass it to the adviser who handles that service.</li>
+              <li data-i18n="next2">You receive an email to arrange a short introductory conversation.</li>
+              <li data-i18n="next3">After the call we send a proposed scope and timeline for your review.</li>
+            </ol>
+          </aside>
+        </div>
+      </div>
+</main>
+<footer class="sv-foot">
+  <div class="wrap">
+    <a href="homepage.html" class="brand brand-link" style="font-size:1.05rem;"><img src="../assets/img/logo-mark.png" alt="Zulfishan" class="brand-logo">Zulfishan</a>
+    <div class="sv-foot-links"><a href="homepage.html" data-i18n="pubNavHome">Home</a><a href="service-enquiry.html" data-i18n="navEnquiry">Send an Enquiry</a></div>
+  </div>
+</footer>
+</div>
+
+<script src="../js/i18n-services.js"></script>
+<script src="../js/i18n.js"></script>
+<script src="../js/service-enquiry.js"></script>
+</body>
+</html>

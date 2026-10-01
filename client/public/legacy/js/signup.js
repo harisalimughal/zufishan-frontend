@@ -101,12 +101,36 @@ const DASHBOARD_ROUTES = { learner: '/profile', teacher: '/teacher-dashboard' };
 
 function nextStep(){ currentStep++; renderStep(); }
 function prevStep(){ currentStep--; renderStep(); }
-function finishFlow(role){
+async function finishFlow(role){
+  const nameInput = document.getElementById(role + 'Name');
+  const emailInput = document.getElementById(role + 'Email');
+  const passInput = document.getElementById(role + 'Password');
+  const name = nameInput ? nameInput.value.trim() : '';
+  const identifier = emailInput ? emailInput.value.trim() : '';
+  const password = passInput ? passInput.value : '';
+
+  if (window.zfApi && isValidEmail(identifier) && password.length >= 8) {
+    try {
+      const parts = name.split(' ');
+      const firstName = parts[0] || 'Learner';
+      const lastName = parts.slice(1).join(' ') || 'User';
+      const res = await window.zfApi.post('/auth/register', {
+        firstName,
+        lastName,
+        email: identifier,
+        password,
+      });
+      if (res.ok && res.data) {
+        const resData = res.data.data || res.data;
+        const token = resData.token || resData.accessToken;
+        if (token) window.zfApi.setToken(token);
+      }
+    } catch (e) {
+      // offline / fallback gracefully
+    }
+  }
+
   if (window.zfSession) {
-    const nameInput = document.getElementById(role + 'Name');
-    const emailInput = document.getElementById(role + 'Email');
-    const name = nameInput ? nameInput.value.trim() : '';
-    const identifier = emailInput ? emailInput.value.trim() : '';
     window.zfSession.save(role, identifier, name);
   }
   // Learner and Ustaz accounts are usable immediately, so skip the extra

@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 
-const routes = { 'homepage.html': '/', 'course-catalogue.html': '/courses', 'community.html': '/community', 'duas.html': '/duas', 'fatwa.html': '/fatwa', 'hifz-tracker.html': '/hifz', 'hijri-calendar.html': '/hijri', 'lesson-player.html': '/lesson', 'login.html': '/login', 'marketplace.html': '/marketplace', 'mushaf.html': '/mushaf', 'practice-hub.html': '/practice', 'profile.html': '/profile', 'signup.html': '/signup', 'zakat-calculator.html': '/zakat', 'teacher-dashboard.html': '/teacher-dashboard', 'teacher-profile.html': '/teacher-profile', 'vendor-dashboard.html': '/vendor-dashboard', 'admin-dashboard.html': '/admin-dashboard', 'vendor-profile.html': '/vendor-profile', 'admin-profile.html': '/admin-profile' }
+const routes = { 'homepage.html': '/', 'course-catalogue.html': '/courses', 'community.html': '/community', 'duas.html': '/duas', 'fatwa.html': '/fatwa', 'hifz-tracker.html': '/hifz', 'hijri-calendar.html': '/hijri', 'lesson-player.html': '/lesson', 'login.html': '/login', 'marketplace.html': '/marketplace', 'mushaf.html': '/mushaf', 'practice-hub.html': '/practice', 'profile.html': '/profile', 'signup.html': '/signup', 'zakat-calculator.html': '/zakat', 'teacher-dashboard.html': '/teacher-dashboard', 'teacher-profile.html': '/teacher-profile', 'vendor-dashboard.html': '/vendor-dashboard', 'admin-dashboard.html': '/admin-dashboard', 'vendor-profile.html': '/vendor-profile', 'admin-profile.html': '/admin-profile', 'ai-assistant.html': '/ai-assistant', 'sharia-audit-advisory.html': '/sharia-audit-advisory', 'zakat-management.html': '/zakat-management', 'corporate-trainings.html': '/corporate-trainings', 'service-enquiry.html': '/enquiry' }
 
 function publicUrl(value, base) {
   if (!value || value.startsWith('#') || /^(https?:|mailto:|tel:|data:)/.test(value)) return value
@@ -117,6 +117,8 @@ export default function StaticPage({ page, onNavigate }) {
       pageScripts.forEach((script) => script.remove())
       setHtml(doc.body.innerHTML)
       requestAnimationFrame(async () => {
+        // A new page always opens at its start, not at the previous page's scroll position.
+        window.scrollTo({ top: 0, left: 0, behavior: 'instant' })
         for (const item of pageScripts) {
           if (!active) return
           try { await runScript(publicUrl(item.getAttribute('src'), source)) } catch (error) { console.error(error) }

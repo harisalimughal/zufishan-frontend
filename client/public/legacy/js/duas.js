@@ -139,4 +139,34 @@ document.addEventListener('DOMContentLoaded', () => {
     tasbihCountDua = 0;
     renderTasbihDua();
   });
+
+  // Backend Azkar API sync
+  if (window.zfApi) {
+    window.zfApi.get('/v1/utilities/azkar/categories').then(async res => {
+      const cats = res.ok && (res.data?.data || res.data);
+      if (Array.isArray(cats) && cats.length > 0) {
+        for (const c of cats.slice(0, 4)) {
+          const itemRes = await window.zfApi.get(`/v1/utilities/azkar/${c.id}/items`);
+          const items = itemRes.ok && (itemRes.data?.data?.items || itemRes.data?.items);
+          if (Array.isArray(items)) {
+            items.forEach(it => {
+              if (!DUAS.some(d => d.id === it.id)) {
+                DUAS.push({
+                  id: it.id,
+                  cat: c.slug || 'morning',
+                  title: { en: it.reference || c.name, ur: it.reference || c.arabicName },
+                  ar: it.arabic,
+                  translit: it.transliteration || '',
+                  translation: { en: it.translation, ur: it.translation },
+                  source: it.reference || 'Zulfishan Verified Hadith',
+                });
+              }
+            });
+          }
+        }
+        renderCats();
+        renderList();
+      }
+    }).catch(() => {});
+  }
 });

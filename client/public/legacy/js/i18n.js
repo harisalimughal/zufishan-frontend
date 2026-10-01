@@ -37,29 +37,43 @@ function saveLanguage(lang){
 
 window.currentLang = window.currentLang || getSavedLanguage();
 
+const SHARED_FALLBACKS = {
+  en: {
+    navAiAssistant: "AI Assistant",
+    navServices: "Services", navShariaAudit: "Sharia Audit Advisory", navZakatMgmt: "Zakat Management",
+    navTraining: "Corporate Trainings", navEnquiry: "Send an Enquiry"
+  },
+  ur: {
+    navAiAssistant: "اے آئی معاون",
+    navServices: "خدمات", navShariaAudit: "شرعی آڈٹ ایڈوائزری", navZakatMgmt: "زکوٰۃ مینجمنٹ",
+    navTraining: "کارپوریٹ تربیت", navEnquiry: "دریافت بھیجیں"
+  }
+};
+
 function setLanguage(lang, persist = true){
   document.documentElement.setAttribute('lang', lang === 'ur' ? 'ur' : 'en');
   document.documentElement.setAttribute('dir', lang === 'ur' ? 'rtl' : 'ltr');
   window.currentLang = lang;
   if(persist) saveLanguage(lang);
 
-  if(window.translations && window.translations[lang]){
-    document.querySelectorAll('[data-i18n]').forEach(el=>{
-      const key = el.getAttribute('data-i18n');
-      const val = window.translations[lang][key];
-      if(val !== undefined) el.textContent = val;
-    });
-    document.querySelectorAll('[data-i18n-html]').forEach(el=>{
-      const key = el.getAttribute('data-i18n-html');
-      const val = window.translations[lang][key];
-      if(val !== undefined) el.innerHTML = val;
-    });
-    document.querySelectorAll('[data-i18n-placeholder]').forEach(el=>{
-      const key = el.getAttribute('data-i18n-placeholder');
-      const val = window.translations[lang][key];
-      if(val !== undefined) el.setAttribute('placeholder', val);
-    });
-  }
+  const shared = SHARED_FALLBACKS[lang] || {};
+  const dict = (window.translations && window.translations[lang]) ? { ...shared, ...window.translations[lang] } : shared;
+
+  document.querySelectorAll('[data-i18n]').forEach(el=>{
+    const key = el.getAttribute('data-i18n');
+    const val = dict[key];
+    if(val !== undefined) el.textContent = val;
+  });
+  document.querySelectorAll('[data-i18n-html]').forEach(el=>{
+    const key = el.getAttribute('data-i18n-html');
+    const val = dict[key];
+    if(val !== undefined) el.innerHTML = val;
+  });
+  document.querySelectorAll('[data-i18n-placeholder]').forEach(el=>{
+    const key = el.getAttribute('data-i18n-placeholder');
+    const val = dict[key];
+    if(val !== undefined) el.setAttribute('placeholder', val);
+  });
 
   // let page-specific scripts (e.g. dynamic results) re-render in the new language
   if(typeof window.onLanguageChange === 'function') window.onLanguageChange(lang);
