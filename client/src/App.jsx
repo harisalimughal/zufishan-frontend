@@ -12,8 +12,11 @@ const routes = {
   '/teacher-profile': 'teacher-profile.html', '/vendor-dashboard': 'vendor-dashboard.html',
   '/admin-dashboard': 'admin-dashboard.html', '/vendor-profile': 'vendor-profile.html',
   '/admin-profile': 'admin-profile.html', '/ai-assistant': 'ai-assistant.html',
+<<<<<<< HEAD
   '/sharia-audit-advisory': 'sharia-audit-advisory.html', '/zakat-management': 'zakat-management.html',
   '/corporate-trainings': 'corporate-trainings.html', '/enquiry': 'service-enquiry.html',
+=======
+>>>>>>> 8c6d6378a9af0308b4d738bd4e00cfd084f01837
 }
 
 function App() {
