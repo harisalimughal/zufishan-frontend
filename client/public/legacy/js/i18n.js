@@ -38,7 +38,6 @@ function saveLanguage(lang){
 window.currentLang = window.currentLang || getSavedLanguage();
 
 const SHARED_FALLBACKS = {
-<<<<<<< HEAD
   en: {
     navAiAssistant: "AI Assistant",
     navServices: "Services", navShariaAudit: "Sharia Audit Advisory", navZakatMgmt: "Zakat Management",
@@ -49,10 +48,6 @@ const SHARED_FALLBACKS = {
     navServices: "خدمات", navShariaAudit: "شرعی آڈٹ ایڈوائزری", navZakatMgmt: "زکوٰۃ مینجمنٹ",
     navTraining: "کارپوریٹ تربیت", navEnquiry: "دریافت بھیجیں"
   }
-=======
-  en: { navAiAssistant: "AI Assistant" },
-  ur: { navAiAssistant: "اے آئی معاون" }
->>>>>>> 8c6d6378a9af0308b4d738bd4e00cfd084f01837
 };
 
 function setLanguage(lang, persist = true){

@@ -1,10 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 
-<<<<<<< HEAD
 const routes = { 'homepage.html': '/', 'course-catalogue.html': '/courses', 'community.html': '/community', 'duas.html': '/duas', 'fatwa.html': '/fatwa', 'hifz-tracker.html': '/hifz', 'hijri-calendar.html': '/hijri', 'lesson-player.html': '/lesson', 'login.html': '/login', 'marketplace.html': '/marketplace', 'mushaf.html': '/mushaf', 'practice-hub.html': '/practice', 'profile.html': '/profile', 'signup.html': '/signup', 'zakat-calculator.html': '/zakat', 'teacher-dashboard.html': '/teacher-dashboard', 'teacher-profile.html': '/teacher-profile', 'vendor-dashboard.html': '/vendor-dashboard', 'admin-dashboard.html': '/admin-dashboard', 'vendor-profile.html': '/vendor-profile', 'admin-profile.html': '/admin-profile', 'ai-assistant.html': '/ai-assistant', 'sharia-audit-advisory.html': '/sharia-audit-advisory', 'zakat-management.html': '/zakat-management', 'corporate-trainings.html': '/corporate-trainings', 'service-enquiry.html': '/enquiry' }
-=======
-const routes = { 'homepage.html': '/', 'course-catalogue.html': '/courses', 'community.html': '/community', 'duas.html': '/duas', 'fatwa.html': '/fatwa', 'hifz-tracker.html': '/hifz', 'hijri-calendar.html': '/hijri', 'lesson-player.html': '/lesson', 'login.html': '/login', 'marketplace.html': '/marketplace', 'mushaf.html': '/mushaf', 'practice-hub.html': '/practice', 'profile.html': '/profile', 'signup.html': '/signup', 'zakat-calculator.html': '/zakat', 'teacher-dashboard.html': '/teacher-dashboard', 'teacher-profile.html': '/teacher-profile', 'vendor-dashboard.html': '/vendor-dashboard', 'admin-dashboard.html': '/admin-dashboard', 'vendor-profile.html': '/vendor-profile', 'admin-profile.html': '/admin-profile', 'ai-assistant.html': '/ai-assistant' }
->>>>>>> 8c6d6378a9af0308b4d738bd4e00cfd084f01837
 
 function publicUrl(value, base) {
   if (!value || value.startsWith('#') || /^(https?:|mailto:|tel:|data:)/.test(value)) return value
